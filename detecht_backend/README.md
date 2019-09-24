@@ -15,3 +15,9 @@ or if "pip is undefined"
 
 # Install requirements
 `pip install -r requirements.txt`
+
+#Tests
+https://docs.djangoproject.com/en/2.2/intro/tutorial05/
+
+#Django-Rest-Framework?
+https://www.django-rest-framework.org
