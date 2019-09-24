@@ -1,6 +1,9 @@
 # Welcome to Detecht Frontend
 Here we will be using Angular 8 to develop the frontend. 
 
+### OBS
+Everything that is going to be written in the terminal should be done inside the folder: \
+`the-detecht-cognitive-search-engine/detecht-frontend/`
 
 
 ## Getting started
@@ -86,3 +89,11 @@ Write in terminal
 
 
 
+## To install a module / library / node package / etc. 
+### Talk to your teamleader first
+In terminal write 
+`npm install module-name --save`.
+
+
+## Any questions?
+Talk to your teamleader, who will gladly help or get help from others! :)

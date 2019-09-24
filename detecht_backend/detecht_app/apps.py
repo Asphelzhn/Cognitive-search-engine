@@ -1,0 +1,5 @@
+from django.apps import AppConfig
+
+
+class DetechtAppConfig(AppConfig):
+    name = 'detecht_app'
