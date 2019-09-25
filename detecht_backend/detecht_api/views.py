@@ -26,6 +26,6 @@ def CalcTest(x1):
     try:
         x = json.loads(x1.body)
         y = str(x*100)
-        return JsonResponse("Result:"+y,safe=False)
+        return JsonResponse("Result:"+y, safe=False)
     except ValueError as e:
-        return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
+        return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
