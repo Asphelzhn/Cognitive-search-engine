@@ -15,4 +15,17 @@ class HomePageView(TemplateView):
         return render(request, 'index.html', context=None)
 
 
-# class
+class Customer(TemplateView):
+    def getCust(request):
+        name = 'Nicklas'
+        return HttpResponse('{ "name":"' + name + '", "age":22, "city":"Linkoping" }')
+
+
+@api_view(["POST"])
+def CalcTest(x1):
+    try:
+        x = json.loads(x1.body)
+        y = str(x*100)
+        return JsonResponse("Result:"+y,safe=False)
+    except ValueError as e:
+        return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
