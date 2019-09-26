@@ -14,3 +14,4 @@ This is the part where the backend will be developed that can be found in the fo
 ##### Frontend
 This is the folder where we will run Elastic Search, the folder is:\
 `elasticsearch/`
+
