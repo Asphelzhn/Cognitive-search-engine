@@ -29,3 +29,13 @@ def CalcTest(x1):
         return JsonResponse("Result:"+y, safe=False)
     except ValueError as e:
         return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+def TestGet(x1):
+    try:
+        x = 10
+        y = str(x*100)
+        return JsonResponse("Result:"+y, safe=False)
+    except ValueError as e:
+        return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
