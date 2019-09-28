@@ -2,7 +2,7 @@ import json, requests, os
 from elasticsearch import Elasticsearch
 
 
-def insert_one_file (json)
+def insert_one_file (json):
     res = requests.get('http://localhost:8000')
     print (res.content)
     es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
@@ -10,7 +10,7 @@ def insert_one_file (json)
 
 
 
-def insert_files (directory="Standard")
+def insert_files (directory="Standard"):
     res = requests.get('http://localhost:8000')
     print (res.content)
     es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
