@@ -6,7 +6,7 @@ def insert_one_file (json):
     res = requests.get('http://localhost:8000')
     print (res.content)
     es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
-
+    es.index(json)
 
 
 
@@ -15,7 +15,7 @@ def insert_files (directory="Standard"):
     print (res.content)
     es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
 
-    i=1;
+    i=1
 
     for filename in os.listdir(directory):
         if filename.endswith(".json"):
