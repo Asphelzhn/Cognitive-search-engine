@@ -1,25 +1,21 @@
 import json, requests, os
-from pydoc import doc
 
 from elasticsearch import Elasticsearch
 
+es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
+
 # not sure on how the tell it that it's supposed to go for the index DB in our ES stack. but this may work.
-def insert_one_file (json):
-    res = requests.get('http://localhost:8000')
-    print (res.content)
-    es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
-    es.index(index="DB", doc_type=doc, body=json)
+def inject_one_file(json):
+    es.indices.refresh(index="DB")  # refreshes the index
+    newid = (es.cat.count(index="DB")) + 1  # Counts the number of ids in the index
+    es.index(index="DB", doc_type="doc", id=newid, body=json)
 
 
+# this has some way to go to get to working condition //Henrik & jakob
+def inject_files(directory="Standard"):
 
-
-#unsure how the code below works, but working on it //Henrik
-def insert_files (directory="Standard"):
-    res = requests.get('http://localhost:8000')
-    print (res.content)
-    es = Elasticsearch([{'host': 'localhost', 'port': '8000'}])
-
-    i=1
+    es.indices.refresh(index="DB")  # refreshes the index
+    i = (es.cat.count(index="DB")) +1
 
     for filename in os.listdir(directory):
         if filename.endswith(".json"):
@@ -30,3 +26,6 @@ def insert_files (directory="Standard"):
                      id=i, body=json.loads(docket_content))
             i = i + 1
 
+
+
+def insert_document
