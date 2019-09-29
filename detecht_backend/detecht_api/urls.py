@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^api/testget/$', views.TestGet),
     url(r'^api/addpdf/$', views.AddPdf),
     url(r'^api/search/$', views.Search),
+    url(r'^api/getprofile/$', views.GetProfile),
+    url(r'^api/updateprofile/$', views.UpdateProfile),
 ]

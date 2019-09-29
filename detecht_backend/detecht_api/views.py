@@ -51,10 +51,24 @@ def AddPdf(request):
         return HttpResponse('{ "Result": "Done" }')
 
 
+@api_view(["GET"])
+def Search(request):
+    if request.method == 'GET':
+        #Do search and get something.
+        return HttpResponse('{ "Result": "A bunch of DATA" }') #later return data in correct format
+    return HttpResponse('{ "Result": "Failed" }') #let the caller know the request failed. Somehow.
+
+@api_view(["GET"])
+def GetProfile(userID):
+    #function getting the data from userDB
+    name = "oskar"
+    poss = "B-dev"
+    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + poss + '" }') #test
 
 @api_view(["POST"])
-def Search(input):
-    if input != None :
-        #Do search and get something.
-        return HttpResponse('{ "Result": "A bunch of DATA" }')
-    return HttpResponse('{ "Result": "Failed" }')
+def UpdateProfile(requset):
+    #get data from input data.
+
+    #function updating data to userDB
+  
+    return HttpResponse('{ "Function": "done" }') #later change
