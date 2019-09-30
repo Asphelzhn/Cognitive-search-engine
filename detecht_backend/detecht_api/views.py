@@ -73,15 +73,16 @@ def GetProfile(userID):
 @api_view(["POST"])
 def UpdateProfile(requset):
     #get data from input data.
+    #function updating data to userDB
+    return HttpResponse('{ "Function": "done" }') #later change
+
+@api_view(["POST"])
 def Search(input):
     if input != None:
         # Do search and get something.
         return HttpResponse('{ "Result": "A bunch of DATA" }')
     return HttpResponse('{ "Result": "Failed" }')
 
-    #function updating data to userDB
-  
-    return HttpResponse('{ "Function": "done" }') #later change
 
 # BEGIN: Code written by Armin
 #class RegistrationSerializer(serializers.ModelSerializers):
@@ -92,7 +93,6 @@ def Search(input):
     #    extra_kwargs = {
      #       "password": {"write_only": True}
       #  }
-
 
 @api_view(["POST"])
 def register(request):
