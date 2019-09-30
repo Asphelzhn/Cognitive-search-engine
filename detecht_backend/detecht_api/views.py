@@ -68,6 +68,10 @@ def GetProfile(userID):
     #function getting the data from userDB
     name = "oskar"
     poss = "B-dev"
+
+    #Test database
+    
+
     return HttpResponse('{ "Name": "' + name + '", "Poss": "' + poss + '" }') #test
 
 @api_view(["POST"])
