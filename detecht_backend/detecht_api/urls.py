@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^api/search/$', views.Search),
     url(r'^api/getprofile/$', views.GetProfile),
     url(r'^api/updateprofile/$', views.UpdateProfile),
+    url(r'^api/register/$', views.register, name="register"),
 ]
