@@ -81,10 +81,13 @@ def GetProfile(userID):
 
     return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }') #test
 
-@api_view(["POST"])
+@api_view(["GET"]) #later POST
 def UpdateProfile(requset):
     #get data from input data.
     #function updating data to userDB
+    primaryKey=1
+    newName="VilleJ"
+    User.objects.filter(userID=primaryKey).update(firstName=newName)
     return HttpResponse('{ "Function": "done" }') #later change
 
 @api_view(["POST"])
