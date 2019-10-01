@@ -73,11 +73,13 @@ def GetProfile(userID):
     #user = User(userName='hiden12345', firstName='Oskar')
     #user.save()
 
-    query = User.objects.all()[0]
+    #query = User.objects.all()[0]
+    query = User.objects.get(userName='hiden12345')
     name = query.firstName
     username = query.userName
+    userid = str(query.userID)
 
-    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '" }') #test
+    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }') #test
 
 @api_view(["POST"])
 def UpdateProfile(requset):
