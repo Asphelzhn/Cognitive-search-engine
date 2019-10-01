@@ -10,9 +10,7 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
   imports: [],
-  declarations: [
-    UploadFileComponent
-  ]
+  declarations: []
 })
 
 export class AdminPageComponent implements OnInit {
