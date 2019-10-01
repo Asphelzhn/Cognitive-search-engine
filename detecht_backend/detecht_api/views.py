@@ -3,17 +3,20 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 # imports by ARMIN
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth import login, logout, authenticate
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 # imports by OSKAR
-# from django.db import models ----
+from detecht_api.models import User
+from rest_framework.views import APIView
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.utils import json
+
+
 
 
 class HomePageView(TemplateView):
@@ -56,58 +59,57 @@ def AddPdf(request):
         return HttpResponse('{ "Result": "Done" }')
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def Search(request):
     if request.method == 'GET':
         #Do search and get something.
         return HttpResponse('{ "Result": "A bunch of DATA" }') #later return data in correct format
     return HttpResponse('{ "Result": "Failed" }') #let the caller know the request failed. Somehow.
 
-@api_view(["GET"])
-def GetProfile(userID):
-    #function getting the data from userDB
-    name = "oskar"
-    poss = "B-dev"
-    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + poss + '" }') #test
 
-@api_view(["POST"])
+class profile(APIView):
+
+    def get(self, request):
+        query = User.objects.get(userName='hiden12345')
+        name = query.firstName
+        username = query.userName
+        userid = str(query.userID)
+
+        return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
+
+
+@api_view(["GET"]) #later POST
 def UpdateProfile(requset):
     #get data from input data.
     #function updating data to userDB
+    primaryKey=1
+    newName="VilleJ"
+    User.objects.filter(userID=primaryKey).update(firstName=newName)
     return HttpResponse('{ "Function": "done" }') #later change
 
-@api_view(["POST"])
-def Search(input):
-    if input != None:
-        # Do search and get something.
-        return HttpResponse('{ "Result": "A bunch of DATA" }')
-    return HttpResponse('{ "Result": "Failed" }')
+
+class search(APIView):
+
+    def post(self, request): #input: "searchString"
+        input = request.data
+        if input != None:
+            # Do search and get something.
+
+            name = input["searchString"]
+            return HttpResponse('{ "Name": "' + name + '" }')  # test
+            # return HttpResponse('{ "Result": "A bunch of DATA" }')
+        return HttpResponse('{ "Result": "Failed" }')
+
 
 
 # BEGIN: Code written by Armin
-#class RegistrationSerializer(serializers.ModelSerializers):
- #   password2 = serializers.CharField(style={"input_type": "password"}, write_only=True)
+# Write Class-Based Views which helps keep code DRY.
+class User(APIView):
 
-  #  class Meta:
-   #     fields = ["email", "username", "password", "password2", ]
-    #    extra_kwargs = {
-     #       "password": {"write_only": True}
-      #  }
+    permission_classes = (IsAuthenticated,)
 
-@api_view(["POST"])
-def register(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            #username = form.cleaned_data.get("username")
-            #raw_password = form.cleaned_data.get("password1")
-            #user = authenticate (username=username, password=raw_password)
-            #login(request, user)
-            return redirect("homepage")
-    else:
-        form = UserCreationForm()
-    return render(request, "index.html", {"form": form})
-
+    def get(self, request):
+        content = {"message": "Hello World"}
+        return HttpResponse(content)
 # END: Code written by Armin
 
