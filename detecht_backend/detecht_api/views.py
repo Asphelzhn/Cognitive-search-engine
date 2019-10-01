@@ -3,8 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 # imports by ARMIN
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth import login, logout, authenticate
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 # imports by OSKAR
 from detecht_api.models import User
@@ -103,29 +103,13 @@ class search(APIView):
 
 
 # BEGIN: Code written by Armin
-#class RegistrationSerializer(serializers.ModelSerializers):
- #   password2 = serializers.CharField(style={"input_type": "password"}, write_only=True)
+# Write Class-Based Views which helps keep code DRY.
+class User(APIView):
 
-  #  class Meta:
-   #     fields = ["email", "username", "password", "password2", ]
-    #    extra_kwargs = {
-     #       "password": {"write_only": True}
-      #  }
+    permission_classes = (IsAuthenticated,)
 
-@api_view(["POST"])
-def register(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            #username = form.cleaned_data.get("username")
-            #raw_password = form.cleaned_data.get("password1")
-            #user = authenticate (username=username, password=raw_password)
-            #login(request, user)
-            return redirect("homepage")
-    else:
-        form = UserCreationForm()
-    return render(request, "index.html", {"form": form})
-
+    def get(self, request):
+        content = {"message": "Hello World"}
+        return HttpResponse(content)
 # END: Code written by Armin
 

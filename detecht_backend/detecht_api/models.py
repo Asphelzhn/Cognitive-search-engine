@@ -1,8 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
 #By OskarH
 class User(models.Model):
     userID = models.IntegerField()
