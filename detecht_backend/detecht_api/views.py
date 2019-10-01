@@ -7,13 +7,15 @@ from django.views.generic import TemplateView
 # from django.contrib.auth import login, logout, authenticate
 
 # imports by OSKAR
-# from django.db import models ----
+from detecht_api.models import User
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.utils import json
+
+
 
 
 class HomePageView(TemplateView):
@@ -66,13 +68,16 @@ def Search(request):
 @api_view(["GET"])
 def GetProfile(userID):
     #function getting the data from userDB
-    name = "oskar"
-    poss = "B-dev"
 
     #Test database
-    
+    #user = User(userName='hiden12345', firstName='Oskar')
+    #user.save()
 
-    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + poss + '" }') #test
+    query = User.objects.all()[0]
+    name = query.firstName
+    username = query.userName
+
+    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '" }') #test
 
 @api_view(["POST"])
 def UpdateProfile(requset):
