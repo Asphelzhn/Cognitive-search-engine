@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 @Component({
@@ -8,7 +7,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
   styleUrls: ['./upload-file.component.scss']
 })
 export class UploadFileComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+
+  constructor() { }
 
   fileData: File = null;
   previewUrl: any = null;
@@ -41,12 +41,13 @@ export class UploadFileComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.fileData);
-    this.http.post('url/to/your/api', formData)
-      .subscribe(res => {
-        console.log(res);
-        // this.uploadedFilePath = res.data.filePath;
-        alert('SUCCESS !!');
-      });
+    console.log('Submitting');
+    // this.http.post('url/to/your/api', formData)
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     // this.uploadedFilePath = res.data.filePath;
+    //     alert('SUCCESS !!');
+    //   });
   }
 
 
