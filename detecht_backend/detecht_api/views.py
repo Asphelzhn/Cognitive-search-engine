@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 
 # imports by OSKAR
 from detecht_api.models import User
+from rest_framework.views import APIView
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
@@ -58,28 +59,24 @@ def AddPdf(request):
         return HttpResponse('{ "Result": "Done" }')
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def Search(request):
     if request.method == 'GET':
         #Do search and get something.
         return HttpResponse('{ "Result": "A bunch of DATA" }') #later return data in correct format
     return HttpResponse('{ "Result": "Failed" }') #let the caller know the request failed. Somehow.
 
-@api_view(["GET"])
-def GetProfile(userID):
-    #function getting the data from userDB
 
-    #Test database
-    #user = User(userName='hiden12345', firstName='Oskar')
-    #user.save()
+class profile(APIView):
 
-    #query = User.objects.all()[0]
-    query = User.objects.get(userName='hiden12345')
-    name = query.firstName
-    username = query.userName
-    userid = str(query.userID)
+    def get(self, request):
+        query = User.objects.get(userName='hiden12345')
+        name = query.firstName
+        username = query.userName
+        userid = str(query.userID)
 
-    return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }') #test
+        return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
+
 
 @api_view(["GET"]) #later POST
 def UpdateProfile(requset):
@@ -90,12 +87,19 @@ def UpdateProfile(requset):
     User.objects.filter(userID=primaryKey).update(firstName=newName)
     return HttpResponse('{ "Function": "done" }') #later change
 
-@api_view(["POST"])
-def Search(input):
-    if input != None:
-        # Do search and get something.
-        return HttpResponse('{ "Result": "A bunch of DATA" }')
-    return HttpResponse('{ "Result": "Failed" }')
+
+class search(APIView):
+
+    def post(self, request): #input: "searchString"
+        input = request.data
+        if input != None:
+            # Do search and get something.
+
+            name = input["searchString"]
+            return HttpResponse('{ "Name": "' + name + '" }')  # test
+            # return HttpResponse('{ "Result": "A bunch of DATA" }')
+        return HttpResponse('{ "Result": "Failed" }')
+
 
 
 # BEGIN: Code written by Armin
