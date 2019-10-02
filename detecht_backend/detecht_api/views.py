@@ -61,10 +61,14 @@ class addPdf(APIView):
 
 class profile(APIView):
     def get(self, request):
-        query = User.objects.get(userName='hiden12345')
-        name = query.firstName
-        username = query.userName
-        userid = str(query.userID)
+        # Test database
+        user = User(userName='hiden12345', firstName='Oskar', userID=1)
+        user.save()
+
+        queryRes = User.objects.get(userName="hiden12345")
+        name = queryRes.firstName
+        username = queryRes.userName
+        userid = str(queryRes.userID)
 
         return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
 
@@ -72,6 +76,7 @@ class profile(APIView):
 class updateProfile(APIView):
     def get(self, request):
         # get data from input data.
+
         # function updating data to userDB
         primaryKey = 1
         newName = "VilleJ"
