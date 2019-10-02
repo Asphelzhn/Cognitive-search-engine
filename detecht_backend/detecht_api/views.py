@@ -8,7 +8,12 @@ from rest_framework.views import APIView
 
 # imports by OSKAR
 from detecht_api.models import User
+from detecht_api.models import Document #files
 from rest_framework.views import APIView
+#files
+from.serializers import DocumentSerializer
+
+
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
@@ -107,3 +112,7 @@ class UserTest(APIView):
         return HttpResponse(content)
 # END: Code written by Armin
 
+#files
+class DocumentViewSet(viewsets.ModelViewSet):
+    queryset = Document.objects.all()
+    serializer_class = DocumentSerializer

@@ -4,8 +4,14 @@ from django.urls import path, include
 from . import views
 from rest_framework import routers
 
+#files
+#from rest_framework.routers import DefaultRouter
+from .views import DocumentViewSet
 
 router = routers.DefaultRouter()
+
+#files
+router.register(r'files', DocumentViewSet)
 
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
@@ -17,4 +23,5 @@ urlpatterns = [
     url(r'^api/profile/$', views.profile.as_view()),
     url(r'^api/updateprofile/$', views.updateProfile.as_view()),
     url(r'^api/user/$', views.UserTest.as_view()),
+    url(r'^api/', include(router.urls)), #files
 ]
