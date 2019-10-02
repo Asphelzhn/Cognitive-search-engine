@@ -10,6 +10,7 @@ import { ResultBarComponent } from './search-page/search-hits/result-bar/result-
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { UploadFileComponent } from './admin-page/upload-file/upload-file.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { UploadedFileComponent } from './admin-page/uploaded-file/uploaded-file.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StartPageComponent } from './start-page/start-page.component';
     ResultBarComponent,
     AdminPageComponent,
     UploadFileComponent,
-    StartPageComponent
+    StartPageComponent,
+    UploadedFileComponent
   ],
   imports: [
     BrowserModule,
