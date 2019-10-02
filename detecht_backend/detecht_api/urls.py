@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^api/search/$', views.search.as_view()),
     url(r'^api/profile/$', views.profile.as_view()),
     url(r'^api/updateprofile/$', views.updateProfile.as_view()),
-    url(r'^api/user/$', views.User.as_view()),
+    url(r'^api/user/$', views.UserTest.as_view()),
 ]

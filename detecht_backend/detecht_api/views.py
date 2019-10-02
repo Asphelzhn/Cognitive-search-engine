@@ -60,15 +60,16 @@ class addPdf(APIView):
             return HttpResponse('{ "Result": "Done" }')
 
 class profile(APIView):
-    def get(self, request):
+    def post(self, request): #input {"id":"2"}
         # Test database
-        user = User(userName='hiden12345', firstName='Oskar', userID=1)
-        user.save()
-
-        queryRes = User.objects.get(userName="hiden12345")
-        name = queryRes.firstName
-        username = queryRes.userName
-        userid = str(queryRes.userID)
+        #user = User(userName='hiden12345', firstName='Oskar', userID=5)
+        #user.save()
+        input= request.data
+        query = User.objects.get(id=input["id"])
+        #query = User.objects.all()    userName="hiden12345"
+        name = query.firstName
+        username = query.userName
+        userid = str(query.userID)
 
         return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
 
@@ -97,7 +98,7 @@ class search(APIView):
 
 # BEGIN: Code written by Armin
 # Write Class-Based Views which helps keep code DRY.
-class User(APIView):
+class UserTest(APIView):
 
     permission_classes = (IsAuthenticated,)
 
