@@ -1,1 +1,11 @@
-<p>search-bar works!</p>
+<div class="wrap">
+  <img src= "https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Tieto_logo.svg/1200px-Tieto_logo.svg.png"
+       class="logo-img" alt="logo">
+  <div class="search">
+<!--<input (input)="updateSearchString($event.target.value)"/> -->
+    <input type="text" class="searchTerm" placeholder="What are you looking for?" #new_field/>
+    <button type="submit" (click)="updateSearchString(new_field.value)" class="searchButton">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+</div>

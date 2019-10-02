@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-result-bar',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./result-bar.component.scss']
 })
 export class ResultBarComponent implements OnInit {
+
+  @Input('result') result: any;
 
   constructor() { }
 
