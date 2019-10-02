@@ -11,7 +11,7 @@ class User(models.Model):
 #files
 class Document(models.Model):
     title = models.CharField(max_length=200)
-    file = models.FileField(upload_to='static/pdf', max_length=100, blank=True)
+    file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
 
     def __unicode__(self):
         return self.title
