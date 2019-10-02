@@ -104,13 +104,18 @@ class search(APIView):
 # BEGIN: Code written by Armin
 # Write Class-Based Views which helps keep code DRY.
 class UserTest(APIView):
-
-    permission_classes = (IsAuthenticated,)
-
-    def get(self, request):
-        content = {"message": "Hello World"}
-        return HttpResponse(content)
+   #permission_classes = (IsAuthenticated,)
+   def get(self, request):
+       armin = User.objects.create(userName='armwa918', firstName='armin')
+       #query = User.objects.get(userName='armwa918')
+       #name = query.firstName
+       return HttpResponse("Success")
+   def post(self, request):
+       if request.method == "POST":
+           return HttpResponse({"Successful"})
+       return HttpResponse({"Oops"})
 # END: Code written by Armin
+
 
 #files
 class DocumentViewSet(viewsets.ModelViewSet):
