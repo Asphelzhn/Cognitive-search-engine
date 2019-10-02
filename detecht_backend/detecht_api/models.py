@@ -7,5 +7,12 @@ class User(models.Model):
     userName = models.TextField(max_length=50)
     firstName = models.TextField(max_length=50)
 
-#end OskarH
 
+#files
+class Document(models.Model):
+    title = models.CharField(max_length=200)
+    file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
+
+    def __unicode__(self):
+        return self.title
+#end Oskar
