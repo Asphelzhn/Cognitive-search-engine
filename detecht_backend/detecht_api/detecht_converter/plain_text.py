@@ -1,16 +1,13 @@
 import json
 
 
-def test_message(message):
-    return "Hello, message: " + message
+# takes in json file and attribute, returns txt file with extracted attribute
+def json_to_plaintext(json_file, attribute):
+    json_tmp = json.loads(json_file.read())
+    attr = json_tmp[attribute]  # collect attribute
+    txt_file = open("json_attribute.txt", "w+")
+    attr = str(attr)  # make string of object
+    txt_file.write(attr)
+    txt_file.close()
 
-
-def json_to_plaintext(jsonfile, attribute):
-
-    read = jsonfile.read()
-    json_as_string = json.loads(read)
-    r = json_as_string[attribute]
-
-
-
-    return r
+    return txt_file
