@@ -105,10 +105,14 @@ class search(APIView):
 # Write Class-Based Views which helps keep code DRY.
 class UserTest(APIView):
    #permission_classes = (IsAuthenticated,)
-   def get(self, request):
-       armin = User.objects.create(userName='armwa918', firstName='armin')
+   def post(self, request):
+       #armin = User.objects.create(userName='armwa918', firstName='armin', userID=6)
        #query = User.objects.get(userName='armwa918')
        #name = query.firstName
+
+       #OSkar put query to compare in database, email& PW gives sucess.
+
+       
        return HttpResponse("Success")
    def post(self, request):
        if request.method == "POST":
