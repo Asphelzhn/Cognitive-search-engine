@@ -50,25 +50,16 @@ def TestGet(x1):
         return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["GET, POST"])  # later POST, not done.
-def AddPdf(request):
-    if request.method == 'POST' and request.files['pdffile']:
-        pdffile = request.files['pdffile']
-        # models.FileField(upload_to='static/pdf')
-        pdffile.save();  # Someware should "upload_to" be specified....
-        return HttpResponse('{ "Result": "Done" }')
+class addPdf(APIView):
 
-
-@api_view(["POST"])
-def Search(request):
-    if request.method == 'GET':
-        #Do search and get something.
-        return HttpResponse('{ "Result": "A bunch of DATA" }') #later return data in correct format
-    return HttpResponse('{ "Result": "Failed" }') #let the caller know the request failed. Somehow.
-
+    def post(self, request): #json input "pdffile"
+        if request.method == 'POST' and request.files['pdffile']:
+            pdffile = request.files['pdffile']
+            # models.FileField(upload_to='static/pdf')
+            pdffile.save();  # Someware should "upload_to" be specified....
+            return HttpResponse('{ "Result": "Done" }')
 
 class profile(APIView):
-
     def get(self, request):
         query = User.objects.get(userName='hiden12345')
         name = query.firstName
@@ -78,18 +69,16 @@ class profile(APIView):
         return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
 
 
-@api_view(["GET"]) #later POST
-def UpdateProfile(requset):
-    #get data from input data.
-    #function updating data to userDB
-    primaryKey=1
-    newName="VilleJ"
-    User.objects.filter(userID=primaryKey).update(firstName=newName)
-    return HttpResponse('{ "Function": "done" }') #later change
-
+class updateProfile(APIView):
+    def get(self, request):
+        # get data from input data.
+        # function updating data to userDB
+        primaryKey = 1
+        newName = "VilleJ"
+        User.objects.filter(userID=primaryKey).update(firstName=newName)
+        return HttpResponse('{ "Function": "done" }')  # later change
 
 class search(APIView):
-
     def post(self, request): #input: "searchString"
         input = request.data
         if input != None:
@@ -99,7 +88,6 @@ class search(APIView):
             return HttpResponse('{ "Name": "' + name + '" }')  # test
             # return HttpResponse('{ "Result": "A bunch of DATA" }')
         return HttpResponse('{ "Result": "Failed" }')
-
 
 
 # BEGIN: Code written by Armin
