@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {results} from '../../mock-results';
-import {result} from '../../result';
+import {SearchResult} from '../../data_types';
 
 @Component({
   selector: 'app-search-hits',
@@ -9,7 +9,7 @@ import {result} from '../../result';
 })
 export class SearchHitsComponent implements OnInit {
 
-  result = result;
+  result: SearchResult;
   results = results;
 
   constructor() { }

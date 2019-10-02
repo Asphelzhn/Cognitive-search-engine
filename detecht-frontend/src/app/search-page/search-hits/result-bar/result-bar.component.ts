@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {SearchResult} from '../../../data_types';
 
 @Component({
   selector: 'app-result-bar',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ResultBarComponent implements OnInit {
 
-  @Input('result') result: any;
+  @Input() result: SearchResult;
 
   constructor() { }
 
