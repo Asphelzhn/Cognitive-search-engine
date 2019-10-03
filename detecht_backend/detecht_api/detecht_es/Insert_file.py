@@ -15,14 +15,25 @@ else:
 json_string = '{"title":"Rupert", "age": 25, "desig":"developer"}'
 
 
+def get_file(filename):
+    f = open(filename+".json", "r")
+    if f.mode == 'r':
+        contents = f.read()
+    print(contents)
+    return contents
+
+
+#get_file("test")
+
+
 # not sure on how the tell it that it's supposed to go for the index db in our ES stack. but this may work.
 def inject_one_file(json):
     es.indices.refresh(index="db")  # refreshes the index
     es.index(index="db", doc_type="doc", body=json)
+
     print(es.cat.count(index="db",params={"format": "json"}))  # Counts the number of ids in the index, Returns an array of some sort
 
-
-inject_one_file(json_string)
+inject_one_file(get_file("test"))
 
 
 # this has some way to go to get to working condition //Henrik & jakob
