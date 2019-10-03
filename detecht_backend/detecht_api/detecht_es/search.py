@@ -11,7 +11,6 @@ else:
     print('Could not connect to elasticsearch')
 
 
-
 def single_search(query):
     body = {
         "fields": ["title"],
@@ -39,12 +38,15 @@ def search(query, size=1):
     }
 
     res = es.search(index="db", body=body)
-    results = list()
+    return res
+
+
+def format_search(result):
+    titles = list()
     for hit in res['hits']['hits']:
         title = "%(title)s" % hit["_source"]
-        results.append(title)
-    print(results)
-    return results
+        titles.append(title)
+    return titles
 
 
 search("Rupert")
