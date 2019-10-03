@@ -48,5 +48,5 @@ def formated_search(query, size=1):
     return titles
 
 
-search("rupert")
+formated_search("rupert")
 

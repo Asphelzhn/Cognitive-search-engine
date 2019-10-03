@@ -29,10 +29,10 @@ def get_file(filename):
 # not sure on how the tell it that it's supposed to go for the index db in our ES stack. but this may work.
 def inject_one_file(json):
     es.indices.refresh(index="db")  # refreshes the index
-    es.index(index="db", doc_type="doc", body=json)
-
-    print(es.cat.count(index="db",params={"format": "json"}))  # Counts the number of ids in the index, Returns an array of some sort
-
+    doc_count = es.cat.count(index="db", params={"format": "json"})
+    doc_id_tmp = doc_count[0]["count"] #Counts the number of ids in the index, Returns an array of some sort
+    doc_id = int(doc_id_tmp) + 1
+    es.index(index="db", doc_type="doc", id=doc_id, body=json)
 
 def inject_by_name(filename):
     inject_one_file(get_file(filename))
@@ -52,4 +52,4 @@ def inject_files(directory="Standard"):
                      id=i, body=json.loads(docket_content))
             i = i + 1
 
-# def insert_document
+inject_by_name("test")
