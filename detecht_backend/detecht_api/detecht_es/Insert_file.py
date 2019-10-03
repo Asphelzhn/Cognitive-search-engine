@@ -33,7 +33,9 @@ def inject_one_file(json):
 
     print(es.cat.count(index="db",params={"format": "json"}))  # Counts the number of ids in the index, Returns an array of some sort
 
-inject_one_file(get_file("test"))
+
+def inject_by_name(filename):
+    inject_one_file(get_file(filename))
 
 
 # this has some way to go to get to working condition //Henrik & jakob
