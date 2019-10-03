@@ -8,5 +8,22 @@ The Wandering Earth, described as China’s first big-budget science fiction thr
 '''
 
 doc = nlp(content)
+
+# print the sentences
 for sents in doc.sents:
     print(sents.text)
+print("*"*30)
+# just consider noun,propn,verb
+candidate_pos = ['NOUN', 'PROPN', 'VERB']
+sentences = []
+​
+# optional keyword
+for sent in doc.sents:
+    selected_words = []
+    for token in sent:
+        if token.pos_ in candidate_pos and token.is_stop is False:
+            selected_words.append(token)
+    sentences.append(selected_words)
+​
+print(sentences)
+
