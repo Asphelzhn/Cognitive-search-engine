@@ -91,19 +91,29 @@ class TextRank4Keyword():
 
     def get_keywords(self, number=10):
         """Print top number keywords"""
+        keywords_list = []
         node_weight = OrderedDict(sorted(self.node_weight.items(), key=lambda t: t[1], reverse=True))
         for i, (key, value) in enumerate(node_weight.items()):
-            print(key + ' - ' + str(value))
+            # print(key + ' - ' + str(value))
+            keywords_list.append((key,str(value)))
             if i > number:
                 break
-    def text_rank(text , filename):
-        """API for textRank algorithm"""
+        return keywords_list
+
+    def text_rank(text, filename):
+        """API for textRank algorithm
+
+        :param text: plian text that need to extract keyword
+        :param filename: the text's filename
+        :return: (key word, weight) for top 10 keywords
+        """
         tr4w = TextRank4Keyword()
-        tr4w.analyze(text, candidate_pos=['NOUN', 'PROPN','VERB'], window_size=4, lower=False)
-        tr4w.get_keywords(10)
+        tr4w.analyze(text, candidate_pos=['NOUN', 'PROPN', 'VERB'], window_size=4, lower=False)
+        keywords_list = tr4w.get_keywords(10)
+        return keywords_list
 
     def analyze(self, text,
-                candidate_pos=['NOUN', 'PROPN','VERB'],
+                candidate_pos=['NOUN', 'PROPN', 'VERB'],
                 window_size=4, lower=False, stopwords=list()):
         """Main function to analyze text"""
 
@@ -144,15 +154,3 @@ class TextRank4Keyword():
 
         self.node_weight = node_weight
 
-if __name__ == '__main__':
-    text = """Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.[28]
-
-Python is dynamically typed and garbage-collected. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming. Python is often described as a "batteries included" language due to its comprehensive standard library.[29]
-
-Python was conceived in the late 1980s as a successor to the ABC language. Python 2.0, released 2000, introduced features like list comprehensions and a garbage collection system capable of collecting reference cycles. Python 3.0, released 2008, was a major revision of the language that is not completely backward-compatible, and much Python 2 code does not run unmodified on Python 3. Due to concern about the amount of code written for Python 2, support for Python 2.7 (the last release in the 2.x series) was extended to 2020. Language developer Guido van Rossum shouldered sole responsibility for the project until July 2018 but now shares his leadership as a member of a five-person steering council.[30][31][32]
-
-The Python 2 language, i.e. Python 2.7.x, is "sunsetting" on January 1, 2020, and the Python team of volunteers will not fix security issues, or improve it in other ways after that date.[33][34] With the end-of-life, only Python 3.6.x and later, e.g. Python 3.8 which should be released in October 2019 (currently in beta), will be supported.[35]
-
-Python interpreters are available for many operating systems. A global community of programmers develops and maintains CPython, an open source[36] reference implementation. A non-profit organization, the Python Software Foundation, manages and directs resources for Python and CPython development."""
-    filename = 'hello.txt'
-    TextRank4Keyword.text_rank(text,filename)
