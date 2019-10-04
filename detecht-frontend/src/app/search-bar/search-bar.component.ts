@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
+  private searchString: string;
+
+  search(): void {
+    console.log('Searching for: ' + this.searchString);
+  }
+
+
+
   constructor() { }
 
   ngOnInit() {
