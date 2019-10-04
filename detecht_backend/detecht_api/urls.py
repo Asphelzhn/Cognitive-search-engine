@@ -3,14 +3,16 @@ from django.urls import path, include
 
 from . import views
 from rest_framework import routers
-
-#files
-#from rest_framework.routers import DefaultRouter
+"""
+Oskar H & Armin
+"""
+# files
+# from rest_framework.routers import DefaultRouter
 from .views import DocumentViewSet
 
 router = routers.DefaultRouter()
 
-#files
+# files
 router.register(r'files', DocumentViewSet)
 
 urlpatterns = [
