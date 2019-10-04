@@ -106,8 +106,8 @@ In settings fix following:\
 Turn debug off: \
 `DEBUG = True` to `DEBUG = False`\
 Remove CORS:\
-`CORS_ORIGIN_ALLOW_ALL = Falsegt
-CORS_ORIGIN_WHITELIST = (
+`CORS_ORIGIN_ALLOW_ALL = False`\
+`CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )`
 

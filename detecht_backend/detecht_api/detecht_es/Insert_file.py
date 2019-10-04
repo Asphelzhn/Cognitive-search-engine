@@ -2,6 +2,8 @@ import json, requests, os
 
 from elasticsearch import Elasticsearch
 
+""" Jakob and Henrik
+    How to insert data into es"""
 
 
 es = None

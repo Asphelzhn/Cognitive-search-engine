@@ -1,6 +1,9 @@
 import json, requests, os
 from elasticsearch import Elasticsearch
 
+""" Jakob and Henrik
+    How to search after data from es"""
+
 # res = requests.get('http://localhost:9200')
 # print(res.content)
 es = None
