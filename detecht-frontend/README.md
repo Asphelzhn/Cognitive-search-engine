@@ -45,6 +45,12 @@ If your CLI version is not up to date, please go directly to your teamleader bef
 ### Indentation style
 All code shall be indented according to WebStorm standard. 
 
+### Class names
+Class names should be Capital CamelCased, example ClassName, the name should also be a substantive
+
+### Variable names
+Variable names should be camelCased and describe the class, example className
+
 ### Component names
 The name should be a clear description of what the component does, this should be done by 1-2 words. \
 If the component is a child to another component it should be grouped under the parent, see section "Create a child component to parent component".\
@@ -57,9 +63,11 @@ and therefore is already in the name.
 
 ### Data Types
 ##### PLEASE group data types together in the same files.
-Data types shall be created in the app folder as a typescript file, ex.
-`type-name.ts`. \
-Data types that is received over an api shall be declared such and shall not contain any functions
+Data types for uses in components shall be created in 
+`data-types.ts`. \
+Data types that is received over an api shall be declared in
+`network-data-types.ts`
+and shall not contain any functions
  
 
 
@@ -97,3 +105,8 @@ In terminal write
 
 ## Any questions?
 Talk to your teamleader, who will gladly help or get help from others! :)
+
+
+# Production
+#### For production to server see
+https://stackoverflow.com/questions/57960260/angular-8-set-production-environment-for-api-base-url

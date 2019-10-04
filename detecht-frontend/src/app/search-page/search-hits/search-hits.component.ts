@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {results} from '../../mock-results';
-import {SearchResult} from '../../data_types';
+import {SearchResult} from '../../data-types';
 
 @Component({
   selector: 'app-search-hits',

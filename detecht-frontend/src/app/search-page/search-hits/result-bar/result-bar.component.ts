@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {SearchResult} from '../../../data_types';
+import {SearchResult} from '../../../data-types';
 
 @Component({
   selector: 'app-result-bar',

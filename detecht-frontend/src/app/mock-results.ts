@@ -1,4 +1,4 @@
-import { SearchResult } from './data_types';
+import { SearchResult } from './data-types';
 
 export const results: SearchResult[] = [
   {
