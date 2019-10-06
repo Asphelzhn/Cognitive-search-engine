@@ -27,7 +27,7 @@ from rest_framework.utils import json
 
 
 # Our packages
-from detecht_api.detecht_es import search
+from detecht_api.detecht_es import search, insert_file
 
 
 class HomePageView(TemplateView):
@@ -79,11 +79,14 @@ class Search(APIView):
             'content': []
         }
         input = request.data
-        print(input)
         if input != {}:
             query = input["query"]
-            res = search.search(query)
-            # TODO
+            res = search.search(query, 10)
+            response['success'] = True
+            response['totalResult'] = res['hits']['total']['value']
+            content = res['hits']['hits']
+            for c in content:
+                response['content'].append({'pdfTitle': c['_source']['title'], 'pdfName': c['_source']['fileName']})
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
@@ -91,17 +94,18 @@ class Search(APIView):
 class AddFile(APIView):
     def post(self, request): #input: response from api/files/
         response = {
-            'success': False,
-            'totalResult': 0,
-            'content': []
+            'success': False
         }
         input = request.data
-        print(input)
         if input != {}:
+            input = input["data"]
             title = input["title"]
-            fileName = input["file"].split('static/pdf/')[-1]
-            # TODO
-            return JsonResponse(response)  # test
+            file_name = input["file"].split('static/pdf/')[-1]
+            json_string = '{"title":"' + title + '", "fileName":"' + file_name + '"}'
+
+            insert_file.inject_one_file(json_string)
+            response['success'] = True
+            return JsonResponse(response)
         return JsonResponse(response)
 
 

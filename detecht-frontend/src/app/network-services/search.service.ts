@@ -38,7 +38,7 @@ export class SearchService {
         if (data.success) {
           const newSearchResponse: SearchResponse[] = [];
           for (const content of data.content) {
-            newSearchResponse.push(new SearchResponse(content.pdfName, content.pdfTitle, '', ''));
+            newSearchResponse.push(new SearchResponse(content.pdfTitle, content.pdfName, '', ''));
           }
 
           this.searchResponseSource.next(newSearchResponse);

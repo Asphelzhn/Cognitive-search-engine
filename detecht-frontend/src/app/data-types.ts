@@ -5,7 +5,7 @@ export class SearchResponse {
   pic: string;
 
 
-  constructor(title, name: string, text: string, pic: string) {
+  constructor(title: string, name: string, text: string, pic: string) {
     this.title = title;
     this.name = name;
     this.text = 'Everything you need to know, SEB 2018!!';

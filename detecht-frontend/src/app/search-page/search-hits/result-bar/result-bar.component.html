@@ -4,7 +4,7 @@
          class="card-img" alt="QR-code">
   </div>
   <div class="body">
-    <h5 class="card-title">{{result.name}}</h5>
+    <a href="{{staticUrl + 'pdf/' + result.name}}" target="_blank"><h5 class="card-title">{{result.title}}</h5></a>
     <p class="card-text"> {{result.text}}</p>
   </div>
 </div>
