@@ -2,7 +2,7 @@
     <div class="col-md-6 offset-md-3">
       <h3>Choose File</h3>
       <div class="form-group">
-
+        <input type="text" name="title" [(ngModel)]="fileTitle">
         <input type="file" name="image" (change)="fileProgress($event)" />
       </div>
       <div *ngIf="fileUploadProgress">
@@ -21,3 +21,4 @@
       </div>
     </div>
   </div>
+{{responseMessage}}

@@ -2,4 +2,4 @@ venv/
 db.sqlite3
 .idea
 __pycache__/
-static/pdf/*
+detecht_api/static/pdf/*

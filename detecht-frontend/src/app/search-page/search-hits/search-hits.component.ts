@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {results} from '../../mock-results';
-import {SearchResult} from '../../data-types';
+import {SearchResponse} from '../../data-types';
+import {SearchService} from '../../network-services/search.service';
 
 @Component({
   selector: 'app-search-hits',
@@ -9,12 +9,13 @@ import {SearchResult} from '../../data-types';
 })
 export class SearchHitsComponent implements OnInit {
 
-  result: SearchResult;
-  results = results;
+  results: SearchResponse[];
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+    this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
   }
 
 }
+

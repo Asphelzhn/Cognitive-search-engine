@@ -50,6 +50,3 @@ def formated_search(query, size=1):
         titles.append(title)
     return titles
 
-
-formated_search("rupert")
-

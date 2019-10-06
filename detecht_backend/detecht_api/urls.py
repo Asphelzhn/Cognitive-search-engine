@@ -17,13 +17,11 @@ router.register(r'files', DocumentViewSet)
 
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
-    url(r'^getcust/$', views.Customer.getCust),
-    url(r'^apitest/$', views.CalcTest),
-    url(r'^api/testget/$', views.TestGet),
-    url(r'^api/addpdf/$', views.addPdf.as_view()),
-    url(r'^api/search/$', views.search.as_view()),
-    url(r'^api/profile/$', views.profile.as_view()),
-    url(r'^api/updateprofile/$', views.updateProfile.as_view()),
+    # url(r'^api/pdfupload/$', views.PdfUpload.as_view()),
+    url(r'^api/addfile/$', views.AddFile.as_view()),
+    url(r'^api/search/$', views.Search.as_view()),
+    url(r'^api/profile/$', views.Profile.as_view()),
+    url(r'^api/updateprofile/$', views.UpdateProfile.as_view()),
     url(r'^api/user/$', views.UserTest.as_view()),
     url(r'^api/', include(router.urls)), #files
 ]

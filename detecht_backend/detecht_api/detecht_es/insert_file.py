@@ -18,7 +18,7 @@ json_string = '{"title":"Rupert", "age": 25, "desig":"developer"}'
 
 
 def get_file(filename):
-    f = open(filename+".json", "r")
+    f = open(filename, "r")
     if f.mode == 'r':
         contents = f.read()
     print(contents)
@@ -29,12 +29,13 @@ def get_file(filename):
 
 
 # not sure on how the tell it that it's supposed to go for the index db in our ES stack. but this may work.
-def inject_one_file(json):
+def inject_one_file(json_obj):
     es.indices.refresh(index="db")  # refreshes the index
     doc_count = es.cat.count(index="db", params={"format": "json"})
     doc_id_tmp = doc_count[0]["count"] #Counts the number of ids in the index, Returns an array of some sort
     doc_id = int(doc_id_tmp) + 1
-    es.index(index="db", doc_type="doc", id=doc_id, body=json)
+    es.index(index="db", doc_type="doc", id=doc_id, body=json_obj)
+
 
 def inject_by_name(filename):
     inject_one_file(get_file(filename))
@@ -54,4 +55,3 @@ def inject_files(directory="Standard"):
                      id=i, body=json.loads(docket_content))
             i = i + 1
 
-inject_by_name("test")
