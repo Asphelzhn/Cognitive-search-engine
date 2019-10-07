@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { UploadFileComponent } from './admin-page/upload-file/upload-file.component';
 import { StartPageComponent } from './start-page/start-page.component';
 import { UploadedFileComponent } from './admin-page/uploaded-file/uploaded-file.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { UploadedFileComponent } from './admin-page/uploaded-file/uploaded-file.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

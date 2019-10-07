@@ -40,9 +40,16 @@ INSTALLED_APPS = [
     'detecht_api.apps.DetechtAppConfig',
     # Django REST framework
     'rest_framework',
+    'rest_framework.authtoken', #Added by Armin to enable token verification
     # CORS
     'corsheaders',
 ]
+#Added by Armin to enable token verification
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     # CORS
@@ -59,7 +66,8 @@ MIDDLEWARE = [
 ]
 
 # CORS
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
