@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { UploadFileComponent } from './admin-page/upload-file/upload-file.compon
 import { StartPageComponent } from './start-page/start-page.component';
 import { RelatedSearchHitsComponent } from './search-page/related-search-hits/related-search-hits.component';
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { RelatedResultBarComponent } from './search-page/related-search-hits/rel
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
