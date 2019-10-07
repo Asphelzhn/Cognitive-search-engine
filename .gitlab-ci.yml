@@ -11,6 +11,6 @@ build:
         
 test:
     stage: test
-        script:
-            - echo "Testing"
-            - test -f "build/info.txt"
+    script:
+        - echo "Testing"
+        - test -f "build/info.txt"
