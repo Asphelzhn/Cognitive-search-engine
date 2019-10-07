@@ -1,16 +1,36 @@
-image: python:latest
+image: "python:3.7"
+
+before_script:
+  - python --version
+  
+
 stages:
-    - build
-    - test
-    
-build:
-    stage: build
-    script:
-        - echo "Building"
-       
-        
-test:
-    stage: test
-    script:
-        - echo "Testing"
-        
+  - Static Analysis
+  - Test
+
+mypy:
+  stage: Static Analysis
+  script:
+  - pwd
+  - ls -l
+  - python -m mypy detecht_backend/detecht_backend/*.py
+
+flake8:
+  stage: Static Analysis
+  script:
+  - flake8 --max-line-length=120 detecht_backend/detecht_backend/*.py
+
+pylint:
+  stage: Static Analysis
+  allow_failure: true
+  script:
+  - pylint -d C0301 detecht_backend/detecht_backend/*.py
+
+unit_test:
+  stage: Test
+  script:
+  - pwd
+  - ls -l
+  - export PYTHONPATH="$PYTHONPATH:."
+  - python -c "import sys;print(sys.path)"
+  - pytest
