@@ -51,7 +51,7 @@ the last row should be \
 If you do not have a clean working tree, please go directly to your teamleader before continue! \
 \
 Press the green play button and see that the sever is running and that you can access the website. 
-Or write in terminal `python manage.py renserver 8000` to start the server on port 8000
+Or write in terminal `python manage.py runserver 8000` to start the server on port 8000
 
 
 ## Update project
@@ -87,9 +87,8 @@ In terminal write
 `deactivate`
 
 ### To serve the application 
-Write in terminal
-`ng serve`. 
-Or press the green play button in the top right corner of WebStorm
+Press the green play button and see that the sever is running and that you can access the website. 
+Or write in terminal `python manage.py runserver 8000` to start the server on port 8000
 
 #### To stop serve the application
 In the terminal serving the application press Ctrl + C
