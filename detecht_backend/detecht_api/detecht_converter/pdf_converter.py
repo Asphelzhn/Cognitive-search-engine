@@ -21,12 +21,12 @@ for page in range(read_pdf.getNumPages()):
     page_mode = read_pdf.getPageMode()
     page_text = data.extractText()
     all_pages[page] = page_text
-    
-    
+
+
 # create a JSON string from the dictionary
 json_data = json.dumps(all_pages)
 # print ("\nJSON:", json_data)
 
 
 with open('test.json', 'w') as outfile:
-        json.dump(all_pages, outfile)
+    json.dump(all_pages, outfile)
