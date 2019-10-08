@@ -53,6 +53,16 @@ If you do not have a clean working tree, please go directly to your teamleader b
 Press the green play button and see that the sever is running and that you can access the website. 
 Or write in terminal `python manage.py renserver 8000` to start the server on port 8000
 
+
+## Update project
+#### Update Db
+In terminal write (always inside venv)
+`python migrate.py migrate`
+#### Update ES
+In terminal write (always inside venv)
+`python initialize_project.py`
+
+
 ## Code Standard
 
 ### Indentation style
