@@ -2,13 +2,15 @@ import json
 
 
 class json_class:
+    pdf_name = ""
+    tags = list()
+    sections = list()
+    keywords = list()
 
-    def __init__(self):
-        pdf_name = ""
-        tags = list()
-        sections = list()
-        keywords = list()
-        full_text = ""
+
+ j   def __init__(self, json):
+        self.full_text = json
+
     #def insert_json(json):
 
 
