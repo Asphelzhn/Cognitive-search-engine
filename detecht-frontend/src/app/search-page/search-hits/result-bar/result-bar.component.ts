@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {SearchResponse} from '../../../data-types';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-result-bar',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultBarComponent implements OnInit {
 
+  staticUrl: string;
+
+  @Input() result: SearchResponse;
+
   constructor() { }
 
   ngOnInit() {
+    this.staticUrl = environment.staticUrl;
   }
 
 }

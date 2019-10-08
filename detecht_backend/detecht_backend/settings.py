@@ -40,9 +40,17 @@ INSTALLED_APPS = [
     'detecht_api.apps.DetechtAppConfig',
     # Django REST framework
     'rest_framework',
+    # Added by Armin to enable token verification
+    'rest_framework.authtoken',
     # CORS
     'corsheaders',
 ]
+# Added by Armin to enable token verification
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     # CORS
@@ -59,7 +67,8 @@ MIDDLEWARE = [
 ]
 
 # CORS
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
@@ -69,8 +78,7 @@ ROOT_URLCONF = 'detecht_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
