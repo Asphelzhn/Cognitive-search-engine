@@ -1,2 +1,48 @@
-<h3>ADMIN PAGE</h3>
-<app-upload-file></app-upload-file>
+
+<div class="container">
+  <div class="heading">
+    <h1>Admin-page</h1>
+  </div>
+  <div class="page-content">
+    <div class="upload-content">
+      <button class="upload-btn">Upload document</button>
+    </div>
+    <div class="view-content" >
+      <h2>Browse all of your documents</h2>
+      <div>
+        <div class="individual-content" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+          <!-- let pdf of pdfs-->
+          <h5 class="card-heading">NAME</h5>
+          <!--{{pdf.name}}-->
+          <button type="submit" (click)="deletePDF('Name')">Delete</button>
+          <!-- deletePDF(pdf.name)-->
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+<!--
+<div>
+  <h3 class="heading">ADMIN PAGE</h3>
+  <div class="result-container col-6">
+    <button class=" btn btn-primary">Upload</button>
+    <div class="result-div" *ngFor="let index of [0,1,2,3,4,5]">
+      <div class="search-result-container row">
+        <div class="body">
+          <h5 class="card-heading"> NAME</h5>
+          <p class="card-text"> TEXT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-upload-file></app-upload-file>
+</div> -->

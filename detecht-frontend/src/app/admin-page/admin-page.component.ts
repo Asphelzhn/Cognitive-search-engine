@@ -19,5 +19,7 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  deletePDF(fileName: string): void {
+    console.log('Delete ' + fileName);
+  }
 }
