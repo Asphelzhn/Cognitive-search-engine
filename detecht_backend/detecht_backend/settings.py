@@ -40,11 +40,12 @@ INSTALLED_APPS = [
     'detecht_api.apps.DetechtAppConfig',
     # Django REST framework
     'rest_framework',
-    'rest_framework.authtoken', #Added by Armin to enable token verification
+    # Added by Armin to enable token verification
+    'rest_framework.authtoken',
     # CORS
     'corsheaders',
 ]
-#Added by Armin to enable token verification
+# Added by Armin to enable token verification
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
