@@ -4,7 +4,6 @@ import tfidf
 text1 = "the cat sat on my face"
 text2 = "the dog sat on my bed"
 
-# Tokentest
 tokens1 = tfidf.tokenizewords(text1)
 tokens2 = tfidf.tokenizewords(text2)
 print(tokens1)
@@ -48,8 +47,15 @@ print(TFIDF1)
 print(TFIDF2)
 
 
+#TFIDF test of main
 print()
 print()
 print("main test:")
 s = tfidf.computeTFIDFmain([text1, text2])
 print(s)
+
+print(s[0])
+
+# TFIDF Test of dictionary to tuple
+t = tfidf.dictionaryToSortedTuple(s[0])
+print(t)

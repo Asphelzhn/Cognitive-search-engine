@@ -53,11 +53,18 @@ def computeIDF(docList):
         idfdict[term] = math.log(N/float(val))
     return idfdict
 
+
 def computeTFIDF(tfBOWs, idfs):
     tfidf = {}
     for word, val in tfBOWs.items():
         tfidf[word]= val*idfs[word];
     return tfidf
+
+
+def dictionaryToSortedTuple(dictionary):
+    theList = [(term,val) for term, val in dictionary.items()]
+    return theList
+
 
 # Given string a few string docs, this function returns the weights of different terms
 def computeTFIDFmain(docs):
