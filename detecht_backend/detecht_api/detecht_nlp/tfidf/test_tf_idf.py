@@ -54,8 +54,3 @@ print("main test:")
 s = tfidf.computeTFIDFmain([text1, text2])
 print(s)
 
-print(s[0])
-
-# TFIDF Test of dictionary to tuple
-t = tfidf.dictionaryToSortedTuple(s[0])
-print(t)

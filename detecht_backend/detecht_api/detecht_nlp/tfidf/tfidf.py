@@ -92,10 +92,13 @@ def computeTFIDFmain(docs):
     IDF = computeIDF(docTFdict) #This variable should exist in entire document
 
 
-    # Compute TFIDF
+    # Compute TFIDF and put in list of tuple
     docTFIDfdict = [] #This variable should exist in entire document
     for x in range(amountdocs):
-        docTFIDfdict.append(computeTFIDF(docTFdict[x], IDF))
+        temp = computeTFIDF(docTFdict[x], IDF)
+        temp1=dictionaryToSortedTuple(temp)
+        docTFIDfdict.append(temp1)
+
 
     return docTFIDfdict
 
