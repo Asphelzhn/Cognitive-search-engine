@@ -1,4 +1,4 @@
-import tfidf
+import detecht_api.detecht_nlp.keywordExtraction.tfidf.tfidf as tfidf
 
 # TEXTS
 text1 = "the cat sat on my face"

@@ -1,30 +1,50 @@
 # encoding: utf-8
 '''
 @author: Edward
-@file: rake_api.py
-@time: 2019/10/9 10:01
-@desc: This is using rake algorithm to implement keyword extraction
+@file: yake_api.py
+@time: 2019/10/9 20:58
+@desc:
+reference for using YAKE:
+
+In-depth journal paper at Information Sciences Journal
+
+Campos, R., Mangaravite, V., Pasquali, A., Jatowt, A., Jorge, A., Nunes, C. and Jatowt, A. (2020). YAKE! Keyword Extraction from Single Documents using Multiple Local Features. In Information Sciences Journal. Elsevier, Vol 509, pp 257-289. pdf
+
+ECIR'18 Best Short Paper
+
+Campos R., Mangaravite V., Pasquali A., Jorge A.M., Nunes C., and Jatowt A. (2018). A Text Feature Based Automatic Keyword Extraction Method for Single Documents. In: Pasi G., Piwowarski B., Azzopardi L., Hanbury A. (eds). Advances in Information Retrieval. ECIR 2018 (Grenoble, France. March 26 – 29). Lecture Notes in Computer Science, vol 10772, pp. 684 - 691. pdf
+
+Campos R., Mangaravite V., Pasquali A., Jorge A.M., Nunes C., and Jatowt A. (2018). YAKE! Collection-independent Automatic Keyword Extractor. In: Pasi G., Piwowarski B., Azzopardi L., Hanbury A. (eds). Advances in Information Retrieval. ECIR 2018 (Grenoble, France. March 26 – 29). Lecture Notes in Computer Science, vol 10772, pp. 806 - 810. pdf
 '''
 
-import detecht_api.detecht_nlp.keywordExtraction.rake_algorithm.rake as rake
+import yake
 
-class Rake4Keyword():
-
-    def rake_api(sefl, text, filename):
-        """API for RAKE algorithm
+class Yake4Keyword():
+    def yake_api(text, filename):
+        """API for YAKE algorithm
 
         :param text: plian text that need to extract keyword
         :param filename: the text's filename
         :return: (key word, weight) for most relevant keywords
         """
-        stoppath = 'rake_algorithm/data/stoplists/SmartStoplist.txt'
-        rake_object = rake.Rake(stoppath, 5, 3, 2)
-        keywords = rake_object.run(text)
+        language = "en" # specifying parameters
+        max_ngram_size = 3
+        deduplication_thresold = 0.9
+        deduplication_algo = 'seqm'
+        windowSize = 1
+        numOfKeywords = 20
+
+        custom_kw_extractor = yake.KeywordExtractor(lan=language, n=max_ngram_size, dedupLim=deduplication_thresold,
+                                                    dedupFunc=deduplication_algo, windowsSize=windowSize,
+                                                    top=numOfKeywords, features=None)
+        keywords = custom_kw_extractor.extract_keywords(text)
+
+        return keywords
 
 
-'''example using RAKE to extract keyword
+
+'''example using textRank to extract keyword
 '''
-
 if __name__ == '__main__':
     text = """Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.[28]
 
@@ -36,7 +56,6 @@ The Python 2 language, i.e. Python 2.7.x, is "sunsetting" on January 1, 2020, an
 
 Python interpreters are available for many operating systems. A global community of programmers develops and maintains CPython, an open source[36] reference implementation. A non-profit organization, the Python Software Foundation, manages and directs resources for Python and CPython development."""
     filename = 'hello.txt'
-
-    keywords_list = Rake4Keyword().rake_api(text,"hell0")
-
+    keywords_list = Yake4Keyword.yake_api(text, filename)
     print(keywords_list)
+    
