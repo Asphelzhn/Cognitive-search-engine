@@ -16,6 +16,7 @@
   height: 75%;
   width: 95%;
   border: 1px solid;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
 }
@@ -23,4 +24,14 @@
 .file-buttons{
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  button {
+    background-color: #61B3E3;
+    color: #ffffff;
+    border: none;
+    padding: 4px 11px;
+  }
 }

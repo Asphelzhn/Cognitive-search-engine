@@ -8,7 +8,6 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
   styleUrls: ['./admin-page.component.scss']
 })
 
-
 @NgModule({
   imports: [],
   declarations: []
@@ -16,10 +15,11 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 
 export class AdminPageComponent implements OnInit {
 
+  uploadDoc: boolean;
   constructor(
-    private router: Router
+    // private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(  ) {
   }
 }

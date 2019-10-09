@@ -4,6 +4,7 @@ import {catchError} from 'rxjs/operators';
 import {NetworkPdfUploadResponse, NetworkPdfUploadRequest} from '../../network-services/network-data-types';
 
 
+
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
