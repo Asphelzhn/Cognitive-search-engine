@@ -1,4 +1,4 @@
-from . import create_abstract
+from detecht_api.detecht_nlp import create_abstract
 
 """
 Henrik & Oscar

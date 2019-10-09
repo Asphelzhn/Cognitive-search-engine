@@ -1,4 +1,4 @@
-from . import word_similarity
+from detecht_api.detecht_nlp import word_similarity
 
 
 """"" 
