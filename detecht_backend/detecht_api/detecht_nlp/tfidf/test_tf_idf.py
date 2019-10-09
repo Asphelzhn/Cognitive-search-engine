@@ -53,5 +53,3 @@ print()
 print("main test:")
 s = tfidf.computeTFIDFmain([text1, text2])
 print(s)
-
-

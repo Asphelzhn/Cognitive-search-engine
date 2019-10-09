@@ -2,9 +2,12 @@ import math
 import spacy
 # Primitive function, solve this with spacy
 def tokenizewords(text):
-    #nlp = spacy.load("en_core_web_sm")
-    #doc = (text)
-    return tokens
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    tokenText=[]
+    for token in doc:
+        tokenText.append(token.text)
+    return tokenText
 
 
 # Capital letter doesn't work now
