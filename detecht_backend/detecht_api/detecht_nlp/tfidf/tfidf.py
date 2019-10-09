@@ -2,8 +2,8 @@ import math
 import spacy
 # Primitive function, solve this with spacy
 def tokenizewords(text):
-    nlp=spacy.load("en_core_web_sm")
-    tokens = text.split(" ")
+    #nlp = spacy.load("en_core_web_sm")
+    #doc = (text)
     return tokens
 
 
@@ -12,7 +12,7 @@ def createdict(differenttexts):
     wordset = differenttexts[0]
     for texts in differenttexts:
         wordset = set(wordset).union(texts)
-    return wordset;
+    return wordset
 
 
 # Adds weights of zero
