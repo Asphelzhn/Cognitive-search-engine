@@ -7,20 +7,13 @@
 '''
 
 import detecht_api.detecht_nlp.keywordExtraction.rake_algorithm.rake as rake
-import operator
 
-class Rake():
-    def __init__(self):
-        pass
+class Rake4keyword():
     def rake_api(self, text, filename):
         stoppath = 'rake_algorithm/data/stoplists/SmartStoplist.txt'
         rake_object = rake.Rake(stoppath, 5, 3, 2)
         keywords = rake_object.run(text)
 
-
-stoppath = 'rake_algorithm/data/stoplists/SmartStoplist.txt'
-
-rake_object = rake.Rake(stoppath, 5, 3, 2)
 
 text = """Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.[28]
 
@@ -32,6 +25,6 @@ The Python 2 language, i.e. Python 2.7.x, is "sunsetting" on January 1, 2020, an
 
 Python interpreters are available for many operating systems. A global community of programmers develops and maintains CPython, an open source[36] reference implementation. A non-profit organization, the Python Software Foundation, manages and directs resources for Python and CPython development."""
 
-keywords = rake_object.run(text)
+keywords = Rake4keyword().rake_api(text,"hell0")
 
 print(keywords)

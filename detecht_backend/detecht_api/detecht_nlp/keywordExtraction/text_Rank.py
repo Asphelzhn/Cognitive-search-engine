@@ -95,7 +95,7 @@ class TextRank4Keyword():
         node_weight = OrderedDict(sorted(self.node_weight.items(), key=lambda t: t[1], reverse=True))
         for i, (key, value) in enumerate(node_weight.items()):
             # print(key + ' - ' + str(value))
-            keywords_list.append((key,str(value)))
+            keywords_list.append((key,float(value)))
             if i > number:
                 break
         return keywords_list
