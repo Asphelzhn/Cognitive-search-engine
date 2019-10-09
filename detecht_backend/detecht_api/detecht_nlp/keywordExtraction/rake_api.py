@@ -3,13 +3,19 @@
 @author: Edward
 @file: rake_api.py
 @time: 2019/10/9 10:01
-@desc:
+@desc: This is using rake algorithm to implement keyword extraction
 '''
 
 import detecht_api.detecht_nlp.keywordExtraction.rake_algorithm.rake as rake
 
 class Rake4keyword():
+
     def rake_api(self, text, filename):
+        """
+
+        @param text:
+        @param filename:
+        """
         stoppath = 'rake_algorithm/data/stoplists/SmartStoplist.txt'
         rake_object = rake.Rake(stoppath, 5, 3, 2)
         keywords = rake_object.run(text)

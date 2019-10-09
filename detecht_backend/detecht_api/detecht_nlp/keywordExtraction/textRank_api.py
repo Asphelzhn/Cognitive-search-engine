@@ -1,7 +1,7 @@
 # encoding: utf-8
 '''
 @author: Edward
-@file: text_Rank.py
+@file: textRank_api.py
 @time: 2019/10/1 15:13
 @desc:
 '''
