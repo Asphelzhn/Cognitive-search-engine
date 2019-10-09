@@ -58,4 +58,3 @@ Python interpreters are available for many operating systems. A global community
     filename = 'hello.txt'
     keywords_list = Yake4Keyword.yake_api(text, filename)
     print(keywords_list)
-    

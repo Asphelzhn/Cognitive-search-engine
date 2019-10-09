@@ -37,6 +37,6 @@ The Python 2 language, i.e. Python 2.7.x, is "sunsetting" on January 1, 2020, an
 Python interpreters are available for many operating systems. A global community of programmers develops and maintains CPython, an open source[36] reference implementation. A non-profit organization, the Python Software Foundation, manages and directs resources for Python and CPython development."""
     filename = 'hello.txt'
 
-    keywords_list = Rake4Keyword().rake_api(text,"hell0")
+    keywords_list = Rake4Keyword().rake_api(text,filename)
 
     print(keywords_list)
