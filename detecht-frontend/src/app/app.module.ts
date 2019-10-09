@@ -14,6 +14,8 @@ import { UploadFileComponent } from './admin-page/upload-file/upload-file.compon
 import { StartPageComponent } from './start-page/start-page.component';
 import { RelatedSearchHitsComponent } from './search-page/related-search-hits/related-search-hits.component';
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
+import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -27,13 +29,15 @@ import { RelatedResultBarComponent } from './search-page/related-search-hits/rel
     UploadFileComponent,
     StartPageComponent,
     RelatedSearchHitsComponent,
-    RelatedResultBarComponent
+    RelatedResultBarComponent,
+    SearchResultPreviewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PdfViewerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

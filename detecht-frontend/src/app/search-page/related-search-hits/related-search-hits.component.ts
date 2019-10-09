@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchResponse} from '../../data-types';
+import {SearchService} from '../../network-services/search.service';
 
 @Component({
   selector: 'app-related-search-hits',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatedSearchHitsComponent implements OnInit {
 
-  constructor() { }
+  results: SearchResponse[];
+
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+    this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
   }
+
 
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {SearchResponse} from '../../../data-types';
+import {SearchService} from '../../../network-services/search.service';
 
 @Component({
   selector: 'app-related-result-bar',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./related-result-bar.component.scss']
 })
 export class RelatedResultBarComponent implements OnInit {
-
-  constructor() { }
-
+  @Input() result: string;
   ngOnInit() {
+
   }
 
 }
