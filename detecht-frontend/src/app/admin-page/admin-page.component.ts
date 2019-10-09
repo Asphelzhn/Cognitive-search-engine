@@ -1,4 +1,5 @@
 import {Component, NgModule, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @Component({
@@ -15,11 +16,10 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 
 export class AdminPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
-  }
-  deletePDF(fileName: string): void {
-    console.log('Delete ' + fileName);
   }
 }

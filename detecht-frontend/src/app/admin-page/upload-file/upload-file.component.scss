@@ -1,7 +1,26 @@
-
-
-div {
-  .upload-content{
-    align:center;
+.upload-page-content{
+  height: 80%;
+  width: 75%;
+  background-color: #ffffff;
+  border: 1px solid;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  h4{
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
+}
+
+.selected-documents{
+  height: 75%;
+  width: 95%;
+  border: 1px solid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.file-buttons{
+  display: flex;
+  justify-content: space-between;
 }
