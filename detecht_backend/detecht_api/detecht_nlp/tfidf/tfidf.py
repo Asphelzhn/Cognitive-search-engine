@@ -1,5 +1,6 @@
 import math
 import spacy
+import operator
 # Primitive function, solve this with spacy
 def tokenizewords(text):
     nlp = spacy.load("en_core_web_sm")
@@ -63,6 +64,7 @@ def computeTFIDF(tfBOWs, idfs):
 
 def dictionaryToSortedTuple(dictionary):
     theList = [(term,val) for term, val in dictionary.items()]
+    theList.sort(key=operator.itemgetter(1), reverse=True)
     return theList
 
 
