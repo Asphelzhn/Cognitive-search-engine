@@ -39,6 +39,7 @@ def computeTF(wordDict, bow):
         TFdict[word] = count/float(bowCount)
     return TFdict
 
+
 def computeIDF(docList):
     idfdict = {}
     N = len(docList)
@@ -75,10 +76,10 @@ def computeTFIDFmain(docs):
 
     # Makes all docs into a list of terms
     for strings in docs:
-        tokenArray.append(tokenizewords(strings)) # This variable should exist in entire document
+        tokenArray.append(tokenizewords(strings))  # This variable should exist in entire document
 
     # Creates dictionary of all documents
-    allTermsInDocs = createdict(tokenArray) # This variable should exist in entire document
+    allTermsInDocs = createdict(tokenArray)  # This variable should exist in entire document
 
     # Counts the terms in each document and computes TF
     docTFdict=[]
@@ -86,19 +87,17 @@ def computeTFIDFmain(docs):
         tempDictionary=weightzero(allTermsInDocs)
         termFrequencyInDoc=termfrequency(tokenArray[x],tempDictionary)
         TF = computeTF(termFrequencyInDoc, tokenArray[x])
-        docTFdict.append(TF) #This variable should exist in entire document
+        docTFdict.append(TF) # This variable should exist in entire document
 
-    # Computes document fequency for each word and the idf
-    IDF = computeIDF(docTFdict) #This variable should exist in entire document
-
+    # Computes document frequency for each word and the idf
+    IDF = computeIDF(docTFdict) # This variable should exist in entire document
 
     # Compute TFIDF and put in list of tuple
-    docTFIDfdict = [] #This variable should exist in entire document
+    docTFIDfdict = [] # This variable should exist in entire document
     for x in range(amountdocs):
         temp = computeTFIDF(docTFdict[x], IDF)
         temp1=dictionaryToSortedTuple(temp)
         docTFIDfdict.append(temp1)
-
 
     return docTFIDfdict
 
