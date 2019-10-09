@@ -1,6 +1,8 @@
 import math
+import spacy
 # Primitive function, solve this with spacy
 def tokenizewords(text):
+    nlp=spacy.load("en_core_web_sm")
     tokens = text.split(" ")
     return tokens
 
