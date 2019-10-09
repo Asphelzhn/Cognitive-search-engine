@@ -6,6 +6,9 @@ from heapq import nlargest
 
 """
 Henrik & Oskar
+
+För att kunna köra kör först i terminalen
+python -m spacy download en_core_web_sm
 """
 
 stopwords = list(STOP_WORDS)
