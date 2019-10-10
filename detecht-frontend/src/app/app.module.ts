@@ -29,7 +29,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     AdminPageComponent,
     UploadFileComponent,
     StartPageComponent,
-    UploadedFileComponent
+    UploadedFileComponent,
     RelatedSearchHitsComponent,
     RelatedResultBarComponent,
     SearchResultPreviewComponent,
