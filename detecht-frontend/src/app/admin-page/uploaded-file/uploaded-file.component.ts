@@ -1,6 +1,5 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-
 
 @Component({
   selector: 'app-uploaded-file',
@@ -10,14 +9,12 @@ import {Router} from '@angular/router';
 export class UploadedFileComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
   deletePDF(fileName: string): void {
     console.log('Delete ' + fileName);
   }
-
-
 }
