@@ -1,6 +1,9 @@
+from keyword_class import *
+
 class section_class:
     start = 0
     end = 0
+    keywords = list()
 
     def __init__(self, start, end):
         self.start = start
@@ -8,4 +11,12 @@ class section_class:
 
 
     def add_keyword(self, keyword, weight):
-        print(keyword + " " + str(weight))
+        self.keywords.append(keyword_class(keyword, weight))
+
+
+    def get_section_dict(self):
+        section_keywords = list()
+        for section_keyword in self.keywords:
+            section_keywords.append(section_keyword.get_keyword_dict())
+
+        return {'start':self.start,'end':self.end, 'section_keyword': section_keywords}

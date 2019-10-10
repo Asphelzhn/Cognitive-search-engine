@@ -22,27 +22,35 @@ class json_class:
         for tag in json_doc["tags"]:
             self.add_tag(tag)
         for section in json_doc["sections"]:
-            section_tmp = section_class(section["start"],section["end"])
-            for keyword in section["section_keyword"]:
-                section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
-            self.sections.append(section_tmp)
-        self.export_json()
+            self.add_section(section["start"],section["end"],section["section_keyword"])
+            #section_tmp = section_class(section["start"],section["end"])
+            #for keyword in section["section_keyword"]:
+            #   section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
+            #self.sections.append(section_tmp)
 
 
 
 
 
-    def export_json(self):
-        keywords_tmp=""
+    def export_json(self,file_name=""):
+        if file_name == "":
+            file_name = self.pdf_name
+        keywords_tmp=list()
         for keyword_tmp in self.keywords:
-            keywords_tmp = keyword_tmp.get_keyword()
+            keywords_tmp.append(keyword_tmp.get_keyword_dict())
+        sections_tmp=list()
+        for section_tmp in self.sections:
+
+            sections_tmp.append(section_tmp.get_section_dict())
         a = {
         'pdf_name': self.pdf_name,
         'title': self.title,
         'tags': self.tags,
-        'keywords': keywords_tmp}
-        #with open('test.txt', 'w') as outfile:
-        print(json.dumps(a, indent=2))
+        'keywords': keywords_tmp,
+        'sections': sections_tmp,
+        'full_text': self.full_text}
+        with open(file_name + ".json", 'w') as outfile:
+            json.dump(a, outfile, indent=2)
 
     # Adds whole document to one string, can be a problem with memory management
     def add_full_text(self, fulltext):
@@ -92,9 +100,17 @@ class json_class:
     def get_pdf_name(self):
         return self.pdf_name
 
+    #
+    def add_section(self, start, end, section_keywords):
+        if start < end:
+            section_tmp = section_class(start,end)
+            for keyword in section_keywords:
+                section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
+            self.sections.append(section_tmp)
+        else:
+            print("hoppsan")
+            raise ValueError('End index can not be lower than start index.')
 
-    def add_section(start, end, section_tags):
-        sections.append[start, end, section_tags]
 
 
     def get_sections():
