@@ -1,24 +1,31 @@
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h3>Choose File</h3>
+<div class="container">
+  <div class="heading">
+    <h1>Admin-page</h1>
+  </div>
+  <div class="upload-page-content">
+    <h4>Documents selected</h4>
+    <div class="selected-documents">
+      HÄR SKA DE IN
+    </div>
+    <div class="file-buttons">
       <div class="form-group">
-        <input type="text" name="title" [(ngModel)]="fileTitle">
+        <input placeholder="Choose name" type="text" name="title" [(ngModel)]="fileTitle">
         <input type="file" name="image" (change)="fileProgress($event)" />
       </div>
       <div *ngIf="fileUploadProgress">
         Upload progress: {{ fileUploadProgress }}
       </div>
-      <div class="image-preview mb-3" *ngIf="previewUrl">
+      <div class="image-preview" *ngIf="previewUrl">
         <img [src]="previewUrl" height="300" />
       </div>
-
-      <div class="mb-3" *ngIf="uploadedFilePath">
+      <div *ngIf="uploadedFilePath">
         {{uploadedFilePath}}
       </div>
-
       <div class="form-group">
-        <button class="btn btn-primary"  (click)="onSubmit()">Submit</button>
+        <button class="btn btn-primary upload-file-btn"  (click)="onSubmit()">Upload document</button>
+        <button class="btn btn-primary upload-file-btn"  (click)="router.navigate(['/admin']);">Tillbaka</button>
       </div>
     </div>
   </div>
+</div>
 {{responseMessage}}

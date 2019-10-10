@@ -1,0 +1,52 @@
+.page-content{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding-top: 15px;
+  .view-content{
+    width: 60%;
+    height: 85%;
+    overflow: scroll;
+    background-color: #ffffff;
+    h2{
+      margin:3px;
+    }
+    h5{
+      margin: 5px;
+    }
+  }
+  .upload-content{
+    width:20%;
+  }
+  .upload-btn {
+    background-color: #ffffff;
+    font-size: 17px;
+    padding: 14px 7px;
+    margin-top: 0px;
+  }
+  .upload-btn:hover {
+    background-color: #F0F0F0;
+    color: #000000;
+  }
+}
+
+.individual-content {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  h5{
+    text-align: left;
+    margin-left: 5px;
+  }
+  button{
+    text-align: right;
+    margin-right: 10px;
+  }
+}
+
+
