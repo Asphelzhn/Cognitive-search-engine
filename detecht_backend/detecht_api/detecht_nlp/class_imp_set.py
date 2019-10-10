@@ -5,12 +5,15 @@ Henrik & Oscar
 
 
 class ImpSent:
-    sent = str("")
+    sent = str
     rank = int
     order = int
     start_index = int
     end_index = int
 
+def __init__():
+    # a constructor file needs to contain something, but this is never used, tried without and got errors.
+    sent=""
 
 def set_sent(self, sent_input):
     self.sent = sent_input
