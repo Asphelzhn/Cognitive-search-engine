@@ -5,5 +5,5 @@ class keyword_class:
         self.weight = weight;
 
 
-    def get_keyword(self):
-        return [self.keyword,self.weight]
+    def get_keyword_dict(self):
+        return {'Keyword':self.keyword,'Weight':self.weight}
