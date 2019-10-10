@@ -6,6 +6,7 @@ elasticsearch==7.0.4
 requests==2.22.0
 whitenoise==4.1.4
 six==1.12.0
-yake==0.3.7 # 0.4.2 It does not exist for all
-spacy>=2.2.0 # <3.0.0
+-e git+https://github.com/LIAAD/yake#egg=yake
+# yake==0.3.7 # 0.4.2 It does not exist for all, can use instead pip install git+https://github.com/LIAAD/yake
+spacy>=2.2.0,<3.0.0
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
