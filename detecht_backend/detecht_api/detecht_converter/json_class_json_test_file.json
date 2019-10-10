@@ -1,0 +1,16 @@
+{ "id": 124,
+  "pdf_name": "test.pdf",
+  "title": "A pdf about test",
+  "full_text": "This is all the text of the pdf. It can be very long or not very long at all.",
+  "tags": ["pdf", "long"],
+  "keywords": [
+    {"keyword": "This", "weight": 4},
+    {"keyword": "is", "weight": 2},
+    {"keyword": "text", "weight": 1}
+  ],
+  "sections": [
+    {"start": 1, "end": 10, "section_tag": ["Hej","Då"]},
+    {"start": 11, "end": 20, "section_tag": ["Kalle","Arne"]},
+    {"start": 21, "end": 30, "section_tag": ["Paj","Hallon"]}
+  ]
+}
