@@ -1,0 +1,9 @@
+<div *ngIf="showPreview"  (click)="showPreview = false" class="search-result-preview-darken">
+  <div class="search-result-preview-container">
+    <pdf-viewer
+      [render-text]="true"
+      style="display: block;"
+      [src]="(staticUrl+'pdf/'+result.name)"
+    >  </pdf-viewer>
+  </div>
+</div>

@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchPageComponent } from './search-page.component';
+import { RelatedSearchHitsComponent } from './related-search-hits.component';
 
-
-describe('SearchPageComponent', () => {
-  let component: SearchPageComponent;
-  let fixture: ComponentFixture<SearchPageComponent>;
+describe('RelatedSearchHitsComponent', () => {
+  let component: RelatedSearchHitsComponent;
+  let fixture: ComponentFixture<RelatedSearchHitsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchPageComponent ]
+      declarations: [ RelatedSearchHitsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchPageComponent);
+    fixture = TestBed.createComponent(RelatedSearchHitsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
