@@ -10,6 +10,7 @@ import {environment} from '../../../../environments/environment';
 export class ResultBarComponent implements OnInit {
 
   staticUrl: string;
+  showPreview: boolean;
 
   @Input() result: SearchResponse;
 
@@ -17,6 +18,7 @@ export class ResultBarComponent implements OnInit {
 
   ngOnInit() {
     this.staticUrl = environment.staticUrl;
+    this.showPreview = false;
   }
 
 }

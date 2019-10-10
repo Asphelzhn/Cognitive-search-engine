@@ -1,0 +1,6 @@
+<div class="related-search-hits-container" *ngIf="results.length > 0">
+<h2>Related search</h2>
+<div class="result-div" *ngFor="let result of results">
+  <app-related-result-bar [result]= 'result'></app-related-result-bar>
+</div>
+</div>
