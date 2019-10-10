@@ -10,4 +10,4 @@ def get_file(filename):
 
 json_file = get_file("json_class_json_test_file")
 json_class_instance = json_class(json_file)
-print(json_class_instance.get_full_text())
+#print(json_class_instance.get_full_text())

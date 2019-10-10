@@ -1,36 +1,48 @@
 import json
-#from section_class import *
-#from keyword_class import *
+from section_class import *
+from keyword_class import *
+
 # Jakob & Carl
 class json_class:
     pdf_name = ""
+    full_text = ""
+    title = ""
     tags = list()
-    sections = ()
-    section_class()
-    keyword = keyword_class()
+    sections = list()
+    keywords = list()
 
 
     def __init__(self, json_file):
         json_doc = json.loads(json_file)
         self.add_full_text(json_doc["full_text"])
         self.add_pdf_name(json_doc["pdf_name"])
+        self.add_title(json_doc["title"])
         for keyword in json_doc["keywords"]:
-            self.add_keyword(keyword)
+            self.keywords.append(keyword_class(keyword["keyword"],keyword["weight"]))
         for tag in json_doc["tags"]:
             self.add_tag(tag)
-        print(json_doc["sections"])
-        for section in json_doc["sections"]
-
-        #self.add_keyword()
-        #self.add_section()
-        #self.add_tag()
-
-
+        for section in json_doc["sections"]:
+            section_tmp = section_class(section["start"],section["end"])
+            for keyword in section["section_keyword"]:
+                section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
+            self.sections.append(section_tmp)
+        self.export_json()
 
 
-    #def export_json():
 
-     #   return json
+
+
+    def export_json(self):
+        keywords_tmp=""
+        for keyword_tmp in self.keywords:
+            keywords_tmp = keyword_tmp.get_keyword()
+        a = {
+        'pdf_name': self.pdf_name,
+        'title': self.title,
+        'tags': self.tags,
+        'keywords': keywords_tmp}
+        #with open('test.txt', 'w') as outfile:
+        print(json.dumps(a, indent=2))
 
     # Adds whole document to one string, can be a problem with memory management
     def add_full_text(self, fulltext):
@@ -39,6 +51,10 @@ class json_class:
 
     def get_full_text(self):
         return self.full_text
+
+
+    def add_title(self, title):
+        self.title = title
 
 
     def add_tag(self, tag):
