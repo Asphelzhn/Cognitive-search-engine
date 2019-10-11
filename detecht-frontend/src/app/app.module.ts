@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,12 @@ import { ResultBarComponent } from './search-page/search-hits/result-bar/result-
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { UploadFileComponent } from './admin-page/upload-file/upload-file.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { UploadedFileComponent } from './admin-page/uploaded-file/uploaded-file.component';
+import { RelatedSearchHitsComponent } from './search-page/related-search-hits/related-search-hits.component';
+import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
+import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +28,18 @@ import { StartPageComponent } from './start-page/start-page.component';
     ResultBarComponent,
     AdminPageComponent,
     UploadFileComponent,
-    StartPageComponent
+    StartPageComponent,
+    UploadedFileComponent,
+    RelatedSearchHitsComponent,
+    RelatedResultBarComponent,
+    SearchResultPreviewComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    PdfViewerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

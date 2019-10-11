@@ -1,0 +1,28 @@
+.search-result-container {
+  max-width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+  .img-container {
+    min-width: 90px;
+    max-width: 90px;
+    img {
+      width:100%;
+    }
+  }
+  .body {
+    margin-left: 1em;
+    h5 {
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 1px;
+    }
+    p {
+      margin-top: 6px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+
+
+

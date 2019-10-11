@@ -1,0 +1,52 @@
+.upload-page-content{
+  height: 80%;
+  width: 75%;
+  background-color: #ffffff;
+  border: 1px solid;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  h4{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.selected-documents{
+  height: 75%;
+  width: 95%;
+  border: 1px solid;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.file-buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  button {
+    background-color: #61B3E3;
+    color: #ffffff;
+    border: none;
+    padding: 4px 11px;
+    margin: 2px;
+  }
+}
+.heading{
+  text-align: center;
+  background-color: #ffffff;
+  h1{
+    text-align: center;
+    margin: 5px;
+  }
+}
+.container{
+  background-color: #61B3E3;
+  height: 90vh;
+  width: 100%;
+}
+

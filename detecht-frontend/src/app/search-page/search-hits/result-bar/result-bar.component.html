@@ -1,1 +1,11 @@
-<p>result-bar works!</p>
+<div class="search-result-container">
+  <div class="img-container">
+    <img src="{{result.pic}}" class="card-img" alt="QR-code">
+  </div>
+  <div class="body">
+    <a (click)="showPreview = true" href="{{staticUrl + 'pdf/' + result.name}}" target="_blank"><h5 class="card-title">{{result.title}}</h5></a>
+    <p class="card-text"> {{result.text}}</p>
+    <button (click)="showPreview = true">Show preview</button>
+  </div>
+  <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl" [result]="result"></app-search-result-preview>
+</div>
