@@ -2,6 +2,8 @@
   RESPONSES FROM SERVER
  */
 
+// No constructors
+
 export class NetworkSearchResponse {
   success: boolean;
   totalResult: number;
@@ -19,6 +21,8 @@ export class NetworkPdfUploadResponse {
 /*
   REQUESTS TO SERVER
  */
+
+// No Constructors (it can be ok)
 
 export class NetworkSearchRequest {
   query: string;

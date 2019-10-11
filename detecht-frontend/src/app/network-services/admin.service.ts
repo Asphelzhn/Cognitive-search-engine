@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NetworkPdfUploadResponse, NetworkPdfUploadRequest, NetworkSearchResponse} from './network-data-types';
+import {NetworkPdfUploadResponse, NetworkPdfUploadRequest} from './network-data-types';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {SearchResponse} from '../data-types';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,14 @@ export class AdminService {
 
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
-  pdfUpload(networkPdfUploadRequest: NetworkPdfUploadRequest): any {
+
+  // getAllPdf(respons: any): Observable<string> {
+  //   return this.http.get(environment.apiUrl + '/getallpdf', {
+  //     withCredentials: true
+  //   }).pipe(catchError(this.networkService.handleError));
+  // }
+
+  pdfUpload(networkPdfUploadRequest: NetworkPdfUploadRequest): void {
     const formData = new FormData();
     formData.append('title', networkPdfUploadRequest.title);
     formData.append('file', networkPdfUploadRequest.file);
@@ -30,7 +36,7 @@ export class AdminService {
           headers: new HttpHeaders({
             'Content-Type': 'application/json'
           })
-        }).subscribe(
+        }).pipe(catchError(this.networkService.handleError)).subscribe(
           (networkPdfUploadResponse: NetworkPdfUploadResponse) => {
             if (networkPdfUploadResponse.success) {
               this.responseMessageSource.next('File was successfully uploaded');

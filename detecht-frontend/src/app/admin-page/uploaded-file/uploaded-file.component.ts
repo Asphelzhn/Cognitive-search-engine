@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {AdminService} from '../../network-services/admin.service';
 
 @Component({
   selector: 'app-uploaded-file',
@@ -8,11 +8,13 @@ import {Router} from '@angular/router';
 })
 export class UploadedFileComponent implements OnInit {
 
-  constructor(
-    private router: Router,
-  ) { }
+  // pdfs: any[];
 
-  ngOnInit() { }
+  constructor(private adminService: AdminService) { }
+
+  ngOnInit() {
+    // this.adminService.getAllPdf().subscribe(pdfs => this.pdfs = pdfs);
+  }
 
   deletePDF(fileName: string): void {
     console.log('Delete ' + fileName);
