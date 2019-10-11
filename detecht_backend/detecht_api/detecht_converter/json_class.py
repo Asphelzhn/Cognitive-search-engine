@@ -15,7 +15,7 @@ class json_class:
     def __init__(self, json_file):
         json_doc = json.loads(json_file)
         self.add_full_text(json_doc["full_text"])
-        self.add_pdf_name(json_doc["pdf_name"])
+        self.set_pdf_name(json_doc["pdf_name"])
         self.add_title(json_doc["title"])
         for keyword in json_doc["keywords"]:
             self.keywords.append(keyword_class(keyword["keyword"],keyword["weight"]))
@@ -23,13 +23,6 @@ class json_class:
             self.add_tag(tag)
         for section in json_doc["sections"]:
             self.add_section(section["start"],section["end"],section["section_keyword"])
-            #section_tmp = section_class(section["start"],section["end"])
-            #for keyword in section["section_keyword"]:
-            #   section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
-            #self.sections.append(section_tmp)
-
-
-
 
 
     def export_json(self,file_name=""):
@@ -72,28 +65,22 @@ class json_class:
 
     def remove_tag(self, tag):
         if tag in self.tags:
-            tags.remove(tag)
+            self.tags.remove(tag)
 
 
-    def get_tags():
-        return tags
+    def get_tags(self):
+        return self.tags
 
 
-    def add_keyword(self, keyword):
-        if keyword not in self.keywords:
-            self.keywords.append(keyword)
+    def add_keyword(self, keyword, weight):
+        self.keywords.append(keyword_class(keyword,weight)
 
 
-    def remove_keyword(keyword):
-        if keyword in keywords:
-            keywords.remove(keyword)
+    def get_keywords(self):
+        return self.keywords
 
 
-    def get_keywords():
-        return keywords
-
-
-    def add_pdf_name(self,pdfname):
+    def set_pdf_name(self,pdfname):
         self.pdf_name = pdfname
 
 
@@ -108,12 +95,21 @@ class json_class:
                 section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
             self.sections.append(section_tmp)
         else:
-            print("hoppsan")
             raise ValueError('End index can not be lower than start index.')
 
 
+    def get_section_object(self, start, end):
+        for section in self.sections:
+            if section.get_start() == start & section.get_end() == end:
+                return section
+        raise ValueError('No matching section exists')
 
-    def get_sections():
-        return sections
+
+    def get_section_by_id(self,int):
+        return self.sections[int]
+
+
+    def get_sections(self):
+        return self.sections
 
 
