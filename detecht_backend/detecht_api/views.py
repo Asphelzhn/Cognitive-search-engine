@@ -9,6 +9,8 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+from detecht_api.models import Keywords
+from detecht_api.models import Keyword_distance
 
 # imports by OSKAR
 from detecht_api.models import User
@@ -113,19 +115,25 @@ class AddFile(APIView):
 # Write Class-Based Views which helps keep code DRY.
 class UserTest(APIView):
    # permission_classes = (IsAuthenticated,)
-   def post(self, request):
+   def get(self, request):
        # armin = User.objects.create(userName='armwa918', firstName='armin', userID=6)
        # query = User.objects.get(userName='armwa918')
        # name = query.firstName
 
        # OSkar put query to compare in database, email& PW gives sucess.
-
+        #ord = Keywords(word="apa")
+        #message = Keywords.add_keyword(ord, "apa")
+        #ord2 = Keywords(word="banan")
+        #message2 = Keywords.add_keyword(ord2, "banan")
+    #test = Keyword_distance(id_1=Keywords.objects.get(word="banan").id, id_2=Keywords.objects.get(word="apa").id, similarity=1.0000)
+    #message = Keyword_distance.add_keyword_distance(test, id1=Keywords.objects.get(word="banan").id, id2=Keywords.objects.get(word="apa").id, similarity=1.0000)
+    return HttpResponse()
        
-       return HttpResponse("Success")
-   def post(self, request):
-       if request.method == "POST":
-           return HttpResponse({"Successful"})
-       return HttpResponse({"Oops"})
+   #    return HttpResponse()
+   #def post(self, request):
+    #   if request.method == "POST":
+     #      return HttpResponse({"Successful"})
+      # return HttpResponse({"Oops"})
 # END: Code written by Armin
 
 
