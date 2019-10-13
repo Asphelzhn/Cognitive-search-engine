@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^api/updateprofile/$', views.UpdateProfile.as_view()),
     url(r'^api/user/$', views.UserTest.as_view()),
     url(r'^api/', include(router.urls)), #files
-    url(r'^api/deletepdf/$', views.UserTest.as_view()),#deletePDF
+    url(r'^api/deletepdf/$', views.DeletePdf.as_view()),#deletePDF
 
 ]

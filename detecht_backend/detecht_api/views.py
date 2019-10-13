@@ -138,11 +138,11 @@ class DocumentViewSet(viewsets.ModelViewSet):
 class DeletePdf(APIView):
     def post(self, request):
         response = {
-            'success': False
+            'success hehe': False
         }
-        input = request.data
-        if input !={}:
-            pdfToDelete = Document.objects.filter(id=input["id"])
+        inputfile = request.data
+        if inputfile !={}:
+            pdfToDelete = Document.objects.get(id=inputfile["id"])
             Document.delete(pdfToDelete)
-            response['success'] = True
+            response['successful delete'] = True
         return JsonResponse(response)
