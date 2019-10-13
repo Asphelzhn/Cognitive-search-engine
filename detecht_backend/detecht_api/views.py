@@ -134,3 +134,15 @@ class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
 
+#delete pdf
+class DeletePdf(APIView):
+    def post(self, request):
+        response = {
+            'success': False
+        }
+        input = request.data
+        if input !={}:
+            pdfToDelete = Document.objects.filter(id=input["id"])
+            Document.delete(pdfToDelete)
+            response['success'] = True
+        return JsonResponse(response)
