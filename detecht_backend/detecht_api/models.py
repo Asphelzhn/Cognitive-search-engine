@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.files.storage import default_storage
+
 """
 Oskar H
 """
@@ -19,7 +19,6 @@ class Document(models.Model):
     def __unicode__(self):
         return self.title
     def delete(self):
-        #default_storage.delete(self.file.name)
-        self.delete()
+
         return
 # end Oskar
