@@ -9,7 +9,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords
+from detecht_api.models import Keyword
 from detecht_api.models import Keyword_distance
 
 # imports by OSKAR
@@ -120,10 +120,8 @@ class Keyword(APIView):
         input = request.data
 
         wordToStore = input["keyword"]
-        message = Keywords.add_keyword(wordToStore)
+        message = Keyword.add_keyword(wordToStore)
 
-        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word="banan").id, id2=Keywords.objects.get(word="apa").id, similarity=1.0000)
-        #message = Keyword_distance.objects.get(id=1)
         return HttpResponse(message)
 
 class KeywordSimilarity(APIView):
@@ -131,9 +129,8 @@ class KeywordSimilarity(APIView):
     def post(self, request): #input: keyword1, keyword2, similarity
         input = request.data
 
-        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id,
-                                                    id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
-        #message = Keyword_distance.objects.get(id=1)
+        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
+        # message = Keyword_distance.objects.get(id=1)
         return HttpResponse(message)
 
 # END: Code written by Armin
