@@ -42,3 +42,6 @@ class Keyword_distance(models.Model):
             return "Keyword distance " + keyword_distance.id_1 + keyword_distance.id_2 + keyword_distance.similarity \
                    + "created"
         return "Keyword distance already in db"
+
+    def get_similarity(self):
+        return self.similarity

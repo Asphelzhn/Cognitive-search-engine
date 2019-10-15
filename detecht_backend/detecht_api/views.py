@@ -127,6 +127,7 @@ class UserTest(APIView):
         #message2 = Keywords.add_keyword(ord2, "banan")
     #test = Keyword_distance(id_1=Keywords.objects.get(word="banan").id, id_2=Keywords.objects.get(word="apa").id, similarity=1.0000)
     #message = Keyword_distance.add_keyword_distance(test, id1=Keywords.objects.get(word="banan").id, id2=Keywords.objects.get(word="apa").id, similarity=1.0000)
+    #message = Keyword_distance.objects.get(id=1)
     return HttpResponse()
        
    #    return HttpResponse()
