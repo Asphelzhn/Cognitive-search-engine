@@ -9,7 +9,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keyword
+from detecht_api.models import Keywords
 from detecht_api.models import Keyword_distance
 
 # imports by OSKAR
@@ -120,7 +120,7 @@ class Keyword(APIView):
         input = request.data
 
         wordToStore = input["keyword"]
-        message = Keyword.add_keyword(wordToStore)
+        message = Keywords.add_keyword(wordToStore)
 
         return HttpResponse(message)
 
