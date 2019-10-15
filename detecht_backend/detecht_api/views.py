@@ -142,11 +142,11 @@ class DeletePdf(APIView):
         }
         inputfile = request.data
         if inputfile !={}:
-            Document.objects.get(title=inputfile["id"]).delete() #pdfToDelete =
+            pdfToDelete = Document.objects.get(id=inputfile["id"])
             #Document.delete(pdfToDelete)
-            #default_storage.delete(pdfToDelete.file.name)
+            default_storage.delete(pdfToDelete.file.name) #This part works, and is deleting the pdf file from our storage.
 
-            #pdfToDelete.delete()
+            pdfToDelete.delete()
             restring = "yas" #pdfToDelete.title
             response['successful delete'] = True
             return HttpResponse({restring})
