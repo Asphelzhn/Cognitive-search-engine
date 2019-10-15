@@ -113,30 +113,21 @@ class AddFile(APIView):
 
 # BEGIN: Code written by Armin
 # Write Class-Based Views which helps keep code DRY.
-class UserTest(APIView):
+class Keyword(APIView):
    # permission_classes = (IsAuthenticated,)
-   def get(self, request):
-       # armin = User.objects.create(userName='armwa918', firstName='armin', userID=6)
-       # query = User.objects.get(userName='armwa918')
-       # name = query.firstName
+   def post(self, request): #input: "keyword"
 
-       # OSkar put query to compare in database, email& PW gives sucess.
-        #ord = Keywords(word="apa")
-        #message = Keywords.add_keyword(ord, "apa")
-        #ord2 = Keywords(word="banan")
-        #message2 = Keywords.add_keyword(ord2, "banan")
-    #test = Keyword_distance(id_1=Keywords.objects.get(word="banan").id, id_2=Keywords.objects.get(word="apa").id, similarity=1.0000)
+        input = request.data
+
+        wordToStore = input["keyword"]
+        message = Keywords.add_keyword(wordToStore)
+        #message2 = Keywords.add_keyword("banan")
+
     #message = Keyword_distance.add_keyword_distance(test, id1=Keywords.objects.get(word="banan").id, id2=Keywords.objects.get(word="apa").id, similarity=1.0000)
     #message = Keyword_distance.objects.get(id=1)
-    return HttpResponse()
-       
-   #    return HttpResponse()
-   #def post(self, request):
-    #   if request.method == "POST":
-     #      return HttpResponse({"Successful"})
-      # return HttpResponse({"Oops"})
-# END: Code written by Armin
+        return HttpResponse(message)
 
+# END: Code written by Armin
 
 # files
 class DocumentViewSet(viewsets.ModelViewSet):

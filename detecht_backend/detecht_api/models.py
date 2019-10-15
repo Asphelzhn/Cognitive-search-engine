@@ -22,7 +22,7 @@ class Keywords(models.Model):
     def __unicode__(self):
         return self.word
 
-    def add_keyword(self, word):
+    def add_keyword(word):
         keyword, created = Keywords.objects.get_or_create(word=word)
         if created:
             keyword.save()
