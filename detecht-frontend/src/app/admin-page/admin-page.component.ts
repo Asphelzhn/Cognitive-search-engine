@@ -1,5 +1,6 @@
-import {Component, NgModule, OnInit} from '@angular/core';
-import { UploadFileComponent } from './upload-file/upload-file.component';
+import {Component, NgModule, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router';
+import {SearchResponse} from '../data-types';
 
 @Component({
   selector: 'app-admin-page',
@@ -7,17 +8,17 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
   styleUrls: ['./admin-page.component.scss']
 })
 
-
 @NgModule({
   imports: [],
   declarations: []
 })
 
 export class AdminPageComponent implements OnInit {
-
-  constructor() { }
+  results: SearchResponse;
+  constructor(
+     private router: Router
+  ) { }
 
   ngOnInit() {
   }
-
 }

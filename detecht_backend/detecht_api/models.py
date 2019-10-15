@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.files.storage import default_storage #delete query
 """
 Oskar H
 """
@@ -15,6 +16,12 @@ class Document(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
 
-    def __unicode__(self):#hej
+    def __unicode__(self):
         return self.title
+    def delete(inputId):
+        pdfToDelete = Document.objects.get(id = str(inputId))
+        default_storage.delete(pdfToDelete.file.name) #This part is deleting the pdf file from our storage.
+
+        Document.objects.filter(id = str(inputId)).delete() #This part is deleteting the row in db.
+        return
 # end Oskar
