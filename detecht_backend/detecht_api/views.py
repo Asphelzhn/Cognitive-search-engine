@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-from django.core.files.storage import default_storage #delete query
 """
 Oskar H & Armin
 """
@@ -138,17 +137,13 @@ class DocumentViewSet(viewsets.ModelViewSet):
 class DeletePdf(APIView):
     def post(self, request):
         response = {
-            'success hehe': False
+            'success': False
         }
-        inputfile = request.data
-        if inputfile !={}:
-            pdfToDelete = Document.objects.get(id=inputfile["id"])
-            #Document.delete(pdfToDelete)
-            default_storage.delete(pdfToDelete.file.name) #This part works, and is deleting the pdf file from our storage.
 
-            pdfToDelete.delete()
-            restring = "yas" #pdfToDelete.title
-            response['successful delete'] = True
-            return HttpResponse({restring})
-        #return JsonResponse(response)
-        return HttpResponse({"ej done"})
+        inputfile = request.data
+
+        if inputfile !={}:
+            Document.delete(inputfile["id"]) #runs a function in models that delets our pdf.
+            response['success'] = True
+
+        return JsonResponse(response)
