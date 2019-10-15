@@ -1,4 +1,4 @@
-from keyword_class import *
+from detecht_api.detecht_converter.keyword_class import *
 
 
 class section_class:

@@ -1,6 +1,7 @@
 import json
-from section_class import *
-from keyword_class import *
+from detecht_api.detecht_converter.section_class import *
+from detecht_api.detecht_converter.keyword_class import *
+
 
 # Jakob & Carl
 class json_class:
@@ -10,7 +11,6 @@ class json_class:
     tags = list()
     sections = list()
     keywords = list()
-
 
     def __init__(self, json_file):
         json_doc = json.loads(json_file)
@@ -23,7 +23,6 @@ class json_class:
             self.add_tag(tag)
         for section in json_doc["sections"]:
             self.add_section(section["start"],section["end"],section["section_keyword"])
-
 
     def export_json(self,file_name=""):
         if file_name == "":
@@ -49,40 +48,31 @@ class json_class:
     def add_full_text(self, fulltext):
         self.full_text = fulltext
 
-
     def get_full_text(self):
         return self.full_text
 
-
     def add_title(self, title):
         self.title = title
-
 
     def add_tag(self, tag):
         if tag not in self.tags:
             self.tags.append(tag)
 
-
     def remove_tag(self, tag):
         if tag in self.tags:
             self.tags.remove(tag)
 
-
     def get_tags(self):
         return self.tags
 
-
     def add_keyword(self, keyword, weight):
-        self.keywords.append(keyword_class(keyword,weight)
-
+        self.keywords.append(keyword_class(keyword,weight))
 
     def get_keywords(self):
         return self.keywords
 
-
     def set_pdf_name(self,pdfname):
         self.pdf_name = pdfname
-
 
     def get_pdf_name(self):
         return self.pdf_name
@@ -97,17 +87,14 @@ class json_class:
         else:
             raise ValueError('End index can not be lower than start index.')
 
-
     def get_section_object(self, start, end):
         for section in self.sections:
             if section.get_start() == start & section.get_end() == end:
                 return section
         raise ValueError('No matching section exists')
 
-
     def get_section_by_id(self,int):
         return self.sections[int]
-
 
     def get_sections(self):
         return self.sections

@@ -1,8 +1,11 @@
 class keyword_class:
+    keyword = ""
+    weight = 0
+
     # Jakob & Carl
     def __init__(self,keyword,weight):
-        self.keyword = keyword;
-        self.weight = weight;
+        self.keyword = keyword
+        self.weight = weight
 
     def __str__(self):
         return "Keyword: " + str(self.keyword) + " Weight: " + str(self.weight)
