@@ -38,7 +38,7 @@ class Keyword_distance(models.Model):
     class Meta:
         unique_together = ("id_1", "id_2") #Django doesn't support multiple pk, so this is the solution.
 
-    def add_keyword_distance(self, id1, id2, similarity):
+    def add_keyword_distance(id1, id2, similarity):
         keyword_distance, created = Keyword_distance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
         if created:
             return "Keyword distance " + keyword_distance.id_1 + keyword_distance.id_2 + keyword_distance.similarity \

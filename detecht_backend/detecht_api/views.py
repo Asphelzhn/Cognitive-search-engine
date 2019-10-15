@@ -121,10 +121,19 @@ class Keyword(APIView):
 
         wordToStore = input["keyword"]
         message = Keywords.add_keyword(wordToStore)
-        #message2 = Keywords.add_keyword("banan")
 
-    #message = Keyword_distance.add_keyword_distance(test, id1=Keywords.objects.get(word="banan").id, id2=Keywords.objects.get(word="apa").id, similarity=1.0000)
-    #message = Keyword_distance.objects.get(id=1)
+        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word="banan").id, id2=Keywords.objects.get(word="apa").id, similarity=1.0000)
+        #message = Keyword_distance.objects.get(id=1)
+        return HttpResponse(message)
+
+class KeywordSimilarity(APIView):
+
+    def post(self, request): #input: keyword1, keyword2, similarity
+        input = request.data
+
+        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id,
+                                                    id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
+        #message = Keyword_distance.objects.get(id=1)
         return HttpResponse(message)
 
 # END: Code written by Armin
