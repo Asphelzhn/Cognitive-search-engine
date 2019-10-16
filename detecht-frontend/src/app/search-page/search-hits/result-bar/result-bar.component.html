@@ -6,6 +6,7 @@
     <a (click)="showPreview = true" href="{{staticUrl + 'pdf/' + result.name}}" target="_blank"><h5 class="card-title">{{result.title}}</h5></a>
     <p class="card-text"> {{result.text}}</p>
     <button (click)="showPreview = true">Show preview</button>
+    <button (click)="openDialog()">Show sentences</button>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl" [result]="result"></app-search-result-preview>
 </div>
