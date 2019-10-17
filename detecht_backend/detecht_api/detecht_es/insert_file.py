@@ -36,6 +36,10 @@ def inject_one_file(json_obj):
     es.index(index="db", doc_type="doc", id=doc_id, body=json_obj)
 
 
+def inject(names):
+    for name in names:
+        inject_one_file((get_file(name)))
+
 def inject_by_name(filename):
     inject_one_file(get_file(filename))
 
