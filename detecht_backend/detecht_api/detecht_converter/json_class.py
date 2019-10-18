@@ -1,6 +1,7 @@
 import json
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
+from detecht_api.detecht_nlp import imp_sent_creator
 
 
 # Jakob & Carl
@@ -18,29 +19,28 @@ class json_class:
         self.set_pdf_name(json_doc["pdf_name"])
         self.add_title(json_doc["title"])
         for keyword in json_doc["keywords"]:
-            self.keywords.append(keyword_class(keyword["keyword"],keyword["weight"]))
+            self.keywords.append(keyword_class(keyword["keyword"], keyword["weight"]))
         for tag in json_doc["tags"]:
             self.add_tag(tag)
         for section in json_doc["sections"]:
-            self.add_section(section["start"],section["end"],section["section_keyword"])
+            self.add_section(section["start"], section["end"], section["section_keyword"])
 
-    def export_json(self,file_name=""):
+    def export_json(self, file_name=""):
         if file_name == "":
             file_name = self.pdf_name
-        keywords_tmp=list()
+        keywords_tmp = list()
         for keyword_tmp in self.keywords:
             keywords_tmp.append(keyword_tmp.get_keyword_dict())
-        sections_tmp=list()
+        sections_tmp = list()
         for section_tmp in self.sections:
-
             sections_tmp.append(section_tmp.get_section_dict())
         a = {
-        'pdf_name': self.pdf_name,
-        'title': self.title,
-        'tags': self.tags,
-        'keywords': keywords_tmp,
-        'sections': sections_tmp,
-        'full_text': self.full_text}
+            'pdf_name': self.pdf_name,
+            'title': self.title,
+            'tags': self.tags,
+            'keywords': keywords_tmp,
+            'sections': sections_tmp,
+            'full_text': self.full_text}
         with open(file_name + ".json", 'w') as outfile:
             json.dump(a, outfile, indent=2)
 
@@ -66,12 +66,12 @@ class json_class:
         return self.tags
 
     def add_keyword(self, keyword, weight):
-        self.keywords.append(keyword_class(keyword,weight))
+        self.keywords.append(keyword_class(keyword, weight))
 
     def get_keywords(self):
         return self.keywords
 
-    def set_pdf_name(self,pdfname):
+    def set_pdf_name(self, pdfname):
         self.pdf_name = pdfname
 
     def get_pdf_name(self):
@@ -80,9 +80,9 @@ class json_class:
     #
     def add_section(self, start, end, section_keywords):
         if start < end:
-            section_tmp = section_class(start,end)
+            section_tmp = section_class(start, end)
             for keyword in section_keywords:
-                section_tmp.add_keyword(keyword["keyword"],keyword["weight"])
+                section_tmp.add_keyword(keyword["keyword"], keyword["weight"])
             self.sections.append(section_tmp)
         else:
             raise ValueError('End index can not be lower than start index.')
@@ -93,10 +93,16 @@ class json_class:
                 return section
         raise ValueError('No matching section exists')
 
-    def get_section_by_id(self,int):
+    def get_section_by_id(self, int):
         return self.sections[int]
 
     def get_sections(self):
         return self.sections
 
-
+    # Henrik
+    def get_abstract(self, query):
+        sent_array = imp_sent_creator(self.full_text, query, 3)
+        abstract = ""
+        for sentence in sent_array:
+            abstract += str(sentence.sent)
+        return abstract

@@ -4,7 +4,6 @@ from detecht_api.detecht_nlp import imp_sent_creator
 Henrik
 """
 
-
 document1 = "To Sherlock Holmes she is always the woman. I have seldom heard him mention her under any other name. In " \
             "his eyes she eclipses and predominates the whole of her sex. It was not that he felt any emotion akin to " \
             "love for Irene Adler. All emotions, and that one particularly, were abhorrent to his cold, precise but " \
@@ -44,9 +43,10 @@ query = "Sherlock to Holmes"
 
 def test():
     table = imp_sent_creator.imp_sent_creator(document1, query)
-
+    a = ""
     for i in table:
         print(i.sent)
+        a += str(i.sent)
 
     print("")
     for i in table:
@@ -56,3 +56,7 @@ def test():
         print("  start index:  " + str(i.start_index))
         print("  end index:   " + str(i.end_index))
         print()
+
+    print()
+    print()
+    print(a)
