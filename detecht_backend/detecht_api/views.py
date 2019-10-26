@@ -8,6 +8,8 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+from detecht_api.models import Keywords
+from detecht_api.models import Keyword_distance
 
 # imports by OSKAR
 from detecht_api.models import User
@@ -110,23 +112,25 @@ class AddFile(APIView):
 
 # BEGIN: Code written by Armin
 # Write Class-Based Views which helps keep code DRY.
-class UserTest(APIView):
+class Keyword(APIView):
    # permission_classes = (IsAuthenticated,)
-   def post(self, request):
-       # armin = User.objects.create(userName='armwa918', firstName='armin', userID=6)
-       # query = User.objects.get(userName='armwa918')
-       # name = query.firstName
+   def post(self, request): #input: "keyword"
+        input = request.data
 
-       # OSkar put query to compare in database, email& PW gives sucess.
+        wordToStore = input["keyword"]
+        message = Keywords.add_keyword(wordToStore)
 
-       
-       return HttpResponse("Success")
-   def post(self, request):
-       if request.method == "POST":
-           return HttpResponse({"Successful"})
-       return HttpResponse({"Oops"})
+        return HttpResponse(message)
+
+class KeywordSimilarity(APIView):
+
+    def post(self, request): #input: keyword1, keyword2, similarity
+        input = request.data
+
+        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
+        return HttpResponse(message)
+
 # END: Code written by Armin
-
 
 # files
 class DocumentViewSet(viewsets.ModelViewSet):

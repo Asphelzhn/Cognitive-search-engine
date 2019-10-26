@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^api/search/$', views.Search.as_view()),
     url(r'^api/profile/$', views.Profile.as_view()),
     url(r'^api/updateprofile/$', views.UpdateProfile.as_view()),
-    url(r'^api/user/$', views.UserTest.as_view()),
+    url(r'^api/keyword/$', views.Keyword.as_view()),
+    url(r'^api/keywordsimilarity/$', views.KeywordSimilarity.as_view()),
     url(r'^api/', include(router.urls)), #files
     url(r'^api/deletepdf/$', views.DeletePdf.as_view()),#deletePDF
 
