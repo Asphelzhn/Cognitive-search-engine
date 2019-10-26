@@ -116,7 +116,6 @@ class AddFile(APIView):
 class Keyword(APIView):
    # permission_classes = (IsAuthenticated,)
    def post(self, request): #input: "keyword"
-
         input = request.data
 
         wordToStore = input["keyword"]
@@ -130,7 +129,6 @@ class KeywordSimilarity(APIView):
         input = request.data
 
         message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
-        # message = Keyword_distance.objects.get(id=1)
         return HttpResponse(message)
 
 # END: Code written by Armin
