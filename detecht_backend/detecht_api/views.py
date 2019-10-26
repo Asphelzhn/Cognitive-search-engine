@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-
 """
 Oskar H & Armin
 """
@@ -134,3 +133,17 @@ class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
 
+#delete pdf
+class DeletePdf(APIView):
+    def post(self, request):
+        response = {
+            'success': False
+        }
+
+        inputfile = request.data
+
+        if inputfile !={}:
+            Document.delete(inputfile["title"]) #runs a function in models that delets our pdf.
+            response['success'] = True
+
+        return JsonResponse(response)
