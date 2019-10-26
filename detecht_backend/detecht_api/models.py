@@ -1,4 +1,8 @@
 from django.db import models
+from django.core.files.storage import default_storage #delete query
+"""
+Oskar H
+"""
 
 
 class User(models.Model):
@@ -13,6 +17,14 @@ class Document(models.Model):
 
     def __unicode__(self):
         return self.title
+    
+    def delete(inputName):
+        pdfToDelete = Document.objects.get(title = str(inputName))
+        default_storage.delete(pdfToDelete.file.name) #This part is deleting the pdf file from our storage.
+
+        Document.objects.filter(title = str(inputName)).delete() #This part is deleteting the row in db.
+        return
+# end Oskar
 
 
 class Keywords(models.Model):
@@ -47,3 +59,4 @@ class Keyword_distance(models.Model):
 
     def get_similarity(self):
         return self.similarity
+

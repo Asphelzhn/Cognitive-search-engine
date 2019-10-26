@@ -18,6 +18,7 @@ router.register(r'files', DocumentViewSet)
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
     url(r'^admin/', views.HomePageView.as_view()),
+    url(r'^upload/', views.HomePageView.as_view()),
     # url(r'^api/pdfupload/$', views.PdfUpload.as_view()),
     url(r'^api/addfile/$', views.AddFile.as_view()),
     url(r'^api/search/$', views.Search.as_view()),
@@ -26,4 +27,6 @@ urlpatterns = [
     url(r'^api/keyword/$', views.Keyword.as_view()),
     url(r'^api/keywordsimilarity/$', views.KeywordSimilarity.as_view()),
     url(r'^api/', include(router.urls)), #files
+    url(r'^api/deletepdf/$', views.DeletePdf.as_view()),#deletePDF
+
 ]

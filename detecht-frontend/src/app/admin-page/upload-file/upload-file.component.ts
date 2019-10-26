@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
-import {catchError} from 'rxjs/operators';
-import {NetworkPdfUploadResponse, NetworkPdfUploadRequest} from '../../network-services/network-data-types';
-
+import {NetworkPdfUploadRequest} from '../../network-services/network-data-types';
 
 @Component({
   selector: 'app-upload-file',
@@ -19,7 +17,6 @@ export class UploadFileComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   responseMessage: string;
-
 
   ngOnInit() {
     this.fileTitle = '';
@@ -58,6 +55,4 @@ export class UploadFileComponent implements OnInit {
     //     alert('SUCCESS !!');
     //   });
   }
-
-
 }
