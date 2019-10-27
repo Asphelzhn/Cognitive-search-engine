@@ -6,7 +6,6 @@ Oskar H
 
 
 class User(models.Model):
-    userID = models.IntegerField() #could be removed since and id automaticly is generated. the id starts from 1 and is incrementing for each new tuple.
     userName = models.TextField(max_length=50)
     firstName = models.TextField(max_length=50)
 
@@ -42,16 +41,16 @@ class Keywords(models.Model):
         return "Already in db"
 
 
-class Keyword_distance(models.Model):
-    id_1 = models.IntegerField()    # Values from -2147483648 to 2147483647
-    id_2 = models.IntegerField()
+class KeywordDistance(models.Model):
+    id_1 = models.PositiveIntegerField()    # Values from 0 to 2147483647
+    id_2 = models.PositiveIntegerField()
     similarity = models.DecimalField(max_digits=5, decimal_places=4) #Can take max 1 digit (0 or 1) and 4 decimals. eg 1.1234
 
     class Meta:
         unique_together = ("id_1", "id_2") #Django doesn't support multiple pk, so this is the solution.
 
     def add_keyword_distance(id1, id2, similarity):
-        keyword_distance, created = Keyword_distance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
+        keyword_distance, created = KeywordDistance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
         if created:
             return "Keyword distance " + keyword_distance.id_1 + keyword_distance.id_2 + keyword_distance.similarity \
                    + "created"
@@ -59,4 +58,21 @@ class Keyword_distance(models.Model):
 
     def get_similarity(self):
         return self.similarity
+
+
+class PDFImportance(models.Model):
+    pdf_name = models.CharField(max_length=200)
+    number_of_likes = models.PositiveIntegerField(default=0)
+    number_of_downloads = models.PositiveIntegerField(default=0)
+
+    def increase_like(self):
+        self.number_of_likes = self.number_of_likes + 1
+        PDFImportance.save()
+
+    def increase_downloads(self):
+        self.number_of_downloads = self.number_of_downloads + 1
+        PDFImportance.save()
+
+
+
 
