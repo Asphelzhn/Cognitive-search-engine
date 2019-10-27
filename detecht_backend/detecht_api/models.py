@@ -38,8 +38,8 @@ class Keywords(models.Model):
         keyword, created = Keywords.objects.get_or_create(word=word)
         if created:
             keyword.save()
-            return "Keyword " + keyword.word + " saved"
-        return "Already in db"
+            return True
+        return False
 
 
 class Keyword_distance(models.Model):
@@ -53,9 +53,9 @@ class Keyword_distance(models.Model):
     def add_keyword_distance(id1, id2, similarity):
         keyword_distance, created = Keyword_distance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
         if created:
-            return "Keyword distance " + keyword_distance.id_1 + keyword_distance.id_2 + keyword_distance.similarity \
-                   + "created"
-        return "Keyword distance already in db"
+            return True
+        return False
+
 
     def get_similarity(self):
         return self.similarity
