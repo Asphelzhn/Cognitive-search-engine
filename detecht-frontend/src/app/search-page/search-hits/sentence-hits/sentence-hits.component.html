@@ -1,0 +1,7 @@
+<p>sentence-hits works!</p>
+<div (click)="close()">
+  <button (click)="showPreview = true">Show preview</button>
+</div>
+<app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
+                           [result]="result"></app-search-result-preview>
+

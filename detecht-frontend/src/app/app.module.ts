@@ -17,10 +17,10 @@ import { RelatedSearchHitsComponent } from './search-page/related-search-hits/re
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
-import { SentenceHitsComponent } from './search-page/sentence-hits/sentence-hits.component';
+import { SentenceHitsComponent } from './search-page/search-hits/sentence-hits/sentence-hits.component';
 import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-
+import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
     MatDialogModule,
     NoopAnimationsModule
   ],
-  providers: [],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
   entryComponents: [SentenceHitsComponent]
 })
