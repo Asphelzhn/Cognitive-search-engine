@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
     url(r'^admin/', views.HomePageView.as_view()),
     url(r'^upload/', views.HomePageView.as_view()),
-    # url(r'^api/pdfupload/$', views.PdfUpload.as_view()),
+    url(r'^api/pdfupload/$', views.PdfUpload.as_view()),
     url(r'^api/addfile/$', views.AddFile.as_view()),
     url(r'^api/search/$', views.Search.as_view()),
     url(r'^api/profile/$', views.Profile.as_view()),
