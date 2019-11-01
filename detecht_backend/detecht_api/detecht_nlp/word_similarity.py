@@ -1,6 +1,6 @@
-import spacy
+#import spacy
 
-nlp = spacy.load("en_core_web_md")
+#nlp = spacy.load("en_core_web_md")
 
 
 """"
@@ -14,9 +14,9 @@ Henrik
 # amount of operations.
 
 def word_similarity (word1, word2, size="md"):
-    token1 = nlp(word1)
-    token2 = nlp(word2)
+    #token1 = nlp(word1)
+    #token2 = nlp(word2)
 
-    return token1.similarity(token2)
+    return 1.1234 #token1.similarity(token2)
 
 

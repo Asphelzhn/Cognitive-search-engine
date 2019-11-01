@@ -1,4 +1,4 @@
-from detecht_api.detecht_nlp import word_similarity
+from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords
 from detecht_api.models import Keyword_distance
 
@@ -9,12 +9,12 @@ def addKeyword(keyword):
         allKeywords = Keywords.objects.exclude(word=keyword)
 
         for word in allKeywords:
-            KeywordSimilarity(Keywords.objects.get(word=keyword).id, word.id)
+            KeywordSimilarity(keyword, word.word)
         return True
     return False
 
 #add similarity for keyword.
 def KeywordSimilarity(keywordId1, keywordId2):
-    if Keyword_distance.add_keyword_distance(id1=keywordId1, id2=keywordId2, similarity=word_similarity(keywordId1, keywordId2)):
+    if Keyword_distance.add_keyword_distance(keywordId1, keywordId2, word_similarity(keywordId1, keywordId2)):
         return True #keyword combination was created
     return False #keyword combination was not created and similarity not updated

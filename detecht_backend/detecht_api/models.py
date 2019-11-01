@@ -24,6 +24,7 @@ class Document(models.Model):
 
         Document.objects.filter(title = str(inputName)).delete() #This part is deleteting the row in db.
         return
+
 # end Oskar
 
 
@@ -33,6 +34,9 @@ class Keywords(models.Model):
 
     def __unicode__(self):
         return self.word
+
+    def getKeywordId(word):
+        return Keywords.objects.get(word=word).id
 
     def add_keyword(word):
         keyword, created = Keywords.objects.get_or_create(word=word)
