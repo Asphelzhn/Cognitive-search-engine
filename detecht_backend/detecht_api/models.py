@@ -41,7 +41,7 @@ class Keywords(models.Model):
         return "Already in db"
 
 
-class KeywordDistance(models.Model):
+class Keyword_distance(models.Model):
     id_1 = models.PositiveIntegerField()    # Values from 0 to 2147483647
     id_2 = models.PositiveIntegerField()
     similarity = models.DecimalField(max_digits=5, decimal_places=4) #Can take max 1 digit (0 or 1) and 4 decimals. eg 1.1234
@@ -50,7 +50,7 @@ class KeywordDistance(models.Model):
         unique_together = ("id_1", "id_2") #Django doesn't support multiple pk, so this is the solution.
 
     def add_keyword_distance(id1, id2, similarity):
-        keyword_distance, created = KeywordDistance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
+        keyword_distance, created = Keyword_distance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
         if created:
             return "Keyword distance " + keyword_distance.id_1 + keyword_distance.id_2 + keyword_distance.similarity \
                    + "created"
@@ -62,16 +62,20 @@ class KeywordDistance(models.Model):
 
 class PDFImportance(models.Model):
     pdf_name = models.CharField(max_length=200)
-    number_of_likes = models.PositiveIntegerField(default=0)
-    number_of_downloads = models.PositiveIntegerField(default=0)
+    likes = models.PositiveIntegerField(default=0)
+    downloads = models.PositiveIntegerField(default=0)
+    custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2) #ex 0.99
 
-    def increase_like(self):
-        self.number_of_likes = self.number_of_likes + 1
-        PDFImportance.save()
+    def update_likes(pdf_name):
+        prev_likes = PDFImportance.objects.get(pdf_name=pdf_name)
+        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=prev_likes+1)
+        return PDFImportance.objects.get(pdf_name=pdf_name).likes
+     #   return "Number of likes" + self.number_of_likes
 
-    def increase_downloads(self):
-        self.number_of_downloads = self.number_of_downloads + 1
-        PDFImportance.save()
+    #def increase_downloads(self):
+     #   self.number_of_downloads = self.number_of_downloads + 1
+      #  PDFImportance.save()
+       # self.number_of_downloads
 
 
 

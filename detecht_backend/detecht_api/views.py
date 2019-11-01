@@ -8,7 +8,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords
+from detecht_api.models import Keywords, PDFImportance
 from detecht_api.models import Keyword_distance
 
 # imports by OSKAR
@@ -126,9 +126,16 @@ class KeywordSimilarity(APIView):
 
     def post(self, request): #input: keyword1, keyword2, similarity
         input = request.data
-
-        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
+        test, created = PDFImportance.objects.get_or_create(pdf_name=input["pdf_name"], likes=1, downloads=1, custom_weight=0.81)
+        message = test.update_likes(input["pdf_name"])
         return HttpResponse(message)
+        #if created:
+         #   return HttpResponse("Abow fett sant")
+        #else:
+         #   return HttpResponse("hej")
+        #query = User.objects.get(id=0)
+        #message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
+
 
 # END: Code written by Armin
 
