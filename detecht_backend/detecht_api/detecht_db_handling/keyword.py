@@ -9,7 +9,7 @@ def addKeyword(keyword):
         allKeywords = Keywords.objects.exclude(word=keyword)
 
         for word in allKeywords:
-            KeywordSimilarity(Keywords.objects.filter(word=keyword).id, word.id)
+            KeywordSimilarity(Keywords.objects.get(word=keyword).id, word.id)
         return True
     return False
 
