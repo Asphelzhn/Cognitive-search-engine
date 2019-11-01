@@ -9,12 +9,12 @@ def addKeyword(keyword):
         allKeywords = Keywords.objects.exclude(word=keyword)
 
         for word in allKeywords:
-            KeywordSimilarity(Keywords.objects.get(word=keyword).id, word.id)
+            KeywordSimilarity(keyword, word.word, word.id)
         return True
     return False
 
 #add similarity for keyword.
-def KeywordSimilarity(keywordId1, keywordId2):
-    newDistance = Keyword_distance(id_1=keywordId1, id_2=keywordId2, similarity=word_similarity(keywordId1, keywordId2))
+def KeywordSimilarity(keyword1, keyword2, keywordId2):
+    newDistance = Keyword_distance(id_1=Keywords.objects.get(word=keyword1).id, id_2=keywordId2, similarity=word_similarity(keyword1, keyword2))
     newDistance.save()
     return
