@@ -1,8 +1,6 @@
 from django.db import models
 from django.core.files.storage import default_storage #delete query
-"""
-Oskar H
-"""
+
 
 
 class User(models.Model):
@@ -24,8 +22,15 @@ class Document(models.Model):
 
         Document.objects.filter(title = str(inputName)).delete() #This part is deleteting the row in db.
         return
-# end Oskar
 
+#table for staged pdfs to be converted to Json fromat and added to elastic search
+class stagedPdf(models.Model):
+    pdf_name = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+
+class stagedPdfTags(models.Model):
+    staged_pdf_id = models.IntegerField()
+    tag = models.CharField(max_length=200)
 
 class Keywords(models.Model):
     word = models.CharField(max_length=20)  #High limit to avoid problems with creating keywords.
