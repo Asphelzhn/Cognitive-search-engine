@@ -2,6 +2,7 @@ from detecht_api.models import StagedPdf
 from detecht_api.models import StagedPdfTags
 
 
+
 def add_staged_pdf(pdf_name, title):
     new_pdf = StagedPdf(pdf_name=pdf_name, title=title)
     new_pdf.save()
