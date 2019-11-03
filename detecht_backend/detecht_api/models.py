@@ -43,12 +43,15 @@ class Keywords(models.Model):
     def __unicode__(self):
         return self.word
 
+    def getKeywordId(word):
+        return Keywords.objects.get(word=word).id
+
     def add_keyword(word):
         keyword, created = Keywords.objects.get_or_create(word=word)
         if created:
             keyword.save()
-            return "Keyword " + keyword.word + " saved"
-        return "Already in db"
+            return True
+        return False
 
 
 class Keyword_distance(models.Model):
@@ -59,13 +62,6 @@ class Keyword_distance(models.Model):
 
     class Meta:
         unique_together = ("id_1", "id_2")  # Django doesn't support multiple pk, so this is the solution.
-
-    def add_keyword_distance(id1, id2, similarity):
-        keyword_distance, created = Keyword_distance.objects.get_or_create(id_1=id1, id_2=id2, similarity=similarity)
-        if created:
-            return "Keyword distance " + keyword_distance.id_1 + keyword_distance.id_2 + keyword_distance.similarity \
-                   + "created"
-        return "Keyword distance already in db"
 
     def get_similarity(self):
         return self.similarity
