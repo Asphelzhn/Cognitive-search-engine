@@ -8,8 +8,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords
-from detecht_api.models import Keyword_distance
+
 
 # imports by OSKAR
 from detecht_api.models import User
@@ -110,29 +109,7 @@ class AddFile(APIView):
         return JsonResponse(response)
 
 
-# BEGIN: Code written by Armin
-# Write Class-Based Views which helps keep code DRY.
-class Keyword(APIView):
-   # permission_classes = (IsAuthenticated,)
-   def post(self, request): #input: "keyword"
-        input = request.data
-
-        wordToStore = input["keyword"]
-        message = Keywords.add_keyword(wordToStore)
-
-        return HttpResponse(message)
-
-class KeywordSimilarity(APIView):
-
-    def post(self, request): #input: keyword1, keyword2, similarity
-        input = request.data
-
-        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
-        return HttpResponse(message)
-
-# END: Code written by Armin
-
-# files
+# files, adds file to db and filesystem.
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
