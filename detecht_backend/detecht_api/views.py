@@ -34,6 +34,7 @@ class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
 
+
 class PdfUpload(APIView):
     def post(self, request): #json input "pdffile"
         if request.method == 'POST' and request.files['pdffile']:
