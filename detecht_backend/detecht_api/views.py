@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
+
+
+
 """
 Oskar H & Armin
 """
@@ -16,8 +19,7 @@ from detecht_api.models import Document #files
 from rest_framework.views import APIView
 #files
 from.serializers import DocumentSerializer
-
-
+from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
@@ -126,5 +128,9 @@ class DeletePdf(APIView):
         if inputfile !={}:
             Document.delete(inputfile["title"]) #runs a function in models that delets our pdf.
             response['success'] = True
-
         return JsonResponse(response)
+
+
+class AddPdfsToES(APIView):
+    def post(self):
+        insert_all_staged_pdf_into_es()
