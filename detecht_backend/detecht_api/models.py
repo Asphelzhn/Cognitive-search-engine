@@ -23,7 +23,7 @@ class Document(models.Model):
         return
 
 
-# table for staged pdfs to be converted to Json fromat and added to elastic search
+# table for staged pdfs to be converted to Json format and added to elastic search
 class StagedPdf(models.Model):
     pdf_name = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
