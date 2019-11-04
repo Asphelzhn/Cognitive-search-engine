@@ -16,7 +16,7 @@ from detecht_api.models import Document #files
 from rest_framework.views import APIView
 #files
 from.serializers import DocumentSerializer
-
+from detecht_api.detecht_db_handling.staged_pdf import add_staged_pdf
 
 
 # Create your views here.
@@ -101,9 +101,11 @@ class AddFile(APIView):
             input = input["data"]
             title = input["title"]
             file_name = input["file"].split('static/pdf/')[-1]
-            json_string = '{"title":"' + title + '", "fileName":"' + file_name + '"}'
-
-            insert_file.inject_one_file(json_string)
+            add_staged_pdf(file_name, title)
+            # Old code inserting file into Elstic Search.
+            # json_string = '{"title":"' + title + '", "fileName":"' + file_name + '"}'
+            #
+            # insert_file.inject_one_file(json_string)
             response['success'] = True
             return JsonResponse(response)
         return JsonResponse(response)
