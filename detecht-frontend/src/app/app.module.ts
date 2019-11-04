@@ -20,7 +20,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SentenceHitsComponent } from './search-page/search-hits/sentence-hits/sentence-hits.component';
 import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [

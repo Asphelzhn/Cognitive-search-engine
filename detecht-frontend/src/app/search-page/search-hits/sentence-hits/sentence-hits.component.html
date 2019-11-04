@@ -2,6 +2,11 @@
 <div (click)="close()">
   <button (click)="showPreview = true">Show preview</button>
 </div>
+
+<div>
+  <a (click)="[showPreview = true, search(this.result.sentence)]">Sentence:  {{this.result.sentence}}</a>
+</div>
+
 <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
                            [result]="result"></app-search-result-preview>
 

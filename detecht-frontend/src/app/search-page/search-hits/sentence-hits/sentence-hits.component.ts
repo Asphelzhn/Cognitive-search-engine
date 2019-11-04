@@ -14,6 +14,7 @@ export class SentenceHitsComponent implements OnInit {
   result: SearchResponse;
   staticUrl: string;
   showPreview: boolean;
+  searchString: string;
 
   constructor(
     public dialogRef: MatDialogRef<SentenceHitsComponent>,
@@ -26,6 +27,10 @@ export class SentenceHitsComponent implements OnInit {
 
   close() {
     this.dialogRef.close({event: 'close', data: this.result});
+  }
+
+  search(searchString: string) {
+    this.previewData.onSearchClick(searchString);
   }
 
   ngOnInit() {
