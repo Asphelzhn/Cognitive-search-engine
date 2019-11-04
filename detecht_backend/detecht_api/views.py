@@ -35,14 +35,14 @@ class HomePageView(TemplateView):
         return render(request, 'index.html', context=None)
 
 
-class PdfUpload(APIView):
-    def post(self, request): #json input "pdffile"
-        if request.method == 'POST' and request.files['pdffile']:
-            pdf_file = request.files['pdffile'] # TODO ask Oskar
-            models.FileField(upload_to='static/pdf')
-            pdf_file.save();  # Someware should "upload_to" be specified....
-            return HttpResponse('{ "success": "true" }')
-        return HttpResponse('{ "success": "false" }')
+# class PdfUpload(APIView):
+#     def post(self, request): #json input "pdffile"
+#         if request.method == 'POST' and request.files['pdffile']:
+#             pdf_file = request.files['pdffile'] # TODO ask Oskar
+#             models.FileField(upload_to='static/pdf')
+#             pdf_file.save();  # Someware should "upload_to" be specified....
+#             return HttpResponse('{ "success": "true" }')
+#         return HttpResponse('{ "success": "false" }')
 
 
 class Profile(APIView):
