@@ -1,17 +1,15 @@
 import re
 from collections import Counter
-import spacy
 
 
 def words(text): return re.findall(r'\w+', text.lower())
 
+word_counter = Counter(words(open("big.txt").read()))
 
-WORDS = Counter(words(open("long_text.txt").read()))
 
-
-def P(word, N=sum(WORDS.values())):
+def P(word, N = sum(word_counter.values())):
     """Probability of `word`."""
-    p = WORDS[word] / N
+    p = word_counter[word] / N
     return p
 
 
@@ -29,7 +27,7 @@ def candidates(word):
 
 def known(words):
     """The subset of `words` that appear in the dictionary of WORDS."""
-    real_words = set(w for w in words if w in WORDS)
+    real_words = set(w for w in words if w in word_counter)
     return real_words
 
 
