@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
+
+
+
 """
 Oskar H & Armin
 """
@@ -8,8 +11,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords
-from detecht_api.models import Keyword_distance
+
 
 # imports by OSKAR
 from detecht_api.models import User
@@ -17,7 +19,7 @@ from detecht_api.models import Document #files
 from rest_framework.views import APIView
 #files
 from.serializers import DocumentSerializer
-
+from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
 
 
 # Create your views here.
@@ -102,37 +104,17 @@ class AddFile(APIView):
             input = input["data"]
             title = input["title"]
             file_name = input["file"].split('static/pdf/')[-1]
-            json_string = '{"title":"' + title + '", "fileName":"' + file_name + '"}'
-
-            insert_file.inject_one_file(json_string)
+            add_staged_pdf(file_name, title)
+            # Old code inserting file into Elstic Search.
+            # json_string = '{"title":"' + title + '", "fileName":"' + file_name + '"}'
+            #
+            # insert_file.inject_one_file(json_string)
             response['success'] = True
             return JsonResponse(response)
         return JsonResponse(response)
 
 
-# BEGIN: Code written by Armin
-# Write Class-Based Views which helps keep code DRY.
-class Keyword(APIView):
-   # permission_classes = (IsAuthenticated,)
-   def post(self, request): #input: "keyword"
-        input = request.data
-
-        wordToStore = input["keyword"]
-        message = Keywords.add_keyword(wordToStore)
-
-        return HttpResponse(message)
-
-class KeywordSimilarity(APIView):
-
-    def post(self, request): #input: keyword1, keyword2, similarity
-        input = request.data
-
-        message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
-        return HttpResponse(message)
-
-# END: Code written by Armin
-
-# files
+# files, adds file to db and filesystem.
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
@@ -149,5 +131,9 @@ class DeletePdf(APIView):
         if inputfile !={}:
             Document.delete(inputfile["title"]) #runs a function in models that delets our pdf.
             response['success'] = True
-
         return JsonResponse(response)
+
+
+class AddPdfsToES(APIView):
+    def post(self):
+        insert_all_staged_pdf_into_es()
