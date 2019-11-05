@@ -1,5 +1,6 @@
 import json, requests, os
 from elasticsearch import Elasticsearch
+from detecht_api.detecht_converter.json_class import json_class
 
 """ Jakob and Henrik
     How to search after data from es"""
@@ -15,20 +16,27 @@ else:
 
 
 # Should handle both single and multiple searches.
-def search(query, size=1):
+def search(query, size=100):
     body = {
-        #"_source": ["title"],
         "size": size,
         "query": {
             "query_string": {
-                "query": query
+                "fields": ["title^10", "pdf_name^1", "full_text^1", "sections^9", "keywords^8", "tags^9"],
+                "query": query,
+
             }
         }
     }
 
     res = es.search(index="db", body=body)
     print(res)
-    return res
+    results = list()
+    hits = 0
+    for hit in res['hits']['hits']:
+        hits = hits + 1
+        j_class = json_class(json.dumps(hit["_source"]))
+        results.append(j_class)
+    return [hits, results, res["took"]]
 
 
 def formated_search(query, size=1):
@@ -37,7 +45,9 @@ def formated_search(query, size=1):
         "size": size,
         "query": {
             "query_string": {
-                "query": query
+                "fields": ["title^10", "pdf_name^1", "full_text^1", "sections^9", "keywords^8", "tags^9"],
+                "query": query,
+
             }
         }
     }

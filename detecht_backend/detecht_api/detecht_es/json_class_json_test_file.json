@@ -1,0 +1,16 @@
+{
+  "pdf_name": "test.pdf",
+  "title": "A pdf about test",
+  "tags": ["pdf", "long"],
+  "keywords": [
+    {"keyword": "This", "weight": 4},
+    {"keyword": "is", "weight": 2},
+    {"keyword": "text", "weight": 1}
+  ],
+  "sections": [
+    {"start": 1, "end": 10, "section_keyword": [ {"keyword": "Hej", "weight": 7}, {"keyword": "This", "weight": 2}]},
+    {"start": 11, "end": 20, "section_keyword": [ {"keyword": "This", "weight": 4}]},
+    {"start": 21, "end": 30, "section_keyword": [ {"keyword": "Is", "weight": 4}, {"keyword": "Kanel", "weight": 4}]}
+  ],
+   "full_text": "This is all the text of the pdf. It can be very long or not very long at all."
+}
