@@ -1,4 +1,6 @@
 import json
+
+from detecht_api.detecht_converter.plain_text import json_to_plaintext
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp import imp_sent_creator
@@ -24,6 +26,35 @@ class json_class:
             self.add_tag(tag)
         for section in json_doc["sections"]:
             self.add_section(section["start"], section["end"], section["section_keyword"])
+
+    def __init__(self, pdf_name, title, tags):
+        x = convert_pdf_to_json(pdf_name)
+        y = json_to_plaintext(x)
+        self.add_full_text(y)
+
+        self.set_pdf_name(pdf_name)
+        self.add_tag(title)
+
+            # Here we will call the keyword creator to generate keywords
+        #for keyword in json_doc["keywords"]:
+           # self.keywords.append(keyword_class(keyword["keyword"], keyword["weight"]))
+        for tag in tags:
+            self.add_tag(tag)
+
+        text_len = len(self.full_text)
+        i = 0
+        while i < text_len:
+            section_length = 3000
+            if (i + section_length) < text_len:
+                while (self.full_text[i] != ("." or "!" or "?")) and (i < text_len):
+                    section_length = section_length + 1
+                #generate keywords here
+                self.add_section(i, section_length, keywords)
+
+
+
+
+
 
     def export_json(self, file_name=""):
         if file_name == "":
