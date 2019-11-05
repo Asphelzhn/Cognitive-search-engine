@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.files.storage import default_storage #delete query
+from django.db.models import F
+
 """
 Oskar H
 """
@@ -66,16 +68,17 @@ class PDFImportance(models.Model):
     downloads = models.PositiveIntegerField(default=0)
     custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2) #ex 0.99
 
-    def update_likes(pdf_name):
-        prev_likes = PDFImportance.objects.get(pdf_name=pdf_name)
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=prev_likes+1)
+    def update_likes(self, pdf_name):
+        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=F('likes')+1)
         return PDFImportance.objects.get(pdf_name=pdf_name).likes
-     #   return "Number of likes" + self.number_of_likes
 
-    #def increase_downloads(self):
-     #   self.number_of_downloads = self.number_of_downloads + 1
-      #  PDFImportance.save()
-       # self.number_of_downloads
+    def update_downloads(self, pdf_name):
+        PDFImportance.objects.filter(pdf_name=pdf_name).update(downloads=F('downloads')+1)
+        return PDFImportance.objects.get(pdf_name=pdf_name).downloads
+
+    def update_weight(self, new_weight, pdf_name):
+        PDFImportance.objects.filter(pdf_name=pdf_name).update(custom_weight=new_weight)
+        return PDFImportance.objects.get(pdf_name=pdf_name).custom_weight
 
 
 

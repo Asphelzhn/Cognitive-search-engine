@@ -126,9 +126,8 @@ class KeywordSimilarity(APIView):
 
     def post(self, request): #input: keyword1, keyword2, similarity
         input = request.data
-        test, created = PDFImportance.objects.get_or_create(pdf_name=input["pdf_name"], likes=1, downloads=1, custom_weight=0.81)
-        message = test.update_likes(input["pdf_name"])
-        return HttpResponse(message)
+        #test = PDFImportance.objects.get(pdf_name=input["pdf_name"]).update_weight(0.67, input["pdf_name"])
+        return HttpResponse()
         #if created:
          #   return HttpResponse("Abow fett sant")
         #else:
