@@ -27,7 +27,7 @@ export class SearchResultPreviewComponent implements OnInit {
   }
 
   search(searchString) {
-    console.log(this.searchString);
+    console.log(this.searchString); // Den här är undefined...
     this.pdfViewer.pdfFindController.executeCommand('find', {
       caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: searchString
     });
@@ -40,10 +40,12 @@ export class SearchResultPreviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Funkar verkligen detta? Loggar man efter så är den inte satt till något + Den här körs aldrig, för loggen på rad 39 syns inte...
     if (this.previewData.subsVar === undefined) {
         this.previewData.subsVar = this.previewData.invokeSearch.subscribe((searchString: string) => {
           this.firstFunction(searchString);
         });
       }
+
   }
 }

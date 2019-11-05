@@ -4,6 +4,8 @@ import {environment} from '../../../../environments/environment';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {SentenceHitsComponent} from '../sentence-hits/sentence-hits.component';
 import {PreviewMessageService} from '../../../message-services/preview-message.service';
+import { FileSaverModule } from 'ngx-filesaver';
+
 
 @Component({
   selector: 'app-result-bar',

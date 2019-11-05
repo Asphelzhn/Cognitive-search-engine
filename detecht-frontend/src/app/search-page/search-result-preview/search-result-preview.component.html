@@ -4,7 +4,7 @@
         [render-text]="true"
         style="display: block;"
         [src]="(staticUrl+'pdf/'+result.name)"
-        (text-layer-rendered)="search('management control')"
+        (text-layer-rendered)="search(searchString)"
       >
       </pdf-viewer>
 

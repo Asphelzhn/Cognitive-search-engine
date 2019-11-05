@@ -5,6 +5,17 @@
   <div class="body">
     <a (click)="showPreview = true" href="{{staticUrl + 'pdf/' + result.name}}" target="_blank"><h5
       class="card-title">{{result.title}}</h5></a>
+    <button type="button"
+            fileSaver
+            [method]="'GET'"
+            [fileName]="result.title"
+            [url]="staticUrl + 'pdf/' + result.name"
+            [header]="{token: 'demo'}"
+            [query]="{pi: 1, name: 'demo'}"
+
+  ></button>
+
+
     <p class="card-text"> {{result.text}}</p>
     <button (click)="showPreview = true">Show preview</button>
     <button (click)="openDialog()">Show sentences</button>

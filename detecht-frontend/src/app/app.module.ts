@@ -21,6 +21,7 @@ import { SentenceHitsComponent } from './search-page/search-hits/sentence-hits/s
 import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
     HttpClientModule,
     PdfViewerModule,
     MatDialogModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    FileSaverModule
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
