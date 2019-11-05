@@ -69,7 +69,7 @@ class Keyword_distance(models.Model):
 # Henrik
 
 
-class Pdf_Name_Keyword_Weight(models.model):  # keyword, pdf_name, weight
+class Pdf_Name_Keyword_Weight(models.Model):
 
     pdf_name = models.TextField(max_length=50)
     # keyword = ArrayField(models.TextField(max_length=50))  # if we want several keywords for every object
