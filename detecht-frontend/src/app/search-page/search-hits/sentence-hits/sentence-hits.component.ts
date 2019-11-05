@@ -15,6 +15,7 @@ export class SentenceHitsComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   searchString: string;
+  rightSentence: string;
 
   constructor(
     public dialogRef: MatDialogRef<SentenceHitsComponent>,

@@ -3,10 +3,10 @@
   <button (click)="showPreview = true">Show preview</button>
 </div>
 
-<div>
-  <a (click)="[showPreview = true, search(this.result.sentence)]">Sentence:  {{this.result.sentence}}</a>
+<div *ngFor='let sentence of result.sentence'>
+  <a (click)="[showPreview = true, search(this.sentence), rightSentence = this.sentence]">Sentence:  {{this.sentence}}</a>
 </div>
 
 <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
-                           [result]="result"></app-search-result-preview>
+                           [result]="result" [sentence]="rightSentence"></app-search-result-preview>
 

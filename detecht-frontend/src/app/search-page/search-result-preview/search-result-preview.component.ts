@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewChild } from '@angular/core';
 import {SearchResponse} from '../../data-types';
 import {PreviewMessageService} from '../../message-services/preview-message.service';
 import {PdfViewerComponent} from 'ng2-pdf-viewer';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-search-result-preview',
@@ -20,6 +21,7 @@ export class SearchResultPreviewComponent implements OnInit {
   searchString: string;
   @Input() staticUrl: string;
   @Input() result: SearchResponse;
+  @Input() sentence: string;
   @ViewChild(PdfViewerComponent, {static: false}) private pdfViewer;
 
   closeMessage() {
@@ -27,25 +29,12 @@ export class SearchResultPreviewComponent implements OnInit {
   }
 
   search(searchString) {
-    console.log(this.searchString); // Den här är undefined...
+    if(this.sentence !== undefined) {
     this.pdfViewer.pdfFindController.executeCommand('find', {
-      caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: searchString
+      caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: this.sentence
     });
-    console.log('after search');
+    }
   }
-
-  firstFunction(searchString: string) {
-    this.searchString = searchString;
-    alert(this.searchString);
-  }
-
   ngOnInit() {
-    // Funkar verkligen detta? Loggar man efter så är den inte satt till något + Den här körs aldrig, för loggen på rad 39 syns inte...
-    if (this.previewData.subsVar === undefined) {
-        this.previewData.subsVar = this.previewData.invokeSearch.subscribe((searchString: string) => {
-          this.firstFunction(searchString);
-        });
-      }
-
   }
 }
