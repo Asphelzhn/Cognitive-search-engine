@@ -6,7 +6,7 @@ from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp import imp_sent_creator
 
 
-# Jakob & Carl
+# Jakob, Carl and Oscar
 class json_class:
     pdf_name = ""
     full_text = ""
@@ -28,7 +28,7 @@ class json_class:
             self.add_section(section["start"], section["end"], section["section_keyword"])
 
     def __init__(self, pdf_name, title, tags):
-        x = convert_pdf_to_json(pdf_name)
+        x = convert_pdf_to_json(pdf_name) # convert_pdf_to_json not yet working
         y = json_to_plaintext(x)
         self.add_full_text(y)
 
@@ -47,9 +47,10 @@ class json_class:
             section_length = 3000
             if (i + section_length) < text_len:
                 while (self.full_text[i] != ("." or "!" or "?")) and (i < text_len):
-                    section_length = section_length + 1
+                    section_length += 1
                 #generate keywords here
-                self.add_section(i, section_length, keywords)
+                #self.add_section(i, i+section_length, keywords)
+                i += section_length
 
 
 
