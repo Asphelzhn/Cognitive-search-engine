@@ -4,6 +4,7 @@ from collections import Counter
 
 def words(text): return re.findall(r'\w+', text.lower())
 
+
 word_counter = Counter(words(open("big.txt").read()))
 
 
