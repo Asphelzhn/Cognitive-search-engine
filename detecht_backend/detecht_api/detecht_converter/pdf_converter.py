@@ -28,7 +28,6 @@ def convert_pdf_to_json():
                 all_pages["All_text"] = all_text
 
                 # creates a JSON file
-                #json_data = json.dumps(all_pages)
                 filename = entry.name
                 filename = filename[:-4]
                 filepath = 'detecht_api/static/json/' + filename + '.json'
