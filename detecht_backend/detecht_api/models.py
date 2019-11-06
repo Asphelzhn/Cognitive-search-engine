@@ -102,3 +102,6 @@ class Searches_Database(models.Model):
     standardized_search_query = models.CharField(max_length=50)  # standardization by using NLP spacy
     search_score = models.IntegerField(validators=[MinValueValidator(1),
  MaxValueValidator(10)])
+    def add_row(new_user_id, new_search_date, new_search_query, new_standardized_search_query, new_search_score):
+        new_search = Searches_Database(new_user_id, new_search_date, new_search_query, new_standardized_search_query, new_search_score)
+        new_search.save()
