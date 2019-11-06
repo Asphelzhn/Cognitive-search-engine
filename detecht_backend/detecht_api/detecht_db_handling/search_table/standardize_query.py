@@ -11,17 +11,17 @@ stopwords = list(STOP_WORDS)
 def standardize_query(query):
     my_doc = nlp(query)
 
-    # Add customize stop words
+    # could add customize stop words here
     customize_stop_words = [
         'computing', 'filtered'
     ]
     for w in customize_stop_words:
-        spacy_nlp.vocab[w].is_stop = True
+        nlp.vocab[w].is_stop = True
 
     tokens = [token.text for token in my_doc if not token.is_stop] # Remove stop words
 
-    print('Original query: %s' % (query))
-    print()
-    print(tokens)
+    # print('Original query: %s' % (query))
+    # print()
+    # print(tokens)
 
     return tokens
