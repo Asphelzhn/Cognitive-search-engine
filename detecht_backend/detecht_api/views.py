@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-
+import json
 
 
 """
@@ -86,12 +86,12 @@ class Search(APIView):
             query = input["query"]
             res = search.search(query, 10)
             response['success'] = True
-            response['totalResult'] = res['hits']['total']['value']
-            content = res['hits']['hits']
-            for c in content:
-                response['content'].append({'pdfTitle': c['_source']['title'], 'pdfName': c['_source']['fileName']})
-            return JsonResponse(response)  # test
-        return JsonResponse(response)
+            #response['totalResult'] = res['hits']['total']['value']
+            #content = res['hits']['hits']
+            # for c in content:
+            #     response['content'].append({'pdfTitle': c['_source']['title'], 'pdfName': c['_source']['fileName']})
+            # return JsonResponse(response)  # test
+        return JsonResponse(json.dumps(res), safe=False)
 
 
 class AddFile(APIView):
