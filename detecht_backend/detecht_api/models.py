@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.core.files.storage import default_storage  # delete query
 
@@ -88,3 +89,16 @@ class Pdf_Name_Keyword_Weight(models.Model):
     def add_row(pdf, keys, weight1):
         new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keys, weight=weight1)
         new.save()
+
+'''
+Searches database
+Edward & Severn
+'''
+
+class Searches_Database(models.Model):
+    user_id = models.IntegerField(null=True)  # not mandatory, can be NULL
+    search_date = models.DateTimeField(auto_now=False, auto_now_add=False)  # when the search was done
+    search_query = models.CharField(max_length=50)  # RAW search_query
+    standardized_search_query = models.CharField(max_length=50)  # standardization by using NLP spacy
+    search_score = models.IntegerField(validators=[MinValueValidator(1),
+ MaxValueValidator(10)])
