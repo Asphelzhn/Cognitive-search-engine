@@ -1,10 +1,12 @@
+<div id="cross" (click)="close()">X</div>
+
 <p>sentence-hits works!</p>
-<div (click)="close()">
+<div>
   <button (click)="showPreview = true">Show preview</button>
 </div>
 
 <div *ngFor='let sentence of result.sentence'>
-  <a (click)="[showPreview = true, search(this.sentence), rightSentence = this.sentence]">Sentence:  {{this.sentence}}</a>
+  <a (click)="displayPreview(sentence)">Sentence:  {{sentence}}</a>
 </div>
 
 <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"

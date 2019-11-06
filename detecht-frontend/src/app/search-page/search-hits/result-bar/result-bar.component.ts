@@ -17,7 +17,6 @@ export class ResultBarComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   showSentences: boolean;
-
   @Input() result: SearchResponse;
 
   constructor(
@@ -35,7 +34,6 @@ export class ResultBarComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(value => {
       this.result = value.data;
-      this.showPreview = true;
     });
   }
 

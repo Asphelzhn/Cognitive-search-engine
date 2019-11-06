@@ -14,7 +14,6 @@ export class SentenceHitsComponent implements OnInit {
   result: SearchResponse;
   staticUrl: string;
   showPreview: boolean;
-  searchString: string;
   rightSentence: string;
 
   constructor(
@@ -30,13 +29,14 @@ export class SentenceHitsComponent implements OnInit {
     this.dialogRef.close({event: 'close', data: this.result});
   }
 
-  search(searchString: string) {
-    this.previewData.onSearchClick(searchString);
-  }
-
   ngOnInit() {
     this.staticUrl = environment.staticUrl;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
+  }
+
+  displayPreview(sentence: string): void {
+    this.showPreview = true;
+    this.rightSentence = sentence;
   }
 
 }

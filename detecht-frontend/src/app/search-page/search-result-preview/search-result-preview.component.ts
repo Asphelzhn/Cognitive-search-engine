@@ -2,7 +2,6 @@ import {Component, Input, OnInit, ViewChild } from '@angular/core';
 import {SearchResponse} from '../../data-types';
 import {PreviewMessageService} from '../../message-services/preview-message.service';
 import {PdfViewerComponent} from 'ng2-pdf-viewer';
-import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-search-result-preview',
@@ -18,7 +17,6 @@ export class SearchResultPreviewComponent implements OnInit {
   }
 
   @Input() showPreview: boolean;
-  searchString: string;
   @Input() staticUrl: string;
   @Input() result: SearchResponse;
   @Input() sentence: string;
@@ -28,8 +26,8 @@ export class SearchResultPreviewComponent implements OnInit {
     this.previewData.changeMessage(false);
   }
 
-  search(searchString) {
-    if(this.sentence !== undefined) {
+  search() {
+    if (this.sentence !== undefined) {
     this.pdfViewer.pdfFindController.executeCommand('find', {
       caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: this.sentence
     });
