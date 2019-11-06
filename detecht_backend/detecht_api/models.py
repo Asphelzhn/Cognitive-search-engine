@@ -97,11 +97,12 @@ Edward & Severn
 
 class Searches_Database(models.Model):
     user_id = models.IntegerField(null=True)  # not mandatory, can be NULL
-    search_date = models.DateTimeField(auto_now=False, auto_now_add=False)  # when the search was done
+    search_date = models.DateTimeField(auto_now=False, auto_now_add=True)  # when the search was done
     search_query = models.CharField(max_length=50)  # RAW search_query
     standardized_search_query = models.CharField(max_length=50)  # standardization by using NLP spacy
     search_score = models.IntegerField(validators=[MinValueValidator(1),
  MaxValueValidator(10)])
+
     def add_row(new_user_id, new_search_date, new_search_query, new_standardized_search_query, new_search_score):
         new_search = Searches_Database(new_user_id, new_search_date, new_search_query, new_standardized_search_query, new_search_score)
         new_search.save()
