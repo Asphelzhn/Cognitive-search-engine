@@ -1,5 +1,8 @@
 from detecht_api import models
 import spacy
+"""
+Edward and Severn
+"""
 
 nlp = spacy.load("en_core_web_sm")
 

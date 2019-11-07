@@ -1,7 +1,9 @@
 from detecht_api import models
 from detecht_db_handling.search_table.standardize_query import standardize_query
 import time
-
+"""
+Edward and Severn
+"""
 
 # add new row into database. If there is no user_id, just set id as null.
 def add_row(query, id):
