@@ -1,28 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
-
-
-"""
-Oskar H & Armin
-"""
-
-
 # imports by OSKAR
-from detecht_api.models import User
 from detecht_api.models import Document #files
 from rest_framework.views import APIView
-#files
 from.serializers import DocumentSerializer
-from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
 
 # Our packages
 from detecht_api.detecht_es import search, insert_file
+from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
 
 
 class HomePageView(TemplateView):
@@ -30,40 +20,30 @@ class HomePageView(TemplateView):
         return render(request, 'index.html', context=None)
 
 
-# class PdfUpload(APIView):
-#     def post(self, request): #json input "pdffile"
-#         if request.method == 'POST' and request.files['pdffile']:
-#             pdf_file = request.files['pdffile'] # TODO ask Oskar
-#             models.FileField(upload_to='static/pdf')
-#             pdf_file.save();  # Someware should "upload_to" be specified....
-#             return HttpResponse('{ "success": "true" }')
-#         return HttpResponse('{ "success": "false" }')
+# class Profile(APIView):
+#     def post(self, request): #input {"id":"2"}
+#         # Test database
+#         #user = User(userName='hiden12345', firstName='Oskar', userID=5)
+#         #user.save()
+#         input= request.data
+#         query = User.objects.get(id=input["id"])
+#         #query = User.objects.all()    userName="hiden12345"
+#         name = query.firstName
+#         username = query.userName
+#         userid = str(query.userID)
+#
+#         return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
 
 
-class Profile(APIView):
-    def post(self, request): #input {"id":"2"}
-        # Test database
-        #user = User(userName='hiden12345', firstName='Oskar', userID=5)
-        #user.save()
-        input= request.data
-        query = User.objects.get(id=input["id"])
-        #query = User.objects.all()    userName="hiden12345"
-        name = query.firstName
-        username = query.userName
-        userid = str(query.userID)
-
-        return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
-
-
-class UpdateProfile(APIView):
-    def get(self, request):
-        # get data from input data.
-
-        # function updating data to userDB
-        primaryKey = 1
-        newName = "VilleJ"
-        User.objects.filter(userID=primaryKey).update(firstName=newName)
-        return HttpResponse('{ "Function": "done" }')  # later change
+# class UpdateProfile(APIView):
+#     def get(self, request):
+#         # get data from input data.
+#
+#         # function updating data to userDB
+#         primaryKey = 1
+#         newName = "VilleJ"
+#         User.objects.filter(userID=primaryKey).update(firstName=newName)
+#         return HttpResponse('{ "Function": "done" }')  # later change
 
 
 class Search(APIView):
