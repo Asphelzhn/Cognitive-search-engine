@@ -19,7 +19,7 @@ def word_frequency(query):
     # Word frequency statistics
     for word in words:
         word = word.lower()
-        word = ''.join(word.split())
+        # word = ''.join(word.split())
         if word in tf:
             tf[word] += 1
         else:
