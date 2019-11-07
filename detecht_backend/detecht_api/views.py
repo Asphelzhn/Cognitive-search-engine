@@ -1,16 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-import json
+
 
 
 """
 Oskar H & Armin
 """
-
-# imports by ARMIN
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
 
 
 # imports by OSKAR
@@ -24,10 +20,6 @@ from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_int
 
 # Create your views here.
 from rest_framework import status, viewsets, serializers
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.utils import json
-
 
 # Our packages
 from detecht_api.detecht_es import search, insert_file

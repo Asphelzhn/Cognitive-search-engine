@@ -1,6 +1,5 @@
 from detecht_api.detecht_nlp.word_similarity import word_similarity
-from detecht_api.models import Keywords
-from detecht_api.models import Keyword_distance
+from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight
 
 #add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned
 def addKeyword(keyword):
@@ -20,4 +19,11 @@ def addKeyword(keyword):
 def KeywordSimilarity(keyword1, keyword2, keywordId2):
     newDistance = Keyword_distance(id_1=Keywords.objects.get(word=keyword1).id, id_2=keywordId2, similarity=word_similarity(keyword1, keyword2))
     newDistance.save()
+    return
+
+
+#add weight between pdf name and keyword
+def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
+    new.save()
     return
