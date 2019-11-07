@@ -1,11 +1,16 @@
 import json
+
+from detecht_api.detecht_converter.plain_text import json_to_plaintext
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
+from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
 
 
-# Jakob & Carl
+# Jakob, Carl and Oscar
+
+
 class json_class:
     pdf_name = ""
     full_text = ""
@@ -25,6 +30,31 @@ class json_class:
             self.add_tag(tag)
         for section in json_doc["sections"]:
             self.add_section(section["start"], section["end"], section["section_keyword"])
+
+    def __init__(self, pdf_name, title, tags):
+        x = convert_pdf_to_json(pdf_name)  # convert_pdf_to_json not yet working
+        y = json_to_plaintext(x)
+        self.add_full_text(y)
+
+        self.set_pdf_name(pdf_name)
+        self.add_tag(title)
+
+        keywords_list = Yake4Keyword.yake_api(self.full_text, pdf_name)
+        self.add_keyword(keywords_list)
+
+        for tag in tags:
+            self.add_tag(tag)
+
+        text_len = len(self.full_text)
+        i = 0
+        while i < text_len:
+            section_length = 3000
+            if (i + section_length) < text_len:
+                while (self.full_text[i] != ("." or "!" or "?")) and (i < text_len):
+                    section_length += 1
+                # generate keywords here
+                # self.add_section(i, i+section_length, keywords)
+                i += section_length
 
     def export_json(self, file_name=""):
         if file_name == "":
