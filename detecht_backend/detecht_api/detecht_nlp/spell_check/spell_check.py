@@ -8,7 +8,7 @@ def words(text): return re.findall(r'\w+', text.lower())
 word_counter = Counter(words(open("big.txt").read()))
 
 
-def P(word, N = sum(word_counter.values())):
+def P(word, N=sum(word_counter.values())):
     """Probability of `word`."""
     p = word_counter[word] / N
     return p
