@@ -2,6 +2,7 @@ import json
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp import imp_sent_creator
+from detecht_api.detecht_es.insert_file import inject_one_file
 
 
 # Jakob & Carl
@@ -106,3 +107,7 @@ class json_class:
         for sentence in sent_array:
             abstract += str(sentence.sent)
         return abstract
+
+    # Jakob
+    def inject_to_es(self):
+        inject_one_file(get_json_object())
