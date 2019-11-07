@@ -57,6 +57,7 @@ class Search(APIView):
         if input != {}:
             query = input["query"]
             res = search.search(query, 10)
+            print(res)
             response['success'] = True
             response['totalResult'] = res['hits']['total']['value']
             content = res['hits']['hits']
@@ -101,7 +102,7 @@ class DeletePdf(APIView):
         inputfile = request.data
 
         if inputfile !={}:
-            Document.delete(inputfile["title"]) #runs a function in models that delets our pdf.
+            Document.delete(inputfile["title"]) #runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 
