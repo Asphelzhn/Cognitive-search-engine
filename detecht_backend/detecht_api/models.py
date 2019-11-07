@@ -46,13 +46,6 @@ class Keywords(models.Model):
     def getKeywordId(word):
         return Keywords.objects.get(word=word).id
 
-    def add_keyword(word):
-        keyword, created = Keywords.objects.get_or_create(word=word)
-        if created:
-            keyword.save()
-            return True
-        return False
-
 
 class Keyword_distance(models.Model):
     id_1 = models.IntegerField()  # Values from -2147483648 to 2147483647

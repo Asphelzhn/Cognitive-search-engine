@@ -4,7 +4,10 @@ from detecht_api.models import Keyword_distance
 
 #add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned
 def addKeyword(keyword):
-    if Keywords.add_keyword(keyword): #returns true if keyword is added in db
+    keyword, created = Keywords.objects.get_or_create(word=keyword)
+
+    if created: #True if keyword is added and does not exist in db
+        keyword.save()
         #run similarity for all Query
         allKeywords = Keywords.objects.exclude(word=keyword)
 
