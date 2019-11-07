@@ -6,55 +6,80 @@ from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
+from detecht_api.detecht_converter.pdf_converter import pdf_to_json
 
 
 # Jakob, Carl and Oscar
 
 
-class json_class:
-    pdf_name = ""
-    full_text = ""
-    title = ""
-    tags = list()
-    sections = list()
-    keywords = list()
+class JsonClass:
 
-    def __init__(self, json_file):
+    def __init__(self, pdf_name, title, full_text):
+        self.pdf_name = pdf_name
+        self.full_text = title
+        self.title = full_text
+        self.tags = list()
+        self.sections = list()
+        self.keywords = list()
+
+    @classmethod
+    def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
-        self.add_full_text(json_doc["full_text"])
-        self.set_pdf_name(json_doc["pdf_name"])
-        self.add_title(json_doc["title"])
+        json_obj = cls(json_doc["pdf_name"], json_doc["title"], json_doc["full_text"])
+
         for keyword in json_doc["keywords"]:
-            self.keywords.append(keyword_class(keyword["keyword"], keyword["weight"]))
+            json_obj.keywords.append(keyword_class(keyword["Keyword"], keyword["Weight"]))
         for tag in json_doc["tags"]:
-            self.add_tag(tag)
+            json_obj.add_tag(tag)
         for section in json_doc["sections"]:
-            self.add_section(section["start"], section["end"], section["section_keyword"])
+            json_obj.add_section(section["start"], section["end"], section["section_keyword"])
+        return json_obj
 
-    def __init__(self, pdf_name, title, tags):
-        x = convert_pdf_to_json(pdf_name)  # convert_pdf_to_json not yet working
-        y = json_to_plaintext(x)
-        self.add_full_text(y)
+    @classmethod
+    def init_from_pdf(cls, pdf_name, title, tags):
+        full_text = pdf_to_json(pdf_name)  # convert_pdf_to_json not yet working
+        # y = json_to_plaintext(x)
+        json_obj = cls(pdf_name, title, full_text)
 
-        self.set_pdf_name(pdf_name)
-        self.add_tag(title)
-
-        keywords_list = Yake4Keyword.yake_api(self.full_text, pdf_name)
-        self.add_keyword(keywords_list)
+        keywords_list = Yake4Keyword.yake_api(json_obj.full_text, pdf_name)
+        for keyword in keywords_list:
+            # TODO add keywords to db
+            json_obj.add_keyword(keyword[0], keyword[1])
 
         for tag in tags:
-            self.add_tag(tag)
+            json_obj.add_tag(tag)
 
-        text_len = len(self.full_text)
+        return json_obj
+
+        text_len = len(json_obj.full_text)
         i = 0
         while i < text_len:
             section_length = 3000
             if (i + section_length) < text_len:
-                while (self.full_text[i] != ("." or "!" or "?")) and (i < text_len):
+                while (json_obj.full_text[i] != ("." or "!" or "?")) and (i < text_len):
                     section_length += 1
                 # generate keywords here
                 # self.add_section(i, i+section_length, keywords)
                 i += section_length
+
+    def frontend_result(self):
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name}
+
+    def get_json_object(self):
+        keywords_tmp = list()
+        for keyword_tmp in self.keywords:
+            keywords_tmp.append(keyword_tmp.get_keyword_dict())
+        sections_tmp = list()
+        for section_tmp in self.sections:
+            sections_tmp.append(section_tmp.get_section_dict())
+        a = {
+            'pdf_name': self.pdf_name,
+            'title': self.title,
+            'tags': self.tags,
+            'keywords': keywords_tmp,
+            'sections': sections_tmp,
+            'full_text': self.full_text}
+        return json.dumps(a)
 
     def export_json(self, file_name=""):
         if file_name == "":
@@ -140,4 +165,4 @@ class json_class:
 
     # Jakob
     def inject_to_es(self):
-        inject_one_file(get_json_object())
+        inject_one_file(self.get_json_object())

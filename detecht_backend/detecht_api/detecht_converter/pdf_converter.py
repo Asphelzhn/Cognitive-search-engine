@@ -34,5 +34,25 @@ def convert_pdf_to_json():
                 with open(filepath,'w+') as outfile:
                     json.dump(all_pages, outfile)
 
+def pdf_to_json(pdf_name):
 
+    # get all PDFs  in the path
+    path = "detecht_api/static/pdf/"
+    with open(path + pdf_name, 'rb') as file:
+
+        # read the current pdf
+        read_pdf = PyPDF2.PdfFileReader(file, strict=False)
+        all_pages = {}
+
+        # iterate all pages
+        all_text = ""
+        for page in range(read_pdf.getNumPages()):
+            data = read_pdf.getPage(page)
+            page_text = data.extractText()
+            modified_text = re.sub("\n", "", page_text)
+            all_text = all_text + modified_text
+
+        all_pages["All_text"] = all_text
+
+        return all_text
 
