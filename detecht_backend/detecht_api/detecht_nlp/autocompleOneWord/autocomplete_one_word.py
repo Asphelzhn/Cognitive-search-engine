@@ -2,6 +2,7 @@ class TrieNode:
     def __init__(self):
         # Initialising one node for trie
         self.children = {}
+        self.word_list = []
         self.last = False
 
 
@@ -9,20 +10,14 @@ class Trie:
     def __init__(self):
         # Initialising one node for trie
         self.root = TrieNode()
-        self.word_list = []
 
-    def form_trie(self, keys):
-        # Forms a trie structure with the given set of strings
-        # if it does not exists already else it merges the key
-        # into it by extending the structure as required
-        for key in keys:
-            self.insert(key)  # inserting one key to the trie.
+    def form_trie(self, wordWeight):
 
-    def insert(self, key):
+        for item in wordWeight:
+            self.insert(item)  # inserting one key to the trie.
 
-        # Inserts a key into trie if it does not exist already.
-        # And if the key is a prefix of the trie node, just
-        # marks it as leaf node.
+    def insert(self, wordWeight):
+
         node = self.root
 
         for a in list(key):
@@ -48,17 +43,7 @@ class Trie:
 
         return node and node.last and found
 
-    def suggestionsRec(self, node, word):
-
-        # Method to recursively traverse the trie
-        # and return a whole word.
-        if node.last:
-            self.word_list.append(word)
-
-        for a, n in node.children.items():
-            self.suggestionsRec(n, word + a)
-
-    def printAutoSuggestions(self, key):
+    def print_auto_suggestions(self, key):
 
         # Returns all the words in the trie whose common
         # prefix is the given key thus listing out all
@@ -80,8 +65,5 @@ class Trie:
         elif node.last and not node.children:
             return -1
 
-        self.suggestionsRec(node, temp_word)
+        return node.word_list
 
-        for s in self.word_list:
-            print(s)
-        return 1
