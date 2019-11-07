@@ -1,6 +1,10 @@
 from django.conf.urls import url
 from django.urls import path, include
 
+#adminsite
+from django.contrib import admin
+from django.urls import path
+
 from . import views
 from rest_framework import routers
 """
@@ -16,6 +20,7 @@ router = routers.DefaultRouter()
 router.register(r'files', DocumentViewSet)
 
 urlpatterns = [
+    path('admin_db/', admin.site.urls),
     url(r'^$', views.HomePageView.as_view()),
     url(r'^admin/', views.HomePageView.as_view()),
     url(r'^upload/', views.HomePageView.as_view()),
