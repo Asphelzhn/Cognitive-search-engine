@@ -1,6 +1,5 @@
 from django.db import models
-<<<<<<< detecht_backend/detecht_api/models.py
-from django.core.files.storage import default_storage #delete query
+from django.core.files.storage import default_storage # delete query
 from django.db.models import F
 
 """
@@ -9,13 +8,7 @@ Oskar H
 
 
 class User(models.Model):
-=======
-from django.core.files.storage import default_storage  # delete query
-
-
-class User(models.Model):
     userID = models.IntegerField()  # could be removed since and id automaticly is generated. the id starts from 1 and is incrementing for each new tuple.
->>>>>>> detecht_backend/detecht_api/models.py
     userName = models.TextField(max_length=50)
     firstName = models.TextField(max_length=50)
 
