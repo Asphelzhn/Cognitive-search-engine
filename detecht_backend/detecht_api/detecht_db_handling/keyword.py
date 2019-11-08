@@ -1,7 +1,7 @@
 from heapq import nlargest
 
 from detecht_api.detecht_nlp.word_similarity import word_similarity
-from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Pdf_Similarities, Document
+from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Pdf_Similarities
 
 
 # add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned
@@ -35,10 +35,10 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword1, weight1):
     return
 
 
-def pdf_relevance(pdf_name):
-    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(name=pdf_name).values("keyword", "weight")
+def pdf_relevance(name):
+    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
 
-    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(name=pdf_name)
+    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name)
 
     relevance_table = []
     relevance = 0
@@ -74,3 +74,4 @@ def add_all_pdf_similarities():
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
         add_pdf_similarities(object)
+    return
