@@ -1,5 +1,3 @@
-from heapq import nlargest
-
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Pdf_Similarities
 
@@ -35,26 +33,60 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword1, weight1):
     return
 
 
-def pdf_relevance(name):
+def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
     focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
 
     pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name)
 
     relevance_table = []
     relevance = 0
+    relevance_name = []
+    relevance_value = []
     for i in pdf_list:
-        for compareKey in pdf_list(i).keys:
-            for fKey in focus_pdf.keys:
-                if fKey == compareKey:
-                    relevance = + pdf_list(i).weight(compareKey) * focus_pdf.weight(fKey) / 2
+        PDF_ord = i.get("keyword")
 
-        relevance_table.append([pdf_list(i).pdf_name, relevance])
+        for a in focus_pdf:
+            fokus_ord = a.get("keyword")
+            # print("sakerfunkar")
+            if PDF_ord == fokus_ord:
+                # print("saker funkar")
+                relevance += i.get("weight") * a.get("weight")
+                # Såhär långt så funkar allt som det ska
+        relevance_name.append(i.get("pdf_name"))
+        relevance_value.append(relevance)
         relevance = 0
+    # print(relevance_name)
+    # print(relevance_value)
 
-    # relevance_table = nlargest(size, relevance_table, key=relevance)
-    relevance_table.sort(key=sortsecond(relevance_table), reverse=True)
+    relevance_table = []
+    i_old = relevance_name[0]
+    a = 0  # Hålla koll på index för relevance vaule
+    b = 0  # Hålla koll på index relevance table
+    relevance = 0
+    for i in relevance_name:
+        if i == i_old:
+            if not len(relevance_table) == 0:
+                relevance_table.pop(b)
+            relevance += relevance_value[a]
+            relevance_table.insert(b, [i, relevance])
+            # print(str(relevance) + "   " + i)
+            # i_old=i
+        else:
+            relevance = 0
+            b = +1
+            # i_old = i
+            # relevance += relevance_value[a]
+            relevance_table.insert(b, [i, relevance_value[a]])
+        i_old = i
+        a += 1
 
-    return relevance_table
+    final_list = []
+    for num in relevance_table:
+        if num not in final_list:
+            final_list.append(num)
+
+    final_list.sort(key=sortsecond, reverse=True)
+    return final_list
 
 
 def sortsecond(val):
