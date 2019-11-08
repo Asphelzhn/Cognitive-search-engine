@@ -13,7 +13,7 @@ from rest_framework import status, viewsets, serializers
 # Our packages
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-
+from detecht_api.detecht_db_handling.analytics import get_analytics_document
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -112,4 +112,10 @@ class AddPdfsToES(APIView):
         response = {
             'success': True
         }
+        return JsonResponse(response)
+
+
+class GetAnalytics(APIView):
+    def get(self):
+        response = get_analytics_document()
         return JsonResponse(response)
