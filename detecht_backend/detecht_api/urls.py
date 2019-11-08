@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^api/pdftoes/$', views.AddPdfsToES.as_view()),#Call to add all staged pdfs to Elastic search
     url(r'^api/getanalytics/$', views.GetAnalytics.as_view())
 
+
 ]
