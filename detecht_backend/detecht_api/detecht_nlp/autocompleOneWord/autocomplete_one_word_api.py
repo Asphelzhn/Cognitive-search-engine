@@ -2,6 +2,7 @@ from detecht_api.detecht_nlp.autocompleOneWord import autocomplete_one_word
 import time
 import re
 from collections import Counter
+import sys
 
 
 def words(text): return re.findall(r'\w+', text.lower())
@@ -16,6 +17,7 @@ if __name__ == '__main__':
     theTrie = autocomplete_one_word.Trie()
     t4 = time.clock()
     theTrie.form_trie(dictionary_for_trie, 5)
+
     t5 = time.clock()
     h = input("Something to autocomplete: ")
     t6 = time.clock()
@@ -28,3 +30,5 @@ if __name__ == '__main__':
     print("Trie create first node time: " + str(t4-t3))
     print("Trie completion time: " + str(t5-t4))
     print("Autocomplete time: " + str(t7-t6))
+    print("Size of hash: "+str(sys.getsizeof(word_counter)))
+    print("Size of trie: "+str(sys.getsizeof(theTrie)))
