@@ -95,8 +95,13 @@ def sortsecond(val):
 
 def add_pdf_similarities(pdf1):
     similarity_list = pdf_relevance(pdf1)
-    for object in similarity_list:
-        new = Pdf_Similarities(document_name1=pdf1, document_name2=object[0], Similarity=object[1])
+    print(similarity_list)
+    for item in similarity_list:
+        Pdf_Similarities.objects.update()
+        a = item[0]
+        b = item[1]
+        print(pdf1)
+        new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
         new.save()
     return
 
@@ -105,5 +110,6 @@ def add_all_pdf_similarities():
     all_files = Pdf_Name_Keyword_Weight.objects.values("pdf_name")
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
+        object = object.get("pdf_name")
         add_pdf_similarities(object)
     return
