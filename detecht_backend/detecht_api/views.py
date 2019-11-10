@@ -116,6 +116,6 @@ class AddPdfsToES(APIView):
 
 
 class GetAnalytics(APIView):
-    def get(self):
+    def get(self, request):
         response = get_analytics_document()
         return JsonResponse(response)
