@@ -5,6 +5,8 @@ include:
 before_script:
   - python --version
   - pip install flake8
+  include:
+  template: Dependency-Scanning.gitlab-ci.yml
 stages:
   - Static Analysis
   - dependency_scanning
@@ -15,9 +17,6 @@ flake8:
   - flake8 --max-line-length=120 detecht_backend/detecht_backend/*.py
   
 
-scan:
-  stage: scan
-  script:
-  dependency_scanning:
+dependency_scanning:
   variables:
     CI_DEBUG_TRACE: "true"
