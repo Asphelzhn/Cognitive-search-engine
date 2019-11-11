@@ -10,6 +10,8 @@ Oskar H
 class Document(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
+    downloads = models.IntegerField(default=0)
+    favorites = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title

@@ -25,7 +25,7 @@ from rest_framework import status, viewsets, serializers
 # Our packages
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-
+from detecht_api.detecht_db_handling.analytics import get_analytics_document
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -70,10 +70,10 @@ class Search(APIView):
             query = input["query"]
             res = search.search(query, 10)
             response['success'] = True
-            response['totalResult'] = res['hits']['total']['value']
-            content = res['hits']['hits']
+            response['totalResult'] = res['hits']
+            content = res['results']
             for c in content:
-                response['content'].append({'pdfTitle': c['_source']['title'], 'pdfName': c['_source']['fileName']})
+                response['content'].append(c.frontend_result())
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
@@ -141,11 +141,21 @@ class DeletePdf(APIView):
         inputfile = request.data
 
         if inputfile !={}:
-            Document.delete(inputfile["title"]) #runs a function in models that delets our pdf.
+            Document.delete(inputfile["title"]) #runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 
 
 class AddPdfsToES(APIView):
-    def post(self):
+    def put(self, request):
         insert_all_staged_pdf_into_es()
+        response = {
+            'success': True
+        }
+        return JsonResponse(response)
+
+
+class GetAnalytics(APIView):
+    def get(self, request):
+        response = get_analytics_document()
+        return JsonResponse(response)
