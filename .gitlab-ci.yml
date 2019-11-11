@@ -1,6 +1,5 @@
 image: "python:3.7"
-include:
-  template: Dependency-Scanning.gitlab-ci.yml
+
 
 before_script:
   - python --version
