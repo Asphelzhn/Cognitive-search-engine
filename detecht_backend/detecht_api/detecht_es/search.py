@@ -1,6 +1,6 @@
 import json, requests, os
 from elasticsearch import Elasticsearch
-from detecht_api.detecht_converter.json_class import json_class
+from detecht_api.detecht_converter.jsonclass import JsonClass
 
 """ Jakob and Henrik
     How to search after data from es"""
@@ -29,14 +29,13 @@ def search(query, size=100):
     }
 
     res = es.search(index="db", body=body)
-    print(res)
     results = list()
     hits = 0
     for hit in res['hits']['hits']:
         hits = hits + 1
-        j_class = json_class(json.dumps(hit["_source"]))
+        j_class = JsonClass.init_from_json(json.dumps(hit["_source"]))
         results.append(j_class)
-    return [hits, results, res["took"]]
+    return {"hits": hits, "results": results, "time": res["took"]}
 
 
 def formated_search(query, size=1):
