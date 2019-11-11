@@ -1,9 +1,15 @@
 .search {
   width: 100%;
-  position: relative;
-  display:flex;
-  justify-content: center;
+  form {
+
+    width: inherit;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
 }
+
+
 
 .wrap{
   width: 100%;
