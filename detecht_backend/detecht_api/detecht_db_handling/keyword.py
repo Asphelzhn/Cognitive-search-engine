@@ -36,7 +36,7 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
 
 def Trending_docs(size):
     list = Interacted_documents.objects.all().values().order_by("pdf_name")
-    pdf_name_lsit = Interacted_documents.object.all().values("pdf_name").Distinct()
+    pdf_name_lsit = Interacted_documents.objects.all().values("pdf_name").distinct()
 
     # antal preview en konstant = P
     # antal downloads en konstant = D
@@ -54,15 +54,18 @@ def Trending_docs(size):
     #Final table
     #pdf_name , trend_value
     P = 1 # how much should a preview be worth?
-    Finale_value_table=[]
+    Finale_value_table=[0] * len(pdf_name_lsit)
     temp = date.today()
     dateNow = date_calc(temp)
+
     for row in list:
         if row.get("down_prev") == "Preview":
-            for i in len(pdf_name_lsit):
-                if pdf_name_lsit[i] == row.get("pdf_name"):
-                    value = Finale_value_table[i]+P/(dateNow-date_calc(row.get("date")))
-                    Finale_value_table.index(i,5)
+            for i in range(0, len(pdf_name_lsit)):
+                print(row.get("pdf_name"))
+                if pdf_name_lsit[i].get("pdf_name") == row.get("pdf_name"):
+                    print("skit funkar")
+                    value = Finale_value_table[i]+P/(dateNow-date_calc(row.get("date"))+1)
+                    Finale_value_table[i]=value
 
 
 
@@ -71,9 +74,9 @@ def Trending_docs(size):
           #  for name in pdf_name_lsit:
 
 
-    final_table= []
-    for i in pdf_name_lsit:
-        final_table.append([i, Finale_value_table[i]])
+    final_table= ["",0] * len(pdf_name_lsit)
+    for i in range (0, len(pdf_name_lsit)):
+        final_table[i]=[pdf_name_lsit[i], Finale_value_table[i]]
 
 
 
