@@ -36,7 +36,7 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword1, weight1):
 def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
     focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
 
-    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name)
+    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by("pdf_name")
 
     relevance_table = []
     relevance = 0
