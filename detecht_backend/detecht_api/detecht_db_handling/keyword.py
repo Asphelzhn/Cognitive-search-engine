@@ -73,7 +73,7 @@ def Trending_docs(size):
 
 
 def date_calc(dateNow):
-    datenow1 = int(dateNow.strftime("%d")) * 30 * int(dateNow.strftime("%d")) * 365 * int(dateNow.strftime("%d"))
+    datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d"))-1) + 365 * int(dateNow.strftime("%d"))
     return datenow1
 
 
