@@ -25,6 +25,26 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
-    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight).d
     new.save()
     return
+
+def Trending_docs(size):
+    list = interacted_documents.objects.all().values().order_by("pdf_name")
+    pdf_name_lsit = interated_docuemnts.object.all().values("pdf_name").Distinct()
+
+    # antal preview en konstant = P
+    # antal downloads en konstant = D
+    #dividerat på dateNow-dateOld
+
+    # trend_value = ( P * D ) / datenow_dateold
+    #om preview
+
+    #    += p/datediff
+
+    #om download
+
+     #   += d/datediff
+
+    #Final table
+    #pdf_name , trend_value
