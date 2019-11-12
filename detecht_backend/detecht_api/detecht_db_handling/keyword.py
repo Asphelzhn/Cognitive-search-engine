@@ -1,5 +1,5 @@
 from detecht_api.detecht_nlp.word_similarity import word_similarity
-from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents
+from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, Pdf_Similarities
 from datetime import date
 
 
@@ -26,6 +26,7 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
     return
 
 
+# Henrik
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight).d
@@ -86,3 +87,85 @@ def Download_Document(pdf_name1, userid1):
     dateNow = date.today()
     new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
     new.save()
+
+
+def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
+    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
+
+    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by("pdf_name")
+
+    relevance_table = []
+    relevance = 0
+    relevance_name = []
+    relevance_value = []
+    for i in pdf_list:
+        PDF_ord = i.get("keyword")
+
+        for a in focus_pdf:
+            fokus_ord = a.get("keyword")
+            # print("sakerfunkar")
+            if PDF_ord == fokus_ord:
+                # print("saker funkar")
+                relevance += i.get("weight") * a.get("weight")
+                # Såhär långt så funkar allt som det ska
+        relevance_name.append(i.get("pdf_name"))
+        relevance_value.append(relevance)
+        relevance = 0
+    # print(relevance_name)
+    # print(relevance_value)
+
+    relevance_table = []
+    i_old = relevance_name[0]
+    a = 0  # Hålla koll på index för relevance vaule
+    b = 0  # Hålla koll på index relevance table
+    relevance = 0
+    for i in relevance_name:
+        if i == i_old:
+            if not len(relevance_table) == 0:
+                relevance_table.pop(b)
+            relevance += relevance_value[a]
+            relevance_table.insert(b, [i, relevance])
+            # print(str(relevance) + "   " + i)
+            # i_old=i
+        else:
+            relevance = 0
+            b = +1
+            # i_old = i
+            # relevance += relevance_value[a]
+            relevance_table.insert(b, [i, relevance_value[a]])
+        i_old = i
+        a += 1
+
+    final_list = []
+    for num in relevance_table:
+        if num not in final_list:
+            final_list.append(num)
+
+    final_list.sort(key=sortsecond, reverse=True)
+    return final_list
+
+
+def sortsecond(val):
+    return val[1]
+
+
+def add_pdf_similarities(pdf1):
+    similarity_list = pdf_relevance(pdf1)
+    print(similarity_list)
+    for item in similarity_list:
+        Pdf_Similarities.objects.update()
+        a = item[0]
+        b = item[1]
+        print(pdf1)
+        new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
+        new.save()
+    return
+
+
+def add_all_pdf_similarities():
+    all_files = Pdf_Name_Keyword_Weight.objects.all().values_list("pdf_name").distinct()
+    # Not sure if it's okay to pick it up from here but i think it should work
+    for object in all_files:
+        object = object[0]
+        add_pdf_similarities(object)
+    return
