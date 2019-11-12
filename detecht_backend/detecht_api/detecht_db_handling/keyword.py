@@ -48,3 +48,29 @@ def Trending_docs(size):
 
     #Final table
     #pdf_name , trend_value
+
+    Finale_value_table=[]
+    dateNow = date.today()
+    for row in list:
+        if row.get("down_prev") == "Preview":
+            for i in len(pdf_name_lsit):
+                if pdf_name_lsit[i]=row.get("pdf_name"):
+                    value = Finale_value_table[i]+P/(dateNow-row.get("date"))
+                    Finale_value_table.index(i,5)
+
+
+
+
+        else:
+            for name in pdf_name_lsit:
+
+
+    final_table= []
+    for i in pdf_name_lsit:
+        final_table.append([i, Finale_value_table[i]])
+
+
+
+    #sortera final table baserat på andra värdet och sen stycka upp enligt size
+    return_table  = final_table[:size]
+    return return_table
