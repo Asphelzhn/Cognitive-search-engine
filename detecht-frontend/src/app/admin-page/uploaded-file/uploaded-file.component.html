@@ -1,18 +1,48 @@
-<div class="page-content">
-  <div class="upload-content">
-    <button routerLink="/upload" class="upload-btn">Upload document</button>
+<div class="container">
+
+  <div class="upload-link">
+      <button class="btn btn-primary upload-file-btn" routerLink="/upload">Upload</button>
   </div>
-  <div class="view-content" >
-    <h2>Browse all of your documents</h2>
-    <div>
-      <div class="individual-content" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
-        <!-- let pdf of pdfs-->
-        <h5 class="card-heading">NAME</h5>
-        <!--{{pdf.name}}-->
-        <button type="submit" (click)="deletePDF('Name')">Delete</button>
-        <!-- deletePDF(pdf.name)-->
-      </div>
+
+  <div class = "stats">
+    <div class = "stat">
+      <h2>Downloads</h2>
+    </div>
+    <div class = "stat">
+      <h2>Hearted</h2>
     </div>
   </div>
-  <div></div>
+
+  <div class="most-content">
+    <h2>Most views and downloads</h2>
+  </div>
+
 </div>
+
+<div class = "container">
+  <div class="view-content" >
+    <h3>Documents</h3>
+    <!--
+    <div class="individual-content" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+    -->
+      <!-- let pdf of pdfs-->
+    <!--
+      <h5 class="card-heading">NAME</h5>
+      -->
+      <!--{{pdf.name}}-->
+    <!--
+      <button type="submit" (click)="deletePDF('Name')">Delete</button>
+      -->
+      <!-- deletePDF(pdf.name)-->
+    <!--
+    </div>
+    -->
+  </div>
+</div>
+
+
+
+
+
+
+
