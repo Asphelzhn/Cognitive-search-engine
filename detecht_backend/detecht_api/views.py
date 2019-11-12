@@ -73,7 +73,8 @@ class Search(APIView):
             response['totalResult'] = res['hits']
             content = res['results']
             for c in content:
-                response['content'].append(c.frontend_result())
+                response['content'].append(c.frontend_result(query))
+            print(response)
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
