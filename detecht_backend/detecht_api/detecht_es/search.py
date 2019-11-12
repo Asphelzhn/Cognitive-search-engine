@@ -27,7 +27,7 @@ def search(query, size=100):
             }
         }
     }
-
+    es.indices.refresh(index="db")
     res = es.search(index="db", body=body)
     results = list()
     hits = 0
