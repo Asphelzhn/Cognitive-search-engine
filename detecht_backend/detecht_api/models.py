@@ -91,3 +91,13 @@ class Pdf_Name_Keyword_Weight(models.Model):
         new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keys, weight=weight1)
         new.save()
 
+
+#Henrik & Carl
+
+class Interacted_documents(models.Model):
+
+    down_prev = models.TextField(max_length=30)
+    date = models.DateField()
+    pdf_name = models.TextField(max_length=50)
+    userid = models.TextField(max_length=20)
+
