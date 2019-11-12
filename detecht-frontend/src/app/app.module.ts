@@ -17,7 +17,11 @@ import { RelatedSearchHitsComponent } from './search-page/related-search-hits/re
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
-
+import { SentenceHitsComponent } from './search-page/search-hits/sentence-hits/sentence-hits.component';
+import {MatDialogModule} from '@angular/material';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     RelatedSearchHitsComponent,
     RelatedResultBarComponent,
     SearchResultPreviewComponent,
+    SentenceHitsComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +45,12 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     FormsModule,
     HttpClientModule,
     PdfViewerModule,
+    MatDialogModule,
+    NoopAnimationsModule,
+    FileSaverModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  bootstrap: [AppComponent],
+  entryComponents: [SentenceHitsComponent]
 })
 export class AppModule { }
