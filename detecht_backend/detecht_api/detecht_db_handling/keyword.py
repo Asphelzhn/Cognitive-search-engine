@@ -107,9 +107,9 @@ def add_pdf_similarities(pdf1):
 
 
 def add_all_pdf_similarities():
-    all_files = Pdf_Name_Keyword_Weight.objects.values("pdf_name")
+    all_files = Pdf_Name_Keyword_Weight.objects.all().values_list("pdf_name").distinct()
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
-        object = object.get("pdf_name")
+        object = object[0]
         add_pdf_similarities(object)
     return
