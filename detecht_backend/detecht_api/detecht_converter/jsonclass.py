@@ -62,8 +62,8 @@ class JsonClass:
                 # self.add_section(i, i+section_length, keywords)
                 i += section_length
 
-    def frontend_result(self):
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name}
+    def frontend_result(self, query):
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
 
     def get_json_object(self):
         keywords_tmp = list()
