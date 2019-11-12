@@ -73,11 +73,10 @@ def Trending_docs(size):
 
 
 def date_calc(dateNow):
-    datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d"))-1) + 365 * int(dateNow.strftime("%d"))
+    datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d")) - 1) + 365 * int(dateNow.strftime("%d"))
     return datenow1
 
 
-# Henrik & Carl
 def Preview_Document(pdf_name1, userid1):
     dateNow = date.today()
     new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Preview")
@@ -146,6 +145,8 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
     final_list.sort(key=sortsecond, reverse=True)
     return final_list
 
+
+# Henrik
 
 def sortsecond(val):
     return val[1]
