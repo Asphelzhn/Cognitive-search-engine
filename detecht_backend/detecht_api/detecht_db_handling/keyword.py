@@ -1,6 +1,6 @@
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
-    Pdf_Similarities
+    Pdf_Similarities, User_Keyword
 from datetime import date
 
 
@@ -172,3 +172,12 @@ def add_all_pdf_similarities():
         object = object[0]
         add_pdf_similarities(object)
     return
+
+
+
+def add_user_keyword(id, key):
+    new = User_Keyword(userID=id, keyword=key)
+    new.save()
+    return
+
+

@@ -1,6 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from django.core.files.storage import default_storage # delete query
+from django.core.files.storage import default_storage  # delete query
 from django.db.models import F
 
 """
@@ -48,10 +48,10 @@ class Keywords(models.Model):
 
 
 class Keyword_distance(models.Model):
-
-    id_1 = models.PositiveIntegerField()    # Values from 0 to 2147483647
+    id_1 = models.PositiveIntegerField()  # Values from 0 to 2147483647
     id_2 = models.PositiveIntegerField()
-    similarity = models.DecimalField(max_digits=5, decimal_places=4) #Can take max 1 digit (0 or 1) and 4 decimals. eg 1.1234
+    similarity = models.DecimalField(max_digits=5,
+                                     decimal_places=4)  # Can take max 1 digit (0 or 1) and 4 decimals. eg 1.1234
 
     # id_1 = models.IntegerField()  # Values from -2147483648 to 2147483647
     # id_2 = models.IntegerField()
@@ -68,19 +68,20 @@ class PDFImportance(models.Model):
     pdf_name = models.CharField(max_length=200)
     likes = models.PositiveIntegerField(default=0)
     downloads = models.PositiveIntegerField(default=0)
-    custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2) #ex 0.99
+    custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2)  # ex 0.99
 
     def update_likes(self, pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=F('likes')+1)
+        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=F('likes') + 1)
         return PDFImportance.objects.get(pdf_name=pdf_name).likes
 
     def update_downloads(self, pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(downloads=F('downloads')+1)
+        PDFImportance.objects.filter(pdf_name=pdf_name).update(downloads=F('downloads') + 1)
         return PDFImportance.objects.get(pdf_name=pdf_name).downloads
 
     def update_weight(self, new_weight, pdf_name):
         PDFImportance.objects.filter(pdf_name=pdf_name).update(custom_weight=new_weight)
         return PDFImportance.objects.get(pdf_name=pdf_name).custom_weight
+
 
 # Henrik
 class Pdf_Name_Keyword_Weight(models.Model):
@@ -125,3 +126,7 @@ class Searches_Database(models.Model):
                                        search_score=new_search_score)
         new_search.save()
 
+
+class User_Keyword(models.Model):
+    userID = models.TextField(max_length=20)
+    keyword = models.TextField(max_length=50)
