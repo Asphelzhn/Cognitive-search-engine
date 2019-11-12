@@ -63,7 +63,10 @@ class JsonClass:
                 i += section_length
 
     def frontend_result(self, query):
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
+        keywords = []
+        for keyword in self.keywords:
+            keywords.append({'keyword:': keyword.get_keyword(), 'weight': keyword.get_weight()})
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
 
     def get_json_object(self):
         keywords_tmp = list()
@@ -158,9 +161,9 @@ class JsonClass:
     # Henrik
     def get_abstract(self, query):
         sent_array = imp_sent_creator(self.full_text, query, 3)
-        abstract = ""
+        abstract = []
         for sentence in sent_array:
-            abstract += str(sentence.sent)
+            abstract.append({'sentence': str(sentence.sent)})
         return abstract
 
     # Jakob

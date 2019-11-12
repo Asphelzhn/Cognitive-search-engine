@@ -74,6 +74,23 @@ class Search(APIView):
             content = res['results']
             for c in content:
                 response['content'].append(c.frontend_result(query))
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class GetAbstract(APIView):
+    def post(self, request): #input: "searchString"
+        response = {
+            'success': False,
+            'abstracts': []
+        }
+        input = request.data
+        if input != {}:
+            pdf = input["pdf"]
+            query = input["query"]
+            res = search.get_pdf(pdf)
+            response['success'] = True
+            response['abstracts'] = res['j_class'].get_abstract(query)
             print(response)
             return JsonResponse(response)  # test
         return JsonResponse(response)
