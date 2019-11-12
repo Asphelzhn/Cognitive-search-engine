@@ -29,6 +29,8 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new.save()
     return
 
+# Henrik & Carl
+
 def Trending_docs(size):
     list = interacted_documents.objects.all().values().order_by("pdf_name")
     pdf_name_lsit = interated_docuemnts.object.all().values("pdf_name").Distinct()
