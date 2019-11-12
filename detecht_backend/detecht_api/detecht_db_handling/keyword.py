@@ -1,5 +1,6 @@
 from detecht_api.detecht_nlp.word_similarity import word_similarity
-from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, Pdf_Similarities
+from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
+    Pdf_Similarities
 from datetime import date
 
 
@@ -33,15 +34,19 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new.save()
     return
 
+
 # Henrik & Carl
 
 def Trending_docs(size):
     list = Interacted_documents.objects.all().values().order_by("pdf_name")
     pdf_name_lsit = Interacted_documents.objects.all().values("pdf_name").distinct()
 
-    P = 1 # how much should a preview be worth?
-    D = 2 # how much should a download be worth?
-    Finale_value_table=[0] * len(pdf_name_lsit)
+    if size > len(pdf_name_lsit):
+        size = len(pdf_name_lsit)
+
+    P = 1  # how much should a preview be worth?
+    D = 2  # how much should a download be worth?
+    Finale_value_table = [0] * len(pdf_name_lsit)
     temp = date.today()
     dateNow = date_calc(temp)
 
@@ -50,29 +55,25 @@ def Trending_docs(size):
             for i in range(0, len(pdf_name_lsit)):
 
                 if pdf_name_lsit[i].get("pdf_name") == row.get("pdf_name"):
-
-                    value = P/(dateNow-date_calc(row.get("date"))+1)
+                    value = P / (dateNow - date_calc(row.get("date")) + 1)
                     Finale_value_table[i] += value
 
         if row.get("down_prev") == "Download":
             for i in range(0, len(pdf_name_lsit)):
                 if pdf_name_lsit[i].get("pdf_name") == row.get("pdf_name"):
-                    value = D/(dateNow-date_calc(row.get("date"))+1)
+                    value = D / (dateNow - date_calc(row.get("date")) + 1)
                     Finale_value_table[i] += value
 
-    final_table = ["",0] * len(pdf_name_lsit)
+    final_table = []
     for i in range(0, len(pdf_name_lsit)):
-        final_table[i] = [pdf_name_lsit[i].get("pdf_name"), Finale_value_table[i]]
-
-
-
-    #Needs to be sorted at this stage!!!
-    return_table  = final_table[:size]
+        final_table.append([pdf_name_lsit[i].get("pdf_name"), Finale_value_table[i]])
+    final_table.sort(key=sortsecond, reverse=True)
+    return_table = final_table[:size]
     return return_table
 
 
 def date_calc(dateNow):
-    datenow1 = int(dateNow.strftime("%d")) *30* int(dateNow.strftime("%d")) * 365*int(dateNow.strftime("%d"))
+    datenow1 = int(dateNow.strftime("%d")) * 30 * int(dateNow.strftime("%d")) * 365 * int(dateNow.strftime("%d"))
     return datenow1
 
 
@@ -92,7 +93,8 @@ def Download_Document(pdf_name1, userid1):
 def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
     focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
 
-    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by("pdf_name")
+    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
+        "pdf_name")
 
     relevance_table = []
     relevance = 0
