@@ -13,11 +13,27 @@ nlp = spacy.load("en_core_web_sm")
 def word_frequency(query):
     # put all the words of standardized_search_query into one list
     words = []
+    query = models.Searches_Database.objects.all().values_list("standardized_search_query")
+    print(query)
+    for row in query:
+        temp = row[0]
+        # print(temp)
+        # print(type(temp))
+        temp = temp.replace("[", "").replace("]", "").replace("'", "").replace(" ", "")
+        # print(temp)
+        list = temp.split(",")
+        for word in list:
+            words.append(nlp(word))
+        # print(list)
+        break
+    '''
+    words = []
     for s_query in query:
         test_doc = nlp(s_query.standardized_search_query)
         for i in test_doc:
             words.append(i)
     # print(words)
+    '''
     tf = {}
     # Word frequency statistics
     for word in words:
@@ -52,16 +68,29 @@ def get_period_popular_search(date1, date2):
 
 # this is example of how to get popular search during a time
 if __name__ == '__main__':
-    # query = models.Searches_Database.objects.all().values_list("standardized_search_query")
-    # print(query)
+    words = []
+    query = models.Searches_Database.objects.all().values_list("standardized_search_query")
+    print(query)
+    for row in query:
+        temp = row[0]
+        print(temp)
+        print(type(temp))
+        temp = temp.replace("[", "").replace("]","").replace("'","").replace(" ","")
+        print(temp)
+        list = temp.split(",")
+        for word in list:
+            words.append(nlp(word))
+    print(words)
 
-    popular = get_popular_search()
-    print(popular)
 
-    # specify a time
-    now = datetime.now()
-    end_date = datetime.strftime("%Y-%m-%d %H:%M:%S.%f", now)
-    # get ten days earlier
-    start_date = datetime.strftime("%Y-%m-%d %H:%M:%S.%f",now - datetime.timedelta(days= 10))
-    popular_in_time = get_period_popular_search(start_date,end_date)
-    print(popular_in_time)
+
+    # popular = get_popular_search()
+    # print(popular)
+    #
+    # # specify a time
+    # now = datetime.now()
+    # end_date = datetime.strftime("%Y-%m-%d %H:%M:%S.%f", now)
+    # # get ten days earlier
+    # start_date = datetime.strftime("%Y-%m-%d %H:%M:%S.%f",now - datetime.timedelta(days= 10))
+    # popular_in_time = get_period_popular_search(start_date,end_date)
+    # print(popular_in_time)
