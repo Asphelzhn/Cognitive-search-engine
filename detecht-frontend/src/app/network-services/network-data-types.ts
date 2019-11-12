@@ -18,9 +18,16 @@ export class NetworkPdfUploadResponse {
   success: boolean;
 }
 
+export class NetworkGetAllPdfResponse {
+  success: boolean;
+  pdfs: {
+
+  }
+}
+
 /*
   REQUESTS TO SERVER
- */
+ *
 
 // No Constructors (it can be ok)
 

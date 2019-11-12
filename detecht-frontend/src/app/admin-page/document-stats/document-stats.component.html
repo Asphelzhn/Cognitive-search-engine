@@ -1,0 +1,31 @@
+<div class="doc-stats-content">
+ <div class="switch-buttons">
+   <button (click)="showViews=false">show downloads</button>
+   <button (click)="showViews=true">show views</button>
+ </div>
+
+  <div class="doc-info">
+    <div id="most-views" class="stats-doc">
+
+      <div *ngIf="showViews">
+        <div class="individual-content" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10]">
+         <div class="document-info">
+          <h5 class="card-heading">NAME</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequatur</p>
+         </div>
+          <div class="stats">
+            <p>80000 views </p>
+            <p> 120000 downloads</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="most-downloads" class="stats-doc">
+      <div *ngIf="!showViews" >
+        <div class="individual-content" *ngFor="let index of [0,1,2,3,4,5]">
+          <h5 class="card-heading">NAME</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

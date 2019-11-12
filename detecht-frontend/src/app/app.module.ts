@@ -17,6 +17,14 @@ import { RelatedSearchHitsComponent } from './search-page/related-search-hits/re
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { StatsComponent } from './admin-page/stats/stats.component';
+import { DocumentStatsComponent } from './admin-page/document-stats/document-stats.component';
+import { SidebarComponent } from './admin-page/sidebar/sidebar.component';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
+import {MatTabsModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 
 @NgModule({
@@ -33,6 +41,9 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     RelatedSearchHitsComponent,
     RelatedResultBarComponent,
     SearchResultPreviewComponent,
+    StatsComponent,
+    DocumentStatsComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +51,16 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     FormsModule,
     HttpClientModule,
     PdfViewerModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTabsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

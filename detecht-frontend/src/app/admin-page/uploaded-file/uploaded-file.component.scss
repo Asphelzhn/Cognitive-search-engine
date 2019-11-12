@@ -1,12 +1,11 @@
 .page-content{
-  display: flex;
   height: 100%;
   width: 100%;
   text-align: center;
   padding-top: 15px;
   .view-content{
-    width: 60%;
-    height: 85%;
+    width: 90%;
+    height: 80vh;
     overflow: scroll;
     background-color: #ffffff;
     h2{
@@ -32,8 +31,6 @@
 }
 
 .individual-content {
-  border-bottom: 1px solid;
-  border-top: 1px solid;
   margin-top: 2px;
   margin-bottom: 5px;
   display: flex;
@@ -42,6 +39,7 @@
   h5{
     text-align: left;
     margin-left: 5px;
+    font-size: 16px;
   }
   button{
     text-align: right;

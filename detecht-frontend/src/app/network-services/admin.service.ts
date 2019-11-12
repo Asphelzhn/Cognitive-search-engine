@@ -17,11 +17,11 @@ export class AdminService {
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
 
-  // getAllPdf(respons: any): Observable<string> {
-  //   return this.http.get(environment.apiUrl + '/getallpdf', {
-  //     withCredentials: true
-  //   }).pipe(catchError(this.networkService.handleError));
-  // }
+  getAllPdf(): Observable<string> {
+    return this.http.get(environment.apiUrl + '/getallpdf', {
+      withCredentials: true
+    }).pipe(catchError(this.networkService.handleError));
+  }
 
   pdfUpload(networkPdfUploadRequest: NetworkPdfUploadRequest): void {
     const formData = new FormData();

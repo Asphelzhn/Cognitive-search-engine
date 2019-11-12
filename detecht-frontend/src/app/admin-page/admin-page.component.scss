@@ -8,6 +8,15 @@
  }
 .container{
   background-color: #ffffff;
-  height: 90vh;
-  width: 100%;
+  display: flex;
 }
+
+.left-content {
+  display: grid;
+  width: 50%;
+}
+
+.right-content {
+  width: 50%;
+}
+
