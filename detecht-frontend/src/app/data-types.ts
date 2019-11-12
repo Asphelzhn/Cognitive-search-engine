@@ -13,3 +13,20 @@ export class SearchResponse {
       'article_about_QR-code_%28Swedish%29.svg/1200px-QR_with_URL_to_article_about_QR-code_%28Swedish%29.svg.png';
   }
 }
+
+export class Pdf {
+  id: number;
+  file: string;
+  title: string;
+  downloads: number;
+  favorites: number;
+
+
+  constructor(id: number, file: string, title: string, downloads: number, favorites: number) {
+    this.id = id;
+    this.file = file;
+    this.title = title;
+    this.downloads = downloads;
+    this.favorites = favorites;
+  }
+}

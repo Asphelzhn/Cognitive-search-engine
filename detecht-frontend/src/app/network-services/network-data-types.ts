@@ -19,15 +19,20 @@ export class NetworkPdfUploadResponse {
 }
 
 export class NetworkGetAllPdfResponse {
-  success: boolean;
-  pdfs: {
-
-  }
+  data: [
+    {
+      id: number;
+      file: string;
+      title: string;
+      downloads: number;
+      favorites: number;
+    }
+    ];
 }
 
 /*
   REQUESTS TO SERVER
- *
+ */
 
 // No Constructors (it can be ok)
 
