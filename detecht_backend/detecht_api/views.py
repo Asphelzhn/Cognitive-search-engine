@@ -84,14 +84,13 @@ class GetAbstract(APIView):
             'success': False,
             'abstracts': []
         }
-        input = request.data
+        input = request.data["networkAbstractRequest"]
         if input != {}:
             pdf = input["pdf"]
             query = input["query"]
             res = search.get_pdf(pdf)
             response['success'] = True
             response['abstracts'] = res['j_class'].get_abstract(query)
-            print(response)
             return JsonResponse(response)  # test
         return JsonResponse(response)
 

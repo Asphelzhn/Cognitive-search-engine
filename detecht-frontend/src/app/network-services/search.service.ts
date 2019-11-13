@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {SearchResponse} from '../data-types';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
-import {NetworkSearchResponse} from './network-data-types';
+import {NetworkAbstractRequest, NetworkAbstractResponse, NetworkSearchResponse} from './network-data-types';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,15 @@ export class SearchService {
 
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
+  abstract(networkAbstractRequest: NetworkAbstractRequest): Observable<NetworkAbstractResponse> {
+    return this.http.post< NetworkAbstractResponse >(environment.apiUrl + 'getabstract/', {
+      networkAbstractRequest}, {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.networkService.handleError));
+  }
 
   search(query: string): void {
     this.currentSearchSource.next(query);
@@ -38,7 +47,7 @@ export class SearchService {
         if (data.success) {
           const newSearchResponse: SearchResponse[] = [];
           for (const content of data.content) {
-            newSearchResponse.push(new SearchResponse(content.pdfTitle, content.pdfName, '', ''));
+            newSearchResponse.push(new SearchResponse(content.pdfTitle, content.pdfName, content.keywords));
           }
 
           this.searchResponseSource.next(newSearchResponse);

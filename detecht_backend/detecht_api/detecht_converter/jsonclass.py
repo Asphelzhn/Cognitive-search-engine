@@ -65,7 +65,7 @@ class JsonClass:
     def frontend_result(self, query):
         keywords = []
         for keyword in self.keywords:
-            keywords.append({'keyword:': keyword.get_keyword(), 'weight': keyword.get_weight()})
+            keywords.append({'keyword': keyword.get_keyword(), 'weight': keyword.get_weight()})
         return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
 
     def get_json_object(self):

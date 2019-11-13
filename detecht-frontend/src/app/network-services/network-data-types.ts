@@ -10,12 +10,19 @@ export class NetworkSearchResponse {
   content: {
     pdfTitle: string;
     pdfName: string;
+    keywords: {keyword: string, weight: number}[];
     // pdfContent: string;
   }[];
 }
 
 export class NetworkPdfUploadResponse {
   success: boolean;
+  abstracts: string[];
+}
+
+export class NetworkAbstractResponse {
+  success: boolean;
+  abstracts: {sentence: string}[];
 }
 
 /*
@@ -26,6 +33,16 @@ export class NetworkPdfUploadResponse {
 
 export class NetworkSearchRequest {
   query: string;
+}
+
+export class NetworkAbstractRequest {
+  query: string;
+  pdf: string;
+
+  constructor(query: string, pdf: string) {
+    this.query = query;
+    this.pdf = pdf;
+  }
 }
 
 export class NetworkPdfUploadRequest {
