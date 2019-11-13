@@ -3,7 +3,7 @@ import json
 from detecht_api.detecht_converter.plain_text import json_to_plaintext
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
-from detecht_api.detecht_nlp import imp_sent_creator
+from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
 from detecht_api.detecht_converter.pdf_converter import pdf_to_json
@@ -62,8 +62,8 @@ class JsonClass:
                 # self.add_section(i, i+section_length, keywords)
                 i += section_length
 
-    def frontend_result(self):
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name}
+    def frontend_result(self, query):
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
 
     def get_json_object(self):
         keywords_tmp = list()

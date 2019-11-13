@@ -58,3 +58,14 @@ def inject_files(directory="Standard"):
                      id=i, body=json.loads(docket_content))
             i = i + 1
 
+
+def delete_from_index(filename):
+    es.indices.refresh(index="db")
+    body = {
+        "query": {
+            "match": {
+                "pdf_name": filename
+            }
+        }
+    }
+    es.delete_by_query(index="db", body=body)

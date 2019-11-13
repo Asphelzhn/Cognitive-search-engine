@@ -1,9 +1,10 @@
 <div class="search">
     <!--<input (input)="search($event.target.value)"/> -->
-    <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
-    <button type="submit" (click)="search()" class="searchButton">
+  <form (ngSubmit)="search()">
+    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
+    <input type="submit" class="searchButton"/>
       <i class="fas fa-search"></i>
       <img src="assets/searchIcon.png" width="100%" height="100%" />
-    </button>
+  </form>
 </div>
 

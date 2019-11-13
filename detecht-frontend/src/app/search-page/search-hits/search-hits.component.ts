@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SearchResponse} from '../../data-types';
 import {SearchService} from '../../network-services/search.service';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-search-hits',
@@ -10,10 +12,16 @@ import {SearchService} from '../../network-services/search.service';
 export class SearchHitsComponent implements OnInit {
 
   results: SearchResponse[];
+  staticUrl: string;
+  @Input() result: SearchResponse;
 
-  constructor(private searchService: SearchService) { }
+  constructor(
+    private searchService: SearchService,
+  ) {
+  }
 
   ngOnInit() {
+    this.staticUrl = environment.staticUrl;
     this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
   }
 
