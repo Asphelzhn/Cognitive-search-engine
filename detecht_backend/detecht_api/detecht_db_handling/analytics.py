@@ -11,3 +11,12 @@ def get_analytics_document():
         'favorites' : nr_of_favorites
     }
     return res
+
+def get_downloads(pdf_name):
+    doc = Document.objects.get(title=pdf_name)
+    return doc.downloads
+
+def get_favorites(pdf_name):
+    doc = Document.objects.get(title=pdf_name)
+    return doc.favorites
+
