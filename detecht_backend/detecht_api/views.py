@@ -11,7 +11,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, PDFImportance
+from detecht_api.models import Keywords, PDFImportance, UserFavorites
 from detecht_api.models import Keyword_distance
 
 # imports by OSKAR
@@ -115,8 +115,11 @@ class KeywordSimilarity(APIView):
 
     def post(self, request): #input: keyword1, keyword2, similarity
         input = request.data
+        favoritepdfs = [input["favoritepdfs"]]
+        test = UserFavorites()
+        message = test.add_favorite_pdfs(0, favoritepdfs)
         #test = PDFImportance.objects.get(pdf_name=input["pdf_name"]).update_weight(0.67, input["pdf_name"])
-        return HttpResponse()
+        return HttpResponse(message)
         #if created:
          #   return HttpResponse("Abow fett sant")
         #else:
