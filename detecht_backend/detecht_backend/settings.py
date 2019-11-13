@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     # log in
     'rest_framework.authtoken',
     'rest_auth',
-    #registration
+    # registration
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -165,6 +165,6 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-#login django-rest-auth // Oskar Hidén
+# login django-rest-auth // Oskar Hidén
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
