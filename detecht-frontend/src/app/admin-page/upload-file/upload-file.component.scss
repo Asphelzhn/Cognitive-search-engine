@@ -2,7 +2,6 @@
   height: 25%;
   width: 45%;
   background-color: #ffffff;
-  border: 1px solid;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 10px;
@@ -19,7 +18,6 @@
   height: 25%;
   width: 45%;
   background-color: #ffffff;
-  border: 1px solid;
   margin-top: 20px;
   margin-left: 10px;
   margin-right: 20px;
@@ -35,10 +33,11 @@
 .selected-documents{
   height: 75%;
   width: 95%;
-  border: 1px solid;
+  border: 1px solid lightgrey;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  font-family: Verdana;
 }
 
 .sidenav {

@@ -4,6 +4,7 @@
   width: 100%;
   background-color: #F5F5F5;
   text-align: center;
+  font-family: Verdana;
 
   .upload-link{
       width: 10%;
@@ -16,6 +17,7 @@
         padding: 4px 11px;
         margin: 2px;
         cursor: pointer;
+        font-family: Verdana;
       }
   }
   .upload-btn {
@@ -23,10 +25,12 @@
     font-size: 17px;
     padding: 14px 7px;
     margin-top: 0px;
+    font-family: Verdana;
   }
   .upload-btn:hover {
     background-color: #F0F0F0;
     color: #000000;
+    font-family: Verdana;
   }
 }
 
@@ -37,6 +41,7 @@
   display: flex;
   margin: 10px;
   background-color: #ffffff;
+  font-family: Verdana;
   h3{
     margin:3px;
     width: 100%;
@@ -63,6 +68,7 @@
   margin-top: 20px;
   margin-left: 10px;
   margin-bottom: 10px;
+  font-family: Verdana;
   h2{
     margin:3px;
   }
@@ -72,12 +78,12 @@
   height: 100%;
   width: 50%;
   background-color: #ffffff;
-  border: 1px solid;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 10px;
   margin-bottom: 20px;
   float: left;
+  font-family: Verdana;
   h4{
     margin-left: 8px;
     margin-top: 8px;
@@ -92,6 +98,7 @@
   margin-bottom: 1px;
   display: compact;
   justify-content: center;
+  font-family: Verdana;
 
   h5{
     text-align: left;
