@@ -1,17 +1,23 @@
 <div class="doc-stats-content">
- <div class="switch-buttons">
-   <button (click)="showDownloads=false">show downloads</button>
-   <button (click)="showDownloads=true">show favorites</button>
- </div>
-
+  <div class="switch-buttons">
+    <button (click)="showDownloads=false">show downloads</button>
+    <button (click)="showDownloads=true">show favorites</button>
+  </div>
   <div class="doc-info">
     <div id="most-views" class="stats-doc">
       <div *ngIf="showDownloads">
-        <div class="individual-content" *ngFor="let pdf of pdfs">
-         <div class="document-info">
-          <h5 class="card-heading">{{pdf.title}}</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequatur</p>
-         </div>
+        <div class="individual-content" *ngFor="let pdf of pdfFavorites">
+          <div class="document-info">
+            <h5 class="card-heading">{{pdf.title}}</h5>
+            <p>{{pdfTest[0].id}}</p>
+            <p>{{pdfTest[1].id}}</p>
+            <p>{{pdfTest[2].id}}</p>
+            <p>{{pdfTest[3].id}}</p>
+            <p>{{pdfTest[4].id}}</p>
+            <p>{{pdfTest[5].id}}</p>
+            <p>{{pdfTest[6].id}}</p>
+
+          </div>
           <div class="stats">
             <p>{{pdf.favorites}} favorites </p>
             <p> {{pdf.downloads}} downloads</p>
@@ -20,14 +26,16 @@
       </div>
     </div>
     <div id="most-downloads" class="stats-doc">
-      <div *ngIf="!showDownloads" >
-        <div class="individual-content" *ngFor="let pdf of pdfs">
-          <h5 class="card-heading">{{pdf.title}}</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequatur</p>
-        <div class="stats">
-          <p>{{pdf.favorites}} favorites </p>
-          <p> {{pdf.downloads}} downloads</p>
-        </div>
+      <div *ngIf="!showDownloads">
+        <div class="individual-content" *ngFor="let pdf of pdfDownloads">
+          <div class="document-info">
+            <h5 class="card-heading">{{pdf.title}} !</h5>
+            <p>{{pdfTest}}</p>
+          </div>
+          <div class="stats">
+            <p>{{pdf.favorites}} favorites </p>
+            <p> {{pdf.downloads}} downloads</p>
+          </div>
         </div>
       </div>
     </div>

@@ -13,23 +13,30 @@ export class DocumentStatsComponent implements OnInit {
     pdfs: Pdf[];
     pdfFavorites: Pdf[];
     pdfDownloads: Pdf[];
+    id: number;
+    pdfTest: [{id}, {id}, {id}, {id}, {id}, {id}, {id}];
   constructor(private adminService: AdminService) { }
 
   sortFavoritesArray() {
-    console.log('in favorites' + this.pdfs);
-    this.pdfs.sort((a, b) => a.favorites - b.favorites);
+    this.pdfTest = [{id: 7}, {id: 5}, {id: 35}, {id: 4}, {id: 35}, {id: 100}, {id: 1}];
+    console.log('in favorites' + this.pdfs[0].favorites);
     this.pdfFavorites = this.pdfs;
-    console.log('pdf favorites: ' + this.pdfFavorites);
-    console.log('after pdf favorites');
+    this.pdfFavorites.sort((a, b) => a.favorites - b.favorites);
+    console.log(this.pdfFavorites);
+    this.pdfTest.sort((a, b) => a.id - b.id);
+
   }
 
   sortDownloadsArray() {
-   this.pdfDownloads = this.pdfs.sort((a, b) => a.downloads - b.downloads);
+    console.log('in downloads');
+    this.pdfDownloads = this.pdfs;
+    this.pdfDownloads.sort((a, b) => a.downloads - b.downloads);
   }
 
   ngOnInit() {
-    this.showDownloads = true;
+    this.showDownloads = false;
     this.pdfs = [];
+    this.pdfTest = [{id: 0}, {id: 0}, {id: 0}, {id: 0}, {id: 0}, {id: 0}, {id: 0}];
     this.adminService.getAllPdf().subscribe(
       (data: any) => {
     //    console.log(data);
@@ -46,7 +53,5 @@ export class DocumentStatsComponent implements OnInit {
         console.log(error);
       }
     );
-
   }
-
 }
