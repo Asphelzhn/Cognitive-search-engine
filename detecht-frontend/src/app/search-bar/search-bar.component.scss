@@ -10,9 +10,9 @@
   width: 60px;
   border-radius: 25px;
   border: 2px solid lightgrey ;
-  background: white;
-  text-align: center;
-  color: #fff;
+  background-image: url("../../assets/searchIcon.png");
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   font-size: 20px;
 }
@@ -28,7 +28,7 @@
    padding: 20px;
  }
 .search-bar {
-  width: 100%;
+  width: auto;
   height: 30px;
 
 }
