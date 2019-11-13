@@ -16,8 +16,8 @@ class JsonClass:
 
     def __init__(self, pdf_name, title, full_text):
         self.pdf_name = pdf_name
-        self.full_text = title
-        self.title = full_text
+        self.full_text = full_text
+        self.title = title
         self.tags = list()
         self.sections = list()
         self.keywords = list()
