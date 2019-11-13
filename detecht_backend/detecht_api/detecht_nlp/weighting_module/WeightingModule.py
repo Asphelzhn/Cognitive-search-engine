@@ -12,11 +12,15 @@ Popularity (#downloads & #favorites)
 '''
 import spacy
 
+from detecht_api import models
+
+nlp = spacy.load('en_core_web_sm')
+
 
 class WeightingModule:
 
-    def __init__(self):
-        global nlp = spacy.load('en_core_web_sm')
+    # def __init__(self):
+    #     global nlp = spacy.load('en_core_web_sm')
 
     def get_factors(self, elastic_search_results, keyword_similarity, popularity):
         pass
@@ -34,22 +38,32 @@ class WeightingModule:
                 title_no_stop = nlp(''.join(([str(t) for t in title if not t.is_stop])))
                 favourite_similarity = user_keyword.similarity(title_no_stop)
                 popularity_score[index] += favourite_similarity
-                index +=1
+                index += 1
 
-
+    # calculate the similarity between search_query and each document keyword
     def calculate_keyword_similarity(self, elastic_search_results, search_query):
         similarity_list = []
+        search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
 
-        # Todo fix
         for title in elastic_search_results:
-            title_no_stop = nlp(''.join(([str(t) for t in title if not t.is_stop])))
-            search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
-            similarity = title_no_stop.similarity(search_query_no_stop)
-            similarity_list.append(similarity)
+            # get document keywords in database
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=title)
+            score_after_weight = 0
+            for name in name_weight_set:
+                keyword = name.keyword
+                keyword_weight = name.weight
+
+                # print(keyword)
+                # print(keyword)
+
+                similarity = (keyword.similarity(search_query_no_stop)) * keyword_weight
+                score_after_weight += similarity
+
+            similarity_list.append(score_after_weight)
 
         return similarity_list
 
-    def normalize(self, temp, min, max):
+    def normalize(temp, min, max):
         return (temp - min) / (max - min)
 
     def calculate_weight(self, elastic_search_results, search_query):
@@ -57,8 +71,8 @@ class WeightingModule:
         length = len(elastic_search_results)
 
         # weight of each factors
-        weight_elastic_search = 4.5
-        weight_keyword_similarity = 4.5
+        weight_elastic_search = 5
+        weight_keyword_similarity = 4
         weight_popularity = 1
 
         # initial weight of elastic_search_results
@@ -68,12 +82,31 @@ class WeightingModule:
             length -= 1
 
         # add keyword similarity to weight
-        similarity_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query)
+        similarity_score_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query)
+        max_score = max(similarity_score_list)
+        min_score = min(similarity_score_list)
+        normalize_similarity_score_list = []
+        for i in range(0, len(similarity_score_list)):
+            normalize_similarity_score_list[i] = WeightingModule.normalize(similarity_score_list[i], min_score,
+                                                                           max_score)
+
         index = 0
         for result in elastic_search_results:
-            score_dict[result] += weight_keyword_similarity * similarity_list[index]
+            score_after_keyword_weight = weight_keyword_similarity * normalize_similarity_score_list[index]
+
+            score_dict[result] += score_after_keyword_weight
             index += 1
 
         # add popularity to weight
 
-        return sorted_list
+
+
+        # return sorted_list
+
+
+# This is the example how to use Weighting Module to add return a new sorted list.
+if __name__ == '__main__':
+    name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name="document1")
+    for name in name_weight_set:
+        keyword = name.keyword
+        print(keyword)
