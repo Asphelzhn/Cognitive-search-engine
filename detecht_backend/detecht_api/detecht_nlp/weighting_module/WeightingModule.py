@@ -21,12 +21,26 @@ class WeightingModule:
     def get_factors(self, elastic_search_results, keyword_similarity, popularity):
         pass
 
-    def calculate_popularity(self, downloads, favourites):
-        
+    # downloads should be [(elastic_search_result，downloads)]
+    # favourite should be [user_keyword1, user_keyword2]
+    def calculate_popularity(self, downloads, favourites, elastic_search_results):
+        weight_downloads = 2
+        weight_favourite = 8
+
+        popularity_score = []
+        index = 0
+        for title in elastic_search_results:
+            for user_keyword in favourites:
+                title_no_stop = nlp(''.join(([str(t) for t in title if not t.is_stop])))
+                favourite_similarity = user_keyword.similarity(title_no_stop)
+                popularity_score[index] += favourite_similarity
+                index +=1
+
 
     def calculate_keyword_similarity(self, elastic_search_results, search_query):
         similarity_list = []
 
+        # Todo fix
         for title in elastic_search_results:
             title_no_stop = nlp(''.join(([str(t) for t in title if not t.is_stop])))
             search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
@@ -34,7 +48,6 @@ class WeightingModule:
             similarity_list.append(similarity)
 
         return similarity_list
-
 
     def normalize(self, temp, min, max):
         return (temp - min) / (max - min)
@@ -55,13 +68,12 @@ class WeightingModule:
             length -= 1
 
         # add keyword similarity to weight
-        similarity_list = WeightingModule.calculate_keyword_similarity(elastic_search_results,search_query)
+        similarity_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query)
         index = 0
         for result in elastic_search_results:
             score_dict[result] += weight_keyword_similarity * similarity_list[index]
             index += 1
 
         # add popularity to weight
-
 
         return sorted_list
