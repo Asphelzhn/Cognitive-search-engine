@@ -13,6 +13,7 @@ export class NetworkSearchResponse {
     keywords: {keyword: string, weight: number}[];
     // pdfContent: string;
   }[];
+  spellcheck: string;
 }
 
 export class NetworkPdfUploadResponse {

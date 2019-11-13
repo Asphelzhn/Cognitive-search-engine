@@ -1,6 +1,21 @@
 .result-div {
   margin-left: 30px;
   width: 70%;
-  height: 100%;
+  //height: 100%;
   font-family: Verdana;
+}
+
+#top-text {
+  margin-left: 30px;
+
+  #spellcheck {
+    #spellcheck-link {
+      color: #000;
+    }
+
+    #spellcheck-link:hover {
+      color: #3a517f;
+      cursor: pointer;
+    }
+  }
 }

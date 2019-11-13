@@ -18,6 +18,9 @@ export class SearchService {
   private currentSearchSource = new BehaviorSubject<string>('');
   currentSearch = this.currentSearchSource.asObservable();
 
+  private spellcheckSource = new BehaviorSubject<string>('');
+  spellcheck = this.spellcheckSource.asObservable();
+
   private totalResultsSource = new BehaviorSubject<number>(0);
   totalResults = this.totalResultsSource.asObservable();
 
@@ -52,6 +55,9 @@ export class SearchService {
 
           this.searchResponseSource.next(newSearchResponse);
           this.totalResultsSource.next(data.totalResult);
+          if (data.spellcheck !== query && query !== '') {
+            this.spellcheckSource.next(data.spellcheck);
+          }
         } else {
           console.log('Error when getting schedule, please refresh the page');
         }
