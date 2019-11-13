@@ -2,6 +2,7 @@
   max-width: 100%;
   display: flex;
   margin-bottom: 30px;
+  font-family: Verdana;
   .img-container {
     min-width: 90px;
     max-width: 90px;
@@ -11,6 +12,7 @@
   }
   .body {
     margin-left: 1em;
+    font-family: Verdana;
     h5 {
       font-size: 1.5em;
       margin-top: 0;
@@ -19,6 +21,13 @@
     p {
       margin-top: 6px;
       margin-bottom: 0px;
+    }
+
+    .keywords {
+
+      .keyword {
+        margin: 5px 15px;
+      }
     }
   }
 }
