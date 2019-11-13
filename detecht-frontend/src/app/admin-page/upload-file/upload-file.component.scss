@@ -1,12 +1,30 @@
 .upload-page-content{
-  height: 80%;
-  width: 75%;
+  height: 25%;
+  width: 45%;
   background-color: #ffffff;
-  border: 1px solid;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  float: left;
   h4{
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.choosed-documents {
+  height: 25%;
+  width: 45%;
+  background-color: #ffffff;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  float: right;
+  h4{
+    margin-left: 8px;
     margin-top: 8px;
     margin-bottom: 8px;
   }
@@ -15,38 +33,47 @@
 .selected-documents{
   height: 75%;
   width: 95%;
-  border: 1px solid;
+  border: 1px solid lightgrey;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  font-family: Verdana;
 }
 
-.file-buttons{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+.sidenav {
+  display: compact;
+  justify-content: center;
+
 
   button {
-    background-color: #61B3E3;
+    background-color: #B0D5D8;
     color: #ffffff;
     border: none;
     padding: 4px 11px;
     margin: 2px;
+    cursor: pointer;
   }
 }
-.heading{
-  text-align: center;
-  background-color: #ffffff;
-  h1{
-    text-align: center;
-    margin: 5px;
+.file-buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  button {
+    background-color: #B0D5D8;
+    color: #ffffff;
+    border: none;
+    padding: 4px 11px;
+    margin: 2px;
+    cursor: pointer;
   }
 }
+
 .container{
-  background-color: #ffffff;
-  height: 90vh;
-  width: 100%;
+  background-color: #F5F5F5;
+  height: 1400px;
+  width: auto;
 }
 

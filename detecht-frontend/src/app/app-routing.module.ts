@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import {SearchPageComponent} from './search-page/search-page.component';
-import {UploadFileComponent} from './admin-page/upload-file/upload-file.component';
-import {StartPageComponent} from "./start-page/start-page.component";
+import { SearchPageComponent } from './search-page/search-page.component';
+import { UploadFileComponent } from './admin-page/upload-file/upload-file.component';
+import { StartPageComponent } from "./start-page/start-page.component";
 
 
 const routes: Routes = [
