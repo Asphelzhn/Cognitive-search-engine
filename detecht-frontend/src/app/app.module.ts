@@ -18,12 +18,12 @@ import { RelatedResultBarComponent } from './search-page/related-search-hits/rel
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { StatsComponent } from './admin-page/stats/stats.component';
-import { DocumentStatsComponent } from './admin-page/document-stats/document-stats.component';
+import {DocumentStatsComponent} from './admin-page/document-stats/document-stats.component';
 import { SidebarComponent } from './admin-page/sidebar/sidebar.component';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 

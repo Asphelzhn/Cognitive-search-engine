@@ -15,14 +15,16 @@ export class UploadedFileComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
+    this.pdfs = [];
     this.adminService.getAllPdf().subscribe(
-      (data: NetworkGetAllPdfResponse) => {
+      (data: any) => {
         console.log(data);
+        data.data = data;
         for (const pdf of data.data) {
-          let d = 0;
-          let f = 3;
-          this.pdfs.push( new Pdf(pdf.id, pdf.file, pdf.title, pdf.downloads, pdf.favorites));
-          this.pdfs.push( new Pdf(pdf.id, pdf.file, pdf.title, d++, f++));
+          console.log(pdf.id, pdf.file.split('/static/pdf/')[1]);
+          // this.pdfs.push( new Pdf(pdf.id, pdf.file.split('/static/pdf/')[1], pdf.title, pdf.downloads, pdf.favorites));
+          this.pdfs.push( new Pdf(pdf.id, pdf.file.split('/static/pdf/')[1], pdf.title,
+            Math.floor(Math.random() * Math.floor(100)), Math.floor(Math.random() * Math.floor(100))));
         }
         console.log(this.pdfs);
       },

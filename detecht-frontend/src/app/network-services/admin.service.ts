@@ -17,8 +17,8 @@ export class AdminService {
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
 
-  getAllPdf(): Observable<NetworkGetAllPdfResponse> {
-    return this.http.get<NetworkGetAllPdfResponse>(environment.apiUrl + 'files/', {
+  getAllPdf(): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + 'files/', {
       withCredentials: true
     }).pipe(catchError(this.networkService.handleError));
   }

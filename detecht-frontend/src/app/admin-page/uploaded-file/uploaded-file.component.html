@@ -5,9 +5,9 @@
   <div class="view-content" >
     <h2>Browse all of your documents</h2>
     <div>
-      <div class="individual-content" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+      <div class="individual-content" *ngFor="let pdf of pdfs">
         <!-- let pdf of pdfs-->
-        <h5 class="card-heading">NAME</h5>
+        <h5 class="card-heading">{{pdf.title}}</h5>
         <!--{{pdf.name}}-->
         <button type="submit" (click)="deletePDF('Name')">Delete</button>
         <!-- deletePDF(pdf.name)-->
