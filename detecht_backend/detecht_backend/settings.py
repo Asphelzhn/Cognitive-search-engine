@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     # log in
     'rest_framework.authtoken',
     'rest_auth',
+    #registration
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
     # CORS
     'corsheaders',
 ]
@@ -158,3 +164,7 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#login django-rest-auth // Oskar Hidén
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1
