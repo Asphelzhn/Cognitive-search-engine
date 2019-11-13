@@ -23,6 +23,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { FileSaverModule } from 'ngx-filesaver';
 import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr-code.component';
+import {NgxKjuaModule} from 'ngx-kjua';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr
     PdfViewerModule,
     MatDialogModule,
     NoopAnimationsModule,
-    FileSaverModule
+    FileSaverModule,
+    NgxKjuaModule
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
