@@ -10,7 +10,6 @@ def convert_pdf_to_json():
         for entry in it:
             if entry.name.endswith(".pdf") and entry.is_file():
 
-
                 fp = open(path + entry.name, 'rb')
 
                 # Iterate over the pages

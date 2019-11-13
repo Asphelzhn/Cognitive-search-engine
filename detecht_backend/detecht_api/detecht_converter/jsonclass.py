@@ -1,12 +1,11 @@
 import json
-
 from detecht_api.detecht_converter.plain_text import json_to_plaintext
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
-from detecht_api.detecht_converter.pdf_converter import pdf_to_json
+from detecht_api.detecht_converter.pdf_converter import convert_pdf_to_json
 
 
 # Jakob, Carl and Oscar
@@ -166,3 +165,27 @@ class JsonClass:
     # Jakob
     def inject_to_es(self):
         inject_one_file(self.get_json_object())
+
+    def add_pages(self):
+        json_tmp = json.loads(self.pdf_name.read())
+        attr = str
+        attr = (json_tmp["pages"])  # collect attribute
+
+        index = 0
+        for i in attr:
+            self.sections.append([i, index])
+            index += len(i)
+
+
+def tester():
+    holder = list()
+    json_name = "detecht_api/static/json/BOAML_report_2016.json"
+    json5 = open(json_name)
+    json_tmp = json.load(json5).json()
+    attr = json_tmp["pages"]
+
+    index = 0
+    for i in attr:
+        holder.append([i, index])
+        index += len(i)
+    return holder
