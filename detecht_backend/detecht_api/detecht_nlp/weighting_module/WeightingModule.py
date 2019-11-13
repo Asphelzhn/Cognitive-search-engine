@@ -82,9 +82,9 @@ class WeightingModule:
         length = len(elastic_search_results)
 
         # weight of each factors
-        weight_elastic_search = 5
-        weight_keyword_similarity = 4
-        weight_popularity = 1
+        weight_elastic_search = 0.470591667
+        weight_keyword_similarity = 0.449807667
+        weight_popularity = 0.079600333
 
         # initial weight of elastic_search_results
         for result in elastic_search_results:
