@@ -10,13 +10,19 @@
       <button type="submit" (click)="search()" class="searchButton">
         search
       </button>
-    <div>
+    </div>
+    <div *ngIf="!searched">
       <div class="individual-content" *ngFor="let pdf of pdfs">
         <!-- let pdf of pdfs-->
         <h5 class="card-heading">{{pdf.title}}</h5>
         <!--{{pdf.name}}-->
         <button type="submit" (click)="deletePDF('Name')">Delete</button>
         <!-- deletePDF(pdf.name)-->
+      </div>
+    </div>
+    <div *ngIf="searched">
+      <div  *ngFor="let result of results">
+        <p>{{result.title}}</p>
       </div>
     </div>
   </div>
