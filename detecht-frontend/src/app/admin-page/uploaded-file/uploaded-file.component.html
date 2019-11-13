@@ -4,6 +4,12 @@
   </div>
   <div class="view-content" >
     <h2>Browse all of your documents</h2>
+    <div class="search">
+      <!--<input (input)="search($event.target.value)"/> -->
+      <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
+      <button type="submit" (click)="search()" class="searchButton">
+        search
+      </button>
     <div>
       <div class="individual-content" *ngFor="let pdf of pdfs">
         <!-- let pdf of pdfs-->
