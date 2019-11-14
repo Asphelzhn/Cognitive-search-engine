@@ -12,18 +12,24 @@ import { ResultBarComponent } from './search-page/search-hits/result-bar/result-
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { UploadFileComponent } from './admin-page/upload-file/upload-file.component';
 import { StartPageComponent } from './start-page/start-page.component';
-import { UploadedFileComponent } from './admin-page/uploaded-file/uploaded-file.component';
+import { AnalyticsComponent } from './admin-page/analytics/analytics.component';
 import { RelatedSearchHitsComponent } from './search-page/related-search-hits/related-search-hits.component';
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
-import { SentenceHitsComponent } from './search-page/search-hits/sentence-hits/sentence-hits.component';
+import { SearchHitPreviewComponent } from './search-page/search-hit-preview/search-hit-preview.component';
 import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { FileSaverModule } from 'ngx-filesaver';
 import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr-code.component';
 import {NgxKjuaModule} from 'ngx-kjua';
+import { SavedDocumentsPageComponent } from './saved-documents-page/saved-documents-page.component';
+import { LoginPageComponent } from './admin-page/login-page/login-page.component';
+import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.component';
+import { RelatedSearchesDecisionTreeComponent } from './search-page/related-searches-decision-tree/related-searches-decision-tree.component';
+import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documents.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +41,18 @@ import {NgxKjuaModule} from 'ngx-kjua';
     AdminPageComponent,
     UploadFileComponent,
     StartPageComponent,
-    UploadedFileComponent,
+    AnalyticsComponent,
     RelatedSearchHitsComponent,
     RelatedResultBarComponent,
     SearchResultPreviewComponent,
-    SentenceHitsComponent,
+    SearchHitPreviewComponent,
     QrCodeComponent,
+    SavedDocumentsPageComponent,
+    LoginPageComponent,
+    AdminNavbarComponent,
+    RelatedSearchesDecisionTreeComponent,
+    EditDocumentsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +67,6 @@ import {NgxKjuaModule} from 'ngx-kjua';
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
-  entryComponents: [SentenceHitsComponent]
+  entryComponents: [SearchHitPreviewComponent]
 })
 export class AppModule { }

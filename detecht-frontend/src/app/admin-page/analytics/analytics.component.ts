@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
 
 @Component({
-  selector: 'app-uploaded-file',
-  templateUrl: './uploaded-file.component.html',
-  styleUrls: ['./uploaded-file.component.scss']
+  selector: 'app-analytics',
+  templateUrl: './analytics.component.html',
+  styleUrls: ['./analytics.component.scss']
 })
-export class UploadedFileComponent implements OnInit {
+export class AnalyticsComponent implements OnInit {
 
   // pdfs: any[];
 
