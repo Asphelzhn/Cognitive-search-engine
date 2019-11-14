@@ -118,15 +118,7 @@ class KeywordSimilarity(APIView):
         favoritepdfs = [input["favoritepdfs"]]
         test = UserFavorites()
         message = test.add_favorite_pdfs(0, favoritepdfs)
-        #test = PDFImportance.objects.get(pdf_name=input["pdf_name"]).update_weight(0.67, input["pdf_name"])
         return HttpResponse(message)
-        #if created:
-         #   return HttpResponse("Abow fett sant")
-        #else:
-         #   return HttpResponse("hej")
-        #query = User.objects.get(id=0)
-        #message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
-
 
 # END: Code written by Armin
 
