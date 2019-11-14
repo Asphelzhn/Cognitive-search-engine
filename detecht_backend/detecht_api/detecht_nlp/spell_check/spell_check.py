@@ -5,7 +5,7 @@ from collections import Counter
 def words(text): return re.findall(r'\w+', text.lower())
 
 
-word_counter = Counter(words(open("big.txt").read()))
+word_counter = Counter(words(open("detecht_api/detecht_nlp/spell_check/big.txt").read()))
 
 
 def P(word, N=sum(word_counter.values())):

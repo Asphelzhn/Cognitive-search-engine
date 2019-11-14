@@ -26,6 +26,7 @@ from rest_framework import status, viewsets, serializers
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
+from detecht_api.detecht_nlp.spell_check import spell_check
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -63,18 +64,45 @@ class Search(APIView):
         response = {
             'success': False,
             'totalResult': 0,
-            'content': []
+            'content': [],
+            'spellcheck': ''
         }
         input = request.data
         if input != {}:
             query = input["query"]
             res = search.search(query, 10)
             response['success'] = True
+            spellcheck = spell_check.correction(query)
+            print("'" + spellcheck + "'")
+            for c in spellcheck:
+                print(ord(c))
+            print("'" + query + "'")
+            for c in query:
+                print(ord(c))
+            # TODO this below does wierdly not work
+            if str(spell_check).strip() != str(query).strip():
+                response['spellcheck'] = spellcheck
             response['totalResult'] = res['hits']
             content = res['results']
             for c in content:
                 response['content'].append(c.frontend_result(query))
-            print(response)
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class GetAbstract(APIView):
+    def post(self, request): #input: "searchString"
+        response = {
+            'success': False,
+            'abstracts': []
+        }
+        input = request.data["networkAbstractRequest"]
+        if input != {}:
+            pdf = input["pdf"]
+            query = input["query"]
+            res = search.get_pdf(pdf)
+            response['success'] = True
+            response['abstracts'] = res['j_class'].get_abstract(query)
             return JsonResponse(response)  # test
         return JsonResponse(response)
 

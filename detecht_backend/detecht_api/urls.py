@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^api/deletepdf/$', views.DeletePdf.as_view()),#deletePDF
     url(r'^api/pdftoes/$', views.AddPdfsToES.as_view()),#Call to add all staged pdfs to Elastic search
     url(r'^api/getanalytics/$', views.GetAnalytics.as_view()),
-    url(r'^api/keywordsimilarity/$', views.KeywordSimilarity.as_view()),
+    url(r'^api/getabstract/$', views.GetAbstract.as_view()),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls'))
 

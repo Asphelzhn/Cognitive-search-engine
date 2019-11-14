@@ -4,9 +4,18 @@
   display:flex;
   justify-content: center;
   font-family: Verdana;
+
+  form {
+    width: auto;
+    height: auto;
+  }
 }
 
 .searchButton {
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: -25px;
+  height: 73px;
   width: 60px;
   border-radius: 25px;
   border: 2px solid lightgrey ;
@@ -20,8 +29,9 @@
   outline-width: 0;
 }
 
- input {
-   width: 50%;
+ .searchTerm {
+   display: inline-block;
+   width: 400px;
    font-size: 25px;
    border-radius: 25px;
    border: 2px solid lightgrey;
