@@ -14,17 +14,11 @@ else:
     print('Could not connect to elasticsearch')
 
 
-json_string = '{"title":"Rupert", "age": 25, "desig":"developer"}'
-
-
 def get_file(filename):
     f = open(filename, "r")
     if f.mode == 'r':
         contents = f.read()
     return contents
-
-
-#get_file("test")
 
 
 # not sure on how the tell it that it's supposed to go for the index db in our ES stack. but this may work.

@@ -24,6 +24,8 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { FileSaverModule } from 'ngx-filesaver';
 import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr-code.component';
 import {NgxKjuaModule} from 'ngx-kjua';
+import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
+import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import {NgxKjuaModule} from 'ngx-kjua';
     SearchResultPreviewComponent,
     SentenceHitsComponent,
     QrCodeComponent,
+    TrendingDocumentsComponent,
+    TrendingDocumentComponent,
   ],
   imports: [
     BrowserModule,
