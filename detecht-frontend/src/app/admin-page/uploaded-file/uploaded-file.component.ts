@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
-import {NetworkGetAllPdfResponse, NetworkPdfUploadResponse} from '../../network-services/network-data-types';
 import {Pdf, SearchResponse} from '../../data-types';
 import {SearchService} from '../../network-services/search.service';
 
@@ -27,9 +26,9 @@ export class UploadedFileComponent implements OnInit {
     this.searched = true;
   }
 
-  deletePDF(fileName: string): void {
-    console.log('Delete ' + fileName);
-  }
+ // deletePDF(fileName: string): void {
+  //  console.log('Delete ' + fileName);
+ // }
 
   ngOnInit() {
     this.pdfs = [];
