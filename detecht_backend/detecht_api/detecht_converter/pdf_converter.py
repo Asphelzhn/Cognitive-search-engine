@@ -4,8 +4,10 @@ from pdfminer.pdfpage import PDFPage
 import os
 import io
 
+#carl
 def convert_pdf_to_json():
     path = "detecht_api/static/pdf/"
+    all_documents = {}
     with os.scandir(path) as it:
         for entry in it:
             if entry.name.endswith(".pdf") and entry.is_file():
@@ -39,11 +41,24 @@ def convert_pdf_to_json():
                 filename = entry.name
                 filename = filename[:-4]
                 filepath = 'detecht_api/static/json/' + filename + '.json'
-                with open(filepath, 'w+', encoding="utf-8") as f:
-                    print("{\"All_text\": \"" + all_text + "\",", file=f)
-                    print("\"pages\":[", end="",file=f)
-                    for i in range(len(pages)-1):
-                        print(" \""+pages[i]+"\",", end="",file=f)
-                    print(" \""+pages[-1]+"\" ",end="",file=f)
-                    print("]",end="",file=f)
-                    print("}",end="",file=f)
+                #with open(filepath, 'w+', encoding="utf-8") as f:
+
+                    #print("{\"All_text\": \"" + all_text + "\",", file=f)
+                document = "\"pages\":["
+                for i in range(len(pages)-1):
+                    document += " \""+pages[i]+"\","
+                document += " \"" + pages[i] + "\","
+                document +=" \"" + pages[-1] + "\" ]}"
+                all_documents[entry.name] = pages
+                    #print(document,file=f)
+
+            #with open(filepath, 'w+', encoding="utf-8") as f:
+            #    print(all_documents,file=f)
+                    #print("]", end="", file=f)
+                    #print("\"pages\":[", end="",file=f)
+                    #for i in range(len(pages)-1):
+                    #    print(" \""+pages[i]+"\",", end="",file=f)
+                    #print(" \""+pages[-1]+"\" ",end="",file=f)
+                    #print("]",end="",file=f)
+                    #print("}",end="",file=f)
+    return all_documents
