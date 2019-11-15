@@ -20,15 +20,16 @@ class JsonClass:
         self.tags = list()
         self.sections = list()
         self.keywords = list()
-      #  self.pages = pdf_extractor(self.pdf_name).get"pages"
-       # self.creation = pdf_extractor(self.pdf_name).get("date")
+        #  self.pages = pdf_extractor(self.pdf_name).get"pages"
+        # self.creation = pdf_extractor(self.pdf_name).get("date")
 
-        dict = pdf_extractor(self.pdf_name)
-        self.pages = [ sub['pages'] for sub in dict ]
-        self.creation =  [ sub['date'] for sub in dict ]
+        self.dict = pdf_extractor(self.pdf_name)
+        self.pages = [sub['pages'] for sub in dict]
+        self.creation = [sub['date'] for sub in dict]
 
         for i in self.pages:
-            self.full_text +=i
+            self.full_text += i
+
     @classmethod
     def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
