@@ -5,7 +5,7 @@ from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
-from detecht_api.detecht_converter.pdf_converter import convert_pdf_to_json
+from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 
 
 # Jakob, Carl and Oscar
