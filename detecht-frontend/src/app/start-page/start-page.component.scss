@@ -1,0 +1,20 @@
+.container{
+  background-image: url("../../assets/homeBackground.png");/* The image used */
+  background-color: #ffffff; /* Used if the image is unavailable */
+  width: auto;
+  height: 1080px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;/* Resize the background image to cover the entire container */
+}
+
+.start-page-container {
+  padding-top: 350px;
+}
+
+.logo-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

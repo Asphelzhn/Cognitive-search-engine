@@ -3,7 +3,7 @@ import json
 from detecht_api.detecht_converter.plain_text import json_to_plaintext
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
-from detecht_api.detecht_nlp import imp_sent_creator
+from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
 from detecht_api.detecht_converter.pdf_converter import pdf_to_json
@@ -16,8 +16,8 @@ class JsonClass:
 
     def __init__(self, pdf_name, title, full_text):
         self.pdf_name = pdf_name
-        self.full_text = title
-        self.title = full_text
+        self.full_text = full_text
+        self.title = title
         self.tags = list()
         self.sections = list()
         self.keywords = list()
@@ -62,8 +62,11 @@ class JsonClass:
                 # self.add_section(i, i+section_length, keywords)
                 i += section_length
 
-    def frontend_result(self):
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name}
+    def frontend_result(self, query):
+        keywords = []
+        for keyword in self.keywords:
+            keywords.append({'keyword': keyword.get_keyword(), 'weight': keyword.get_weight()})
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
 
     def get_json_object(self):
         keywords_tmp = list()
@@ -158,9 +161,9 @@ class JsonClass:
     # Henrik
     def get_abstract(self, query):
         sent_array = imp_sent_creator(self.full_text, query, 3)
-        abstract = ""
+        abstract = []
         for sentence in sent_array:
-            abstract += str(sentence.sent)
+            abstract.append({'sentence': str(sentence.sent)})
         return abstract
 
     # Jakob

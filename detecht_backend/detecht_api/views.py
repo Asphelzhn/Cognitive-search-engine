@@ -2,6 +2,18 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
+
+
+"""
+Oskar H & Armin
+"""
+
+# imports by ARMIN
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from detecht_api.models import Keywords, PDFImportance
+from detecht_api.models import Keyword_distance
+
 # imports by OSKAR
 from detecht_api.models import Document #files
 from rest_framework.views import APIView
@@ -13,7 +25,8 @@ from rest_framework import status, viewsets, serializers
 # Our packages
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-
+from detecht_api.detecht_db_handling.analytics import get_analytics_document
+from detecht_api.detecht_nlp.spell_check import spell_check
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -51,17 +64,45 @@ class Search(APIView):
         response = {
             'success': False,
             'totalResult': 0,
-            'content': []
+            'content': [],
+            'spellcheck': ''
         }
         input = request.data
         if input != {}:
             query = input["query"]
             res = search.search(query, 10)
             response['success'] = True
+            spellcheck = spell_check.correction(query)
+            print("'" + spellcheck + "'")
+            for c in spellcheck:
+                print(ord(c))
+            print("'" + query + "'")
+            for c in query:
+                print(ord(c))
+            # TODO this below does wierdly not work
+            if str(spell_check).strip() != str(query).strip():
+                response['spellcheck'] = spellcheck
             response['totalResult'] = res['hits']
             content = res['results']
             for c in content:
-                response['content'].append(c.frontend_result())
+                response['content'].append(c.frontend_result(query))
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class GetAbstract(APIView):
+    def post(self, request): #input: "searchString"
+        response = {
+            'success': False,
+            'abstracts': []
+        }
+        input = request.data["networkAbstractRequest"]
+        if input != {}:
+            pdf = input["pdf"]
+            query = input["query"]
+            res = search.get_pdf(pdf)
+            response['success'] = True
+            response['abstracts'] = res['j_class'].get_abstract(query)
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
@@ -86,7 +127,35 @@ class AddFile(APIView):
         return JsonResponse(response)
 
 
-# files, adds file to db and filesystem.
+# BEGIN: Code written by Armin
+# Write Class-Based Views which helps keep code DRY.
+class Keyword(APIView):
+   # permission_classes = (IsAuthenticated,)
+   def post(self, request): #input: "keyword"
+        input = request.data
+
+        wordToStore = input["keyword"]
+        message = Keywords.add_keyword(wordToStore)
+
+        return HttpResponse(message)
+
+class KeywordSimilarity(APIView):
+
+    def post(self, request): #input: keyword1, keyword2, similarity
+        input = request.data
+        #test = PDFImportance.objects.get(pdf_name=input["pdf_name"]).update_weight(0.67, input["pdf_name"])
+        return HttpResponse()
+        #if created:
+         #   return HttpResponse("Abow fett sant")
+        #else:
+         #   return HttpResponse("hej")
+        #query = User.objects.get(id=0)
+        #message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
+
+
+# END: Code written by Armin
+
+# files
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
@@ -112,4 +181,10 @@ class AddPdfsToES(APIView):
         response = {
             'success': True
         }
+        return JsonResponse(response)
+
+
+class GetAnalytics(APIView):
+    def get(self, request):
+        response = get_analytics_document()
         return JsonResponse(response)
