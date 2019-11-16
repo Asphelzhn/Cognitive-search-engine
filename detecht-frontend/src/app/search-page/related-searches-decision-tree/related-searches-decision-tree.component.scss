@@ -1,0 +1,32 @@
+#container {
+  width: 400px;
+  height: auto;
+  /* UI Properties */
+  background: #E9EAED 0% 0% no-repeat padding-box;
+  border-radius: 40px;
+  opacity: 0.75;
+  padding: 20px;
+
+  .bubble {
+    background: #C7D4DB 0% 0% no-repeat padding-box;
+    border-radius: 100px;
+    opacity: 1;
+    text-align: center;
+    font: Medium 25px/14px Poppins;
+    letter-spacing: 1px;
+    color: #383838;
+    opacity: 1;
+
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .big {
+    width: 80%;
+  }
+
+  .small {
+    width: 50%;
+  }
+
+}

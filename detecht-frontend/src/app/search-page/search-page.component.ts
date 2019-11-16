@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {SearchResponse} from '../data-types';
+import {SearchHitPreviewService} from '../message-services/search-hit-preview.service';
 
 @Component({
   selector: 'app-search-page',
@@ -10,13 +11,14 @@ import {SearchResponse} from '../data-types';
 export class SearchPageComponent implements OnInit {
   staticUrl: string;
   @Input() result: SearchResponse;
+  previewResult: SearchResponse;
 
-  constructor(
-  ) {
+  constructor(private searchHitPreviewService: SearchHitPreviewService) {
   }
 
   ngOnInit() {
     this.staticUrl = environment.staticUrl;
+    this.searchHitPreviewService.result.subscribe(result => this.previewResult = result);
   }
 
 }

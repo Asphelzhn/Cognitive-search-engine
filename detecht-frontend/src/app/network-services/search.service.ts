@@ -59,7 +59,7 @@ export class SearchService {
             this.spellcheckSource.next(data.spellcheck);
           }
         } else {
-          console.log('Error when getting schedule, please refresh the page');
+          console.log('Error when getting schedule, please refresh the result');
         }
       },
       (error: any) => {
