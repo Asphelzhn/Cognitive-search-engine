@@ -14,20 +14,20 @@ export class AnalyticsComponent implements OnInit {
   results: Pdf[];
   searchString: string;
 
-  constructor(private adminService: AdminService,
-              private searchService: SearchService
-  ) {
+  constructor(private adminService: AdminService) {
   }
 
   search(): void {
     console.log('Searching for: ' + this.searchString);
     this.results = [];
     for (const pdf of this.pdfs) {
-      console.log(pdf.title + ' - ' + this.searchString);
+      console.log(pdf);
       if (pdf.title.toLowerCase().includes(this.searchString.toLowerCase())) {
         this.results.push(pdf);
       }
     }
+    console.log('Result');
+    console.log(this.results);
   }
 
  // deletePDF(fileName: string): void {
@@ -54,7 +54,5 @@ export class AnalyticsComponent implements OnInit {
         console.log(error);
       }
     );
-
-    this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
   }
 }

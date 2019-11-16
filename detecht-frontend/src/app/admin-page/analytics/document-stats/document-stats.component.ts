@@ -12,11 +12,14 @@ export class DocumentStatsComponent implements OnInit {
   constructor() { }
 
   sortFavoritesArray() {
+    console.log('in downloads');
+    console.log(this.pdfs);
     this.pdfs.sort((a, b) => b.favorites - a.favorites);
   }
 
   sortDownloadsArray() {
     console.log('in downloads');
+    console.log(this.pdfs);
     this.pdfs.sort((a, b) => b.downloads - a.downloads);
   }
 
