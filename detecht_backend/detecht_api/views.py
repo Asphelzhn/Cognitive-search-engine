@@ -11,8 +11,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, PDFImportance, UserFavorites
-from detecht_api.models import Keyword_distance
+from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
 
 # imports by OSKAR
 from detecht_api.models import Document #files
@@ -128,7 +127,6 @@ class AddFile(APIView):
 
 
 # BEGIN: Code written by Armin
-# Write Class-Based Views which helps keep code DRY.
 class Keyword(APIView):
    # permission_classes = (IsAuthenticated,)
    def post(self, request): #input: "keyword"
@@ -139,14 +137,16 @@ class Keyword(APIView):
 
         return HttpResponse(message)
 
-class KeywordSimilarity(APIView):
+#class KeywordSimilarity(APIView):
 
-    def post(self, request): #input: keyword1, keyword2, similarity
-        input = request.data
-        favoritepdfs = [input["favoritepdfs"]]
-        test = UserFavorites()
-        message = test.add_favorite_pdfs(0, favoritepdfs)
-        return HttpResponse(message)
+#    def post(self, request): #input: keyword1, keyword2, similarity
+        #input = request.data
+        #message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
+        #input = request
+        #test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
+        #UserFavorites.remove_favorite_pdf(1, "hej")
+        #message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
+ #       return HttpResponse(message)
 
 # END: Code written by Armin
 
