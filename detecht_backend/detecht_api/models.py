@@ -53,15 +53,24 @@ class Keyword_distance(models.Model):
     similarity = models.DecimalField(max_digits=5,
                                      decimal_places=4)  # Can take max 1 digit (0 or 1) and 4 decimals. eg 1.1234
 
-    # id_1 = models.IntegerField()  # Values from -2147483648 to 2147483647
-    # id_2 = models.IntegerField()
-    # similarity = models.DecimalField(max_digits=5,
-    #                                  decimal_places=4)  # Can take max 1 digit (0 or 1) and 4 decimals. eg 1.1234
     class Meta:
         unique_together = ("id_1", "id_2")  # Django doesn't support multiple pk, so this is the solution.
 
     def get_similarity(self):
         return self.similarity
+
+
+class UserFavorites(models.Model):
+    pdf_name = models.CharField(max_length=200)
+    user_id = models.PositiveIntegerField()
+
+    def add_favorite_pdf(user_id, pdf_name):
+        UserFavorites.objects.get_or_create(user_id=user_id, pdf_name=pdf_name)
+        return "Added favorite PDF"
+
+    def remove_favorite_pdf(user_id, pdf_name):
+        UserFavorites.objects.filter(user_id=user_id, pdf_name=pdf_name).delete()
+        return "Removed favorite PDF"
 
 
 class PDFImportance(models.Model):
