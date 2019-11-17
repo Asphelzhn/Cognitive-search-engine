@@ -41,7 +41,7 @@ export class SearchHitPreviewComponent implements OnInit {
           }
           console.log(this.sentences);
         } else {
-          console.log('Error when getting schedule, please refresh the result');
+          console.log('Error when getting schedule, please refresh the results');
         }
       },
       (error: any) => {
