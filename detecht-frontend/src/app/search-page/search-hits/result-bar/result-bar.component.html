@@ -1,12 +1,17 @@
 <div class="search-result-container">
-  <div class="img-container">
+<!--  <div class="img-container">
     <app-qr-code
       [url]="staticUrl + 'pdf/' + result.name"
     ></app-qr-code>
-  </div>
+  </div>-->
   <div class="body">
-    <a (click)="showPreview = true" href="{{staticUrl + 'pdf/' + result.name}}" target="_blank"><h5
-      class="card-title">{{result.title}}</h5></a>
+    <h5 class="card-title">{{result.title}}</h5>
+    <div class="keywords">
+      <span class="keyword" *ngFor="let keyword of result.keywords"
+            [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}, </span>
+    </div>
+    <button (click)="showPreview = true">Show preview</button>
+    <button (click)="openDialog()">Show sentences</button>
     <button type="button"
             fileSaver
             [method]="'GET'"
@@ -17,13 +22,6 @@
 
     >Download
     </button>
-
-    <div class="keywords">
-      <span class="keyword" *ngFor="let keyword of result.keywords"
-            [ngStyle]="{'background-color': 'rgb(' + 255 * (1 - keyword.weight) + ',' + 255 * (1 - keyword.weight) + ', 255 )'}">{{keyword.keyword}}</span>
-    </div>
-    <button (click)="showPreview = true">Show preview</button>
-    <button (click)="openDialog()">Show sentences</button>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
                              [result]="result"></app-search-result-preview>
