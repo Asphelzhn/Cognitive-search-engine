@@ -20,9 +20,12 @@ class JsonClass:
         self.date_created = pdf_extractor(self.pdf_name)[1]
         self.full_text = ""
 
+        dict = pdf_extractor(self.pdf_name)
+        self.pages = [ sub['pages'] for sub in dict ]
+        self.creation =  [ sub['date'] for sub in dict ]
+
         for i in self.pages:
             self.full_text +=i
-
     @classmethod
     def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
