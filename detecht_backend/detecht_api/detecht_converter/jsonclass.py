@@ -7,28 +7,22 @@ from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
 from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 
-
-# Jakob, Carl and Oscar
-
-
+# Jakob, Carl, Oscar and Henrik
 class JsonClass:
 
-    def __init__(self, pdf_name, title, full_text):
+    def __init__(self, pdf_name, title):
         self.pdf_name = pdf_name
-        self.full_text = full_text
         self.title = title
         self.tags = list()
         self.sections = list()
         self.keywords = list()
-      #  self.pages = pdf_extractor(self.pdf_name).get"pages"
-       # self.creation = pdf_extractor(self.pdf_name).get("date")
-
-        dict = pdf_extractor(self.pdf_name)
-        self.pages = [ sub['pages'] for sub in dict ]
-        self.creation =  [ sub['date'] for sub in dict ]
+        self.pages = pdf_extractor(self.pdf_name)[0]
+        self.date_created = pdf_extractor(self.pdf_name)[1]
+        self.full_text = ""
 
         for i in self.pages:
             self.full_text +=i
+
     @classmethod
     def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
@@ -184,16 +178,3 @@ class JsonClass:
             self.sections.append([i, index])
             index += len(i)
 
-
-def tester():
-    holder = list()
-    json_name = "detecht_api/static/json/BOAML_report_2016.json"
-    json5 = open(json_name)
-    json_tmp = json.load(json5).json()
-    attr = json_tmp["pages"]
-
-    index = 0
-    for i in attr:
-        holder.append([i, index])
-        index += len(i)
-    return holder
