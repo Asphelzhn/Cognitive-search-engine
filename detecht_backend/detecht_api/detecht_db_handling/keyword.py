@@ -77,16 +77,16 @@ def date_calc(dateNow):
     return datenow1
 
 # interact with document
-def Preview_Document(pdf_name1, userid1, type):
+def Preview_Document(pdf_name, userid, type):
     dateNow = date.today()
     if type == "Preview":
-        new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Preview")
+        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
         new.save()
     elif type == "Download":
-        new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
+        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
         new.save()
     else:
-        print("error")    
+        print("error")
     return
 
 # def Download_Document(pdf_name1, userid1):
