@@ -1,3 +1,5 @@
+from rest_framework.exceptions import ValidationError
+
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
     Pdf_Similarities, User_Keyword
@@ -31,7 +33,10 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
-    new.save()
+    if len(new.pdf_name) <=50:
+        new.save()
+    else:
+        print("error")
     return
 
 
