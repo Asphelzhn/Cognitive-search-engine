@@ -32,6 +32,7 @@ export class SearchHitsComponent implements OnInit {
 
   searchForSpellcheck() {
     this.searchService.search(this.spellcheck);
+    this.spellcheck = undefined;
   }
 
   removeResult(title: string) {
