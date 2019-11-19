@@ -5,25 +5,29 @@
     ></app-qr-code>
   </div>-->
   <div class="body">
-    <div id="closeButton">
-      <button id="close" (click)="removeResult(result.title)">X</button>
+    <div class="close">
+      <div id="close-button" (click)="removeResult(result.title)"></div>
     </div>
     <h5 class="card-title" (click)="showPreview = true">{{result.title}}</h5>
     <div class="keywords">
       <span class="keyword" *ngFor="let keyword of result.keywords"
             [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}, </span>
     </div>
-    <button (click)="openDialog()">Show sentences</button>
-    <button type="button"
-            fileSaver
-            [method]="'GET'"
-            [fileName]="result.title"
-            [url]="staticUrl + 'pdf/' + result.name"
-            [header]="{token: 'demo'}"
-            [query]="{pi: 1, name: 'demo'}"
 
-    >Download
-    </button>
+    <div id="button-container">
+      <div class="buttons" id="expand-button" (click)="openDialog()"></div>
+      <div id="download-button" class="buttons"
+              fileSaver
+              [method]="'GET'"
+              [fileName]="result.title"
+              [url]="staticUrl + 'pdf/' + result.name"
+              [header]="{token: 'demo'}"
+              [query]="{pi: 1, name: 'demo'}"
+
+      ></div>
+
+      <div class="buttons" id="like-button"></div>
+    </div>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
                              [result]="result"></app-search-result-preview>
