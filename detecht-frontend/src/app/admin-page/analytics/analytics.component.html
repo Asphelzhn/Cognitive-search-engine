@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="left-content">
+    <app-stats></app-stats>
+    <div class="page-content">
+      <div class="upload-content">
+        <button routerLink="/upload" class="upload-btn">Upload document</button>
+      </div>
+      <div class="view-content" >
+        <h2>Browse all of your documents</h2>
+        <div class="search">
+          <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
+          <button type="submit" (click)="search()" class="searchButton">
+            search
+          </button>
+        </div>
+        <div>
+          <div class="individual-content" *ngFor="let pdf of pdfs">
+            <h5 class="card-heading">{{pdf.title}}</h5>
+            <!--  <button type="submit" (click)="deletePDF(pdf.title)">Delete</button>-->
+          </div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+  <div class="right-content">
+    <app-document-stats [pdfs]="results"></app-document-stats>
+  </div>
+</div>
