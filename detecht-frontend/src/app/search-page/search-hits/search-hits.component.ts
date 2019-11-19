@@ -16,6 +16,7 @@ export class SearchHitsComponent implements OnInit {
   spellcheck: string;
   numberOfHits: number;
   @Input() result: SearchResponse;
+  counter: number;
 
   constructor(
     private searchService: SearchService,
@@ -33,5 +34,14 @@ export class SearchHitsComponent implements OnInit {
     this.searchService.search(this.spellcheck);
   }
 
+  removeResult(title: string) {
+    this.counter = 0;
+    for (const result of this.results) {
+      if (result.title === title) {
+        this.results.splice(this.counter, 1);
+      }
+      this.counter = + 1;
+    }
+  }
 }
 
