@@ -5,22 +5,28 @@
 
 .search-result-container {
   width: 70%;
-  margin-top: 40px;
+}
+
+.search-bar {
 }
 
 .search-sidebar {
   width: 30%;
-  margin-left: 40px;
-  margin-top: 40px;
+
 }
 
-.container {
-  display: flex;
-  height: 1400px;
+.full-page-container {
+  min-height: 100vh;
+  min-width: 100vw;
   background-image: url("../../assets/resultBackground.png");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
+
+}
+
+.container {
+  display: flex;
 }
 
 

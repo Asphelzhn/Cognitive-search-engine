@@ -1,9 +1,18 @@
-.results {
-  display: grid;
-  grid-template-columns: auto auto;
-  width: 100%;
-  margin: 0;
+@media screen and (min-width: 701px) {
+  .results {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    margin: 0;
+  }
 }
+@media screen and (max-width: 700px) {
+  .results{
+    width: 100%;
+    margin:0;
+  }
+}
+
 .result-div {
   margin-left: 30px;
   width: 90%;
@@ -26,3 +35,4 @@
     }
   }
 }
+

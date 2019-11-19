@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {SearchResponse} from '../../../data-types';
 import {environment} from '../../../../environments/environment';
 import {MatDialog, MatDialogConfig} from '@angular/material';
@@ -18,6 +18,7 @@ export class ResultBarComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   showSentences: boolean;
+  @Output() removeEvent: EventEmitter<string> = new EventEmitter()
   @Input() result: SearchResponse;
 
   constructor(
@@ -25,6 +26,10 @@ export class ResultBarComponent implements OnInit {
     private previewData: PreviewMessageService,
     private searchHitPreviewService: SearchHitPreviewService
   ) {
+  }
+
+  removeResult(remove: string) {
+    this.removeEvent.emit(remove);
   }
 
   openDialog() {

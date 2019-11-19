@@ -14,6 +14,11 @@
   //    width:100%;
     }
   }
+
+  .card-title {
+    cursor: pointer;
+  }
+
   .body {
     max-width: 85%;
     display: inline-block;
@@ -22,9 +27,19 @@
     margin-left: 10%;
     font-family: Verdana;
     color: #383838;
+    #closeButton {
+      text-align: right;
+      margin-top: 5%;
+      margin-right: 5%;
+      cursor: pointer;
+
+      #close{
+        cursor: pointer;
+      }
+    }
     h5 {
       font-size: 1.5em;
-      margin-top: 5%;
+      margin-top: 0;
       margin-bottom: 5%;
 
   //    margin-top: 0;

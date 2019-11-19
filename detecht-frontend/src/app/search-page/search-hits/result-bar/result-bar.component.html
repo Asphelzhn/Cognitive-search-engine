@@ -5,12 +5,14 @@
     ></app-qr-code>
   </div>-->
   <div class="body">
-    <h5 class="card-title">{{result.title}}</h5>
+    <div id="closeButton">
+      <button id="close" (click)="removeResult(result.title)">X</button>
+    </div>
+    <h5 class="card-title" (click)="showPreview = true">{{result.title}}</h5>
     <div class="keywords">
       <span class="keyword" *ngFor="let keyword of result.keywords"
             [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}, </span>
     </div>
-    <button (click)="showPreview = true">Show preview</button>
     <button (click)="openDialog()">Show sentences</button>
     <button type="button"
             fileSaver

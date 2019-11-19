@@ -1,11 +1,15 @@
 <!--<img src= "assets/logo.png" class="logo-img" alt="logo" >-->
-<app-search-bar [changePage]="false"></app-search-bar>
-<div class="container">
-  <div class="search-result-container">
-    <app-search-hits></app-search-hits>
+<div class="full-page-container">
+  <div class="search-bar">
+    <app-search-bar [changePage]="false"></app-search-bar>
   </div>
-  <div class="search-sidebar">
-    <app-related-searches-decision-tree></app-related-searches-decision-tree>
+  <div class="container">
+    <div class="search-result-container">
+      <app-search-hits></app-search-hits>
+    </div>
+    <div class="search-sidebar">
+      <app-related-searches-decision-tree></app-related-searches-decision-tree>
+    </div>
   </div>
 </div>
 <app-search-hit-preview *ngIf="previewResult" [result]="previewResult"></app-search-hit-preview>
