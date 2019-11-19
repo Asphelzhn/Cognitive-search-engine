@@ -7,17 +7,14 @@
   width: 70%;
 }
 
-.search-bar {
-}
-
 .search-sidebar {
   width: 30%;
 
 }
 .full-page-container {
-  min-height: 100vmax;
-  min-width: 100vmax;
-  overflow-x: hidden;
+  min-height: 100vh;
+  min-width: 100vw;
+  //overflow-x: hidden;
   background-image: url("../../assets/backgrounds/result-background.png");
   background-size: cover;
   background-position: top;
