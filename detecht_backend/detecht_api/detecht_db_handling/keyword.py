@@ -30,7 +30,7 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # Henrik
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
-    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight).d
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
     new.save()
     return
 
