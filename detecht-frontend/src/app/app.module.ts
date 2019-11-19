@@ -1,12 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-// import {ReactiveFormsModule } from '@angular/forms';
-// import {FileSelectDirective } from '@angular/forms';
-// import {CustomMaterialModule} from "./admin-page/upload-file/material.module";
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +19,7 @@ import { SearchResultPreviewComponent} from './search-page/search-result-preview
 import { PdfViewerModule} from 'ng2-pdf-viewer';
 import { SearchHitPreviewComponent } from './search-page/search-hit-preview/search-hit-preview.component';
 import { MatDialogModule } from '@angular/material';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { FileSaverModule } from 'ngx-filesaver';
 import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr-code.component';
@@ -35,6 +30,9 @@ import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.com
 import { RelatedSearchesDecisionTreeComponent } from './search-page/related-searches-decision-tree/related-searches-decision-tree.component';
 import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documents.component';
 import { FooterComponent } from './footer/footer.component';
+import {MatIconModule} from "@angular/material/icon";
+import {FileUploadModule} from "ng2-file-upload";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -58,7 +56,6 @@ import { FooterComponent } from './footer/footer.component';
     RelatedSearchesDecisionTreeComponent,
     EditDocumentsComponent,
     FooterComponent,
-    //FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -69,10 +66,11 @@ import { FooterComponent } from './footer/footer.component';
     MatDialogModule,
     NoopAnimationsModule,
     FileSaverModule,
-    //ReactiveFormsModule,
-    //CustomMaterialModule,
-    //BrowserAnimationsModule,
-    NgxKjuaModule
+    NgxKjuaModule,
+    MatIconModule,
+    FileUploadModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],

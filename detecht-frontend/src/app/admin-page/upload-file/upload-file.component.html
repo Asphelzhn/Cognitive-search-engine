@@ -1,3 +1,4 @@
+
 <div class="container">
 
   <div class = "sidenav">
@@ -8,8 +9,8 @@
     <h4>Upload new document</h4>
     <div class="selected-documents">
       <div class="form-group">
-        <input placeholder="Choose name"  type="text" name="title" [(ngModel)]="fileTitle">
-        <input type="file" name="image" (change)="fileProgress($event)" />
+        <!--<input placeholder="Choose name"  type="text" name="title" [(ngModel)]="fileTitle">-->
+        <input type="file" name="image" (change)="fileProgress($event)" multiple/>
       </div>
     </div>
   </div>
@@ -17,6 +18,7 @@
   <div class="choosed-documents">
     <h4>Choosed documents</h4>
 
+    Show all choosed documents
 
     <div class="file-buttons">
 
@@ -30,7 +32,7 @@
         {{uploadedFilePath}}
       </div>
       <div class="form-group">
-        <button class="btn btn-primary upload-file-btn"  (click)="onSubmit()">Upload document</button>
+        <button class="btn btn-primary upload-file-btn"  (click)="onSubmit()">Upload documents</button>
       </div>
     </div>
   </div>
@@ -38,51 +40,45 @@
 {{responseMessage}}
 
 <!--
-<h4>Welcome to !</h4>
-<mat-card>
-      <form [formGroup]="uploadForm" (ngSubmit)="uploadSubmit()">
-        <mat-card-content>
-          <mat-form-field class="form-field">
-            <mat-label>Select Document Type</mat-label>
-            <mat-select formControlName="type" required>
-              <mat-option value="Passport">Passport</mat-option>
-              <mat-option value="Driving_license">Driving License</mat-option>
-              <mat-option value="PAN">PAN</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          <input formControlName="document" type="file" ng2FileSelect accept=".png" [uploader]="uploader" multiple/><br/>
-          <br>
-          <div class="drop-zone">
-          <div ng2FileDrop [uploader]="uploader" class="drop-zone">
-             Drag and drop files to upload
-          </div>
-          </div>
-          <table>
-            <thead>
-            <tr>
-              <th width="90%">
-                File Name
-              </th>
-              <th width="10%">
-                Remove
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let item of uploader.queue">
-              <th width="90%">
-                (NaN MB)
-              </th>
-              <th class="text-center" width="10%">
-                <mat-icon (click)="item.remove()">delete</mat-icon>
-              </th>
-            </tr>
-            </tbody>
-          </table>
-          <br>
-          <button mat-raised-button color="accent" [disabled]="!uploadForm.valid" type="submit">Upload Data</button>
-        </mat-card-content>
-      </form>
-</mat-card>
+
+<div class="container">
+  <mat-card>
+    <form [formGroup]="uploadForm" (ngSubmit)="uploadSubmit()">
+      <mat-card-content>
+        <br>
+        <input type="file" name="image" (change)="fileProgress($event)" multiple/>
+        Hej
+        <input formControlName="document" type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" multiple/><br/>
+        <br>
+        <div ng2FileDrop [uploader]="uploader" class="drop-zone">
+          Drag and drop files to upload
+        </div>
+        <table>
+          <thead>
+          <tr>
+            <th width="90%">
+              File Name
+            </th>
+            <th width="10%">
+              Remove
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <th width="90%">
+              (NaN MB)
+            </th>
+            <th class="text-center" width="10%">
+              <mat-icon (click)="item.remove()">delete</mat-icon>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+        <br>
+        <button class="btn btn-primary upload-file-btn"  (click)="onSubmit()">Upload document</button>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>
 -->
