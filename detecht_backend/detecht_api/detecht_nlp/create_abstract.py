@@ -64,4 +64,3 @@ def create_abstract(doc, query):
 
     for w in summarized_sentences:
         print(w.text)
-

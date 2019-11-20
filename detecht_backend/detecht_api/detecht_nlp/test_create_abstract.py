@@ -45,4 +45,3 @@ query = "Sherlock to Holmes"
 
 def test():
     create_abstract.create_abstract(document1, query)
-

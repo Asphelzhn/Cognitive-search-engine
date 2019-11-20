@@ -18,5 +18,3 @@ def word_similarity (word1, word2, size="md"):
     token2 = nlp(word2)
 
     return token1.similarity(token2)
-
-
