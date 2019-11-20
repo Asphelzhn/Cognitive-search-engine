@@ -1,8 +1,9 @@
 from detecht_api.models import StagedPdf
 from detecht_api.models import StagedPdfTags
-from detecht_api.detecht_es import insert_file
 from detecht_api.detecht_converter.jsonclass import JsonClass
-
+# Import commented since it is not used in file and tests are complaining about it but i dont want to remove it
+# completely //Jakob
+# from detecht_api.detecht_es import insert_file
 
 def add_staged_pdf(pdf_name, title):
     new_pdf = StagedPdf(pdf_name=pdf_name, title=title)

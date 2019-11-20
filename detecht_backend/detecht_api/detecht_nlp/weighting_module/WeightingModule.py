@@ -12,9 +12,10 @@ Keyword similarity (compilation of the weight of matched keywords)
 Popularity (#downloads & #favorites)
 '''
 import spacy
-
 from detecht_api import models
-from detecht_api.detecht_db_handling.analytics import get_analytics_document
+# Import commented since it is not used in file and tests are complaining about it but i dont want to remove it
+# completely //Jakob
+# from detecht_api.detecht_db_handling.analytics import get_analytics_document
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -62,7 +63,6 @@ class WeightingModule:
             favourite = record.favorites
             score = download * download_weight + favourite * favourite_weight
             popularity_score.append(score)
-
 
         max_score = max(popularity_score)
         min_score = min(popularity_score)

@@ -4,7 +4,9 @@ from detecht_api import models
 from detecht_api.detecht_db_handling.search_table.standardize_query import standardize_query
 import time
 from datetime import datetime
-from detecht_api.models import Searches_Database
+# Import commented since it is not used in file and tests are complaining about it but i dont want to remove it
+# completely //Jakob
+# from detecht_api.models import Searches_Database
 
 """
 Edward and Severn
