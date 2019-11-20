@@ -1,12 +1,10 @@
-import json, requests, os
+import json
 from elasticsearch import Elasticsearch
 from detecht_api.detecht_converter.jsonclass import JsonClass
 
 """ Jakob and Henrik
     How to search after data from es"""
 
-# res = requests.get('http://localhost:9200')
-# print(res.content)
 es = None
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 if es.ping():
@@ -56,7 +54,7 @@ def get_pdf(query):
     return {"j_class": j_class}
 
 
-def formated_search(query, size=1):
+def formatted_search(query, size=1):
     body = {
         "_source": ["title"],
         "size": size,
@@ -76,4 +74,3 @@ def formated_search(query, size=1):
         title = "%(title)s" % hit["_source"]
         titles.append(title)
     return titles
-
