@@ -6,9 +6,15 @@ before_script:
 stages:
 
   - Static Analysis
+  - Complexity Analysis
+  
+StaticFlake8:
+  stage: Static Analysis
+  script:
+  - flake8 --max-line-length=120 --benchmark
 
   
 ComplexityFlakeTest:
-  stage: Static Analysis
+  stage: Complexity Analysis
   script:
   - flake8 --max-complexity 10 --benchmark
