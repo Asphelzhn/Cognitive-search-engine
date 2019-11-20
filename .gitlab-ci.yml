@@ -12,9 +12,6 @@ stages:
 Complexity Metrics:
   stage: Metric Analysis
   script:
-  Metric:
-  stage: complexity metrics
-  script:
   - radon cc **/*.py -a
 
 flake8:
