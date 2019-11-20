@@ -2,18 +2,10 @@
   max-width: 100%;
  // display: flex;
   text-align: center;
-  margin-bottom: 30px;
-  font-family: Verdana;
+  margin-bottom: 10%;
   background: #E0E0E0 0 0 no-repeat padding-box;
   border-radius: 100px 30px 100px 100px;
   opacity: 1;
-  .img-container {
- //   min-width: 90px;
- //   max-width: 90px;
-    img {
-  //    width:100%;
-    }
-  }
 
   .card-title {
     cursor: pointer;
@@ -23,10 +15,16 @@
     max-width: 85%;
     display: inline-block;
   //  margin-left: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 10%;
     margin-left: 10%;
-    font-family: Verdana;
     color: #383838;
+
+    .line {
+      width: 90%;
+      border-top: 1px solid black;
+      margin-bottom: 3%;
+      margin-top: 3%;
+    }
 
     #button-container {
       margin-right: 10%;
@@ -75,7 +73,8 @@
     h5 {
       font-size: 1.5em;
       margin-top: 0;
-      margin-bottom: 5%;
+      margin-bottom: 0;
+      margin-right: 10%
 
   //    margin-top: 0;
   //    margin-bottom: 1px;
