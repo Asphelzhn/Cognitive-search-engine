@@ -1,27 +1,26 @@
 import json
-
-from detecht_api.detecht_converter.plain_text import json_to_plaintext
 from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
-from detecht_api.detecht_converter.pdf_converter import pdf_to_json
+from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 
-
-# Jakob, Carl and Oscar
-
-
+# Jakob, Carl, Oscar and Henrik
 class JsonClass:
 
-    def __init__(self, pdf_name, title, full_text):
+    def __init__(self, pdf_name, title):
         self.pdf_name = pdf_name
-        self.full_text = full_text
         self.title = title
         self.tags = list()
         self.sections = list()
         self.keywords = list()
+        self.pages = pdf_extractor(self.pdf_name)[0]
+        self.date_created = pdf_extractor(self.pdf_name)[1]
+        self.full_text = ""
 
+        for i in self.pages:
+            self.full_text +=i
     @classmethod
     def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
@@ -37,7 +36,7 @@ class JsonClass:
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        full_text = pdf_to_json(pdf_name)  # convert_pdf_to_json not yet working
+        full_text = pdf_extractor(pdf_name)  # convert_pdf_to_json not yet working
         # y = json_to_plaintext(x)
         json_obj = cls(pdf_name, title, full_text)
 
@@ -63,10 +62,7 @@ class JsonClass:
                 i += section_length
 
     def frontend_result(self, query):
-        keywords = []
-        for keyword in self.keywords:
-            keywords.append({'keyword': keyword.get_keyword(), 'weight': keyword.get_weight()})
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
 
     def get_json_object(self):
         keywords_tmp = list()
@@ -81,7 +77,9 @@ class JsonClass:
             'tags': self.tags,
             'keywords': keywords_tmp,
             'sections': sections_tmp,
-            'full_text': self.full_text}
+            'full_text': self.full_text
+            'pages' :self.pages
+            'date_created': self.date_created}
         return json.dumps(a)
 
     def export_json(self, file_name=""):
@@ -109,6 +107,9 @@ class JsonClass:
 
     def get_full_text(self):
         return self.full_text
+
+    def get_date_created(self):
+        return self.date_created
 
     def add_title(self, title):
         self.title = title
@@ -161,11 +162,22 @@ class JsonClass:
     # Henrik
     def get_abstract(self, query):
         sent_array = imp_sent_creator(self.full_text, query, 3)
-        abstract = []
+        abstract = ""
         for sentence in sent_array:
-            abstract.append({'sentence': str(sentence.sent)})
+            abstract += str(sentence.sent)
         return abstract
 
     # Jakob
     def inject_to_es(self):
         inject_one_file(self.get_json_object())
+
+    def add_pages(self):
+        json_tmp = json.loads(self.pdf_name.read())
+        attr = str
+        attr = (json_tmp["pages"])  # collect attribute
+
+        index = 0
+        for i in attr:
+            self.sections.append([i, index])
+            index += len(i)
+
