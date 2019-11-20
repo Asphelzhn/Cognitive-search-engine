@@ -139,9 +139,11 @@ class Keyword(APIView):
 # END: Code written by Armin
 
 # files
+
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+
 
 #delete pdf
 class DeletePdf(APIView):
