@@ -1,4 +1,4 @@
-from detecht_api.detecht_converter.keyword_class import *
+from detecht_api.detecht_converter.keyword_class import keyword_class
 
 
 class section_class:
@@ -27,4 +27,4 @@ class section_class:
         for section_keyword in self.keywords:
             section_keywords.append(section_keyword.get_keyword_dict())
 
-        return {'start':self.start,'end':self.end, 'section_keyword': section_keywords}
+        return {'start': self.start, 'end': self.end, 'section_keyword': section_keywords}

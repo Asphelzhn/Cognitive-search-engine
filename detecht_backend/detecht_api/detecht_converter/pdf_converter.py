@@ -6,8 +6,9 @@ from pdfminer.pdfparser import PDFParser
 import os
 import io
 
-#carl
-#This method extracts one PDF at a time and outputs the scanned pages, along with the date created
+
+# Carl
+# This method extracts one PDF at a time and outputs the scanned pages, along with the date created
 def pdf_extractor(pdf_name):
     path = "detecht_api/static/pdf/"
     with os.scandir(path) as it:
@@ -41,4 +42,4 @@ def pdf_extractor(pdf_name):
                 date_created = date_created[3:-1]
                 date_created = date_created[0:4]+"-"+date_created[4:6]+"-"+date_created[5:7]
 
-    return pages,date_created
+    return pages, date_created
