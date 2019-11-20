@@ -4,7 +4,8 @@ from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weig
 from datetime import date
 
 
-# add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned
+# add keyword in db, if keyword already exists it is not added.
+# If added true is returned. if it is in db False is returned
 def addKeyword(keyword):
     keyword, created = Keywords.objects.get_or_create(word=keyword)
 
@@ -174,10 +175,7 @@ def add_all_pdf_similarities():
     return
 
 
-
 def add_user_keyword(id, key):
     new = User_Keyword(userID=id, keyword=key)
     new.save()
     return
-
-
