@@ -43,6 +43,6 @@ def pdf_extractor(pdf_name):
 
             #filepath = "detecht_api/static/json/"+pdf_name[:-4]+".txt"
             #with open(filepath, 'w+', encoding="utf-8") as f:
-             #   print(document,file=f)
+            #   print(document,file=f)
 
     return pages,date_created

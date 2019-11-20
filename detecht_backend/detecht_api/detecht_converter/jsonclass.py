@@ -37,7 +37,7 @@ class JsonClass:
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        full_text = pdf_to_json(pdf_name)  # convert_pdf_to_json not yet working
+        full_text = pdf_extractor(pdf_name)  # convert_pdf_to_json not yet working
         # y = json_to_plaintext(x)
         json_obj = cls(pdf_name, title, full_text)
 
@@ -78,7 +78,9 @@ class JsonClass:
             'tags': self.tags,
             'keywords': keywords_tmp,
             'sections': sections_tmp,
-            'full_text': self.full_text}
+            'full_text': self.full_text
+            'pages' :self.pages
+            'date_created': self.date_created}
         return json.dumps(a)
 
     def export_json(self, file_name=""):
@@ -106,6 +108,9 @@ class JsonClass:
 
     def get_full_text(self):
         return self.full_text
+
+    def get_date_created(self):
+        return self.date_created
 
     def add_title(self, title):
         self.title = title
