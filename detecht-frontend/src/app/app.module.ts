@@ -30,6 +30,8 @@ import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.com
 import { RelatedSearchesDecisionTreeComponent } from './search-page/related-searches-decision-tree/related-searches-decision-tree.component';
 import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documents.component';
 import { FooterComponent } from './footer/footer.component';
+import { SearchEditDocComponent } from './admin-page/edit-documents/search-edit-doc/search-edit-doc.component';
+import { EditComponentComponent } from './admin-page/edit-documents/edit-component/edit-component.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { FooterComponent } from './footer/footer.component';
     RelatedSearchesDecisionTreeComponent,
     EditDocumentsComponent,
     FooterComponent,
+    SearchEditDocComponent,
+    EditComponentComponent,
   ],
   imports: [
     BrowserModule,
