@@ -11,10 +11,9 @@ stages:
 StaticFlake8:
   stage: Static Analysis
   script:
-  - flake8 --max-line-length=120 --benchmark
+  - flake8 --benchmark
   
 ComplexityFlakeTest:
   stage: Complexity Analysis
   script:
-  - flake8 --max-line-length=120
   - flake8 --max-complexity 10 --benchmark
