@@ -11,10 +11,12 @@ import re
 from collections import Counter
 import sys
 
+
 def words(text): return re.findall(r'\w+', text.lower())
 
-class autocomplete_word():
-    def __init__(self,number_of_autocompletes):
+
+class autocompleteWord():
+    def __init__(self, number_of_autocompletes):
         # Creates hash
         word_count = Counter(words(open("big.txt").read()))
         # Makes it a dictionary
@@ -25,7 +27,7 @@ class autocomplete_word():
 
         # Returns autocompleted suggestions. Returns -1 if it's a full word without suggestions.
         # Returns zero if there are no suggestions
-    def autocomplete_one_word_api(self,text):
+    def autocomplete_one_word_api(self, text):
         suggestions = self.trie.find_word_suggestions(text)
         return suggestions
 

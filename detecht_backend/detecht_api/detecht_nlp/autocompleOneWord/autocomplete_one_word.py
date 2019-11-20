@@ -1,5 +1,6 @@
 import operator
 
+
 class TrieNode:
     def __init__(self):
         # Initialising one node for trie
@@ -88,7 +89,7 @@ class Trie:
         elif node.last and not node.children:
             return -1
 
-        #suggest = self.suggestions(node, temp_word)
+        # suggest = self.suggestions(node, temp_word)
         suggest = node.word_list
         return suggest
 
