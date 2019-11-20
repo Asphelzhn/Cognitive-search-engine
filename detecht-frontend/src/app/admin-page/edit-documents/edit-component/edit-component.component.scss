@@ -1,6 +1,6 @@
 .container {
   width: auto;
-  height: 100%;
+  height: auto;
   /* UI Properties */
   background-color: #FFFFFF;
   box-shadow: 0px 0px 5px #00000017;
@@ -96,7 +96,8 @@ Input-bar-holder{
 
 
 .bottom_container{
-  margin-top: 2%;
+  top: 40%;
+  margin-top: 65%;
   background-color: #FFFFFF;
   width: auto;
   height: auto;
