@@ -13,7 +13,7 @@ Henrik
 # load from spacey every time we compare words, i think it's better to use the same package every time to reduce the
 # amount of operations.
 
-def word_similarity (word1, word2, size="md"):
+def word_similarity(word1, word2, size="md"):
     token1 = nlp(word1)
     token2 = nlp(word2)
 

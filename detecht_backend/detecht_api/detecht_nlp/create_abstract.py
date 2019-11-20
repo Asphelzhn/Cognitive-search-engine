@@ -55,7 +55,6 @@ def create_abstract(doc, query):
 
                         sentence_scores[sent] += word_frequencies[word.text.lower()] / len(sent)
 
-
     sentence_scores
 
     summarized_sentences = nlargest(4, sentence_scores, key=sentence_scores.get)

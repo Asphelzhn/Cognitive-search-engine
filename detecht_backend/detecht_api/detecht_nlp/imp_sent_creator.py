@@ -1,6 +1,6 @@
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-from detecht_api.detecht_nlp.class_imp_set import *
+from detecht_api.detecht_nlp.class_imp_set import ImpSent
 from heapq import nlargest
 from operator import attrgetter
 
