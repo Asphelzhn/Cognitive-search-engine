@@ -126,8 +126,8 @@ class WeightingModule:
             result_list.append(element[0])
         return result_list
 
+    # This function is used for ask me a question, return the most frequent keyword and document list that include it
     def ask_a_question(ranked_by_weighting_module_results):
-
         keywords_dict = {}
         for title in ranked_by_weighting_module_results:
             # get document keywords in database
@@ -162,8 +162,9 @@ class WeightingModule:
 
 
 
-# This is the example how to use Weighting Module to add return a new sorted list.
 if __name__ == '__main__':
+    # This is the example how to use Weighting Module to add return a new sorted list.
+
     elastic_search_results = ['Project management', 'python is amazing', 'programming book']
     query = "I like computer"
 
