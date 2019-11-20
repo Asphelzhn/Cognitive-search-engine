@@ -1,0 +1,158 @@
+.container {
+  top: 126px;
+  left: 133px;
+  width: 804px;
+  height: 866px;
+  /* UI Properties */
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+
+  box-shadow: 0px 0px 5px #00000017;
+  opacity: 1;
+}
+
+
+.pdf_name {
+  font-family: 'Poppins', sans-serif;
+  //font: SemiBold 30px/46px Poppins;
+  font-weight:700;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+  color: #707070;
+  top: 144px;
+  left: 168px;
+  width: 147px;
+  height: 10px;
+/*  text-align: left;
+  font: Light 20px/30px Poppins;
+  letter-spacing: 0.2px;
+  color: #707070;*/
+  opacity: 1;
+  float : left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.pdf_summary{
+  margin-top: 0;
+  margin-bottom: 3px;
+  top: 183px;
+  left: 1040px;
+  width: 784px;
+  height: 40px;
+  float: left;
+  margin-left: 20px;
+  font-family: Poppins, sans-serif;
+  /* UI Properties */
+
+}
+
+.info-holder {
+height: 80px ;
+}
+
+.hr{
+  border-bottom: 0.5px #707070 solid;
+  width: 100%;
+  float: left;
+}
+
+Input-bar-holder{
+  height: 30px;
+  width : 804px;
+
+}
+
+.text-edit-bar {
+  width: 400px;
+  float: right;
+  display: flex;
+
+
+}
+
+.searchTerm {
+  margin-left: 2%;
+  margin-top: 20px;
+  width: 600px;
+  border: 1px solid gray;
+  padding: 5px;
+  height: 20px;
+  font-style: italic;
+  font-family: Verdana;
+  //border-radius: 5px 0 0 5px;
+  //outline: none;
+  //color: #707070;
+}
+
+.searchTerm:focus{
+ // color: #707070;
+}
+
+
+.close  {
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+
+
+.bottom_container{
+  margin-top: 500px;
+  width: 804px;
+  height: 80px;
+  float:left;
+}
+
+.icon {
+
+  width: 20px;
+  height: 20px;
+  float: left ;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.text {
+  float: left;
+  font-weight: bold;
+}
+
+.saveButton{
+  float:right;
+  width: 80px;
+  height: 30px;
+  background-color: #B0D5D8;
+  border-radius: 3px;
+  border-color: #B0D5D8;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  width: auto;
+
+  .button-text {
+    width:auto;
+    height: 30px;
+    width: 80px;
+    margin: 0px;
+  }
+
+}
+
+.trash{
+  height: 30px;
+  width: 30px;
+  float: right;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.low_text{
+  float: left ;
+  font-family: Poppins, sans-serif;
+
+}
