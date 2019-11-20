@@ -1,7 +1,7 @@
 import time
-t0 = time.time()
 from detecht_api.detecht_nlp.spell_check import spell_check
 
+t0 = time.time()
 t1 = time.time()
 text = input("Enter something wrong: ")
 t2 = time.time()
