@@ -11,41 +11,51 @@ export class UploadFileComponent implements OnInit {
 
   constructor(private adminService: AdminService) { }
 
-  fileTitle: string;
-  fileData: File = null;
+  fileTitles: string[];
+  fileData: File[];
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   responseMessage: string;
 
   ngOnInit() {
-    this.fileTitle = '';
+    this.fileTitles = [];
+    this.fileData = [];
     this.adminService.responseMessage.subscribe(responseMessage => this.responseMessage = responseMessage);
   }
 
   fileProgress(fileInput: any) {
-    this.fileData = fileInput.target.files[0] as File;
+    for (const file of fileInput.target.files) {
+      this.fileData.push(file as File);
+      this.fileTitles.push(this.generateTitle(file.name));
+    }
     this.preview();
   }
 
-  preview() {
-    // Show preview
-    const mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
+  generateTitle(pdfname: string): string {
+    return pdfname;
+  }
 
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (event) => {
-      this.previewUrl = reader.result;
-    };
+  preview() {
+    // Show preview TODO
+    // const mimeType = this.fileData.type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   return;
+    // }
+
+    // const reader = new FileReader();
+    // // TODO
+    // // reader.readAsDataURL(this.fileData);
+    // reader.onload = (event) => {
+    //   this.previewUrl = reader.result;
+    // };
   }
 
 
   onSubmit() {
-    const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitle, this.fileData);
-    this.adminService.pdfUpload(networkPdfUploadRequest);
+    // const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitle, this.fileData);
+    // this.adminService.pdfUpload(networkPdfUploadRequest);
+    // TODO ta med oven
     // const formData = new FormData();
     // formData.append('file', this.fileData);
     // console.log('Submitting');

@@ -18,7 +18,9 @@
   <div class="choosed-documents">
     <h4>Choosed documents</h4>
 
-    Show all choosed documents
+    <span *ngFor="let file of fileData">
+      {{file.name}}
+    </span>
 
     <div class="file-buttons">
 
