@@ -1,21 +1,19 @@
 """
 Oskar H & Armin
 """
+from detecht_api.detecht_es import search, insert_file
+from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
+from detecht_api.detecht_db_handling.analytics import get_analytics_document
+from detecht_api.detecht_nlp.spell_check import spell_check
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
 from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
 from detecht_api.models import Document  # files
 from rest_framework.views import APIView
 from.serializers import DocumentSerializer
 from rest_framework import status, viewsets, serializers
-from detecht_api.detecht_es import search, insert_file
-from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-from detecht_api.detecht_db_handling.analytics import get_analytics_document
-from detecht_api.detecht_nlp.spell_check import spell_check
-
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -49,7 +47,7 @@ class HomePageView(TemplateView):
 
 
 class Search(APIView):
-    def post(self, request): #input: "searchString"
+    def post(self, request):  # input: "searchString"
         response = {
             'success': False,
             'totalResult': 0,
@@ -80,7 +78,7 @@ class Search(APIView):
 
 
 class GetAbstract(APIView):
-    def post(self, request): #input: "searchString"
+    def post(self, request):  # input: "searchString"
         response = {
             'success': False,
             'abstracts': []
@@ -97,7 +95,7 @@ class GetAbstract(APIView):
 
 
 class AddFile(APIView):
-    def post(self, request): #input: response from api/files/
+    def post(self, request):  # input: response from api/files/
         response = {
             'success': False
         }
@@ -118,8 +116,8 @@ class AddFile(APIView):
 
 # BEGIN: Code written by Armin
 class Keyword(APIView):
-   # permission_classes = (IsAuthenticated,)
-   def post(self, request): #input: "keyword"
+    # permission_classes = (IsAuthenticated,)
+    def post(self, request): #input: "keyword"
         input = request.data
 
         wordToStore = input["keyword"]
@@ -156,7 +154,7 @@ class DeletePdf(APIView):
 
         if inputfile !={}:
             insert_file.delete_from_index(inputfile["title"])
-            Document.delete(inputfile["title"]) #runs a function in models that deletes our pdf.
+            Document.delete(inputfile["title"])  # runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 
