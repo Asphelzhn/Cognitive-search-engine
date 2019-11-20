@@ -1,6 +1,7 @@
 """
 Oskar H & Armin
 """
+from rest_framework import status, viewsets, serializers
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
@@ -13,7 +14,7 @@ from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_d
 from detecht_api.models import Document  # files
 from rest_framework.views import APIView
 from.serializers import DocumentSerializer
-from rest_framework import status, viewsets, serializers
+
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):

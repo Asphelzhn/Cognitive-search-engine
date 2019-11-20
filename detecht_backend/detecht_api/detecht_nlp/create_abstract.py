@@ -1,6 +1,6 @@
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-from string import punctuation
+
 
 from heapq import nlargest
 
@@ -18,7 +18,6 @@ nlp = spacy.load("en_core_web_sm")
 def create_abstract(doc, query):
     query = query.split(" ")
     docx = nlp(doc)
-    mytokens = [token.text for token in docx]
 
     for word in query:
         if word in stopwords:
@@ -53,12 +52,9 @@ def create_abstract(doc, query):
                         for key in query:
                             if key in str(sent):
                                 sentence_scores[sent] += word_frequencies[word.text.lower()]
-                        #     print (sentence_scores[sent])
-                        #      print(key + "  key word found")
 
                         sentence_scores[sent] += word_frequencies[word.text.lower()] / len(sent)
-                    # print(len(sent))
-                    # print (sent)
+
 
     sentence_scores
 
@@ -69,14 +65,3 @@ def create_abstract(doc, query):
     for w in summarized_sentences:
         print(w.text)
 
-    final_sentences = [w.text for w in summarized_sentences]
-
-    summary = ' '.join(final_sentences)
-
-    # print(len(summary))
-    # print(summary)
-
-    # print(len(summary))
-    # len(document1)
-
-    #return summary
