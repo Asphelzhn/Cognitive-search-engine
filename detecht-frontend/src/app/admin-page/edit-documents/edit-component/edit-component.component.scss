@@ -1,11 +1,8 @@
 .container {
-  top: 126px;
-  left: 133px;
-  width: 804px;
-  height: 866px;
+  width: auto;
+  height: 100%;
   /* UI Properties */
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-
+  background-color: #FFFFFF;
   box-shadow: 0px 0px 5px #00000017;
   opacity: 1;
 }
@@ -37,7 +34,7 @@
   margin-bottom: 3px;
   top: 183px;
   left: 1040px;
-  width: 784px;
+  width: auto;
   height: 40px;
   float: left;
   margin-left: 20px;
@@ -47,23 +44,23 @@
 }
 
 .info-holder {
-  height: 80px ;
+  height: 80px;
 }
 
 .hr{
   border-bottom: 0.5px #707070 solid;
-  width: 100%;
+  width: auto;
   float: left;
 }
 
 Input-bar-holder{
   height: 30px;
-  width : 804px;
+  width : auto;
 
 }
 
 .text-edit-bar {
-  width: 400px;
+  width: 50%;
   float: right;
   display: flex;
 
@@ -73,7 +70,7 @@ Input-bar-holder{
 .searchTerm {
   margin-left: 2%;
   margin-top: 20px;
-  width: 600px;
+  width: 50%;
   border: 1px solid gray;
   padding: 5px;
   height: 20px;
@@ -99,9 +96,10 @@ Input-bar-holder{
 
 
 .bottom_container{
-  margin-top: 500px;
-  width: 804px;
-  height: 80px;
+  margin-top: 2%;
+  background-color: #FFFFFF;
+  width: auto;
+  height: auto;
   float:left;
 }
 
@@ -132,7 +130,6 @@ Input-bar-holder{
   color: white;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
-  width: auto;
 
   .button-text {
     width:auto;
