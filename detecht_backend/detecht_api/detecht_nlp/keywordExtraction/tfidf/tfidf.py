@@ -64,7 +64,7 @@ def computeIDF(docList):
 def computeTFIDF(tfBOWs, idfs):
     tfidf = {}
     for word, val in tfBOWs.items():
-        tfidf[word] = val * idfs[word];
+        tfidf[word] = val * idfs[word]
     return tfidf
 
 

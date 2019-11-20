@@ -15,7 +15,8 @@ def word_frequency(start_date, end_date=datetime.now()):
     if(start_date is not None):
         search_start_date = start_date
         search_end_date = end_date
-        query = models.Searches_Database.objects.filter(search_date__range=(start_date, end_date)).values_list("standardized_search_query")
+        search_filter = models.Searches_Database.objects.filter(search_date__range=(search_start_date, search_end_date))
+        query = search_filter.values_list("standardized_search_query")
     else:
         query = models.Searches_Database.objects.all().values_list("standardized_search_query")
 

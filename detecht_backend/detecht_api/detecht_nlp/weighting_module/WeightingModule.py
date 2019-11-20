@@ -4,7 +4,8 @@
 @file: WeightingModule.py
 @time: 2019/11/12 22:05
 @desc: This is the class for weighting module.
-This module receives the list of search results from Elastic Search, calculate a weight for each based on a set of factors, sort the list, and return that sorted list.
+This module receives the list of search results from Elastic Search, calculate a weight for each based on a set of
+factors, sort the list, and return that sorted list.
 The "set of factors" that influence the weight of a document are preliminarily:
 ES-Score（Elastic Search results）
 Keyword similarity (compilation of the weight of matched keywords)
