@@ -3,10 +3,7 @@ from django.db import models
 from django.core.files.storage import default_storage  # delete query
 from django.db.models import F
 
-"""
-Oskar H
-"""
-
+# Oskar H
 
 class Document(models.Model):
     title = models.CharField(max_length=200)
@@ -104,7 +101,7 @@ class Pdf_Similarities(models.Model):
     document_name2 = models.TextField(max_length=50)
     similarity = models.FloatField()
 
-#Henrik & Carl
+# Henrik & Carl
 
 class Interacted_documents(models.Model):
 
@@ -139,3 +136,4 @@ class Searches_Database(models.Model):
 class User_Keyword(models.Model):
     userID = models.TextField(max_length=20)
     keyword = models.TextField(max_length=50)
+
