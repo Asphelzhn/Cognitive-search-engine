@@ -5,12 +5,12 @@ from django.db.models import F
 
 # Oskar H
 
+
 class Document(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
     downloads = models.IntegerField(default=0)
     favorites = models.IntegerField(default=0)
-
 
     def __unicode__(self):
         return self.title
@@ -104,6 +104,7 @@ class Pdf_Similarities(models.Model):
 
 # Henrik & Carl
 
+
 class Interacted_documents(models.Model):
     down_prev = models.TextField(max_length=30)
     date = models.DateField()
@@ -123,8 +124,7 @@ class Searches_Database(models.Model):
     search_query = models.CharField(max_length=50)  # RAW search_query
     standardized_search_query = models.CharField(max_length=50)  # standardization by using NLP spacy
     search_score = models.IntegerField(null=True, validators=[MinValueValidator(1),
-    MaxValueValidator(10)])
-
+                                        MaxValueValidator(10)])
 
     # add a new record into database
     def add_row(new_user_id, new_search_date, new_search_query, new_standardized_search_query, new_search_score):
