@@ -1,4 +1,3 @@
-
 """
 Henrik & Oscar
 """
@@ -11,9 +10,11 @@ class ImpSent:
     start_index = int
     end_index = int
 
+
 def __init__():
     # a constructor file needs to contain something, but this is never used, tried without and got errors.
-    sent=""
+    sent = ""
+
 
 def set_sent(self, sent_input):
     self.sent = sent_input
@@ -53,4 +54,3 @@ def get_start_index(self):
 
 def get_end_index(self):
     return self.end_index
-
