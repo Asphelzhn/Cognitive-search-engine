@@ -1,12 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.generic import TemplateView
-
-
-
 """
 Oskar H & Armin
 """
+from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
+from django.views.generic import TemplateView
 
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
@@ -14,7 +11,7 @@ from rest_framework.views import APIView
 from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
 
 # imports by OSKAR
-from detecht_api.models import Document #files
+from detecht_api.models import Document  # files
 from rest_framework.views import APIView
 from.serializers import DocumentSerializer
 
