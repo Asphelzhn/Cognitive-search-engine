@@ -75,7 +75,8 @@ class Migration(migrations.Migration):
                 ('search_date', models.DateTimeField(auto_now_add=True)),
                 ('search_query', models.CharField(max_length=50)),
                 ('standardized_search_query', models.CharField(max_length=50)),
-                ('search_score', models.IntegerField(null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(10)])),
+                ('search_score', models.IntegerField(null=True, validators=[
+                    django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(10)])),
             ],
         ),
         migrations.CreateModel(
