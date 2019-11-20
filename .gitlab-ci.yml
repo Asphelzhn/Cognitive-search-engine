@@ -3,8 +3,19 @@ image: "python:3.7"
 before_script:
   - python --version
   - pip install flake8
+  - shopt -s globstar
+
 stages:
+  - Metric Analysis
   - Static Analysis
+
+Complexity Metrics
+  stage: Metric Analysis
+  script:
+  Metric:
+  stage: complexity metrics
+  script:
+  - radon cc **/*.py -a
 
 flake8:
   stage: Static Analysis
