@@ -5,6 +5,7 @@ from detecht_api.detecht_converter.jsonclass import JsonClass
 # completely //Jakob
 # from detecht_api.detecht_es import insert_file
 
+
 def add_staged_pdf(pdf_name, title):
     new_pdf = StagedPdf(pdf_name=pdf_name, title=title)
     new_pdf.save()

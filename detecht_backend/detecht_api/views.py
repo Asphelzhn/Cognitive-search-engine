@@ -1,7 +1,7 @@
 """
 Oskar H & Armin
 """
-from rest_framework import status, viewsets, serializers
+from rest_framework import viewsets
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
@@ -9,12 +9,17 @@ from detecht_api.detecht_nlp.spell_check import spell_check
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-from rest_framework.permissions import IsAuthenticated
-from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
+from detecht_api.models import Keywords
 from detecht_api.models import Document  # files
 from rest_framework.views import APIView
-from.serializers import DocumentSerializer
+from .serializers import DocumentSerializer
 
+
+# Import commented since it is not used in file and tests are complaining about it but i dont want to remove it
+# completely //Jakob
+# from rest_framework.permissions import IsAuthenticated
+# from detecht_api.models import PDFImportance, UserFavorites, Keyword_distance
+# from rest_framework import status, serializers
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -118,7 +123,7 @@ class AddFile(APIView):
 # BEGIN: Code written by Armin
 class Keyword(APIView):
     # permission_classes = (IsAuthenticated,)
-    def post(self, request): #input: "keyword"
+    def post(self, request):  # input: "keyword"
         input = request.data
 
         wordToStore = input["keyword"]
@@ -126,16 +131,17 @@ class Keyword(APIView):
 
         return HttpResponse(message)
 
-#class KeywordSimilarity(APIView):
 
-#    def post(self, request): #input: keyword1, keyword2, similarity
-        #input = request.data
-        #message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
-        #input = request
-        #test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
-        #UserFavorites.remove_favorite_pdf(1, "hej")
-        #message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
- #       return HttpResponse(message)
+# class KeywordSimilarity(APIView):
+
+# def post(self, request): #input: keyword1, keyword2, similarity
+# input = request.data
+# message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
+# input = request
+# test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
+# UserFavorites.remove_favorite_pdf(1, "hej")
+# message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
+# return HttpResponse(message)
 
 # END: Code written by Armin
 
