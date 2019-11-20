@@ -140,12 +140,13 @@ class Keyword(APIView):
 
 # files
 
+
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
 
 
-#delete pdf
+# delete pdf
 class DeletePdf(APIView):
     def post(self, request):
         response = {
@@ -154,7 +155,7 @@ class DeletePdf(APIView):
 
         inputfile = request.data
 
-        if inputfile !={}:
+        if inputfile != {}:
             insert_file.delete_from_index(inputfile["title"])
             Document.delete(inputfile["title"])  # runs a function in models that deletes our pdf.
             response['success'] = True
