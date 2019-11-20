@@ -139,3 +139,8 @@ class Searches_Database(models.Model):
 class User_Keyword(models.Model):
     userID = models.TextField(max_length=20)
     keyword = models.TextField(max_length=50)
+
+
+class Search_Autocomplete(models.Model):
+    n_gram = models.TextField()
+    frequency = models.IntegerField()
