@@ -9,7 +9,7 @@ stages:
   - Metric Analysis
   - Static Analysis
 
-Complexity Metrics
+Complexity Metrics:
   stage: Metric Analysis
   script:
   Metric:
