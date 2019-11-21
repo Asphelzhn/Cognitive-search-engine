@@ -4,7 +4,7 @@ import {environment} from '../../../../environments/environment';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {SearchHitPreviewComponent} from '../../search-hit-preview/search-hit-preview.component';
 import {PreviewMessageService} from '../../../message-services/preview-message.service';
-import { FileSaverModule } from 'ngx-filesaver';
+import {FileSaverModule} from 'ngx-filesaver';
 import {SearchHitPreviewService} from '../../../message-services/search-hit-preview.service';
 
 
@@ -18,11 +18,10 @@ export class ResultBarComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   showSentences: boolean;
-  @Output() removeEvent: EventEmitter<string> = new EventEmitter()
+  @Output() removeEvent: EventEmitter<string> = new EventEmitter();
   @Input() result: SearchResponse;
 
   constructor(
-    public dialog: MatDialog,
     private previewData: PreviewMessageService,
     private searchHitPreviewService: SearchHitPreviewService
   ) {
@@ -34,15 +33,6 @@ export class ResultBarComponent implements OnInit {
 
   openDialog() {
     this.searchHitPreviewService.changeResult(this.result);
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.disableClose = false;
-    // const dialogRef = this.dialog.open(SearchHitPreviewComponent, {
-    //   data: {resultValue: this.results}
-    // });
-    // dialogRef.afterClosed().subscribe(value => {
-    //   this.results = value.data;
-    // });
   }
 
   ngOnInit() {
@@ -51,5 +41,4 @@ export class ResultBarComponent implements OnInit {
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
 
   }
-
 }

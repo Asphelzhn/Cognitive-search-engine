@@ -1,9 +1,4 @@
 <div class="search-result-container">
-<!--  <div class="img-container">
-    <app-qr-code
-      [url]="staticUrl + 'pdf/' + result.name"
-    ></app-qr-code>
-  </div>-->
   <div class="body">
     <div class="close">
       <div id="close-button" (click)="removeResult(result.title)"></div>
@@ -12,21 +7,21 @@
     <div class="line"></div>
     <div class="keywords">
       <span class="keyword" *ngFor="let keyword of result.keywords"
-            [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}, </span>
+            [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}
+        , </span>
     </div>
 
     <div id="button-container">
       <div class="buttons" id="expand-button" (click)="openDialog()"></div>
       <div id="download-button" class="buttons"
-              fileSaver
-              [method]="'GET'"
-              [fileName]="result.title"
-              [url]="staticUrl + 'pdf/' + result.name"
-              [header]="{token: 'demo'}"
-              [query]="{pi: 1, name: 'demo'}"
+           fileSaver
+           [method]="'GET'"
+           [fileName]="result.title"
+           [url]="staticUrl + 'pdf/' + result.name"
+           [header]="{token: 'demo'}"
+           [query]="{pi: 1, name: 'demo'}"
 
       ></div>
-
       <div class="buttons" id="like-button"></div>
     </div>
   </div>
