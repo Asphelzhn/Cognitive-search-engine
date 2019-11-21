@@ -30,13 +30,13 @@
 
 .trash {
 
-  height: 20px;
+  height: 23px;
   width: 20px;
   //background-color: #3a517f;
   //margin-left: 25%;
   float: left;
   //margin-left: 220px;
-  margin-top: 14px;
+  margin-top: 11px;
   margin-right: 7px;
 }
 .row  {
@@ -78,12 +78,12 @@
 
 .check_box {
   float: right;
-  margin-right: 8%;
+  margin-right: 25px;
   height: 20px;
   width: 20px;
   border-radius: 5px;
   background-color: #B0D5D8;
-  color: black;
+
   margin-top: 2%;
 
 
@@ -117,16 +117,17 @@ input[type=checkbox]:after {
 input[type=checkbox]:checked:after {
  // content: "\2714";
   //background-color: black;
-  margin-left: 1px;
-  margin-top: 0.5px;
+ // margin-left: 1px;
+  //margin-top: 0.5px;
+  position: center;
   right: 2px;
   top: 2px;
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   border-radius: 3px;
   border: 5px;
   background-size: 16px;
-  background-image: url("../../../../assets/searchIcon.png");
+  background-image: url("../../../../assets/Group 33@2x.png");
 
 }
 
@@ -334,6 +335,7 @@ result {
 
 
 .search-icon{
-  heigh:60%;
-  width: 60%;
+  heigh:100%;
+  width: 100%;
+  //object-fit: none;
 }
