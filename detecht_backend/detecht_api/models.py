@@ -11,8 +11,9 @@ Oskar H
 class Document(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
-    downloads = models.IntegerField(default=0)
-    favorites = models.IntegerField(default=0)
+    downloads = models.PositiveIntegerField(default=0)
+    favorites = models.PositiveIntegerField(default=0)
+    custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2)  # ex 0.99
 
     def __unicode__(self):
         return self.title
