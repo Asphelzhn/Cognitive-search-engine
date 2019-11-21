@@ -194,7 +194,8 @@ class InteractWithDocument(APIView):
         return
 
 class UserFavorite(APIView):
-    def psot(self, request):
+    def post(self, request):
         data_in = request.data
         add_favorite_pdf(user_id=data_in["user_id"], pdf_name=data_in["pdf_name"])
         return
+
