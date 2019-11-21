@@ -8,9 +8,9 @@ from detecht_api.detecht_converter.jsonclass import JsonClass
 es = None
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 if es.ping():
-    print('Connected to elasticsearch')
+    print('Search connected to Elasticsearch')
 else:
-    print('Could not connect to elasticsearch')
+    print('Search could not connect to Elasticsearch')
 
 
 # Should handle both single and multiple searches.

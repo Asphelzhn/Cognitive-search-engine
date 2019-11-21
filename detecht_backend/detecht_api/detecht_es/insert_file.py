@@ -7,9 +7,9 @@ from elasticsearch import Elasticsearch
 es = None
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 if es.ping():
-    print('Connected to elasticsearch')
+    print('Inject connected to Elasticsearch')
 else:
-    print('Could not connect to elasticsearch')
+    print('Inject could not connect to Elasticsearch')
 
 
 def get_file(filename):
