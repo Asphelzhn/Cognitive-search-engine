@@ -7,19 +7,22 @@
 
   <div class="upload-page-content">
     <h4>Upload new document</h4>
+    <hr class = "border: bottom">
     <div class="selected-documents">
-      <div class="form-group">
         <!--<input placeholder="Choose name"  type="text" name="title" [(ngModel)]="fileTitle">-->
-        <input type="file" name="image" (change)="fileProgress($event)" multiple/>
-      </div>
+        <input type="file" id = "input-button" (change)="fileProgress($event)" multiple/>
     </div>
   </div>
 
   <div class="choosed-documents">
     <h4>Choosed documents</h4>
+    <hr class = "border: bottom">
 
     <span *ngFor="let file of fileData">
-      {{file.name}}
+      <div id = "choosed-file">
+        {{file.name}}
+      </div>
+      <br>
     </span>
 
     <div class="file-buttons">
