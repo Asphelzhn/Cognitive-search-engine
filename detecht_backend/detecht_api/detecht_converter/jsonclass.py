@@ -9,13 +9,15 @@ from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 # Jakob, Carl, Oscar and Henrik
 class JsonClass:
 
-    def __init__(self, pdf_name, title):
+    def __init__(self, pdf_name, title, tags):
         self.pdf_name = pdf_name
         self.title = title
-        self.tags = list()
-        self.sections = list()
+        self.tags = tags
+        self.sections = list() # This should perhaps be removed?
         self.keywords = list()
         self.pages = pdf_extractor(self.pdf_name)[0]
+        # for page in pages:
+            # self.pages_keywords = something
         self.date_created = pdf_extractor(self.pdf_name)[1]
         self.full_text = ""
 
@@ -36,9 +38,8 @@ class JsonClass:
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        full_text = pdf_extractor(pdf_name)  # convert_pdf_to_json not yet working
         # y = json_to_plaintext(x)
-        json_obj = cls(pdf_name, title, full_text)
+        json_obj = cls(pdf_name, title)
 
         keywords_list = Yake4Keyword.yake_api(json_obj.full_text, pdf_name)
         for keyword in keywords_list:
@@ -49,17 +50,6 @@ class JsonClass:
             json_obj.add_tag(tag)
 
         return json_obj
-
-        text_len = len(json_obj.full_text)
-        i = 0
-        while i < text_len:
-            section_length = 3000
-            if (i + section_length) < text_len:
-                while (json_obj.full_text[i] != ("." or "!" or "?")) and (i < text_len):
-                    section_length += 1
-                # generate keywords here
-                # self.add_section(i, i+section_length, keywords)
-                i += section_length
 
     def frontend_result(self, query):
         return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
