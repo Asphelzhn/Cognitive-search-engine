@@ -64,7 +64,9 @@ def separate_words(text, min_word_return_size):
         current_word = single_word.strip().lower()
         # leave numbers in phrase, but don't count as words, since they tend
         # to invalidate scores of their phrases
-        if len(current_word) > min_word_return_size and current_word != '' and not is_number(current_word):
+        if (len(current_word) > min_word_return_size
+                and current_word != ''
+                and not is_number(current_word)):
             words.append(current_word)
     return words
 

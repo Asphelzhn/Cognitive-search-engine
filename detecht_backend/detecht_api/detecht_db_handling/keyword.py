@@ -1,6 +1,7 @@
 from detecht_api.detecht_nlp.word_similarity import word_similarity
-from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
-    Pdf_Similarities, User_Keyword
+from detecht_api.models import (Keywords, Keyword_distance,
+                                Pdf_Name_Keyword_Weight, Interacted_documents,
+                                Pdf_Similarities, User_Keyword)
 from datetime import date
 
 
@@ -102,6 +103,7 @@ def Download_Document(pdf_name1, userid1):
                                userid=userid1,
                                down_prev="Download")
     new.save()
+
 
 # returns a array [pdf_name, relevance] that is ordered highest to lowest on
 # relevance.

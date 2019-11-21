@@ -24,12 +24,12 @@ def add_api(userid, query, date, score):
         # date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         date = datetime.now()
 
-    models.Searches_Database.objects.create(user_id=userid,
-                                            search_date=date,
-                                            search_query=query,
-                                            standardized_search_query
-                                            =standardized_query,
-                                            search_score=score)
+    models.Searches_Database.objects.create(
+        user_id=userid,
+        search_date=date,
+        search_query=query,
+        standardized_search_query=standardized_query,
+        search_score=score)
 
     # obj = Searches_Database(user_id=id, search_date=date,
     #                        search_query=query,
