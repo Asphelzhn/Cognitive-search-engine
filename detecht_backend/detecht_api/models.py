@@ -65,33 +65,6 @@ class UserFavorites(models.Model):
     pdf_name = models.CharField(max_length=200)
     user_id = models.PositiveIntegerField()
 
-    def add_favorite_pdf(user_id, pdf_name):
-        UserFavorites.objects.get_or_create(user_id=user_id, pdf_name=pdf_name)
-        return "Added favorite PDF"
-
-    def remove_favorite_pdf(user_id, pdf_name):
-        UserFavorites.objects.filter(user_id=user_id, pdf_name=pdf_name).delete()
-        return "Removed favorite PDF"
-
-
-class PDFImportance(models.Model):
-    pdf_name = models.CharField(max_length=200)
-    likes = models.PositiveIntegerField(default=0)
-    downloads = models.PositiveIntegerField(default=0)
-    custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2)  # ex 0.99
-
-    def update_likes(self, pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=F('likes') + 1)
-        return PDFImportance.objects.get(pdf_name=pdf_name).likes
-
-    def update_downloads(self, pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(downloads=F('downloads') + 1)
-        return PDFImportance.objects.get(pdf_name=pdf_name).downloads
-
-    def update_weight(self, new_weight, pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(custom_weight=new_weight)
-        return PDFImportance.objects.get(pdf_name=pdf_name).custom_weight
-
 
 # Henrik
 class Pdf_Name_Keyword_Weight(models.Model):
