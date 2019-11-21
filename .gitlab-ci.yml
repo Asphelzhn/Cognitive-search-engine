@@ -9,6 +9,16 @@ stages:
   - Code grade_allowed to fail
   - Static Analysis
   
+Flake8 with maximum complexity:
+  before_script:
+  - pip install flake8
+  - flake8 --version
+  stage: Static Analysis
+  script:
+  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/create_abstract
+  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/imp_sent_creator
+  - flake8 --max-complexity 10 --benchmark 
+
 Complexity:
   before_script:
   - pip install radon
@@ -45,7 +55,7 @@ Code grade:
   - pylint --version
   stage: Code grade_allowed to fail
   script:
-  - pylint detecht_backend/detecht_backend/*.py
+  - pylint **/*.py
   allow_failure: true
 
 Flake8 with line lenght:
@@ -57,12 +67,5 @@ Flake8 with line lenght:
   - flake8 --max-line-length=79 --benchmark
   allow_failure: true
   
-Flake8 with maximum complexity:
-  before_script:
-  - pip install flake8
-  - flake8 --version
-  stage: Static Analysis
-  script:
-  - flake8 --max-complexity 10 --benchmark
-  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/create_abstract
-  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/imp_sent_creator
+
+  
