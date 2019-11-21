@@ -131,11 +131,12 @@ input[type=checkbox]:checked:after {
 
 
 .search {
-  width: auto;
+  width: 70%;
   float: right;
   display: flex;
   margin-top: 10px;
   margin-right: 25px;
+  margin-left: 3px;
 }
 
 .searchTerm {
