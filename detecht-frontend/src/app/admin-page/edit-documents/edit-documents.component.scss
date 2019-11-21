@@ -14,8 +14,8 @@
     font: Light 80px/80px Verdana;
 
   }
-  display: flex;
-  position: fixed;
+ // display: flex;
+  position: relative;
   top: 0%;
   left: 0%;
   width: 100%;
@@ -46,7 +46,7 @@
 
 .sidebar-menu { //Left hand sidebar should hold the Admin Navbar
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 5.8%;
@@ -63,7 +63,7 @@
   position: absolute;
   margin-left: 6%;
   margin-top: 4%;
-  top: 15%;
+  //top: 15%;
   left: 7.1%;
   width: 38%;
   height: 80%;
@@ -81,7 +81,7 @@
   margin-top: 4%;
   margin-left: 5%;
   position: absolute;
-  top: 15%;
+  //top: 15%;
   left: 52.2%;
   width: 38%;
   height: 80%;
