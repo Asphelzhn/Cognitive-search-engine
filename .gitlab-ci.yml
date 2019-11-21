@@ -5,38 +5,38 @@ before_script:
 
 
 stages:
-  - Metrics
+#  - Metrics
 #  - Code grade_allowed to fail
   - Static Analysis
   
 
-Complexity:
-  before_script:
-  - pip install radon
-  - radon --version
-  - shopt -s globstar
-  stage: Metrics
-  script:
-  - radon cc **/*.py -a
+#Complexity:
+#  before_script:
+# - pip install radon
+#  - radon --version
+#  - shopt -s globstar
+#  stage: Metrics
+#  script:
+#  - radon cc **/*.py -a
   
-Maintainability:
-  before_script:
-  - pip install radon
-  - radon --version
-  - shopt -s globstar
+#Maintainability:
+#  before_script:
+#  - pip install radon
+#  - radon --version
+#  - shopt -s globstar
   
-  stage: Metrics
-  script:
-  - radon mi **/*.py
-  
-Raw metrics:
-  before_script:
-  - pip install radon
-  - radon --version
-  - shopt -s globstar
-  stage: Metrics
-  script:
-  - radon raw **/*.py
+#  stage: Metrics
+#  script:
+#  - radon mi **/*.py
+#  
+#Raw metrics:
+#  before_script:
+#  - pip install radon
+#  - radon --version
+#  - shopt -s globstar
+#  stage: Metrics
+#  script:
+#  - radon raw **/*.py
   
 
 
