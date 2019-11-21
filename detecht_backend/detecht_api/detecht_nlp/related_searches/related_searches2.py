@@ -40,8 +40,6 @@ def generate_two_new_word(doc, number):
     span = doc[lowerIndex:length]
     textList = doc[0:lowerIndex]
 
-
-    "look over the data structure here"
     queryText = queryDatabase(span, 2, number)
 
     return textList+queryText
@@ -49,16 +47,25 @@ def generate_two_new_word(doc, number):
 
 
 def queryDatabase(text, numberOfExtraWords, numOfQueries):
+    i=len(text)
+    list=[]
+    list.append(text)
+    while(i>0):
+        #append to list
+        print("Query")
+        i=i-1
     #Retun list of texts with probabilities
-    return text
+    return list
 
 
 def generateRelatedSearches(text):
     list = string_to_list(text)
     listDelete = delete_word(list.length)
     oneWordDeletePlusOne = generate_one_new_word(listDelete,1)
-    oneWordDeletePlusTwo = generate_two_new_word(listDelete, 1)
-    oneWordAdded = generate_one_new_word(listDelete,1)
+    oneWordDeletePlusTwo = generate_two_new_word(listDelete,1)
+    oneWordAdded = generate_one_new_word(list,1)
+    returnList= oneWordDeletePlusOne+oneWordDeletePlusTwo+oneWordAdded
+    return returnList
 
 
 def string_to_list(text):
