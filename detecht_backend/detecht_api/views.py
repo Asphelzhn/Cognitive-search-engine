@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
-from detecht_api.detecht_db_handling.keyword import Preview_Document
+from detecht_api.detecht_db_handling.keyword import Interact_Document
 
 """
 Oskar H & Armin
@@ -189,5 +189,5 @@ class GetAnalytics(APIView):
 class InteractWithDocument(APIView):
     def post(self, request):
         data_in = request.data
-        Preview_Document(pdf_name=data_in["pdf_name"], userid=data_in["user_id"], type = data_in["type"])
+        Interact_Document(pdf_name=data_in["pdf_name"], userid=data_in["user_id"], type = data_in["type"])
         return

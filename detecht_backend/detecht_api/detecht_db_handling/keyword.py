@@ -1,5 +1,6 @@
 from rest_framework.exceptions import ValidationError
 
+from detecht_api.detecht_db_handling.pdf_importance import *
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
     Pdf_Similarities, User_Keyword
@@ -82,7 +83,7 @@ def date_calc(dateNow):
     return datenow1
 
 # interact with document
-def Preview_Document(pdf_name, userid, type):
+def Interact_Document(pdf_name, userid, type):
     dateNow = date.today()
     if type == "Preview":
         new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
@@ -90,6 +91,7 @@ def Preview_Document(pdf_name, userid, type):
     elif type == "Download":
         new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
         new.save()
+        update_downloads(pdf_name)
     else:
         print("error")
     return
@@ -183,7 +185,6 @@ def add_all_pdf_similarities():
         object = object[0]
         add_pdf_similarities(object)
     return
-
 
 
 def add_user_keyword(id, key):

@@ -2,7 +2,7 @@ from detecht_api.models import Document
 from django.db.models import F
 
 
-def update_likes(pdf_name):
+def update_favorites(pdf_name):
     Document.objects.filter(pdf_name=pdf_name).update(favorites=F('favorites') + 1)
     return
 
