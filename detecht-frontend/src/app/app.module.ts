@@ -35,9 +35,9 @@ import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documen
 import { FooterComponent } from './footer/footer.component';
 import { StatsComponent } from './admin-page/analytics/stats/stats.component';
 import {DocumentStatsComponent} from './admin-page/analytics/document-stats/document-stats.component';
-import {NgxKjuaModule} from 'ngx-kjua';
 import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
 import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
+import { SavedDocumentComponent } from './saved-documents-page/saved-document/saved-document.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,8 @@ import { TrendingDocumentComponent } from './start-page/trending-documents/trend
     EditDocumentsComponent,
     FooterComponent,
     StatsComponent,
-    DocumentStatsComponent
+    DocumentStatsComponent,
+    SavedDocumentComponent
   ],
   imports: [
     BrowserModule,
