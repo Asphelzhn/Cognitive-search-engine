@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NetworkPdfUploadResponse, NetworkPdfUploadRequest} from './network-data-types';
+import {NetworkPdfUploadResponse, NetworkPdfUploadRequest, NetworkGetAllPdfResponse} from './network-data-types';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,11 @@ export class AdminService {
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
 
-  // getAllPdf(respons: any): Observable<string> {
-  //   return this.http.get(environment.apiUrl + '/getallpdf', {
-  //     withCredentials: true
-  //   }).pipe(catchError(this.networkService.handleError));
-  // }
+  getAllPdf(): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + 'files/', {
+      withCredentials: true
+    }).pipe(catchError(this.networkService.handleError));
+  }
 
   pdfUpload(networkPdfUploadRequest: NetworkPdfUploadRequest): void {
     const formData = new FormData();

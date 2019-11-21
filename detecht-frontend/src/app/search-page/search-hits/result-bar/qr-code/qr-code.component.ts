@@ -6,11 +6,12 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./qr-code.component.scss']
 })
 export class QrCodeComponent implements OnInit {
-  private isOpen = false;
+  isOpen: boolean;
   @Input() url: string;
   constructor() { }
 
   ngOnInit() {
+    this.isOpen = false;
   }
 
   toggleQrCodeState() {

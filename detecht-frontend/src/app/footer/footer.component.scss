@@ -1,0 +1,31 @@
+footer {
+  margin: -100px 175px 50px 175px;
+  border-top: 1px solid black;
+
+  font: Regular 20px/30px Poppins;
+  letter-spacing: 0;
+  color: #383838;
+  opacity: 1;
+
+  padding-top: 30px;
+
+  #copyright {
+    float: left;
+  }
+
+  #search {
+    float: right;
+    margin-right: 50px;
+
+    a {
+      font: Regular 20px/30px Poppins;
+      letter-spacing: 0;
+      color: #383838;
+      text-decoration: none;
+    }
+  }
+
+  #terms {
+    float: right;
+  }
+}

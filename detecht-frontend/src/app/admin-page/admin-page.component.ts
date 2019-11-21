@@ -1,6 +1,7 @@
 import {Component, NgModule, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import {SearchResponse} from '../data-types';
+import {AdminNavbarToPageService} from '../message-services/admin-navbar-to-page.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -14,11 +15,12 @@ import {SearchResponse} from '../data-types';
 })
 
 export class AdminPageComponent implements OnInit {
-  results: SearchResponse;
-  constructor(
-     private router: Router
-  ) { }
+
+  page: string;
+
+  constructor(private adminNavbarToPageService: AdminNavbarToPageService) { }
 
   ngOnInit() {
+    this.adminNavbarToPageService.page.subscribe(page => this.page = page);
   }
 }

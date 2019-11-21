@@ -1,9 +1,7 @@
 class keyword_class:
-    keyword = ""
-    weight = 0
 
     # Jakob & Carl
-    def __init__(self,keyword,weight):
+    def __init__(self, keyword, weight):
         self.keyword = keyword
         self.weight = weight
 
