@@ -64,5 +64,5 @@ Flake8 with maximum complexity:
   stage: Static Analysis
   script:
   - flake8 --max-complexity 10 --benchmark
-  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/create_abstract.py
-  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/imp_sent_creator.py
+  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/create_abstract
+  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/imp_sent_creator
