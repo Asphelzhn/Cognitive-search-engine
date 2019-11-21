@@ -2,18 +2,67 @@ image: "python:3.7"
 
 before_script:
   - python --version
-  - pip install flake8
-stages:
 
+
+stages:
+  - Metrics
+  - Code grade_allowed to fail
   - Static Analysis
-  - Complexity Analysis
   
-StaticFlake8:
+Complexity:
+  before_script:
+  - pip install radon
+  - radon --version
+  - shopt -s globstar
+  stage: Metrics
+  script:
+  - radon cc **/*.py -a
+  
+Maintainability:
+  before_script:
+  - pip install radon
+  - radon --version
+  - shopt -s globstar
+  
+  stage: Metrics
+  script:
+  - radon mi **/*.py
+  
+Raw metrics:
+  before_script:
+  - pip install radon
+  - radon --version
+  - shopt -s globstar
+  stage: Metrics
+  script:
+  - radon raw **/*.py
+  
+
+
+Code grade:
+  before_script:
+  - pip install pylint
+  - pylint --version
+  stage: Code grade_allowed to fail
+  script:
+  - pylint detecht_backend/detecht_backend/*.py
+  allow_failure: true
+
+Flake8 with line lenght:
+  before_script:
+  - pip install flake8
+  - flake8 --version
   stage: Static Analysis
   script:
   - flake8 --max-line-length=79 --benchmark
+  allow_failure: true
   
-ComplexityFlakeTest:
-  stage: Complexity Analysis
+Flake8 with maximum complexity:
+  before_script:
+  - pip install flake8
+  - flake8 --version
+  stage: Static Analysis
   script:
   - flake8 --max-complexity 10 --benchmark
+  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/create_abstract.py
+  - flake8 --ignore=C901 detecht_backend/detecht_api/detecht_nlp/imp_sent_creator.py
