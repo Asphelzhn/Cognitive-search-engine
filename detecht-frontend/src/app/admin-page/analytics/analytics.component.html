@@ -2,11 +2,8 @@
   <div class="left-content">
     <app-stats></app-stats>
     <div class="page-content">
-      <div class="upload-content">
-        <button routerLink="/upload" class="upload-btn">Upload document</button>
-      </div>
       <div class="view-content" >
-        <h2>Browse all of your documents</h2>
+        <h2>Documents</h2>
         <div class="search">
           <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
           <button type="submit" (click)="search()" class="searchButton">

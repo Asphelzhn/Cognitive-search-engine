@@ -1,18 +1,22 @@
 .stats-content {
   display: flex;
   text-align: center;
-  width: 90%;
+  width: 93%;
+  height: 50%;
+  margin-top: 1%;
+
 }
 
 .stats-card {
-  width: 20%;
+  width: 100%;
   height: 70%;
   top: 126px;
   padding-top: 15px;
   box-shadow: 0 0 10px #00000017;
   border-radius: 5px;
   opacity: 1;
-
+  margin-right: 3%;
+  margin-top: 3%;
   p {
     color: #ffffff;
   }
@@ -21,7 +25,7 @@
 #downloads {
   left: 133px;
   background: #EBD9D9 0 0 no-repeat padding-box;
-
+  margin-left: 2%;
 }
 
 #favourites {
