@@ -22,8 +22,10 @@ def addKeyword(keyword):
 
 # add similarity for keyword.
 def KeywordSimilarity(keyword1, keyword2, keywordId2):
-    newDistance = Keyword_distance(id_1=Keywords.objects.get(word=keyword1).id, id_2=keywordId2,
-                                   similarity=word_similarity(keyword1, keyword2))
+    newDistance = Keyword_distance(id_1=Keywords.objects.get(word=keyword1).id,
+                                   id_2=keywordId2,
+                                   similarity=word_similarity(keyword1,
+                                                              keyword2))
     newDistance.save()
     return
 
@@ -31,7 +33,9 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # Henrik
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
-    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight).d
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf,
+                                  keyword=keyword,
+                                  weight=weight).d
     new.save()
     return
 
@@ -40,7 +44,8 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
 
 def Trending_docs(size):
     list = Interacted_documents.objects.all().values().order_by("pdf_name")
-    pdf_name_lsit = Interacted_documents.objects.all().values("pdf_name").distinct()
+    pdf_name_lsit = (Interacted_documents.objects.all()
+                     .values("pdf_name").distinct())
 
     if size > len(pdf_name_lsit):
         size = len(pdf_name_lsit)
@@ -67,34 +72,46 @@ def Trending_docs(size):
 
     final_table = []
     for i in range(0, len(pdf_name_lsit)):
-        final_table.append([pdf_name_lsit[i].get("pdf_name"), Finale_value_table[i]])
+        final_table.append([pdf_name_lsit[i].get("pdf_name"),
+                            Finale_value_table[i]])
     final_table.sort(key=sortsecond, reverse=True)
     return_table = final_table[:size]
     return return_table
 
 
 def date_calc(dateNow):
-    datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d")) - 1) + 365 * int(dateNow.strftime("%d"))
+    datenow1 = (int(dateNow.strftime("%d"))
+                + 30 * (int(dateNow.strftime("%d")) - 1)
+                + 365 * int(dateNow.strftime("%d")))
     return datenow1
 
 
 def Preview_Document(pdf_name1, userid1):
     dateNow = date.today()
-    new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Preview")
+    new = Interacted_documents(pdf_name=pdf_name1,
+                               date=dateNow,
+                               userid=userid1,
+                               down_prev="Preview")
     new.save()
 
 
 def Download_Document(pdf_name1, userid1):
     dateNow = date.today()
-    new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
+    new = Interacted_documents(pdf_name=pdf_name1,
+                               date=dateNow,
+                               userid=userid1,
+                               down_prev="Download")
     new.save()
 
+# returns a array [pdf_name, relevance] that is ordered highest to lowest on
+# relevance.
+def pdf_relevance(name):
+    focus_pdf = (Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name)
+                 .values("keyword", "weight"))
 
-def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
-    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
-
-    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
-        "pdf_name")
+    pdf_list = (Pdf_Name_Keyword_Weight.objects
+                .values("pdf_name", "keyword", "weight")
+                .exclude(pdf_name=name).order_by("pdf_name"))
 
     relevance_table = []
     relevance = 0
@@ -161,13 +178,16 @@ def add_pdf_similarities(pdf1):
         a = item[0]
         b = item[1]
         print(pdf1)
-        new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
+        new = Pdf_Similarities(document_name1=pdf1,
+                               document_name2=a,
+                               similarity=b)
         new.save()
     return
 
 
 def add_all_pdf_similarities():
-    all_files = Pdf_Name_Keyword_Weight.objects.all().values_list("pdf_name").distinct()
+    all_files = (Pdf_Name_Keyword_Weight.objects.all()
+                 .values_list("pdf_name").distinct())
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
         object = object[0]

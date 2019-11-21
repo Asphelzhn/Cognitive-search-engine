@@ -46,18 +46,23 @@ def create_abstract(doc, query):
             if word.text.lower() in word_frequencies.keys():
                 if len(sent.text.split(' ')) < 30:
                     if sent not in sentence_scores.keys():  # and not in query.
-                        sentence_scores[sent] = word_frequencies[word.text.lower()]
+                        sentence_scores[sent] = word_frequencies[
+                            word.text.lower()]
                     else:
 
                         for key in query:
                             if key in str(sent):
-                                sentence_scores[sent] += word_frequencies[word.text.lower()]
+                                sentence_scores[sent] += word_frequencies[
+                                    word.text.lower()]
 
-                        sentence_scores[sent] += word_frequencies[word.text.lower()] / len(sent)
+                        sentence_scores[sent] += (word_frequencies[
+                                                      word.text.lower()]
+                                                  / len(sent))
 
     sentence_scores
 
-    summarized_sentences = nlargest(4, sentence_scores, key=sentence_scores.get)
+    summarized_sentences = nlargest(4, sentence_scores,
+                                    key=sentence_scores.get)
 
     summarized_sentences
 

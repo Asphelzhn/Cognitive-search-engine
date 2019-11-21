@@ -25,19 +25,22 @@ class JsonClass:
     @classmethod
     def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
-        json_obj = cls(json_doc["pdf_name"], json_doc["title"], json_doc["full_text"])
+        json_obj = cls(json_doc["pdf_name"], json_doc["title"],
+                       json_doc["full_text"])
 
         for keyword in json_doc["keywords"]:
-            json_obj.keywords.append(keyword_class(keyword["Keyword"], keyword["Weight"]))
+            json_obj.keywords.append(keyword_class(keyword["Keyword"],
+                                                   keyword["Weight"]))
         for tag in json_doc["tags"]:
             json_obj.add_tag(tag)
         for section in json_doc["sections"]:
-            json_obj.add_section(section["start"], section["end"], section["section_keyword"])
+            json_obj.add_section(section["start"], section["end"],
+                                 section["section_keyword"])
         return json_obj
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        full_text = pdf_extractor(pdf_name)  # convert_pdf_to_json not yet working
+        full_text = pdf_extractor(pdf_name)  # convert_pdf_to_json not working
         # y = json_to_plaintext(x)
         json_obj = cls(pdf_name, title, full_text)
 
@@ -56,7 +59,8 @@ class JsonClass:
         while i < text_len:
             section_length = 3000
             if (i + section_length) < text_len:
-                while (json_obj.full_text[i] != ("." or "!" or "?")) and (i < text_len):
+                while ((json_obj.full_text[i] != ("." or "!" or "?"))
+                       and (i < text_len)):
                     section_length += 1
                 # generate keywords here
                 # self.add_section(i, i+section_length, keywords)
@@ -65,8 +69,10 @@ class JsonClass:
     def frontend_result(self, query):
         keywords = []
         for keyword in self.keywords:
-            keywords.append({'keyword': keyword.get_keyword(), 'weight': keyword.get_weight()})
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
+            keywords.append({'keyword': keyword.get_keyword(),
+                             'weight': keyword.get_weight()})
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name,
+                'keywords': keywords}
 
     def get_json_object(self):
         keywords_tmp = list()
@@ -103,7 +109,8 @@ class JsonClass:
         with open(file_name + ".json", 'w') as outfile:
             json.dump(a, outfile, indent=2)
 
-    # Adds whole document to one string, can be a problem with memory management
+    # Adds whole document to one string, can be a problem with memory
+    # management
     def add_full_text(self, fulltext):
         self.full_text = fulltext
 

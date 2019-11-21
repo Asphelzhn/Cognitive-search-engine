@@ -36,7 +36,8 @@ def termfrequency(terms, dictionary1):
     return dictionary1
 
 
-# Computes the Term Frequency of all words in the dictionary by looking through the document
+# Computes the Term Frequency of all words in the dictionary by looking
+# through the document
 def computeTF(wordDict, bow):
     TFdict = {}
     bowCount = len(bow)
@@ -74,17 +75,20 @@ def dictionaryToSortedTuple(dictionary):
     return theList
 
 
-# Given string a few string docs, this function returns the weights of different terms
+# Given string a few string docs, this function returns the weights of
+# different terms
 def computeTFIDFmain(docs):
     tokenArray = []
     amountdocs = len(docs)
 
     # Makes all docs into a list of terms
     for strings in docs:
-        tokenArray.append(tokenizewords(strings))  # This variable should exist in entire document
+        tokenArray.append(tokenizewords(strings))  # This variable should
+        # exist in entire document
 
     # Creates dictionary of all documents
-    allTermsInDocs = createdict(tokenArray)  # This variable should exist in entire document
+    allTermsInDocs = createdict(tokenArray)  # This variable should exist in
+    # entire document
 
     # Counts the terms in each document and computes TF
     docTFdict = []
@@ -95,7 +99,8 @@ def computeTFIDFmain(docs):
         docTFdict.append(TF)  # This variable should exist in entire document
 
     # Computes document frequency for each word and the idf
-    IDF = computeIDF(docTFdict)  # This variable should exist in entire document
+    IDF = computeIDF(docTFdict)  # This variable should exist in the entire
+    # document
 
     # Compute TFIDF and put in list of tuple
     docTFIDfdict = []  # This variable should exist in entire document

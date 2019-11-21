@@ -12,7 +12,8 @@ class ImpSent:
 
 
 def __init__(self):
-    # a constructor file needs to contain something, but this is never used, tried without and got errors.
+    # a constructor file needs to contain something, but this is never used,
+    # tried without and got errors.
     self.sent = ""
 
 

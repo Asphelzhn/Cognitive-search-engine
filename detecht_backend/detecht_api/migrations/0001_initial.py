@@ -15,9 +15,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Document',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('title', models.CharField(max_length=200)),
-                ('file', models.FileField(blank=True, upload_to='detecht_api/static/pdf')),
+                ('file', models.FileField(blank=True,
+                                          upload_to='detecht_api/static/pdf')),
                 ('downloads', models.IntegerField(default=0)),
                 ('favorites', models.IntegerField(default=0)),
             ],
@@ -25,7 +29,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Interacted_documents',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('down_prev', models.TextField(max_length=30)),
                 ('date', models.DateField()),
                 ('pdf_name', models.TextField(max_length=50)),
@@ -35,14 +42,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Keywords',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('word', models.CharField(max_length=20)),
             ],
         ),
         migrations.CreateModel(
             name='Pdf_Name_Keyword_Weight',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('pdf_name', models.TextField(max_length=50)),
                 ('keyword', models.TextField(max_length=50)),
                 ('weight', models.IntegerField()),
@@ -51,7 +64,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Pdf_Similarities',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('document_name1', models.TextField(max_length=50)),
                 ('document_name2', models.TextField(max_length=50)),
                 ('similarity', models.FloatField()),
@@ -60,29 +76,41 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PDFImportance',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('pdf_name', models.CharField(max_length=200)),
                 ('likes', models.PositiveIntegerField(default=0)),
                 ('downloads', models.PositiveIntegerField(default=0)),
-                ('custom_weight', models.DecimalField(decimal_places=2, default=0, max_digits=3)),
+                ('custom_weight', models.DecimalField(decimal_places=2,
+                                                      default=0,
+                                                      max_digits=3)),
             ],
         ),
         migrations.CreateModel(
             name='Searches_Database',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('user_id', models.IntegerField(null=True)),
                 ('search_date', models.DateTimeField(auto_now_add=True)),
                 ('search_query', models.CharField(max_length=50)),
                 ('standardized_search_query', models.CharField(max_length=50)),
                 ('search_score', models.IntegerField(null=True, validators=[
-                    django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(10)])),
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(10)])),
             ],
         ),
         migrations.CreateModel(
             name='StagedPdf',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('pdf_name', models.CharField(max_length=200)),
                 ('title', models.CharField(max_length=200)),
             ],
@@ -90,7 +118,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StagedPdfTags',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('staged_pdf_id', models.IntegerField()),
                 ('tag', models.CharField(max_length=200)),
             ],
@@ -98,7 +129,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User_Keyword',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('userID', models.TextField(max_length=20)),
                 ('keyword', models.TextField(max_length=50)),
             ],
@@ -106,7 +140,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserFavorites',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('pdf_name', models.CharField(max_length=200)),
                 ('user_id', models.PositiveIntegerField()),
             ],
@@ -114,10 +151,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Keyword_distance',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('id_1', models.PositiveIntegerField()),
                 ('id_2', models.PositiveIntegerField()),
-                ('similarity', models.DecimalField(decimal_places=4, max_digits=5)),
+                ('similarity', models.DecimalField(decimal_places=4,
+                                                   max_digits=5)),
             ],
             options={
                 'unique_together': {('id_1', 'id_2')},

@@ -3,7 +3,8 @@ Oskar H & Armin
 """
 from rest_framework import viewsets
 from detecht_api.detecht_es import search, insert_file
-from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
+from detecht_api.detecht_db_handling.staged_pdf import (
+    insert_all_staged_pdf_into_es, add_staged_pdf)
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 from detecht_api.detecht_nlp.spell_check import spell_check
 from django.shortcuts import render
@@ -15,8 +16,8 @@ from rest_framework.views import APIView
 from .serializers import DocumentSerializer
 
 
-# Import commented since it is not used in file and tests are complaining about it but i dont want to remove it
-# completely //Jakob
+# Import commented since it is not used in file and tests are complaining
+# about it but i dont want to remove it completely //Jakob
 # from rest_framework.permissions import IsAuthenticated
 # from detecht_api.models import PDFImportance, UserFavorites, Keyword_distance
 # from rest_framework import status, serializers
@@ -38,7 +39,8 @@ class HomePageView(TemplateView):
 #         username = query.userName
 #         userid = str(query.userID)
 #
-#         return HttpResponse('{ "Name": "' + name + '", "Poss": "' + username + '", "ID": "' + userid + '"  }')  # test
+#         return HttpResponse('{ "Name": "' + name + '", "Poss": "'
+#                             + username + '", "ID": "' + userid + '"  }')
 
 
 # class UpdateProfile(APIView):
@@ -112,7 +114,9 @@ class AddFile(APIView):
             file_name = input["file"].split('static/pdf/')[-1]
             add_staged_pdf(file_name, title)
             # Old code inserting file into Elstic Search.
-            # json_string = '{"title":"' + title + '", "fileName":"' + file_name + '"}'
+            # json_string = '{"title":"' + title \
+            #               + '", "fileName":"' \
+            #               + file_name + '"}'
             #
             # insert_file.inject_one_file(json_string)
             response['success'] = True
@@ -164,7 +168,8 @@ class DeletePdf(APIView):
 
         if inputfile != {}:
             insert_file.delete_from_index(inputfile["title"])
-            Document.delete(inputfile["title"])  # runs a function in models that deletes our pdf.
+            Document.delete(inputfile["title"])  # runs a function in models
+            # that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 

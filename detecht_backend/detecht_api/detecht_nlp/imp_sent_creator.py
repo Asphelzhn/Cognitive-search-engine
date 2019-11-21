@@ -12,7 +12,8 @@ stopwords = list(STOP_WORDS)
 nlp = spacy.load("en_core_web_sm")
 
 
-# The sentences are returned in a array where the first sentence is the first object in the array
+# The sentences are returned in a array where the first sentence is the
+# first object in the array
 def imp_sent_creator(doc, query, size=4):
     imp_sentences = []
 
@@ -44,16 +45,21 @@ def imp_sent_creator(doc, query, size=4):
             if word.text.lower() in word_frequencies.keys():
                 if len(sent.text.split(' ')) < 30:
                     if sent not in sentence_scores.keys():
-                        sentence_scores[sent] = word_frequencies[word.text.lower()]
+                        sentence_scores[sent] = word_frequencies[
+                            word.text.lower()]
                     else:
 
                         for key in query:
                             if key in str(sent):
-                                sentence_scores[sent] += word_frequencies[word.text.lower()]
+                                sentence_scores[sent] += word_frequencies[
+                                    word.text.lower()]
 
-                        sentence_scores[sent] += word_frequencies[word.text.lower()] / len(sent)
+                        sentence_scores[sent] += (
+                                word_frequencies[word.text.lower()]
+                                / len(sent))
 
-    summarized_sentences = nlargest(size, sentence_scores, key=sentence_scores.get)
+    summarized_sentences = nlargest(size, sentence_scores,
+                                    key=sentence_scores.get)
 
     i = 0
     for w in summarized_sentences:

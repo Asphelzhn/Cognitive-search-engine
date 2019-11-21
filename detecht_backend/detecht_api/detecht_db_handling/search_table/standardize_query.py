@@ -19,8 +19,8 @@ def standardize_query(query):
     ]
     for w in customize_stop_words:
         nlp.vocab[w].is_stop = True
-
-    tokens = [token.text for token in my_doc if not token.is_stop]  # Remove stop words
+    # Remove stop words
+    tokens = [token.text for token in my_doc if not token.is_stop]
 
     # print('Original query: %s' % (query))
     # print()
