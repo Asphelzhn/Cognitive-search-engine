@@ -50,7 +50,7 @@
   height: 8%;
 }
 
-.hr{
+.hr1{
   border-bottom: 0.5px #707070 solid;
   width: 100%;
   float: left;
@@ -173,4 +173,84 @@ Input-bar-holder{
 .Middle-cont {
   height: 75%;
   width: 100%;
+}
+
+
+.hr2 {
+  border-bottom: 0.5px #707070 solid;
+  width: 100%;
+  float: left;
+  margin-top: 0;
+  bottom: 60px;
+}
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .bottom_container {
+    bottom: 80px;
+    position: inherit;
+
+  }
+  .trash{
+  float: left;
+  margin-left: 30%;
+  }
+  .saveButton {
+    float: right;
+    margin-right: 30%;
+  }
+  .icon{
+    position: center;
+    margin-left: 15%;
+  }
+}
+
+
+@media screen and (max-width: 995px) {
+  .Middle-cont{
+    height: 60%;
+  }
+
+  .trash{
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 2%;
+    vertical-align: center;
+  }
+  .saveButton {
+    float: right;
+    margin-bottom: 1%;
+    margin-right: 2%;
+    margin-top: 1%;
+  }
+  .icon{
+    float: left ;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+
+}
+
+
+
+
+
+@media screen and (max-width: 612px) {
+  .bottom_container{
+
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 8px;
+
+  }
+
+
+  .Middle-cont{
+    height: 40%;
+  }
 }
