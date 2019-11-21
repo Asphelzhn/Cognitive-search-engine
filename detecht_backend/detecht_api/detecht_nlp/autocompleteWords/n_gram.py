@@ -56,6 +56,7 @@ def get_result(query):
         w = ""
         for m in range(length):
             s_sub.append(s[m])
+        w.join(s_sub)
         if w == query:
             suggestions.append(re.sub('\n+', " ", line))
             i += 1
