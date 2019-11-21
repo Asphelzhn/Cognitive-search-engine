@@ -15,8 +15,131 @@
   bottom: 35px;
   left: 35px;
   right: 35px;
+  border-radius: 25px 25px 50px 50px;
+  background: #EAEBED 0% 0% no-repeat padding-box;
 
-  background: #E1E2E8 0% 0% no-repeat padding-box;
-  border-radius: 25px 25px 3px 3px;
   opacity: 1;
+  font-family: Verdana;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E1E2E8;
+    padding: .5rem;
+    border-radius: 25px 25px 0 0;
+
+    h1 {
+      margin: 0;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: row;
+
+      a {
+        border-radius: 99999px;
+        background: #C3C3C3;
+        width: 20px;
+        height: 20px;
+        padding: 0.25rem;
+        display: flex;
+        justify-content: center;
+        margin: 0 3px;
+
+        img {
+          width: 75%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .body {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0 0 100px 100px;
+
+    .qr-code-wrapper {
+      width: 15%;
+
+    }
+    .abstract-wrapper {
+      width: 50%;
+
+      > div {
+        display: flex;
+        flex-wrap: wrap;
+
+        .abstract {
+          width: 47%;
+          padding: .5rem 1rem;
+          margin: 1%;
+          background-color: #e0e0e0;
+          border-radius: 25px;
+          box-sizing: border-box;
+
+          p {
+            font-style: italic;
+          }
+            .button-wrapper {
+              text-align: center;
+              margin-bottom: 1rem;
+              a {
+                text-transform: uppercase;
+                background-color: rgba(51, 99, 128, 0.29);
+                border-radius: 9999px;
+                padding: .5rem 1rem;
+                color:#fff;
+              }
+            }
+        }
+      }
+    }
+    .related-documents-wrapper {
+      width: 30%;
+
+      .related-document {
+        padding: 1rem 2rem;
+        background: #E0E0E0;
+        border-radius: 99999px;
+        margin-bottom: 1rem;
+
+        h3 {
+          font-size: 1rem;
+          border-bottom: 2px solid #707070;
+          overflow-y: hidden;
+          padding-bottom: .25rem;
+          margin: 0;
+          text-align: center;
+        }
+
+        .icons {
+          display: flex;
+          justify-content: space-around;
+          width: 70%;
+          margin: 1rem auto;
+
+          a {
+            width: 40px;
+            height: 40px;
+            display: block;
+            padding: .5rem;
+            background: #C3C3C3;
+            border-radius: 99999px;
+            display: flex;
+            justify-content: space-around;
+
+            img {
+              width: 75%;
+              height: auto;
+            }
+          }
+
+        }
+      }
+
+    }
+  }
 }

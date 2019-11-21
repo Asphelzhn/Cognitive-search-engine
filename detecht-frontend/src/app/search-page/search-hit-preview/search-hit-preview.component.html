@@ -1,17 +1,85 @@
 <div id="background" (click)="close()"></div>
 <div id="container">
-  <div id="cross" (click)="close()">X</div>
 
-  <p>sentence-hits works!</p>
-  <div>
-    <button (click)="showPreview = true">Show preview</button>
+  <header>
+    <h1>{{result.title}}</h1>
+    <div class="button-group">
+
+      <a href="#">
+        <img src="assets/user-page/download-search-page-icon.png">
+      </a>
+      <a href="#">
+        <img src="assets/user-page/like-icon.png">
+      </a>
+      <a href="#">
+        <img (click)="close()" src="assets/user-page/download-search-page-icon.png">
+      </a>
+    </div>
+  </header>
+  <div class="body">
+    <div class="qr-code-wrapper">
+      <h2>QR-Code</h2>
+    <app-qr-code></app-qr-code>
+    </div>
+    <div class="abstract-wrapper">
+      <h2>Abstracts</h2>
+        <div>
+        <div *ngFor='let sentence of sentences' class="abstract">
+          <p>"{{sentence}}"</p>
+          <div class="button-wrapper">
+            <img (click)="displayPreview(sentence)" src="assets/user-page/take-me-there-button.png">
+          </div>
+          </div>
+        </div>
+    </div>
+    <div class="related-documents-wrapper">
+      <h2>Related Documents</h2>
+      <div class="related-document">
+        <h3>{{result.title}}</h3>
+        <div class="icons">
+          <a href="#">
+            <img src="assets/user-page/download-button.png">
+          </a>
+          <a href="#">
+            <img src="assets/user-page/download-search-page-icon.png">
+          </a>
+          <a href="#">
+            <img (click)="close()" src="assets/user-page/like-icon.png">
+          </a>
+        </div>
+      </div>
+      <div class="related-document">
+        <h3>{{result.title}}</h3>
+        <div class="icons">
+          <a href="#">
+            <img src="assets/user-page/download-search-page-icon.png">
+          </a>
+          <a href="#">
+            <img src="assets/user-page/download-search-page-icon.png">
+          </a>
+          <a href="#">
+            <img (click)="close()" src="assets/user-page/like-icon.png">
+          </a>
+        </div>
+      </div>
+      <div class="related-document">
+        <h3>{{result.title}}</h3>
+        <div class="icons">
+          <a href="#">
+            <img src="assets/user-page/download-search-page-icon.png">
+          </a>
+          <a href="#">
+            <img src="assets/user-page/download-search-page-icon.png">
+          </a>
+          <a href="#">
+            <img (click)="close()" src="assets/user-page/like-icon.png">
+          </a>
+        </div>
+      </div>
+
+
+    </div>
   </div>
-
-  <div *ngFor='let sentence of sentences'>
-    <a (click)="displayPreview(sentence)">Sentence:  {{sentence}}</a>
-  </div>
-
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
                              [result]="result" [sentence]="rightSentence"></app-search-result-preview>
-
 </div>
