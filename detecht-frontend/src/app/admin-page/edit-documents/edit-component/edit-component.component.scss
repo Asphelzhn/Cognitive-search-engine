@@ -210,7 +210,7 @@ Input-bar-holder{
 
 @media screen and (max-width: 995px) {
   .Middle-cont{
-    height: 60%;
+    height: 55%;
   }
 
   .trash{
@@ -252,5 +252,15 @@ Input-bar-holder{
 
   .Middle-cont{
     height: 40%;
+  }
+
+  .pdf_name {
+    width: auto;
+    font-size: 15px;
+  }
+  .pdf_summary{
+    width: auto;
+    font-size: 10px;
+    height : 15px;
   }
 }

@@ -79,7 +79,7 @@
 
 .edit-component {//holds right window frame
   margin-top: 4%;
-  margin-left: 5%;
+  margin-left: 6%;
   position: absolute;
   //top: 15%;
   left: 52.2%;
@@ -120,6 +120,7 @@ background-color: white;
     width: 90%;
   }
 
+
   .search-edit-doc {
     height: 30%;
     width :90%;
@@ -127,5 +128,9 @@ background-color: white;
 
   .sidebar-menu{
     height: 88px;
+  }
+
+  .saveButton{
+    width: 100%;
   }
 }
