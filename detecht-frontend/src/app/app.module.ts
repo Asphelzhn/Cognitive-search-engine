@@ -37,7 +37,6 @@ import { StatsComponent } from './admin-page/analytics/stats/stats.component';
 import {DocumentStatsComponent} from './admin-page/analytics/document-stats/document-stats.component';
 import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
 import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
-import { SavedDocumentComponent } from './saved-documents-page/saved-document/saved-document.component';
 
 @NgModule({
   declarations: [
@@ -64,8 +63,7 @@ import { SavedDocumentComponent } from './saved-documents-page/saved-document/sa
     EditDocumentsComponent,
     FooterComponent,
     StatsComponent,
-    DocumentStatsComponent,
-    SavedDocumentComponent
+    DocumentStatsComponent
   ],
   imports: [
     BrowserModule,

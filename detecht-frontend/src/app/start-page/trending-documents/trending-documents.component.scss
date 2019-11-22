@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
 .documents-div {
   margin-left: 10%;
   margin-right: 10%;
@@ -8,8 +10,10 @@
 }
 
 #trending-documents-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
   margin-left: 15%;
-  font-size: 40px;
+  font-size: 22px;
   margin-top: 10px;
   margin-bottom: 10px;
 }

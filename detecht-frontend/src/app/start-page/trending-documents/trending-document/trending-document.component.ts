@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-trending-document',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trending-document.component.scss']
 })
 export class TrendingDocumentComponent implements OnInit {
-
+  @Input() title: string;
   constructor() { }
 
   ngOnInit() {
