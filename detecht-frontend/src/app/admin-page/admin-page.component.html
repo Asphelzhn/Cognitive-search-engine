@@ -1,16 +1,16 @@
 
     <mat-sidenav-container class="example-container" >
-      <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+      <mat-sidenav id="vertical" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
                    (closed)="events.push('close!')">
-        <span (click)="changePage('analytics')">Click for Analytics</span>
-        <span (click)="changePage('upload')">Click for Upload document</span>
-        <span (click)="changePage('edit')">Click for Edit documents</span>
+        <span (click)="changePage('analytics')"> <img src="assets/admin-page/account-circle-icon.png"></span>
+        <span (click)="changePage('upload')"><img src="assets/admin-page/file-upload-icon.png"></span>
+        <span (click)="changePage('edit')"><img src="assets/admin-page/border-color-icon.png"></span>
       </mat-sidenav>
 
 <!--<app-admin-navbar></app-admin-navbar>-->
 <mat-sidenav-content class="container">
-  <mat-toolbar>
-    <p><button mat-button (click)="sidenav.toggle()">Open sidemenu</button></p>
+  <mat-toolbar id="horizontal">
+    <p><button mat-button (click)="sidenav.toggle()"><img src="assets/admin-page/dehaze-icon.png"></button></p>
   </mat-toolbar>
 <!--  <div id="horizontal">Here admin navbar should be created</div>-->
   <app-analytics *ngIf="page === 'analytics'"></app-analytics>
