@@ -29,7 +29,6 @@ def create_hash(doc):
 
 
 def create_abstract(query,doc):
-    create_hash(doc)
     docx=nlp(doc)
     query=nlp(query)
     queryList=[]
