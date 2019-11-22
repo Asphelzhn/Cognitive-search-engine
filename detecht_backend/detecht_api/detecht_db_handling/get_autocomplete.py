@@ -5,6 +5,7 @@ import django
 
 django.setup()
 from detecht_api.models import Search_Autocomplete
+import time
 '''
 By Severn
 '''
@@ -47,4 +48,7 @@ def get_autocomplete(query):
 
 
 def test():
+    t1 = time.clock()
     print(get_autocomplete("In the"))
+    t2 = time.clock()
+    print("response time: " + str(t2 - t1))
