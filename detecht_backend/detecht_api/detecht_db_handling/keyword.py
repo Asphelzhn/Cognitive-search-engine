@@ -1,3 +1,5 @@
+from rest_framework.exceptions import ValidationError
+
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
     Pdf_Similarities, User_Keyword
@@ -30,8 +32,11 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # Henrik
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
-    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight).d
-    new.save()
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
+    if len(new.pdf_name) <=50:
+        new.save()
+    else:
+        print("error")
     return
 
 
@@ -76,17 +81,23 @@ def date_calc(dateNow):
     datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d")) - 1) + 365 * int(dateNow.strftime("%d"))
     return datenow1
 
-
-def Preview_Document(pdf_name1, userid1):
+# interact with document
+def Preview_Document(pdf_name, userid, type):
     dateNow = date.today()
-    new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Preview")
-    new.save()
+    if type == "Preview":
+        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
+        new.save()
+    elif type == "Download":
+        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
+        new.save()
+    else:
+        print("error")
+    return
 
-
-def Download_Document(pdf_name1, userid1):
-    dateNow = date.today()
-    new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
-    new.save()
+# def Download_Document(pdf_name1, userid1):
+#     dateNow = date.today()
+#     new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
+#     new.save()
 
 
 def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.

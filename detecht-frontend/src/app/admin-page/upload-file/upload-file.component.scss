@@ -17,6 +17,7 @@
 input-button {
   width: auto;
   height: auto;
+
 }
 
 .choosed-documents {
@@ -38,6 +39,7 @@ input-button {
 .choosed-file {
   width: auto;
   height: 20px;
+  text-align: center;
   border-bottom: #383838;
   background-color: darkslategrey;
 }
@@ -46,7 +48,8 @@ input-button {
   height: 80%;
   width: 95%;
   border: 1px solid lightgrey;
-  justify-content: end;
+  justify-content: center;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   font-family: Verdana;

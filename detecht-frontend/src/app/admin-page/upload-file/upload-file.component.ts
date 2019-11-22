@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
 import {NetworkPdfUploadRequest} from '../../network-services/network-data-types';
+import {count} from "rxjs/operators";
+import {getSortHeaderNotContainedWithinSortError} from "@angular/material/sort/typings/sort-errors";
 
 @Component({
   selector: 'app-upload-file',
@@ -29,33 +31,24 @@ export class UploadFileComponent implements OnInit {
       this.fileData.push(file as File);
       this.fileTitles.push(this.generateTitle(file.name));
     }
-    this.preview();
   }
-
   generateTitle(pdfname: string): string {
-    return pdfname;
+    var title = pdfname;
+    return title;
   }
 
-  preview() {
-    // Show preview TODO
-    // const mimeType = this.fileData.type;
-    // if (mimeType.match(/image\/*/) == null) {
-    //   return;
-    // }
-
-    // const reader = new FileReader();
-    // // TODO
-    // // reader.readAsDataURL(this.fileData);
-    // reader.onload = (event) => {
-    //   this.previewUrl = reader.result;
-    // };
-  }
-
+  //((preview() {
+  //}
 
   onSubmit() {
-    // const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitle, this.fileData);
-    // this.adminService.pdfUpload(networkPdfUploadRequest);
-    // TODO ta med oven
+    for (const i of this.fileTitles[length]) {
+      const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitles[i], this.fileData[i]);
+      this.adminService.pdfUpload(networkPdfUploadRequest);
+      console.log(i);
+    }
+    alert('SUCCESS !!');
+
+    // TODO ta med ovan
     // const formData = new FormData();
     // formData.append('file', this.fileData);
     // console.log('Submitting');

@@ -33,10 +33,10 @@ export class ResultBarComponent implements OnInit {
     // dialogConfig.autoFocus = true;
     // dialogConfig.disableClose = false;
     // const dialogRef = this.dialog.open(SearchHitPreviewComponent, {
-    //   data: {resultValue: this.result}
+    //   data: {resultValue: this.results}
     // });
     // dialogRef.afterClosed().subscribe(value => {
-    //   this.result = value.data;
+    //   this.results = value.data;
     // });
   }
 
