@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {AdminNavbarToPageService} from '../../message-services/admin-navbar-to-page.service';
 
 @Component({

@@ -1,10 +1,23 @@
-<app-admin-navbar></app-admin-navbar>
-<div class="container">
+
+    <mat-sidenav-container class="example-container" >
+      <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                   (closed)="events.push('close!')">
+        <span (click)="changePage('analytics')">Click for Analytics</span>
+        <span (click)="changePage('upload')">Click for Upload document</span>
+        <span (click)="changePage('edit')">Click for Edit documents</span>
+      </mat-sidenav>
+
+<!--<app-admin-navbar></app-admin-navbar>-->
+<mat-sidenav-content class="container">
+  <mat-toolbar>
+    <p><button mat-button (click)="sidenav.toggle()">Open sidemenu</button></p>
+  </mat-toolbar>
+<!--  <div id="horizontal">Here admin navbar should be created</div>-->
   <app-analytics *ngIf="page === 'analytics'"></app-analytics>
   <app-upload-file *ngIf="page === 'upload'"></app-upload-file>
   <app-edit-documents *ngIf="page === 'edit'"></app-edit-documents>
-</div>
-
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 
 

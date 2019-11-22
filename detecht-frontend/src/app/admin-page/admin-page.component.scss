@@ -1,9 +1,31 @@
 .container{
-  margin-top: 88px;
-  margin-left: 111px;
   background-color: #F5F5F5;
   font-family: Verdana;
   height: 1400px;
   width: auto;
 }
 
+span {
+  margin-top: 20px;
+  display: block;
+}
+
+span:hover {
+  color: blue;
+  cursor: pointer;
+}
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
+}
+
+#horizontal {
+  position: fixed;
+  top: 0px;
+  height: 88px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 20px #00000029;
+  opacity: 1;
+}
