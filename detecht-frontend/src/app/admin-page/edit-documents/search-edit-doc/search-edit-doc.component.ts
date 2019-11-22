@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SearchService} from '../../../network-services/search.service';
+import {SearchResponse} from '../../../data-types';
 
 @Component({
   selector: 'app-search-edit-doc',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchEditDocComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchService: SearchService, private router: Router) {
+  }
+  results: SearchResponse[];
+  // numberOfHits: number;
+  searchString: string;
+  // @Input() changePage: boolean;
+  @Input() result: SearchResponse;
 
   ngOnInit() {
+    // this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
+    this.searchService.totalResults.subscribe(totalResults => this.numberOfHits = totalResults);
+    // this.searchService.currentSearch.subscribe(query => this.searchString = query);
   }
 
+  search(): void {
+    console.log('Searching for: ' + this.searchString);
+    this.searchService.search(this.searchString);
+    // if (!this.changePage) {
+    console.log('test1');
+
+    // this.router.navigateByUrl('search');
+    console.log('test');
+    // }
+  }
 }

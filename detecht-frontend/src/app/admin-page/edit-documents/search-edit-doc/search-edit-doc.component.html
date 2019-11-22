@@ -7,11 +7,11 @@
     </a>
 
     <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?">
-      <button type="submit" class="searchButton">
-        <img class = "search-icon" src="assets/Group 37@2x.png" alt="">
-        <i class="fa fa-search"></i>
-      </button>
+      <form (ngSubmit)="search()">
+        <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
+        <input type="submit" class="searchButton" value = ""/>
+        <i class="fas fa-search"></i>
+      </form>
     </div>
   </div>
 
@@ -20,6 +20,9 @@
 
     <div class="result" >
       <div class="line"></div>
+        <div *ngFor='let result of results'>
+          <app-result-bar [result]='result'></app-result-bar>
+        </div>
 
 <!--      <label><input type="checkbox" class="check_box"></label>-->
 <!--      <input type="checkbox" name="vehicle" value="Bike" class="check_box">-->
