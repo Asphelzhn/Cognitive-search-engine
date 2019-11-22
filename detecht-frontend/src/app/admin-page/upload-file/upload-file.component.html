@@ -1,19 +1,14 @@
+<div class="grid-container">
 
-<div class="container">
-
-  <!--<div class = "sidenav">
-    <button class="btn btn-primary upload-file-btn" routerLink="/admin">Admin</button>
-  </div>-->
-
-  <div class="upload-page-content">
+  <div class="grid-item">
     <h4>Upload new document</h4>
     <hr class = "border: bottom">
     <div class="selected-documents">
-        <input type="file" id = "input-button" class = "input-button" (change)="fileProgress($event)" multiple/>
+        <input type="file" class = "input-button" (change)="fileProgress($event)" multiple/>
     </div>
   </div>
 
-  <div class="choosed-documents">
+  <div class="grid-item">
     <h4>Choosed documents</h4>
     <hr class = "border: bottom">
 
@@ -43,47 +38,3 @@
   </div>
 </div>
 {{responseMessage}}
-
-<!--
-
-<div class="container">
-  <mat-card>
-    <form [formGroup]="uploadForm" (ngSubmit)="uploadSubmit()">
-      <mat-card-content>
-        <br>
-        <input type="file" name="image" (change)="fileProgress($event)" multiple/>
-        Hej
-        <input formControlName="document" type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" multiple/><br/>
-        <br>
-        <div ng2FileDrop [uploader]="uploader" class="drop-zone">
-          Drag and drop files to upload
-        </div>
-        <table>
-          <thead>
-          <tr>
-            <th width="90%">
-              File Name
-            </th>
-            <th width="10%">
-              Remove
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let item of uploader.queue">
-            <th width="90%">
-              (NaN MB)
-            </th>
-            <th class="text-center" width="10%">
-              <mat-icon (click)="item.remove()">delete</mat-icon>
-            </th>
-          </tr>
-          </tbody>
-        </table>
-        <br>
-        <button class="btn btn-primary upload-file-btn"  (click)="onSubmit()">Upload document</button>
-      </mat-card-content>
-    </form>
-  </mat-card>
-</div>
--->

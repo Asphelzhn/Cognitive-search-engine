@@ -1,26 +1,19 @@
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media (max-width: 700px) {
-  .upload-page-content .choosed-documents {
-    flex-direction: column;
-    width: 80%;
-  }
+.grid-container{
+  background-color: #F5F5F5;
+  display: grid;
+  grid-template-columns: auto auto;
+  height: auto;
+  width: auto;
 }
 
-@media screen and (max-width: 700px) {
-  .upload-page-content .choosed-documents {
-    width: 100%;
-  }
-}
-
-.upload-page-content{
-  height: 25%;
-  width: 45%;
+.grid-item{
+  height: 100%;
+  width: 90%;
   background-color: #ffffff;
   margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 20px;
-  float: left;
   justify-content: center;
   text-align: center;
   h4{
@@ -33,25 +26,14 @@
 .input-button {
   width: auto;
   height: auto;
+  justify-content: center;
+  text-align: center;
   margin-top: 100px;
   margin-bottom: 100px;
+  //color: #B0D5D8;
+  border: none;
+  cursor: pointer;
 
-}
-
-.choosed-documents {
-  height: 25%;
-  width: 45%;
-  background-color: #ffffff;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  float: right;
-  h4{
-    margin-left: 8px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
 }
 
 .choosed-file {
@@ -66,27 +48,10 @@
   height: 80%;
   width: 95%;
   border: 1px solid lightgrey;
-  justify-content: center;
-  text-align: center;
   margin: auto;
-
   font-family: Verdana;
 }
 
-.sidenav {
-  display: compact;
-  justify-content: center;
-
-
-  button {
-    background-color: #B0D5D8;
-    color: #ffffff;
-    border: none;
-    padding: 4px 11px;
-    margin: 2px;
-    cursor: pointer;
-  }
-}
 .file-buttons{
   display: flex;
   justify-content: center;
@@ -104,9 +69,33 @@
   }
 }
 
-.container{
-  background-color: #F5F5F5;
-  height: auto;
-  width: auto;
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 992px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .grid-item {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    grid-row-gap: 200px;
+  }
 }
 
+
+
+@media screen and (max-width: 612px) {
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .grid-item{
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+
+}
