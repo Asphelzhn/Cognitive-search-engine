@@ -33,7 +33,15 @@ export class UploadFileComponent implements OnInit {
     }
   }
   generateTitle(pdfname: string): string {
+    // Write function for generate title from pdfname. If backend does it.
     var title = pdfname;
+
+    for (const i of pdfname[length]) {
+      if (pdfname.charAt(Number(i)) == '_') {
+        title.charAt(Number(i)) == ' ';
+      }
+    }
+
     return title;
   }
 

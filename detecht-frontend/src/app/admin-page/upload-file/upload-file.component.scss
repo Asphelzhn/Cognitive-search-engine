@@ -1,3 +1,17 @@
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 700px) {
+  .upload-page-content .choosed-documents {
+    flex-direction: column;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .upload-page-content .choosed-documents {
+    width: 100%;
+  }
+}
+
 .upload-page-content{
   height: 25%;
   width: 45%;
@@ -7,6 +21,8 @@
   margin-right: 10px;
   margin-bottom: 20px;
   float: left;
+  justify-content: center;
+  text-align: center;
   h4{
     margin-left: 8px;
     margin-top: 8px;
@@ -14,9 +30,11 @@
   }
 }
 
-input-button {
+.input-button {
   width: auto;
   height: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
 
 }
 
@@ -50,8 +68,8 @@ input-button {
   border: 1px solid lightgrey;
   justify-content: center;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+
   font-family: Verdana;
 }
 
@@ -88,7 +106,7 @@ input-button {
 
 .container{
   background-color: #F5F5F5;
-  height: 800px;
+  height: auto;
   width: auto;
 }
 

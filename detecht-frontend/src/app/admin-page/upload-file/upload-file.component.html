@@ -9,7 +9,7 @@
     <h4>Upload new document</h4>
     <hr class = "border: bottom">
     <div class="selected-documents">
-        <input type="file" id = "input-button" (change)="fileProgress($event)" multiple/>
+        <input type="file" id = "input-button" class = "input-button" (change)="fileProgress($event)" multiple/>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
     <span *ngFor="let file of fileData">
       <div id = "choosed-file">
         <img src = "../../../assets/admin-page/color-bar-1-icon.png" style = "height:20px; width: 10px;">
-        {{file.name}}
+        {{generateTitle(file.name)}}
       </div>
       <br>
     </span>
