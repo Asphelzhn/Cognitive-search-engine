@@ -25,6 +25,9 @@ export class UploadFileComponent implements OnInit {
 
   fileProgress(fileInput: any) {
     this.fileData = fileInput.target.files[0] as File;
+    this.fileTitle = this.fileData.name.replace(/_/g, ' ').replace('.pdf', '');
+    this.fileTitle = this.fileTitle[0].toLocaleUpperCase() + this.fileTitle.slice(1).toLocaleLowerCase()
+    console.log(this.fileTitle)
     this.preview();
   }
 
