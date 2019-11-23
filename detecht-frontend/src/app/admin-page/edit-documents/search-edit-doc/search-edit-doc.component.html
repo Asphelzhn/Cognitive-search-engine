@@ -18,24 +18,21 @@
   <hr class = "hr">
   <div class="result_holder">
 
-    <div class="result" >
-      <div class="line"></div>
-        <div *ngFor='let result of results'>
-          <p> {{result.name}}</p>
-        </div>
+    <div class="result" *ngFor='let result of results' >
+      <div class="line" ></div>
 
 <!--      <label><input type="checkbox" class="check_box"></label>-->
 <!--      <input type="checkbox" name="vehicle" value="Bike" class="check_box">-->
 
-      <label class="check_container">
+      <label class="check_container" >
         <input type="checkbox">
         <span class="checkmark"></span>
       </label>
 
 
 
-      <div class = "pdf_title">
-        <p>Pdf name</p>
+      <div class = "pdf_title" >
+        <p>{{result.name}}</p>
       </div>
       <div class="pdf_text">
         <p>pdf text</p>
