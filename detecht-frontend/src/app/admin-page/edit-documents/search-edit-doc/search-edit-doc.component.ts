@@ -13,13 +13,13 @@ export class SearchEditDocComponent implements OnInit {
   constructor(private searchService: SearchService, private router: Router) {
   }
   results: SearchResponse[];
-  // numberOfHits: number;
+  numberOfHits: number;
   searchString: string;
   // @Input() changePage: boolean;
   @Input() result: SearchResponse;
 
   ngOnInit() {
-    // this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
+    this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
     this.searchService.totalResults.subscribe(totalResults => this.numberOfHits = totalResults);
     // this.searchService.currentSearch.subscribe(query => this.searchString = query);
   }
