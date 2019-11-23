@@ -6,11 +6,6 @@ import django
 django.setup()
 import re
 import string
-import operator
-import time
-from detecht_api.models import Search_Autocomplete
-
-# from detecht_backend.detecht_api import models
 
 '''
 By Severn

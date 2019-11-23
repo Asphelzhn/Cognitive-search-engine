@@ -4,13 +4,13 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
 import django
 
 django.setup()
-import re
-import string
 import operator
 import time
 from detecht_api.models import Search_Autocomplete
 from detecht_api.detecht_nlp.autocompleteWords import n_gram
-
+'''
+By Severn
+'''
 
 def upload():
     t1 = time.clock()
