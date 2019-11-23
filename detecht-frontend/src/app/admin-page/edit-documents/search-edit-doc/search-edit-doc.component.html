@@ -7,11 +7,11 @@
     </a>
 
     <div class="search">
-      <form (ngSubmit)="search()">
-        <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
-        <input type="submit" class="searchButton" value = ""/>
-        <i class="fas fa-search"></i>
-      </form>
+      <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString">
+      <button type="submit" class="searchButton" (click)="search()">
+        <img class = "search-icon" src="assets/Group 37@2x.png" alt="">
+        <i class="fa fa-search"></i>
+      </button>
     </div>
   </div>
 
