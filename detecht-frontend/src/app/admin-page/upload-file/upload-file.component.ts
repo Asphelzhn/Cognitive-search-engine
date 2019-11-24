@@ -38,6 +38,8 @@ export class UploadFileComponent implements OnInit {
     // Write function for generate title from pdfname. If backend does it.
     var title = pdfname;
 
+    title = title.replace(/_/g, ' ').replace('.pdf', '');
+    title = title[0].toLocaleUpperCase() + title.slice(1).toLocaleLowerCase()
     //for (const i of pdfname[length]) {
       //if (pdfname.charAt(Number(i)) == '_') {
         //title.charAt(Number(i)) == ' ';
