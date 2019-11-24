@@ -6,6 +6,7 @@ from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
 from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 
+
 # Jakob, Carl, Oscar and Henrik
 class JsonClass:
 
@@ -16,7 +17,6 @@ class JsonClass:
         self.keywords = list()
         self.pages = pdf_extractor(self.pdf_name)[0]
         self.date_created = pdf_extractor(self.pdf_name)[1]
-
 
     @classmethod
     def init_from_json(cls, json_file):
@@ -44,19 +44,18 @@ class JsonClass:
 
         return json_obj
 
-    def get_all_plaintext(self): # return plain text from entire pdf
+    def get_all_plaintext(self):  # return plain text from entire pdf
         full_text = ""
         for page in self.pages:
             full_text += page
         return full_text
 
-    def get_plaintext(self, start_page, end_page):       # return plain text from start_page to end_page
+    def get_plaintext(self, start_page, end_page):  # return plain text from start_page to end_page
         segment_text = ""
         iteration_amount = end_page - start_page
         for i in range(iteration_amount):
             segment_text = segment_text + self.pages[start_page + i]
         return segment_text
-
 
     def frontend_result(self, query):
         return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
@@ -74,8 +73,8 @@ class JsonClass:
             'tags': self.tags,
             'keywords': keywords_tmp,
             'sections': sections_tmp,
-            'full_text': self.full_text
-            'pages' :self.pages
+            'full_text': self.get_all_plaintext(),
+            'pages': self.pages,
             'date_created': self.date_created}
         return json.dumps(a)
 
@@ -152,7 +151,7 @@ class JsonClass:
 
     # Henrik
     def get_abstract(self, query):
-        sent_array = imp_sent_creator(self.full_text, query, 3)
+        sent_array = imp_sent_creator(self.get_all_plaintext(), query, 3)
         abstract = ""
         for sentence in sent_array:
             abstract += str(sentence.sent)
@@ -171,4 +170,3 @@ class JsonClass:
         for i in attr:
             self.sections.append([i, index])
             index += len(i)
-
