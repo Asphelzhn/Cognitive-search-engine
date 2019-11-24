@@ -16,10 +16,7 @@ class JsonClass:
         self.keywords = list()
         self.pages = pdf_extractor(self.pdf_name)[0]
         self.date_created = pdf_extractor(self.pdf_name)[1]
-        self.full_text = ""
 
-        for page in self.pages:
-            self.full_text +=page
 
     @classmethod
     def init_from_json(cls, json_file):
@@ -47,11 +44,18 @@ class JsonClass:
 
         return json_obj
 
-    def get_all_plaintext(self):
-        # should return all pages
+    def get_all_plaintext(self): # return plain text from entire pdf
+        full_text = ""
+        for page in self.pages:
+            full_text += page
+        return full_text
 
-    def get_plaintext(start_page, end_page):
-        # should return plain text from start_page to end_page
+    def get_plaintext(self, start_page, end_page):       # return plain text from start_page to end_page
+        segment_text = ""
+        iteration_amount = end_page - start_page
+        for i in range(iteration_amount):
+            segment_text = segment_text + self.pages[start_page + i]
+        return segment_text
 
 
     def frontend_result(self, query):
