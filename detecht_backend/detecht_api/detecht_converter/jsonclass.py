@@ -13,16 +13,14 @@ class JsonClass:
         self.pdf_name = pdf_name
         self.title = title
         self.tags = tags
-        self.sections = list() # This should perhaps be removed?
         self.keywords = list()
         self.pages = pdf_extractor(self.pdf_name)[0]
-        # for page in pages:
-            # self.pages_keywords = something
         self.date_created = pdf_extractor(self.pdf_name)[1]
         self.full_text = ""
 
-        for i in self.pages:
-            self.full_text +=i
+        for page in self.pages:
+            self.full_text +=page
+
     @classmethod
     def init_from_json(cls, json_file):
         json_doc = json.loads(json_file)
@@ -38,18 +36,23 @@ class JsonClass:
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        # y = json_to_plaintext(x)
         json_obj = cls(pdf_name, title)
 
         keywords_list = Yake4Keyword.yake_api(json_obj.full_text, pdf_name)
         for keyword in keywords_list:
-            # TODO add keywords to db
             json_obj.add_keyword(keyword[0], keyword[1])
 
         for tag in tags:
             json_obj.add_tag(tag)
 
         return json_obj
+
+    def get_all_plaintext(self):
+        # should return all pages
+
+    def get_plaintext(start_page, end_page):
+        # should return plain text from start_page to end_page
+
 
     def frontend_result(self, query):
         return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
@@ -92,12 +95,6 @@ class JsonClass:
             json.dump(a, outfile, indent=2)
 
     # Adds whole document to one string, can be a problem with memory management
-    def add_full_text(self, fulltext):
-        self.full_text = fulltext
-
-    def get_full_text(self):
-        return self.full_text
-
     def get_date_created(self):
         return self.date_created
 
