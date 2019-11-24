@@ -194,7 +194,7 @@ class InteractWithDocument(APIView):
 
 
 class TrendingDocuments(APIView):
-    def get(self, request):
+    def post(self, request):
         data_id = request.data
         trending_list = Trending_docs(data_id["size"])
 
