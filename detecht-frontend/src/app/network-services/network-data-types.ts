@@ -26,6 +26,18 @@ export class NetworkAbstractResponse {
   abstracts: {sentence: string}[];
 }
 
+export class NetworkGetAllPdfResponse {
+  data: [
+    {
+      id: number;
+      file: string;
+      title: string;
+      downloads: number;
+      favorites: number;
+    }
+    ];
+}
+
 /*
   REQUESTS TO SERVER
  */

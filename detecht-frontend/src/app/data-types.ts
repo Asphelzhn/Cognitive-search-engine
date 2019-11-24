@@ -18,3 +18,19 @@ export class SearchResponse {
   }
 }
 
+export class Pdf {
+  id: number;
+  file: string;
+  title: string;
+  downloads: number;
+  favorites: number;
+
+
+  constructor(id: number, file: string, title: string, downloads: number, favorites: number) {
+    this.id = id;
+    this.file = file;
+    this.title = title;
+    this.downloads = downloads;
+    this.favorites = favorites;
+  }
+}
