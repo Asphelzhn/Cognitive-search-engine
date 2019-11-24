@@ -81,17 +81,23 @@ def date_calc(dateNow):
     datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d")) - 1) + 365 * int(dateNow.strftime("%d"))
     return datenow1
 
-
-def Preview_Document(pdf_name1, userid1):
+# interact with document
+def Preview_Document(pdf_name, userid, type):
     dateNow = date.today()
-    new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Preview")
-    new.save()
+    if type == "Preview":
+        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
+        new.save()
+    elif type == "Download":
+        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
+        new.save()
+    else:
+        print("error")
+    return
 
-
-def Download_Document(pdf_name1, userid1):
-    dateNow = date.today()
-    new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
-    new.save()
+# def Download_Document(pdf_name1, userid1):
+#     dateNow = date.today()
+#     new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
+#     new.save()
 
 
 def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
