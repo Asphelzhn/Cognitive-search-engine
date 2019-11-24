@@ -17,9 +17,9 @@
   right: 35px;
   border-radius: 25px 25px 50px 50px;
   background: #EAEBED 0% 0% no-repeat padding-box;
-
   opacity: 1;
   font-family: Verdana;
+  overflow-y: scroll;
 
   header {
     display: flex;
@@ -139,6 +139,63 @@
 
         }
       }
+
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #container {
+    .body {
+
+      flex-direction: column;
+
+      .qr-code-wrapper,
+      .abstract-wrapper,
+      .related-documents-wrapper {
+        width: 100%;
+        max-width: none;
+      }
+
+      .abstract-wrapper {
+        > div
+        .abstract {
+          width: 100%;
+
+        }
+      }
+
+
+
+    }
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 768px) {
+  #container {
+    .body {
+
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .qr-code-wrapper, .dummy {
+        width: 15%;
+      }
+
+      .abstract-wrapper {
+        width: 80%;
+
+        > div
+        .abstract {
+          width: 100%;
+
+        }
+      }
+      .related-documents-wrapper {
+        width: 80%;
+        max-width: none;
+      }
+
 
     }
   }
