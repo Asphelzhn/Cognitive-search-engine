@@ -69,6 +69,19 @@
   }
 }
 
+#uploading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 400px;
+  margin-left: -250px;
+  margin-top: -200px;
+
+  background-color: white;
+  border: 2px solid black;
+}
+
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 992px) {
   .grid-container {

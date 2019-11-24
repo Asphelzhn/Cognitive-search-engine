@@ -15,7 +15,7 @@
     <span *ngFor="let file of fileData">
       <div id = "choosed-file">
         <img src = "../../../assets/admin-page/color-bar-1-icon.png" style = "height:20px; width: 10px;">
-        {{generateTitle(file.name)}}
+        {{file.title}}
       </div>
       <br>
     </span>
@@ -37,4 +37,12 @@
     </div>
   </div>
 </div>
-<!--{{responseMessage}}-->
+<div id="uploading" *ngIf="uploadingPopUp">
+  <div *ngIf="responseMessage === ''">
+    Uploading
+  </div>
+  <div *ngIf="responseMessage !== ''">
+    {{responseMessage}}
+    <p (click)="closePopup()">Click on this text to close popup</p>
+  </div>
+</div>

@@ -14,22 +14,24 @@ export class UploadFileComponent implements OnInit {
   constructor(private adminService: AdminService) {
   }
 
-  fileData: {file: File, title: string}[];
+  fileData: {title: string, file: File}[];
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   responseMessage: string;
+  uploadingPopUp: boolean;
+  doneUploading: boolean;
 
   ngOnInit() {
     this.fileData = [];
     this.adminService.responseMessage.subscribe(responseMessage => this.responseMessage = responseMessage);
+    this.uploadingPopUp = false;
   }
 
   fileProgress(fileInput: any) {
     for (const file of fileInput.target.files) {
       this.fileData.push({file: file as File, title: this.generateTitle(file.name)});
     }
-    console.log(this.fileData);
   }
 
   generateTitle(pdfname: string): string {
@@ -52,11 +54,21 @@ export class UploadFileComponent implements OnInit {
 
   onSubmit() {
 
-    for (let i = 0; i < this.fileData.length; i++) {
-      // const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitles[i], this.fileData[i]);
-      // this.adminService.pdfUpload(networkPdfUploadRequest);
-      alert('SUCCESS !!');
-    }
+    this.adminService.pdfUpload(this.fileData);
+    this.uploadingPopUp = true;
+
+
+    // for (let i = 0; i < this.fileData.length; i++) {
+    //   // const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitles[i], this.fileData[i]);
+    //   // this.adminService.pdfUpload(networkPdfUploadRequest);
+    //   alert('SUCCESS !!');
+    // }
 
   }
+
+  closePopup() {
+  this.uploadingPopUp = false;
+  }
 }
+
+
