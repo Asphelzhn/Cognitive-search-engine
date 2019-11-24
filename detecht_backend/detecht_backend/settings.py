@@ -25,7 +25,7 @@ SECRET_KEY = 'ft*c^gqzv==7c17a_18ltje&^0vf)0=l&-t0wp-8x_6y4*g6jz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['company-1-1-tddc88-2019.edu.liu.se']
+ALLOWED_HOSTS = ['company-1-1-tddc88-2019.edu.liu.se', 'localhost']
 
 
 # Application definition
