@@ -38,6 +38,15 @@ export class NetworkGetAllPdfResponse {
     ];
 }
 
+export class NetworkTrendingDocumentsResponse {
+  content: [
+    {
+      pdf_name: string;
+      trend_score: boolean;
+    }
+  ];
+}
+
 /*
   REQUESTS TO SERVER
  */
@@ -66,4 +75,8 @@ export class NetworkPdfUploadRequest {
     this.title = title;
     this.file = file;
   }
+}
+
+export class NetworkTrendingDocumentsRequest {
+  size: number;
 }
