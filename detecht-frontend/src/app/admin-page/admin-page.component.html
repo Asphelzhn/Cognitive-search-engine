@@ -1,7 +1,8 @@
+<app-admin-navbar></app-admin-navbar>
 <div class="container">
-  <!--<div class="heading">
-  </div>-->
-  <app-uploaded-file></app-uploaded-file>
+  <app-analytics *ngIf="page === 'analytics'"></app-analytics>
+  <app-upload-file *ngIf="page === 'upload'"></app-upload-file>
+  <app-edit-documents *ngIf="page === 'edit'"></app-edit-documents>
 </div>
 
 

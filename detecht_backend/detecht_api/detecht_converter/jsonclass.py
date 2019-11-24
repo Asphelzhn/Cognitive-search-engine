@@ -10,16 +10,16 @@ from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 # Jakob, Carl, Oscar and Henrik
 class JsonClass:
 
-    def __init__(self, pdf_name, title, tags):
+    def __init__(self, pdf_name, title, date_created, pages=list()):
         self.pdf_name = pdf_name
         self.title = title
-        self.tags = tags
         self.keywords = list()
-        self.pages = pdf_extractor(self.pdf_name)[0]
-        self.date_created = pdf_extractor(self.pdf_name)[1]
+        self.pages = pages
+        self.date_created = date_created
 
     @classmethod
     def init_from_json(cls, json_file):
+        # TODO fix function
         json_doc = json.loads(json_file)
         json_obj = cls(json_doc["pdf_name"], json_doc["title"], json_doc["full_text"])
 
@@ -33,10 +33,14 @@ class JsonClass:
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        json_obj = cls(pdf_name, title)
+        pdf_extraction = pdf_extractor(self.pdf_name)
+        date_created = pdf_extraction[1]
+        pages = pdf_extraction[0]
+        json_obj = cls(pdf_name, title, date_created, pages)
 
         keywords_list = Yake4Keyword.yake_api(json_obj.full_text, pdf_name)
         for keyword in keywords_list:
+            # TODO add keywords to db
             json_obj.add_keyword(keyword[0], keyword[1])
 
         for tag in tags:
@@ -58,44 +62,22 @@ class JsonClass:
         return segment_text
 
     def frontend_result(self, query):
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'abstract': self.get_abstract(query)}
+        keywords = []
+        for keyword in self.keywords:
+            keywords.append({'keyword': keyword.get_keyword(), 'weight': keyword.get_weight()})
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
 
     def get_json_object(self):
         keywords_tmp = list()
         for keyword_tmp in self.keywords:
             keywords_tmp.append(keyword_tmp.get_keyword_dict())
-        sections_tmp = list()
-        for section_tmp in self.sections:
-            sections_tmp.append(section_tmp.get_section_dict())
         a = {
             'pdf_name': self.pdf_name,
             'title': self.title,
-            'tags': self.tags,
             'keywords': keywords_tmp,
-            'sections': sections_tmp,
-            'full_text': self.get_all_plaintext(),
             'pages': self.pages,
             'date_created': self.date_created}
         return json.dumps(a)
-
-    def export_json(self, file_name=""):
-        if file_name == "":
-            file_name = self.pdf_name
-        keywords_tmp = list()
-        for keyword_tmp in self.keywords:
-            keywords_tmp.append(keyword_tmp.get_keyword_dict())
-        sections_tmp = list()
-        for section_tmp in self.sections:
-            sections_tmp.append(section_tmp.get_section_dict())
-        a = {
-            'pdf_name': self.pdf_name,
-            'title': self.title,
-            'tags': self.tags,
-            'keywords': keywords_tmp,
-            'sections': sections_tmp,
-            'full_text': self.full_text}
-        with open(file_name + ".json", 'w') as outfile:
-            json.dump(a, outfile, indent=2)
 
     # Adds whole document to one string, can be a problem with memory management
     def get_date_created(self):
@@ -152,9 +134,9 @@ class JsonClass:
     # Henrik
     def get_abstract(self, query):
         sent_array = imp_sent_creator(self.get_all_plaintext(), query, 3)
-        abstract = ""
+        abstract = []
         for sentence in sent_array:
-            abstract += str(sentence.sent)
+            abstract.append({'sentence': str(sentence.sent)})
         return abstract
 
     # Jakob
