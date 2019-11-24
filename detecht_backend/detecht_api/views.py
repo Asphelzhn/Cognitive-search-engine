@@ -11,8 +11,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, PDFImportance
-from detecht_api.models import Keyword_distance
+from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
 
 # imports by OSKAR
 from detecht_api.models import Document #files
@@ -128,7 +127,6 @@ class AddFile(APIView):
 
 
 # BEGIN: Code written by Armin
-# Write Class-Based Views which helps keep code DRY.
 class Keyword(APIView):
    # permission_classes = (IsAuthenticated,)
    def post(self, request): #input: "keyword"
@@ -139,19 +137,16 @@ class Keyword(APIView):
 
         return HttpResponse(message)
 
-class KeywordSimilarity(APIView):
+#class KeywordSimilarity(APIView):
 
-    def post(self, request): #input: keyword1, keyword2, similarity
-        input = request.data
-        #test = PDFImportance.objects.get(pdf_name=input["pdf_name"]).update_weight(0.67, input["pdf_name"])
-        return HttpResponse()
-        #if created:
-         #   return HttpResponse("Abow fett sant")
-        #else:
-         #   return HttpResponse("hej")
-        #query = User.objects.get(id=0)
-        #message = Keyword_distance.add_keyword_distance(id1=Keywords.objects.get(word=input["keyword1"]).id, id2=Keywords.objects.get(word=input["keyword2"]).id, similarity=input["similarity"])
-
+#    def post(self, request): #input: keyword1, keyword2, similarity
+        #input = request.data
+        #message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
+        #input = request
+        #test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
+        #UserFavorites.remove_favorite_pdf(1, "hej")
+        #message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
+ #       return HttpResponse(message)
 
 # END: Code written by Armin
 
@@ -170,6 +165,7 @@ class DeletePdf(APIView):
         inputfile = request.data
 
         if inputfile !={}:
+            insert_file.delete_from_index(inputfile["title"])
             Document.delete(inputfile["title"]) #runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
