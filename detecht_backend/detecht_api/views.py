@@ -196,5 +196,19 @@ class InteractWithDocument(APIView):
 class TrendingDocuments(APIView):
     def get(self, request):
         data_id = request.data
-        response = Trending_docs(data_id["size"])
-        return 
+        trending_list = Trending_docs(data_id["size"])
+
+        response = {
+            'success': False,
+            'content': []
+        }
+        if trending_list != {}:
+            response['success'] = True
+            for pdf in trending_list:
+                frontend_result = {
+                    'pdf_name': pdf[0],
+                    'trend_score': pdf[1]
+                }
+                response['content'].append(frontend_result)
+
+        return response
