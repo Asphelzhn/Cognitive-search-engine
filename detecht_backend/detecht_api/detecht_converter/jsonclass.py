@@ -6,7 +6,8 @@ from detecht_api.detecht_converter.keyword_class import *
 from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
-from detecht_api.detecht_converter.pdf_converter import pdf_extractor
+# from detecht_api.detecht_converter.pdf_converter import pdf_extractor TODO change to new one when done implementing
+from detecht_api.detecht_converter.old_pdf_converter import pdf_to_json
 
 
 # Jakob, Carl and Oscar
@@ -37,7 +38,7 @@ class JsonClass:
 
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
-        full_text = pdf_extractor(pdf_name)  # convert_pdf_to_json not yet working
+        full_text = pdf_to_json(pdf_name)  # convert_pdf_to_json not yet working
         # y = json_to_plaintext(x)
         json_obj = cls(pdf_name, title, full_text)
 
