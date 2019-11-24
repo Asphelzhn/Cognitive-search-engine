@@ -29,6 +29,7 @@ def filter_by_date(start_date, end_date, elastic_search_results):
     # return the creation date between start and end date document name list
     return filter_list
 
+
 # This is the example of using Weighting Module to filter the document in a specific date
 if __name__ == '__main__':
     # get the ranked result from Weighting Module
@@ -40,5 +41,5 @@ if __name__ == '__main__':
     # filter the creation date
     start_date = "2016-05-30"
     end_date = "2019-11-15"
-    filter_list = filter_by_date(start_date,sorted_list)
+    filter_list = filter_by_date(start_date, end_date, sorted_list)
     print(filter_list)

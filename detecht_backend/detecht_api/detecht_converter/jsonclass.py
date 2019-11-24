@@ -77,8 +77,8 @@ class JsonClass:
             'tags': self.tags,
             'keywords': keywords_tmp,
             'sections': sections_tmp,
-            'full_text': self.full_text
-            'pages' :self.pages
+            'full_text': self.full_text,
+            'pages' :self.pages,
             'date_created': self.date_created}
         return json.dumps(a)
 
