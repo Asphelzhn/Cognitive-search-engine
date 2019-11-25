@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
-import {NetworkPdfUploadRequest} from '../../network-services/network-data-types';
-// import {count} from "rxjs/operators";
-// import {getSortHeaderNotContainedWithinSortError} from "@angular/material/sort/typings/sort-errors";
 
 @Component({
   selector: 'app-upload-file',
@@ -40,30 +37,13 @@ export class UploadFileComponent implements OnInit {
 
     title = title.replace(/_/g, ' ').replace('.pdf', '');
     title = title[0].toLocaleUpperCase() + title.slice(1).toLocaleLowerCase()
-    // for (const i of pdfname[length]) {
-    // if (pdfname.charAt(Number(i)) == '_') {
-    // title.charAt(Number(i)) == ' ';
-    // }
-    // }
-
     return title;
   }
-
-  // ((preview() {
-  // }
 
   onSubmit() {
 
     this.adminService.pdfUpload(this.fileData);
     this.uploadingPopUp = true;
-
-
-    // for (let i = 0; i < this.fileData.length; i++) {
-    //   // const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitles[i], this.fileData[i]);
-    //   // this.adminService.pdfUpload(networkPdfUploadRequest);
-    //   alert('SUCCESS !!');
-    // }
-
   }
 
   closePopup() {

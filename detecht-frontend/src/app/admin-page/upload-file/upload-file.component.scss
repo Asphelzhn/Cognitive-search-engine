@@ -10,10 +10,7 @@
   height: 100%;
   width: 90%;
   background-color: #ffffff;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
+  margin: 20px auto;
   justify-content: center;
   text-align: center;
   h4{
@@ -23,34 +20,51 @@
   }
 }
 
-.input-button {
-  width: auto;
-  height: auto;
-  justify-content: center;
-  text-align: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  //color: #B0D5D8;
-  border: none;
-  cursor: pointer;
-
-}
-
-.choosed-file {
-  width: auto;
-  height: 20px;
-  text-align: left;
-  border-bottom: #383838;
-  background-color: darkslategrey;
-}
-
 .selected-documents{
   height: 80%;
   width: 95%;
   border: 1px solid lightgrey;
   margin: auto;
-  font-family: Verdana;
+  justify-content: center;
+  text-align: center;
+
+  label{
+    width: 20%;
+    height: 25px;
+    background: #B0D5D8;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    margin: 100px auto;
+    cursor: pointer;
+    display: table;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
 }
+
+.input-button {
+  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+#choosed-file {
+  width: auto;
+  height: 20px;
+  text-align: left;
+  border-bottom: #383838;
+  // font: bold;
+  font-family: Verdana;
+  font-size: 16px;
+
+}
+
 
 .file-buttons{
   display: flex;
@@ -95,8 +109,6 @@
     grid-row-gap: 200px;
   }
 }
-
-
 
 @media screen and (max-width: 612px) {
 
