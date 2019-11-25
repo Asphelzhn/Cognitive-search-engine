@@ -54,9 +54,8 @@ def imp_sent_creator(doc, query, size=4):
                                 sentence_scores[sent] += word_frequencies[
                                     word.text.lower()]
 
-                        sentence_scores[sent] += (word_frequencies
-                                                  [word.text.lower()] /
-                                                  len(sent))
+                        sentence_scores[sent] += (
+                                word_frequencies[word.text.lower()]/len(sent))
 
     summarized_sentences = nlargest(size, sentence_scores,
                                     key=sentence_scores.get)
