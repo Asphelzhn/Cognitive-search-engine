@@ -28,7 +28,8 @@ urlpatterns = [
     url(r'^api/getanalytics/$', views.GetAnalytics.as_view()),
     url(r'^api/getabstract/$', views.GetAbstract.as_view()),
     path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls'))
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^api/interactwithdocument/$', views.InteractWithDocument.as_view())
 
 
 ]

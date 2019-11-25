@@ -50,11 +50,32 @@ class Yake4Keyword():
             dedupLim=deduplication_thresold, dedupFunc=deduplication_algo,
             windowsSize=windowSize, top=numOfKeywords, features=None)
         keywords = custom_kw_extractor.extract_keywords(text)
+        # return keywords
 
-        return keywords
+        # change the keywords weight
+        new_keywords_list =[]
+        for keyword_weight in keywords:
+            weight = keyword_weight[1]
+            if(weight == 0):
+                weight = 0.000000000000000001
+            new_weight = 1.0/weight
+            new_keywords_list.append((keyword_weight[0],new_weight))
+
+        result_list = []
+        max_weight = 0.000001
+        for keyword_weight in new_keywords_list:
+            weight = keyword_weight[1]
+            if(weight > max_weight):
+                max_weight = weight
+
+        for element in new_keywords_list:
+            result_list.append((element[0],element[1]/max_weight))
+
+        return result_list
 
 
-'''example using textRank to extract keyword
+
+'''example using yake to extract keyword
 '''
 if __name__ == '__main__':
     text = (

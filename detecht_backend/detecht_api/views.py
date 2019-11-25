@@ -10,8 +10,15 @@ from detecht_api.detecht_nlp.spell_check import spell_check
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-from detecht_api.models import Keywords
-from detecht_api.models import Document  # files
+
+from detecht_api.detecht_db_handling.keyword import Preview_Document
+
+"""
+Oskar H & Armin
+"""
+
+# imports by ARMIN
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from .serializers import DocumentSerializer
 
@@ -187,3 +194,10 @@ class GetAnalytics(APIView):
     def get(self, request):
         response = get_analytics_document()
         return JsonResponse(response)
+
+
+class InteractWithDocument(APIView):
+    def post(self, request):
+        data_in = request.data
+        Preview_Document(pdf_name=data_in["pdf_name"], userid=data_in["user_id"], type = data_in["type"])
+        return

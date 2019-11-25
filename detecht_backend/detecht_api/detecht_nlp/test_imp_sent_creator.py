@@ -1,4 +1,5 @@
 from detecht_api.detecht_nlp import imp_sent_creator
+import time
 
 """
 Henrik
@@ -66,7 +67,10 @@ query = "Sherlock to Holmes"
 
 
 def test():
+    t0=time.time()
     table = imp_sent_creator.imp_sent_creator(document1, query)
+    t1=time.time()
+    print(t1-t0)
     a = ""
     for i in table:
         print(i.sent)
