@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchResponse} from '../../data-types';
 import {SearchService} from '../../network-services/search.service';
