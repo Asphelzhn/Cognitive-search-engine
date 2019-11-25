@@ -36,7 +36,7 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
-    if len(new.pdf_name) <=50:
+    if len(new.pdf_name) <= 50:
         new.save()
     else:
         print("error")
@@ -88,6 +88,7 @@ def date_calc(dateNow):
                 + 365 * int(dateNow.strftime("%d")))
     return datenow1
 
+
 # interact with document
 def Preview_Document(pdf_name, userid, type):
     dateNow = date.today()
@@ -106,6 +107,7 @@ def Preview_Document(pdf_name, userid, type):
     else:
         print("error")
     return
+
 
 # def Download_Document(pdf_name1, userid1):
 #     dateNow = date.today()
