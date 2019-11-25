@@ -56,8 +56,8 @@ def create_abstract(doc, query):
                                     word.text.lower()]
 
                         sentence_scores[sent] += (word_frequencies
-                                                  [word.text.lower()]
-                                                  / len(sent))
+                                                  [word.text.lower()] /
+                                                  len(sent))
 
     sentence_scores
 
