@@ -1,21 +1,31 @@
-.results {
-  display: grid;
-  grid-template-columns: auto auto;
-  width: 100%;
-  margin: 0;
+@media screen and (min-width: 701px) {
+  .results {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    margin: 0 0 100px;
+  }
 }
+
+@media screen and (max-width: 700px) {
+  .results {
+    width: 100%;
+    margin: 0 0 100px;
+  }
+}
+
 .result-div {
-  margin-left: 30px;
   width: 90%;
   display: inline-block;
-  //height: 100%;
-  font-family: Verdana;
+  margin-left: 5%;
 }
 
 #top-text {
   margin-left: 30px;
 
   #spellcheck {
+    margin-bottom: 10px;
+
     #spellcheck-link {
       color: #000;
     }
@@ -26,3 +36,8 @@
     }
   }
 }
+
+#number-of-hits {
+  margin-bottom: 10px;
+}
+
