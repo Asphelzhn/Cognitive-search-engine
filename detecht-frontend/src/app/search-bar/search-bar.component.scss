@@ -80,3 +80,29 @@
   right: 0;
   z-index: 1000;
 }
+
+#autocompleteDropDown {
+  position: fixed;
+  z-index: 1100;
+  width: 300px;
+  height: auto;
+  background-color: white;
+  border: 1px solid black;
+
+  span {
+    display: block;
+  }
+  span:hover {
+    background-color: #3a517f;
+    cursor: pointer;
+  }
+}
+
+#autocompleteDropDownBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+}

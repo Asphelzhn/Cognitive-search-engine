@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SearchService} from '../network-services/search.service';
-import {Spellcheck} from '../data-types';
+import {SearchResponse, Spellcheck} from '../data-types';
+import {NetworkAutoCompleteResponse, NetworkSearchResponse} from '../network-services/network-data-types';
 
 @Component({
   selector: 'app-search-bar',
@@ -17,6 +18,7 @@ export class SearchBarComponent implements OnInit {
   showSpellcheck: boolean;
   showSpellcheckDropDown: boolean;
   spellcheckDropDown: Spellcheck;
+  autocomplete: string[];
   @Input() changePage: boolean;
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class SearchBarComponent implements OnInit {
     });
     this.showSpellcheckDropDown = false;
     this.spellcheckDropDown = {word: '', spellcheck: []};
+    this.autocomplete = [];
   }
 
   spellcheckClass(spellcheckWord: Spellcheck): string {
@@ -59,12 +62,44 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
-  closeDropDown() {
+  closeSpellcheckDropDown() {
     this.showSpellcheckDropDown = false;
+  }
+
+  closeAutocompleteDropDown() {
+    this.autocomplete = [];
+  }
+
+  updateAutoComplete() {
+    if (this.searchString === '') {
+      this.autocomplete = [];
+    } else {
+      this.searchService.autocomplete(this.searchString).subscribe(
+        (data: NetworkAutoCompleteResponse) => {
+          console.log('AutoComplete: ');
+          console.log(data);
+          if (data.success) {
+            this.autocomplete = data.autocomplete;
+          } else {
+            console.log('Error when getting schedule, please refresh the results');
+          }
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  autoComplete(sentence: string) {
+    this.autocomplete = [];
+    this.searchString = sentence;
+    this.search();
   }
 
   search(): void {
     console.log('Searching for: ' + this.searchString);
+    this.autocomplete = [];
     this.searchService.search(this.searchString);
     if (this.changePage) {
       this.router.navigateByUrl('search');
@@ -72,7 +107,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   searchForSpellcheck(word: string, newWord: string) {
-    this.closeDropDown();
+    this.closeSpellcheckDropDown();
     console.log('Word: ' + word + ' NewWord: ' + newWord);
     let newQuery = '';
     for (const queryWord of this.spellcheck) {

@@ -2,7 +2,19 @@
   <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
     <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?"
-           [(ngModel)]="searchString" *ngIf="!showSpellcheck"/>
+           [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
+
+    <!--AUTOCOMPLETE-->
+    <div id="autocompleteDropDown" *ngIf="autocomplete.length > 0">
+        <span *ngFor="let sentence of autocomplete"
+              (click)="autoComplete(sentence)">
+          {{sentence}}
+        </span>
+    </div>
+    <div id="autocompleteDownBackground" *ngIf="autocomplete.length > 0" (click)="closeAutocompleteDropDown()"></div>
+    <!--END AUTOCOMPLETE-->
+
+    <!--SPELLCHECK-->
     <div type="text" name="search" class="searchTerm spellcheckBox" placeholder="What are you looking for?"
          *ngIf="showSpellcheck">
       <span *ngFor="let spellcheckword of spellcheck" class="{{spellcheckClass(spellcheckword)}}"
@@ -15,8 +27,10 @@
           {{word}}
         </span>
       </div>
-      <div id="spellcheckDropDownBackground" *ngIf="showSpellcheckDropDown" (click)="closeDropDown()"></div>
+      <div id="spellcheckDropDownBackground" *ngIf="showSpellcheckDropDown" (click)="closeSpellcheckDropDown()"></div>
     </div>
+    <!--END SPELLCHECK-->
+
     <input type="submit" class="searchButton" value = ""/>
     <i class="fas fa-search"></i>
   </form>

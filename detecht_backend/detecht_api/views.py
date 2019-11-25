@@ -184,3 +184,14 @@ class InteractWithDocument(APIView):
         data_in = request.data
         Preview_Document(pdf_name=data_in["pdf_name"], userid=data_in["user_id"], type = data_in["type"])
         return
+
+
+class GetAutoComplete(APIView):
+    def post(self, request):
+        response = {
+            'success': False,
+            'autocomplete': []
+        }
+        data_in = request.data
+        # TODO ask samuel
+        return JsonResponse(response)

@@ -26,6 +26,11 @@ export class NetworkAbstractResponse {
   abstracts: {sentence: string}[];
 }
 
+export class NetworkAutoCompleteResponse {
+  success: boolean;
+  autocomplete: string[];
+}
+
 export class NetworkGetAllPdfResponse {
   data: [
     {
