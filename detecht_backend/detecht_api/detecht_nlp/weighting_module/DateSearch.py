@@ -23,8 +23,8 @@ def filter_by_date(start_date, end_date, elastic_search_results):
     for title in elastic_search_results:
         # open the json file that contain the document information
         json_file = get_file(title)
-        json_class_instance = JsonClass(json_file)
-        create_time = JsonClass.date_created()
+        json_class_instance = JsonClass.init_from_json(json_file)
+        create_time = json_class_instance.date_created()
         if start_date <= create_time <= end_date:
             filter_list.append(title)
     # return the creation date between start and end date document name list

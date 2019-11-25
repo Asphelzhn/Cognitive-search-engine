@@ -155,7 +155,7 @@ class WeightingModule:
         # print("dict is")
         # print(keywords_dict)
         sorted_keywords_list = sorted(keywords_dict.items(),
-                                      key=lambda t:t[1],
+                                      key=lambda t: t[1],
                                       reverse=True)
         occur_most_keyword = sorted_keywords_list[0][0]
         # print(sorted_keywords_list)

@@ -1,7 +1,10 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import (StagedPdf, StagedPdfTags, Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Document, Interacted_documents)
+from .models import (StagedPdf, StagedPdfTags,
+                     Keywords, Keyword_distance,
+                     Pdf_Name_Keyword_Weight, Document,
+                     Interacted_documents)
 
 admin.site.register(Keywords)
 admin.site.register(Keyword_distance)

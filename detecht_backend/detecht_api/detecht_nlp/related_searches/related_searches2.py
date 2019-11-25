@@ -1,16 +1,16 @@
 import spacy
 import time
 import os
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
 import django
-
-django.setup()
 from detecht_api.models import Search_Autocomplete
 
-from spacy.attrs import LOWER, POS, ENT_TYPE, IS_ALPHA
-from spacy.tokens import Doc
-import numpy
+os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
+
+django.setup()
+
+# from spacy.attrs import LOWER, POS, ENT_TYPE, IS_ALPHA
+# from spacy.tokens import Doc
+# import numpy
 
 nlp = spacy.load("en_core_web_sm")
 maxGram = 4
@@ -90,7 +90,7 @@ def queryDatabase(querySplit, numberOfExtraWords,
     # print(n4gram)
     # print(n5gram)
 
-    ##ERROR IN NUMBER OF EXTRAWORDS
+    # ERROR IN NUMBER OF EXTRAWORDS
     tempQueryLen = len(tempQuery.split())
     result_list = []
     if tempQueryLen == 1:

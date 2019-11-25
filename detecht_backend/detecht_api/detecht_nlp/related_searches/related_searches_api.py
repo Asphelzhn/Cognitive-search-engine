@@ -8,9 +8,8 @@
 from detecht_api.detecht_nlp.related_searches import related_searches2
 
 
-
 class related_searches():
-    def related_searches(self,text):
+    def related_searches(self, text):
         # Takes input as string
         # Returns 3 different similar searches if those are found.
         # Otherwise fewer.
