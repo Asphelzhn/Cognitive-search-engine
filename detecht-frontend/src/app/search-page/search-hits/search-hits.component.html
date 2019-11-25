@@ -1,7 +1,11 @@
 <div id="top-text">
-  <div id="number-of-hits" *ngIf="numberOfHits > 0">Number of hits: {{numberOfHits}}</div>
-  <div id="spellcheck" *ngIf="spellcheck">Did you mean: <span id="spellcheck-link" (click)="searchForSpellcheck()">{{spellcheck}}</span></div>
+  <div id="number-of-hits" *ngIf="numberOfHits > 0">TOTAL: {{numberOfHits}} RESULTS</div>
+  <div id="spellcheck" *ngIf="spellcheck">Did you mean: <span id="spellcheck-link"
+                                                              (click)="searchForSpellcheck()">{{spellcheck}}</span>
+  </div>
 </div>
-<div class="result-div" *ngFor='let result of results'>
-  <app-result-bar [result]='result'></app-result-bar>
+<div class="results">
+  <div class="result-div" *ngFor='let result of results'>
+    <app-result-bar [result]='result' (removeEvent)="removeResult($event)"></app-result-bar>
+  </div>
 </div>

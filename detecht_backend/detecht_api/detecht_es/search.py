@@ -21,7 +21,7 @@ def search(query, size=100):
         "size": size,
         "query": {
             "query_string": {
-                "fields": ["title^10", "pdf_name^1", "full_text^1", "sections^9", "keywords^8", "tags^9"],
+                "fields": ["title^10", "pdf_name^1", "pages^1", "keywords^8"],
                 "query": query,
 
             }
@@ -62,7 +62,7 @@ def formated_search(query, size=1):
         "size": size,
         "query": {
             "query_string": {
-                "fields": ["title^10", "pdf_name^1", "full_text^1", "sections^9", "keywords^8", "tags^9"],
+                "fields": ["title^10", "pdf_name^1", "pages^1", "keywords^8"],
                 "query": query,
 
             }
