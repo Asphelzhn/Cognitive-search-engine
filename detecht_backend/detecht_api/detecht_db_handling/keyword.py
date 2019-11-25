@@ -1,5 +1,4 @@
-from rest_framework.exceptions import ValidationError
-
+# from rest_framework.exceptions import ValidationError
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import (Keywords, Keyword_distance,
                                 Pdf_Name_Keyword_Weight, Interacted_documents,
@@ -93,10 +92,16 @@ def date_calc(dateNow):
 def Preview_Document(pdf_name, userid, type):
     dateNow = date.today()
     if type == "Preview":
-        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
+        new = Interacted_documents(pdf_name=pdf_name,
+                                   date=dateNow,
+                                   userid=userid,
+                                   down_prev="Preview")
         new.save()
     elif type == "Download":
-        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
+        new = Interacted_documents(pdf_name=pdf_name,
+                                   date=dateNow,
+                                   userid=userid,
+                                   down_prev="Download")
         new.save()
     else:
         print("error")
@@ -104,12 +109,15 @@ def Preview_Document(pdf_name, userid, type):
 
 # def Download_Document(pdf_name1, userid1):
 #     dateNow = date.today()
-#     new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
+#     new = Interacted_documents(pdf_name=pdf_name1,
+#     date=dateNow, userid=userid1, down_prev="Download")
 #     new.save()
 
 
-def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
-    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
+def pdf_relevance(name):  # returns a array [pdf_name, relevance]
+    # that is ordered highest to lowest on relevance.
+    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(
+        pdf_name=name).values("keyword", "weight")
 
     pdf_list = (Pdf_Name_Keyword_Weight.objects
                 .values("pdf_name", "keyword", "weight")

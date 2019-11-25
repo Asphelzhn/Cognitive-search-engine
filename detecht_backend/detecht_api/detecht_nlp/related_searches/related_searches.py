@@ -11,7 +11,8 @@ t0=time.time()
 model = KeyedVectors.load("keyedvectors.model")
 print(123)
 t1=time.time()
-model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True)
+model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin",
+                                          binary=True)
 t2=time.time()
 print(123)
 print(model.vector_size)
@@ -33,7 +34,8 @@ def related_searches(text):
         print(type(token.vector))
         print(token.vector)
     # Format the input vector for use in the distance function
-    # In this case we will artificially create a word vector from a real word ("frog")
+    # In this case we will artificially create a word vector from a
+    # real word ("frog")
     # but any derived word vector could be used
 
 

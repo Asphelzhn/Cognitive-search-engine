@@ -12,7 +12,8 @@ from detecht_api.detecht_nlp.related_searches import related_searches2
 class related_searches():
     def related_searches(self,text):
         # Takes input as string
-        # Returns 3 different similar searches if those are found. Otherwise fewer.
+        # Returns 3 different similar searches if those are found.
+        # Otherwise fewer.
         # If no similiar search was found 0 is returnes
         related_searches = related_searches2.generateRelatedSearches(text)
         return related_searches

@@ -91,15 +91,18 @@ class PDFImportance(models.Model):
                                         decimal_places=2)  # ex 0.99
 
     def update_likes(pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=F('likes') + 1)
+        PDFImportance.objects.filter(
+            pdf_name=pdf_name).update(likes=F('likes') + 1)
         return PDFImportance.objects.get(pdf_name=pdf_name).likes
 
     def update_downloads(pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(downloads=F('downloads') + 1)
+        PDFImportance.objects.filter(
+            pdf_name=pdf_name).update(downloads=F('downloads') + 1)
         return PDFImportance.objects.get(pdf_name=pdf_name).downloads
 
     def update_weight(new_weight, pdf_name):
-        PDFImportance.objects.filter(pdf_name=pdf_name).update(custom_weight=new_weight)
+        PDFImportance.objects.filter(
+            pdf_name=pdf_name).update(custom_weight=new_weight)
         return PDFImportance.objects.get(pdf_name=pdf_name).custom_weight
 
     def top_likes(x):
@@ -109,8 +112,6 @@ class PDFImportance(models.Model):
     def top_downloads(x):
         download_list = PDFImportance.objects.order_by('-downloads')[:x]
         return download_list
-
-
 
 
 # Henrik
@@ -124,7 +125,6 @@ class Pdf_Similarities(models.Model):
     document_name1 = models.TextField(max_length=50)
     document_name2 = models.TextField(max_length=50)
     similarity = models.FloatField()
-
 
 
 class Interacted_documents(models.Model):

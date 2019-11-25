@@ -16,7 +16,7 @@ def convert_pdf_to_json():
                 file = entry.path
 
                 # read the current pdf
-                read_pdf = PyPDF2.PdfFileReader(file, strict=False)
+                read_pdf = PyPDF2.PdfFileReader(file , strict=False)
                 all_pages = {}
 
                 # iterate all pages
@@ -44,7 +44,7 @@ def pdf_to_json(pdf_name):
     with open(path + pdf_name, 'rb') as file:
 
         # read the current pdf
-        read_pdf = PyPDF2.PdfFileReader(file, strict=False)
+        read_pdf = PyPDF2.PdfFileReader(file , strict=False)
         all_pages = {}
 
         # iterate all pages
@@ -58,4 +58,3 @@ def pdf_to_json(pdf_name):
         all_pages["All_text"] = all_text
 
         return all_text
-
