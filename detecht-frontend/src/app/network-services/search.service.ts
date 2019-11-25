@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {SearchResponse} from '../data-types';
+import {SearchResponse, Spellcheck} from '../data-types';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -18,7 +18,7 @@ export class SearchService {
   private currentSearchSource = new BehaviorSubject<string>('');
   currentSearch = this.currentSearchSource.asObservable();
 
-  private spellcheckSource = new BehaviorSubject<string>('');
+  private spellcheckSource = new BehaviorSubject<Spellcheck[]>([]);
   spellcheck = this.spellcheckSource.asObservable();
 
   private totalResultsSource = new BehaviorSubject<number>(0);
@@ -55,9 +55,12 @@ export class SearchService {
 
           this.searchResponseSource.next(newSearchResponse);
           this.totalResultsSource.next(data.totalResult);
-          if (data.spellcheck !== query && query !== '') {
-            this.spellcheckSource.next(data.spellcheck);
+          const newSpellcheck: Spellcheck[] = [];
+          console.log(data.spellcheck);
+          for (const spellcheck of data.spellcheck) {
+            newSpellcheck.push(new Spellcheck(spellcheck.word, spellcheck.spellcheck));
           }
+          this.spellcheckSource.next(newSpellcheck);
         } else {
           console.log('Error when getting schedule, please refresh the results');
         }

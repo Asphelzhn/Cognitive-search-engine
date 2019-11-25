@@ -1,9 +1,24 @@
 <div class="search">
-    <!--<input (input)="search($event.target.value)"/> -->
+  <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
-    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
+    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?"
+           [(ngModel)]="searchString" *ngIf="!showSpellcheck"/>
+    <div type="text" name="search" class="searchTerm spellcheckBox" placeholder="What are you looking for?"
+         *ngIf="showSpellcheck">
+      <span *ngFor="let spellcheckword of spellcheck" class="{{spellcheckClass(spellcheckword)}}"
+            (click)="pressedSpellcheck(spellcheckword)">{{spellcheckword.word}} </span>
+      <!--<span (click)="pressedSpellcheck(undefined)" style="color: rgba(0,0,0,0);">-->
+      <!--abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwx</span>-->
+      <div id="spellcheckDropDown" *ngIf="showSpellcheckDropDown">
+        <span *ngFor="let word of spellcheckDropDown.spellcheck"
+              (click)="searchForSpellcheck(spellcheckDropDown.word, word)">
+          {{word}}
+        </span>
+      </div>
+      <div id="spellcheckDropDownBackground" *ngIf="showSpellcheckDropDown" (click)="closeDropDown()"></div>
+    </div>
     <input type="submit" class="searchButton" value = ""/>
-      <i class="fas fa-search"></i>
+    <i class="fas fa-search"></i>
   </form>
 </div>
 
