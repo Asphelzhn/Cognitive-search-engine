@@ -31,7 +31,7 @@ class imp_sent_api():
         # word frequencies en dictionary med ord samt float viketer
         return databaseObject, word_frequencies
 
-    def generateAbstract(self,query,impsentenceList):
+    def generateAbstract(self,query,impsentenceList,word):
         # Här skulle jag vilja få in datavasObject samt word frequencies för ett visst dokument
         abstract = imp_sent_creator.generateAbstract(4, impsentenceList)
         print(abstract)
@@ -40,5 +40,6 @@ if __name__ == '__main__':
     s=imp_sent_api()
 
     sentences, word_frequencies = s.upload_find_relevant_sentences(test_imp_sent_creator.document1)
+    s.generateAbstract("Shelock Holmes", sentences)
     print(len(sentences))
     print(word_frequencies)

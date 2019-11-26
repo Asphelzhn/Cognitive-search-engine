@@ -65,26 +65,24 @@ def imp_sent_creator(doc, size):
         imp_sentences[i].score = sentence_scores[w]
         i += 1
 
-    t5=time.time()
     pos = 0
     w = 0
     for sent in sentence_list:
-        for rank in imp_sentences:
-            if sent == rank.sent:
-                rank.order = w
+        for i in imp_sentences:
+            if sent == i.sent:
+                i.order = w
                 w += 1
-                rank.start_index = (pos)
-                rank.end_index = (pos + len(str(rank.sent)))
+                i.start_index = (pos)
+                i.end_index = (pos + len(str(i.sent)))
 
         pos += len(sent.text) + 1
 
-    #Onödig?
     imp_sentences.sort(key=attrgetter("order"), reverse=False)
 
     return imp_sentences, word_frequencies
 
-def generateAbstract(query,impSentenceList):
-
+def generateAbstract(query,impSentenceList,word_frequencies,size):
+    copiedImpSent=[]
     query = query.split(" ")
 
     for word in query:
@@ -93,13 +91,32 @@ def generateAbstract(query,impSentenceList):
 
     sentence_scores = {}
     for i in impSentenceList:
-        sentence_scores[i.sent]=i.sent
+        sentence_scores[i.sent]=i.score.copy()
         for word in i.sent:
             #Behöver databas
             if word.text.lower() in word_frequencies.keys():
                     for key in query:
-                        if key in str(sent):
-                            sentence_scores[sent] += word_frequencies[word.text.lower()]/len(sent)
+                        if key in str(i.sent):
+                            sentence_scores[i.sent] += word_frequencies[word.text.lower()]/len(i.sent)
 
+    summarized_sentences = nlargest(size, sentence_scores, key=sentence_scores.get)
 
+    i = 0
+    for w in summarized_sentences:
+        copiedImpSent.append(ImpSent())
+        copiedImpSent[i].sent = w
+        copiedImpSent[i].rank = i
+        copiedImpSent[i].score = sentence_scores[w]
+        i += 1
+
+    for x in impSentenceList:
+        for i in copiedImpSent:
+            if i.sent == x.sent:
+                i.order = x.order.copy()
+                i.start_index = x.start_index.copy()
+                i.end_index = (i.start_index + len(str(i.sent)))
+
+    copiedImpSent.sort(key=attrgetter("order"), reverse=False)
+
+    return copiedImpSent
 
