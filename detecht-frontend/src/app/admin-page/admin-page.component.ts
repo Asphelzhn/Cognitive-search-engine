@@ -1,10 +1,6 @@
 import {Component, NgModule, OnInit, Input} from '@angular/core';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import { Router } from '@angular/router';
-import {SearchResponse} from '../data-types';
 import {AdminNavbarToPageService} from '../message-services/admin-navbar-to-page.service';
-import {style} from '@angular/animations';
+
 
 @Component({
   selector: 'app-admin-page',
