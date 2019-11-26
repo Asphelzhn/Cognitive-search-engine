@@ -37,11 +37,11 @@ export class AdminPageComponent implements OnInit {
     } else if (newPage === 'upload') {
       this.analytics = 'assets/admin-page/account-circle-icon-light.png';
       this.upload = 'assets/admin-page/file-upload-icon.png';
-      this.edit = 'assets/admin-page/ic_border_color_24_lightpx@2x.png';
+      this.edit = 'assets/admin-page/border-color-icon-light.png';
     } else if (newPage === 'analytics') {
       this.analytics = '/assets/admin-page/account-circle-icon.png';
       this.upload = 'assets/admin-page/file-upload-icon-light.png';
-      this.edit = 'assets/admin-page/ic_border_color_24_lightpx@2x.png';
+      this.edit = 'assets/admin-page/border-color-icon-light.png';
     }
   }
 }
