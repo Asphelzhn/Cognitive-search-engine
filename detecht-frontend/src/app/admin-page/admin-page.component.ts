@@ -24,7 +24,7 @@ export class AdminPageComponent implements OnInit {
   opened: boolean;
   analytics = '/assets/admin-page/account-circle-icon.png';
   upload = '/assets/admin-page/file-upload-icon-light.png';
-  edit = '/assets/admin-page/ic_border_color_24_lightpx@2x.png';
+  edit = '/assets/admin-page/border-color-icon-light.png';
 
   constructor(private adminNavbarToPageService: AdminNavbarToPageService) { }
 
