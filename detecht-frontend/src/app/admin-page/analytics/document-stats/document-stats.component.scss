@@ -2,266 +2,350 @@
   width: auto;
   height: 100%;
   /* UI Properties */
-  background-color: #FFFFFF;
+  background: #FFFFFF;
   box-shadow: 0px 0px 5px #00000017;
   opacity: 1;
+
 }
 
 
-.pdf_name {
+.title {
   font-family: 'Poppins', sans-serif;
-  //font: SemiBold 30px/46px Poppins;
-  font-weight:600;
+  font-weight: lighter;
   font-size: 20px;
   letter-spacing: 0.2px;
-  color: #000000;
-  top: 144px;
-  left: 168px;
-  width: 147px;
-  height: 20px;
+  color: #707070;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 28px;
   /*  text-align: left;
     font: Light 20px/30px Poppins;
     letter-spacing: 0.2px;
     color: #707070;*/
   opacity: 1;
   float : left;
-  margin-left: 17px;
-  margin-top: 17px;
-  margin-bottom: 5px;
+  margin-left: 2%;
+  margin-bottom: 0;
 }
 
-.pdf_summary{
-  margin-top: 0;
-  margin-bottom: 3px;
-  //top: 183px;
-  //left: 1040px;
+
+.row  {
   width: 100%;
-  height: 35px;
-  float: left;
-  margin-left: 17px;
-  font-family: Poppins, sans-serif;
-  letter-spacing: 0.2px;
-  color: #383838;
-  /* UI Properties */
-
+  height: 60px;
+  justify-content: space-between;
+  display: flex;
 }
 
-.info-holder {
-  height: 8%;
-}
 
-.hr1{
-  border-bottom: 0.5px #707070 solid;
-  width: 100%;
-  float: left;
-  margin-top: 0;
-}
+.searchbar {
 
-Input-bar-holder{
-  height: 30px;
-  width : auto;
-
-}
-
-.text-edit-bar {
+  float: right;
   width: 50%;
+  height : auto;
+  margin-top:7px;
+  margin-right :2%;
+}
+
+.button {
+  width: 10px;
+  height : 10px;
+  padding: 0px;
+  float:none;
+  background: blue;
+  color: antiquewhite;
+  display: block;
+  text-align: left;width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 7px;
+
+}
+
+.search_area {
+  width: 30%;
+}
+
+
+///////
+/*
+input[type=checkbox] {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 27px;
+}*/
+
+input[type=checkbox]:after {
+  content: " ";
+
+  background-color: #B0D5D8;
+  display: inline-block;
+  visibility: visible;
+}
+
+input[type=checkbox]:checked:after {
+  // content: "\2714";
+  //background-color: black;
+  // margin-left: 1px;
+  //margin-top: 0.5px;
+  position: center;
+  right: 2px;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 3px;
+  border: 5px;
+  background-size: 16px;
+  /*background-image: url("../../../../assets/Group 33@2x.png");*/
+
+}
+
+
+/////
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+.search {
+  width: 70%;
   float: right;
   display: flex;
-
-
+  margin-top: 17px;
+  margin-right: 25px;
+  margin-left: 3px;
 }
 
 .searchTerm {
-  margin-left: 2%;
-  margin-top: 20px;
-  width: 80%;
+  width: 120%;
   border: 1px solid gray;
+  border-right: none;
   padding: 5px;
   height: 20px;
-  font-style: italic;
-  font-family: Verdana;
   //border-radius: 5px 0 0 5px;
   //outline: none;
-  //color: #707070;
+  color: #707070;
 }
 
 .searchTerm:focus{
-  // color: #707070;
+  color: #707070;
 }
 
-
-.close  {
-  margin-top: 17px;
-  margin-right: 13px;
-  width: 20px;
-  height: 20px;
-  float: right;
+.searchButton {
+  width: 50px;
+  height: 32px;
+  border: 1px solid #B0D5D8;
+  background: #B0D5D8;
+  text-align: center;
+  color: #fff;
+  //border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
-
-.bottom_container{
-  //top: 40%;
-  //margin-top: 75%;
-  position: absolute;
-  bottom: 30px;
-  background-color: #FFFFFF;
-  width: 100%;
-  height: 30px;
-  // display: flex;
-
-
-  //justify-content: space-between;
-}
-
-.icon {
-
-  width: 20px;
-  height: 20px;
-  float: left ;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-top: 15px;
-}
-
-.text {
-  float: left;
-  font-weight: bold;
-}
-
-.saveButton{
-  float:right;
-  width: 80px;
-  height: 30px;
-  background-color: #B0D5D8;
-  border-radius: 3px;
-  border-color: #B0D5D8;
-  margin-bottom: 1%;
-  margin-right: 2%;
-  margin-top: 1%;
-  color: white;
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
-  vertical-align: center;
-
-  .button-text {
-    width:auto;
-    height: 30px;
-    margin: 0px;
-    font-family: Poppins, sans-serif;
-    font-weight: bold;
-  }
-
-}
-
-.trash{
-  height: 20px;
-  width: 20px;
-  float: right;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  margin-left: 20px;
+.result_holder{
   margin-top: 2%;
-  vertical-align: center;
+  width: 97%;
+  height: 70%;
+  margin-left: 3%;
 }
 
-.low_text{
-  float: left ;
-  font-family: Poppins, sans-serif;
 
-}
-
-.Middle-cont {
-  height: 75%;
+result {
   width: 100%;
+  height: 15%;
+
+
+}
+
+.result input ~ .check_box  {
+  background-color: #383838;
+}
+
+.pdf_title {
+  grid-area: auto;
+  font-size: 14px;
+  width: 40%;
+  height: 15px;
+  margin-left: 2%;
+
+
+}
+
+.pdf_text {
+  grid-area: auto;
+  float : left;
+  font-size: 8px;
+  width: 60%;
+  height: 14px;
+  color: gray;
+  margin-left: 2%;
+}
+
+.pdf_container{
+
+}
+
+.pdf_check_box {
+  background-color: blue;
+  height: 20px;
+  width: 20px;
 }
 
 
-.hr2 {
-  border-bottom: 0.5px #707070 solid;
-  width: 100%;
+.line {
   float: left;
-  margin-top: 0;
-  bottom: 60px;
+  height: 35px;
+  width:3px;
+  background-color: #3a517f;
+  border-radius: 5px;
+  margin-right: 5px;
+  //margin-left: 2%;
+
+
+}
+
+.res_title {
+  font-size: 5px;
+}
+.res_text {
+  font-size: 3px;
+}
+
+.hr {
+  // border-bottom: 1px #707070 solid;
+  height: 0.5px;
+  width: 100%;
+  background-color: #808080;
+  border-color: white;
+  //margin-top: 23px;
+  //top: 500px;
+
 }
 
 
 
 
-@media screen and (max-width: 1200px) {
-  .bottom_container {
-    bottom: 80px;
-    position: inherit;
 
-  }
-  .trash{
-    float: left;
-    margin-left: 30%;
-  }
-  .saveButton {
-    float: right;
-    margin-right: 30%;
-  }
-  .icon{
-    position: center;
-    margin-left: 15%;
-  }
+
+
+
+
+
+.check_container {
+
+  float: right;
+  margin-right: 29px;
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  background-color: #B0D5D8;
+
+  margin-top: 2%;
+
+  display: block;
+
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  float: right;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  float: right;
+  //top: 0;
+  //left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 3px;
+  margin-right: 29px;
+
+}
+
+/* On mouse-over, add a grey background color */
+.check_container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check_container input:checked ~ .checkmark {
+  background-color: #b0d5d8;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check_container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check_container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+
 }
 
 
-@media screen and (max-width: 995px) {
-  .Middle-cont{
-    height: 55%;
-  }
-
-  .trash{
-    float: right;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-top: 2%;
-    vertical-align: center;
-  }
-  .saveButton {
-    float: right;
-    margin-bottom: 1%;
-    margin-right: 2%;
-    margin-top: 1%;
-  }
-  .icon{
-    float: left ;
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-top: 15px;
-  }
-
+.search-icon{
+  heigh:100%;
+  width: 100%;
+  //object-fit: none;
 }
-
-
 
 
 
 @media screen and (max-width: 612px) {
-  .bottom_container{
-
-    display: grid;
-    justify-items: center;
-    grid-row-gap: 8px;
+  .searchTerm{
+    width: 0;
+    padding: 0;
+    border : 0px;
+  }
+  .trash {
+    float: right;
+    margin-left: 20%;
 
   }
 
-
-  .Middle-cont{
-    height: 40%;
+  .search-icon{
+    margin-right: 1px;
+    float: right;
   }
-
-  .pdf_name {
+  .search{
     width: auto;
-    font-size: 15px;
+    margin-right: 0;
   }
-  .pdf_summary{
-    width: auto;
-    font-size: 10px;
-    height : 15px;
+
+  .title {
+    font-size: 12px;
+    margin-top: 30px;
   }
 }
 

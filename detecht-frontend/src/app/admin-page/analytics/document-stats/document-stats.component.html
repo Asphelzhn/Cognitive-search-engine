@@ -1,52 +1,101 @@
 <div class="container">
-  <div class="info-holder">
-    <p class="pdf_name">Name of PDF</p>
-    <a href="">
-      <img class="close" src="../../../../assets/ic_close_24px@2x.png">
-    </a>
-    <p class = "pdf_summary" > Summarized text</p>
-    <!--    <hr class = "hr">-->
-  </div>
 
-  <div class="Middle-cont">
-    <hr class = "hr1">
-    <input type="text" class="searchTerm" placeholder="Name">
-  </div>
-  <!--  <hr class = "hr">-->
-  <div class = "bottom_container">
-    <hr class = "hr">
-    <div>
+  <div class="row">
+    <p class="title">Documents</p>
 
-      <img  class="icon" src="assets/ic_thumb_up_24px@2x.png">
-
-      <p class="low_text">300 likes</p>
-    </div>
-    <div>
-
-      <img class="icon" src="/assets/ic_get_app_24px@2x.png">
-
-      <p class="low_text"> 200 downloads</p>
-
-    </div>
-
-    <div>
-
-      <button type="submit" class="saveButton">
-        <p class="button-text">Save changes</p>
+    <div class="search">
+      <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString">
+      <button type="submit" class="searchButton" (click)="search()">
+        <img class = "search-icon" src="assets/Group 37@2x.png" alt="">
+        <i class="fa fa-search"></i>
       </button>
-
-
     </div>
-    <div>
-      <a href="">
-        <img class= "trash" src="assets/ic_delete_24px@2x.png" alt="">
-      </a>
+  </div>
 
+  <hr class = "hr">
+  <div class="result_holder">
 
+    <div class="result" *ngFor='let result of results' >
+      <div class="line" ></div>
+
+      <div class = "pdf_title" >
+        <p>{{result.name}}</p>
+      </div>
+      <div class="pdf_text">
+        <p>pdf text</p>
+      </div>
     </div>
   </div>
 
 </div>
+
+<!--
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <p class="title">Edit document</p>
+    <img class="trash" src="../../../assets/ic_delete_24px@2x.png">
+
+
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <hr class = "hr">
+  <div class="result_holder">
+
+
+    <div class="result" >
+      <div class="line"></div>
+              <span class= "check_box" >
+                  </span>
+
+      <label class="check_container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+
+
+
+      <div class = "pdf_title">
+        <p>Pdf name</p>
+      </div>
+      <div class="pdf_text">
+        <p>pdf text</p>
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+</div>
+</body>
+</html>
+
+-->
+
+
+
 
 <!--
 <div class="doc-stats-content">
