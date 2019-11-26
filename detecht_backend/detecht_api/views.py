@@ -198,8 +198,6 @@ class GetAutoComplete(APIView):
         if input != {}:
             query = input["query"]
             response['success'] = True
-            # TODO might need to be updated
-            # response['autocomplete'] = get_autocomplete.get_autocomplete(query)
-            response['autocomplete'] = ["Hej hopp i galopp", "Hej hopp i galopp", "Hej hopp i galopp", "Hej hopp i galopp"]
+            response['autocomplete'] = get_autocomplete.get_autocomplete(query)
             return JsonResponse(response)
         return JsonResponse(response)
