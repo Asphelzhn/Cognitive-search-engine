@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import Preview_Document, Trending_docs
+from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf
 
 """
 Oskar H & Armin
@@ -11,7 +12,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
+from detecht_api.models import Keywords, UserFavorites, Keyword_distance
 
 # imports by OSKAR
 from detecht_api.models import Document #files
@@ -215,3 +216,11 @@ class TrendingDocuments(APIView):
                 response['content'].append(frontend_result)
 
         return JsonResponse(response)
+
+
+class UserFavorite(APIView):
+    def post(self, request):
+        data_in = request.data
+        add_favorite_pdf(user_id=data_in["user_id"], pdf_name=data_in["pdf_name"])
+        return
+
