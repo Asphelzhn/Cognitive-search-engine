@@ -80,3 +80,9 @@ export class NetworkPdfUploadRequest {
 export class NetworkTrendingDocumentsRequest {
   size: number;
 }
+
+export class NetworkInteractWithDocumentRequest {
+  pdf_name: string;
+  user_id: string;
+  type: string;
+}
