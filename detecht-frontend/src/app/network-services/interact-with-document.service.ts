@@ -13,6 +13,7 @@ export class InteractWithDocumentService {
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
   previewDocument(data: NetworkInteractWithDocumentRequest): void {
+    data.type = 'preview';
     this.http.post(environment.apiUrl + 'trendingdocuments/', {data}, {
       withCredentials: true,
       headers: new HttpHeaders({
