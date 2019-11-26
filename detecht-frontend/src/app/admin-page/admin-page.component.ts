@@ -33,6 +33,7 @@ export class AdminPageComponent implements OnInit {
   }
   changePage(newPage: string): void {
     this.adminNavbarToPageService.changePage(newPage);
+    // author Hanna Börjesson
     if (newPage === 'edit') {
       this.analytics = 'assets/admin-page/account-circle-icon-light.png';
       this.upload = 'assets/admin-page/file-upload-icon-light.png';
