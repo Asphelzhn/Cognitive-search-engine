@@ -1,10 +1,28 @@
-<app-admin-navbar></app-admin-navbar>
-<div class="container">
-  <app-analytics *ngIf="page === 'analytics'"></app-analytics>
-  <app-upload-file *ngIf="page === 'upload'"></app-upload-file>
-  <app-edit-documents *ngIf="page === 'edit'"></app-edit-documents>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav (closed)="events.push('close!')" (opened)="events.push('open!')" [(opened)]="opened" id="vertical"
+               mode="side">
 
+    <span (click)="changePage('analytics')"> <img class="side-button" id="top-button" src="{{analytics}}"></span>
+    <span (click)="changePage('upload')"><img class="side-button" src="{{upload}}"></span>
+    <span (click)="changePage('edit')"><img class="side-button" src="{{edit}}"></span>
+  </mat-sidenav>
+
+  <mat-sidenav-content id="page-container">
+    <mat-toolbar id="horizontal">
+      <p>
+        <span (click)="sidenav.toggle()"><img id="navbar-button" src="assets/admin-page/dehaze-icon.png"></span>
+      </p>
+    </mat-toolbar>
+
+    <div id="main-container">
+      <app-analytics *ngIf="page === 'analytics'"></app-analytics>
+      <app-upload-file *ngIf="page === 'upload'"></app-upload-file>
+      <app-edit-documents *ngIf="page === 'edit'"></app-edit-documents>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
 
 
 

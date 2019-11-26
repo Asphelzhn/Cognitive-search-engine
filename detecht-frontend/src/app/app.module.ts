@@ -29,7 +29,7 @@ import { SearchHitPreviewComponent } from './search-page/search-hit-preview/sear
 import { QrCodeComponent } from './search-page/search-hit-preview/qr-code/qr-code.component';
 import { SavedDocumentsPageComponent } from './saved-documents-page/saved-documents-page.component';
 import { LoginPageComponent } from './admin-page/login-page/login-page.component';
-import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.component';
+//import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.component';
 import { RelatedSearchesDecisionTreeComponent } from './search-page/related-searches-decision-tree/related-searches-decision-tree.component';
 import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documents.component';
 import { FooterComponent } from './footer/footer.component';
@@ -54,7 +54,7 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
     QrCodeComponent,
     SavedDocumentsPageComponent,
     LoginPageComponent,
-    AdminNavbarComponent,
+    //AdminNavbarComponent,
     RelatedSearchesDecisionTreeComponent,
     EditDocumentsComponent,
     FooterComponent,
