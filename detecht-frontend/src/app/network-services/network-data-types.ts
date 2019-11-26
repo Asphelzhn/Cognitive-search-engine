@@ -86,3 +86,9 @@ export class NetworkInteractWithDocumentRequest {
   userId: string;
   type: string;
 }
+
+export class NetworkFavoriteDocumentRequest {
+  userId: number;
+  pdfName: string;
+}
+

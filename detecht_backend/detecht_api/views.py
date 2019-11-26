@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
-from detecht_api.detecht_db_handling.keyword import Preview_Document, Trending_docs
+from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs
 from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf
 
 """
@@ -193,7 +193,7 @@ class InteractWithDocument(APIView):
             'success': True
         }
         data_in = request.data
-        Preview_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
+        Interact_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
         return JsonResponse(response)
 
 
@@ -221,6 +221,8 @@ class TrendingDocuments(APIView):
 class UserFavorite(APIView):
     def post(self, request):
         data_in = request.data
-        add_favorite_pdf(user_id=data_in["user_id"], pdf_name=data_in["pdf_name"])
-        return
-
+        add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+        response = {
+            'success': True
+        }
+        return JsonResponse(response)

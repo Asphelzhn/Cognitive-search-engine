@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {InteractWithDocumentService} from '../network-services/interact-with-document.service';
+import {UserFavoriteService} from '../network-services/user-favorite.service';
 import {PreviewMessageService} from "../message-services/preview-message.service";
-import {NetworkInteractWithDocumentRequest} from '../network-services/network-data-types';
+import {NetworkFavoriteDocumentRequest} from '../network-services/network-data-types';
 
 @Component({
   selector: 'app-start-page',
@@ -10,15 +10,15 @@ import {NetworkInteractWithDocumentRequest} from '../network-services/network-da
 })
 export class StartPageComponent implements OnInit {
 
-  constructor(private interact: InteractWithDocumentService) { }
-  test: NetworkInteractWithDocumentRequest;
+  constructor(private interact: UserFavoriteService) { }
+  test: NetworkFavoriteDocumentRequest;
 
   ngOnInit() {
-    this.test =  new NetworkInteractWithDocumentRequest()
+    this.test =  new NetworkFavoriteDocumentRequest()
     // test: NetworkInteractWithDocumentRequest;
     this.test.pdfName = 'apa';
-    this.test.userId = 'hej';
-    //this.interact.downloadDocument(this.test);
+    this.test.userId = 2;
+    this.interact.favoriteDocument(this.test);
   }
 
 }

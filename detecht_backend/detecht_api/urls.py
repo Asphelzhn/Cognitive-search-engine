@@ -31,7 +31,7 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^api/interactwithdocument/$', views.InteractWithDocument.as_view()),
-    url(r'^api/trendingdocuments/$', views.TrendingDocuments.as_view())
+    url(r'^api/trendingdocuments/$', views.TrendingDocuments.as_view()),
     url(r'^api/userfavorite/$', views.UserFavorite.as_view())
 
 
