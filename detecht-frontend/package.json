@@ -24,6 +24,7 @@
     "material": "^0.4.1",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.2",
+    "ng2-file-upload": "^1.4.0",
     "ng2-pdf-viewer": "^5.3.4",
     "ngx-filesaver": "^8.1.0",
     "ngx-kjua": "^1.6.0",

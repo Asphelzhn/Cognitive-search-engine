@@ -1,9 +1,114 @@
-.container{
-  margin-top: 88px;
-  margin-left: 111px;
+#page-container{
   background-color: #F5F5F5;
   font-family: Verdana;
   height: 1400px;
   width: auto;
+}
+
+#main-container{
+  margin-top: 10%;
+}
+
+.side-button {
+  margin-top: 30%;
+}
+
+#horizontal {
+  height: 10%;
+  position: fixed;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 20px #00000029;
+}
+
+#vertical {
+  position: fixed;
+  z-index: 1110;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 20px #00000029;
+}
+
+
+@media only screen and (min-width:900px) {
+  /* For regular size windows: */
+  #vertical {
+    width: 100px;
+  }
+  .side-button{
+    height:40px;
+    margin-left:33%;
+    margin-top: 30%;
+  }
+  .side-button:hover{
+    height:42px;
+  }
+  #top-button {
+    margin-top:100px;
+  }
+  #horizontal {
+    height:10%;
+  }
+  #navbar-button{
+    height:50px;
+    width:30px;
+    margin-top: 20%;
+  }
+  #navbar-button:hover {
+    height:52px;
+  }
+
+}
+
+@media only screen and (max-width: 414px) {
+  /* For mobile phones*/
+  #vertical {
+    width: 150px;
+  }
+  .side-button{
+    height:50px;
+    margin-left: 33%;
+  }
+  .side-button:hover {
+    height:52px;
+  }
+  #top-button{
+    margin-top: 80px;
+  }
+  #horizontal {
+  height: 10%;
+  }
+  #navbar-button {
+    height:40px;
+    width:30px;
+    margin-top: 20%;
+  }
+  #navbar-button:hover {
+    height:42px;
+    width: 32px;
+  }
+}
+
+@media only screen and (max-width:900px) and (min-width: 415px) {
+  /* For small screens*/
+  #vertical {
+    width: 15%;
+  }
+  .side-button{
+    height:40px;
+    margin-left: 25%;
+  }
+  .side-button:hover {
+    height:42px;
+  }
+  #top-button{
+    margin-top: 100px;
+  }
+  #navbar-button {
+    height:40px;
+    margin-top:10px;
+  }
+  #navbar-button:hover {
+    height:42px;
+  }
+
 }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
-import {NetworkPdfUploadRequest} from '../../network-services/network-data-types';
 
 @Component({
   selector: 'app-upload-file',
@@ -9,50 +8,47 @@ import {NetworkPdfUploadRequest} from '../../network-services/network-data-types
 })
 export class UploadFileComponent implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService) {
+  }
 
-  fileTitle: string;
-  fileData: File = null;
+  fileData: {title: string, file: File}[];
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   responseMessage: string;
+  uploadingPopUp: boolean;
+  doneUploading: boolean;
 
   ngOnInit() {
-    this.fileTitle = '';
+    this.fileData = [];
     this.adminService.responseMessage.subscribe(responseMessage => this.responseMessage = responseMessage);
+    this.uploadingPopUp = false;
   }
 
   fileProgress(fileInput: any) {
-    this.fileData = fileInput.target.files[0] as File;
-    this.preview();
+    for (const file of fileInput.target.files) {
+      this.fileData.push({file: file as File, title: this.generateTitle(file.name)});
+    }
   }
 
-  preview() {
-    // Show preview
-    const mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
+  generateTitle(pdfname: string): string {
+    // Write function for generate title from pdfname. If backend does it.
+    let title = pdfname;
 
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = (event) => {
-      this.previewUrl = reader.result;
-    };
+    title = title.replace(/_/g, ' ').replace('.pdf', '');
+    title = title[0].toLocaleUpperCase() + title.slice(1).toLocaleLowerCase()
+    return title;
   }
 
   onSubmit() {
-    const networkPdfUploadRequest = new NetworkPdfUploadRequest(this.fileTitle, this.fileData);
-    this.adminService.pdfUpload(networkPdfUploadRequest);
-    // const formData = new FormData();
-    // formData.append('file', this.fileData);
-    // console.log('Submitting');
-    // this.http.post('url/to/your/api', formData)
-    //   .subscribe(res => {
-    //     console.log(res);
-    //     // this.uploadedFilePath = res.data.filePath;
-    //     alert('SUCCESS !!');
-    //   });
+
+    this.adminService.pdfUpload(this.fileData);
+    this.uploadingPopUp = true;
+  }
+
+  closePopup() {
+  this.uploadingPopUp = false;
   }
 }
+
+
