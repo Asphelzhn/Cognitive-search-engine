@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {NetworkInteractWithDocumentRequest} from './network-data-types';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
+import {stringify} from "querystring";
 
 
 
@@ -18,12 +19,14 @@ export class InteractWithDocumentService {
   previewDocument(data: NetworkInteractWithDocumentRequest): any {
     data.type = 'Preview';
     console.log(data);
-    this.http.post<any>(environment.apiUrl + 'interactwithdocument/', {data}, {
+    this.http.post<any>(environment.apiUrl + 'interactwithdocument/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    }).pipe(catchError(this.networkService.handleError));
+    }).pipe(catchError(this.networkService.handleError)).subscribe(
+      response => console.log(response)
+    );
     console.log(environment.apiUrl + 'interactwithdocument/');
   }
 }
