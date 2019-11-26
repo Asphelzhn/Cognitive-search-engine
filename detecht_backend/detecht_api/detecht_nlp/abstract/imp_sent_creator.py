@@ -15,13 +15,27 @@ nlp = spacy.load("en_core_web_sm")
 
 # The sentences are returned in a array where the first sentence is the first object in the array
 
-#def relevantSentenceAbstract(doc,size):
-#    sentences= imp_sent_creator(doc,80,0)
-#    for i in sentences:
+def findPage(index, endIndexList):
+    page=0
+    for i in endIndexList:
+        page=page+1
+        if i>=index:
+            if page>len(endIndexList):
+                return -1
+            else:
+                return page
+    return -1
 
-
+def listOfTextToList(list):
+    a=""
+    endIndex=[]
+    for i in list:
+        a=a+i
+        endIndex.append(len(a)-1)
+    return a,endIndex
 
 def imp_sent_creator(doc, size):
+    doc, endIndex1=listOfTextToList(doc)
     imp_sentences = []
     docx = nlp(doc)
     word_frequencies = {}
@@ -74,6 +88,7 @@ def imp_sent_creator(doc, size):
                 w += 1
                 i.start_index = (pos)
                 i.end_index = (pos + len(str(i.sent)))
+                i.page = findPage(i.end_index, endIndex1)
 
         pos += len(sent.text) + 1
 
@@ -91,7 +106,7 @@ def generateAbstract(query,impSentenceList,word_frequencies,size):
 
     sentence_scores = {}
     for i in impSentenceList:
-        sentence_scores[i.sent]=i.score.copy()
+        sentence_scores[i.sent]=i.score
         for word in i.sent:
             #Behöver databas
             if word.text.lower() in word_frequencies.keys():
@@ -109,14 +124,16 @@ def generateAbstract(query,impSentenceList,word_frequencies,size):
         copiedImpSent[i].score = sentence_scores[w]
         i += 1
 
+    a=0
     for x in impSentenceList:
         for i in copiedImpSent:
             if i.sent == x.sent:
-                i.order = x.order.copy()
-                i.start_index = x.start_index.copy()
+                i.order = a
+                i.start_index = x.start_index
                 i.end_index = (i.start_index + len(str(i.sent)))
+                i.page = x.page
+                a=a+1
 
     copiedImpSent.sort(key=attrgetter("order"), reverse=False)
-
     return copiedImpSent
 

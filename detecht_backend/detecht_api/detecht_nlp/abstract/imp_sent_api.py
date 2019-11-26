@@ -18,6 +18,7 @@ import sys
 
 class imp_sent_api():
     def upload_find_relevant_sentences(self, text):
+        size=80
         databaseObject, word_frequencies = imp_sent_creator.imp_sent_creator(text, 80)
         #Allt som returneras ska in i databasen för varje dokument
         #DatabaseObject är en lista av 80st ImpSent med följande info:
@@ -31,15 +32,28 @@ class imp_sent_api():
         # word frequencies en dictionary med ord samt float viketer
         return databaseObject, word_frequencies
 
-    def generateAbstract(self,query,impsentenceList,word):
+    def generateAbstract(self,query,impsentenceList,word_frequencies):
         # Här skulle jag vilja få in datavasObject samt word frequencies för ett visst dokument
-        abstract = imp_sent_creator.generateAbstract(4, impsentenceList)
-        print(abstract)
+        size=4
+        abstract = imp_sent_creator.generateAbstract(query, impsentenceList,word_frequencies,size)
+        return abstract
 
 if __name__ == '__main__':
     s=imp_sent_api()
 
-    sentences, word_frequencies = s.upload_find_relevant_sentences(test_imp_sent_creator.document1)
-    s.generateAbstract("Shelock Holmes", sentences)
-    print(len(sentences))
-    print(word_frequencies)
+    sentences, word_frequencies = s.upload_find_relevant_sentences([test_imp_sent_creator.document1])
+    t0=time.time()
+    a = s.generateAbstract("Shelock Holmes", sentences, word_frequencies)
+    t1= time.time()
+    print(t1-t0)
+    for i in a:
+        print("Sentence: " + str(i.sent))
+        print("Start index: " + str(i.start_index))
+        print("End index: " + str(i.end_index))
+        print("Score: " + str(i.score))
+        print("Order: "+ str(i.order))
+        print("Rank: "+ str(i.rank))
+        print("Page: " + str(i.page))
+
+
+

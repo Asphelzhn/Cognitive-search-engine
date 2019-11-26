@@ -11,6 +11,7 @@ class ImpSent:
     start_index = int
     end_index = int
     score = float
+    page = int
 
 def __init__():
     # a constructor file needs to contain something, but this is never used, tried without and got errors.
@@ -37,10 +38,11 @@ def set_end_index(self, sent_end):
 def set_score(self, sent_score):
     self.score = sent_score
 
+def set_page(self, sent_page):
+    self.page = sent_page
+
 def get_sent(self):
     return self.sent
-
-
 
 def get_rank(self):
     return self.rank
@@ -56,5 +58,9 @@ def get_start_index(self):
 
 def get_end_index(self):
     return self.end_index
-def get_score(self, sent_score):
-    self.score = sent_score
+
+def get_score(self):
+    return self.score
+
+def get_page(self):
+    return self.page
