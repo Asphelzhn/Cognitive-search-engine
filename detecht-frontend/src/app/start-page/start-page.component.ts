@@ -18,7 +18,7 @@ export class StartPageComponent implements OnInit {
     // test: NetworkInteractWithDocumentRequest;
     this.test.pdfName = 'apa';
     this.test.userId = 'hej';
-    this.interact.previewDocument(this.test);
+    //this.interact.downloadDocument(this.test);
   }
 
 }

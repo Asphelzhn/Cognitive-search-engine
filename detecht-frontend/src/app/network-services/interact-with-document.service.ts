@@ -29,4 +29,16 @@ export class InteractWithDocumentService {
     );
     console.log(environment.apiUrl + 'interactwithdocument/');
   }
+
+  downloadDocument(data: NetworkInteractWithDocumentRequest): any {
+    data.type = 'Download';
+    this.http.post<any>(environment.apiUrl + 'interactwithdocument/', JSON.stringify(data), {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.networkService.handleError)).subscribe(
+      response => console.log(response)
+    );
+  }
 }

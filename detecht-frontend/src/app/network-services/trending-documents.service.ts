@@ -21,4 +21,5 @@ export class TrendingDocumentsService {
       })
     }).pipe(catchError(this.networkService.handleError));
   }
+
 }
