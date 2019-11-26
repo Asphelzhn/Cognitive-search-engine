@@ -15,8 +15,8 @@ export class TrendingDocumentService {
 
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
-  trendingDocuments(size: number): void {
-    this.http.post<NetworkTrendingDocumentsResponse>(environment.apiUrl + 'trendingdocuments/', {size}, {
+  trendingDocuments(size: number): Observable<NetworkTrendingDocumentsResponse> {
+    return this.http.post<NetworkTrendingDocumentsResponse>(environment.apiUrl + 'trendingdocuments/', {size}, {
       withCredentials: true,
         headers: new HttpHeaders({
         'Content-Type': 'application/json'

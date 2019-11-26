@@ -211,4 +211,4 @@ class TrendingDocuments(APIView):
                 }
                 response['content'].append(frontend_result)
 
-        return response
+        return JsonResponse(response)
