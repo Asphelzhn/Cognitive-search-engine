@@ -27,7 +27,7 @@ print(123)
 def related_searches(text):
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(text)
-    input_word = text  # Unused assignment
+    input_word = text                                                           # Unused assignment
     for ent in doc.ents:
         print(ent.text, ent.label_)
     for token in doc:
@@ -42,7 +42,7 @@ def related_searches(text):
     # Format the vocabulary for use in the distance function
     ids = [x for x in nlp.vocab.vectors.keys()]
     print(ids)
-    vectors = [nlp.vocab.vectors[x] for x in ids]
+    vectors = [nlp.vocab.vectors[x] for x in ids]                                # unused
     # vectors = np.array(vectors)
 
     # *** Find the closest word below ***
@@ -65,7 +65,7 @@ def similarSearch(text):
 def find_closest_word(doc):
     for token in doc:
         print(token.vector)
-    p = np.array([nlp.vocab[input_word].vector])
+    p = np.array([nlp.vocab[input_word].vector])                                 # unreachable and unused
 
 
 def main():
