@@ -1,6 +1,8 @@
 <div class="container">
   <div class="left-content">
-    <app-stats></app-stats>
+    <div class="card-div">
+      <app-stats></app-stats>
+    </div>
     <!--<div class="page-content">
       <div class="view-content" >
 
@@ -21,8 +23,11 @@
       </div>
       <div></div>
     </div> -->
+    <div class="document-div">
+      <app-document-stats [pdfs]="results"></app-document-stats>
+    </div>
   </div>
   <div class="right-content">
-    <app-document-stats [pdfs]="results"></app-document-stats>
+    this is right content
   </div>
 </div>

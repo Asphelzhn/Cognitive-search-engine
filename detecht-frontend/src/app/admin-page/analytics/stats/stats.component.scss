@@ -1,39 +1,41 @@
 .stats-content {
-  display: flex;
   text-align: center;
-  width: 93%;
-  height: 50%;
-  margin-top: 1%;
+  width: 96%;
+  height: 350px;
+  padding-top: 20px;
+  margin-bottom: 20px;
 
 }
 
 .stats-card {
-  width: 100%;
-  height: 70%;
+  width: 30%;
+  height: 336px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  vertical-align: middle;
+  display: table-cell;
   top: 126px;
-  padding-top: 15px;
   box-shadow: 0 0 10px #00000017;
   border-radius: 5px;
   opacity: 1;
-  margin-right: 3%;
-  margin-top: 3%;
   p {
     color: #ffffff;
   }
 }
 
 #downloads {
-  left: 133px;
   background: #EBD9D9 0 0 no-repeat padding-box;
-  margin-left: 2%;
+  float: left;
 }
 
 #favourites {
-  left: 416px;
   background: #C7D4DB 0 0 no-repeat padding-box;
+  display: inline-block;
+  margin: 0 auto;
 }
 
 #documents{
-  left: 699px;
   background: #B0D5D8 0 0 no-repeat padding-box;
+  float: right;
 }
