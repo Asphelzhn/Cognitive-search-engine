@@ -62,10 +62,7 @@ def create_abstract(query,doc):
                     # print(len(sent))
                     # print (sent)
 
-
     summarized_sentences = nlargest(4, sentence_scores, key=sentence_scores.get)
-
-
 
 
     final_sentences = [w for w in summarized_sentences]
