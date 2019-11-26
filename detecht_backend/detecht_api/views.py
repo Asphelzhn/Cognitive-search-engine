@@ -226,3 +226,13 @@ class UserFavorite(APIView):
             'success': True
         }
         return JsonResponse(response)
+
+
+class RelatedDocuments(APIView):
+    def post(self, request):
+        data_in = request.data
+
+        response = {
+            'success': True
+        }
+        return JsonResponse(response)
