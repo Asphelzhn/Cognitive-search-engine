@@ -15,10 +15,15 @@
     <!--END AUTOCOMPLETE-->
 
     <!--SPELLCHECK-->
-    <div type="text" name="search" class="searchTerm spellcheckBox" placeholder="What are you looking for?"
+    <div type="text" name="search" id="spellcheckBox" class="searchTerm" placeholder="What are you looking for?"
          *ngIf="showSpellcheck">
-      <span *ngFor="let spellcheckword of spellcheck" class="{{spellcheckClass(spellcheckword)}}"
-            (click)="pressedSpellcheck(spellcheckword)">{{spellcheckword.word}} </span>
+      <span id="spellcheckBoxForeGround">
+        <span *ngFor="let spellcheckword of spellcheck">
+          <span class="{{spellcheckClass(spellcheckword)}}" (click)="pressedSpellcheck(spellcheckword)">{{spellcheckword.word}}</span>
+          <span (click)="pressedSpellcheck(undefined)" style="color: rgba(0,0,0,0);">a</span>
+        </span>
+      </span>
+      <span id="spellcheckBoxBackGround" (click)="pressedSpellcheck(undefined)"></span>
       <!--<span (click)="pressedSpellcheck(undefined)" style="color: rgba(0,0,0,0);">-->
       <!--abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwx</span>-->
       <div id="spellcheckDropDown" *ngIf="showSpellcheckDropDown">

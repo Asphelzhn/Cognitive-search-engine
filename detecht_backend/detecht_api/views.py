@@ -27,6 +27,8 @@ from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_int
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 from detecht_api.detecht_nlp.spell_check import spell_check
 
+from detecht_api.detecht_db_handling import get_autocomplete
+
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
@@ -192,6 +194,12 @@ class GetAutoComplete(APIView):
             'success': False,
             'autocomplete': []
         }
-        data_in = request.data
-        # TODO ask samuel
+        input = request.data
+        if input != {}:
+            query = input["query"]
+            response['success'] = True
+            # TODO might need to be updated
+            response['autocomplete'] = get_autocomplete.get_autocomplete(query)
+            # response['autocomplete'] = ["Hej hopp i galopp", "Hej hopp i galopp", "Hej hopp i galopp", "Hej hopp i galopp"]
+            return JsonResponse(response)
         return JsonResponse(response)
