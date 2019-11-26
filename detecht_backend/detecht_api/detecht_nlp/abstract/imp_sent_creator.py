@@ -96,7 +96,7 @@ def imp_sent_creator(doc, size):
 
     return imp_sentences, word_frequencies
 
-def generateAbstract(query,impSentenceList,word_frequencies,size):
+def generateAbstract(query,impSentenceList, size, word_frequencies=dict()):
     copiedImpSent=[]
     query = query.split(" ")
 
@@ -109,10 +109,10 @@ def generateAbstract(query,impSentenceList,word_frequencies,size):
         sentence_scores[i.sent]=i.score
         for word in i.sent:
             #Behöver databas
-            if word.text.lower() in word_frequencies.keys():
-                    for key in query:
-                        if key in str(i.sent):
-                            sentence_scores[i.sent] += word_frequencies[word.text.lower()]/len(i.sent)
+            if word.lower() in word_frequencies.keys():
+                for key in query:
+                    if key in str(i.sent):
+                        sentence_scores[i.sent] += word_frequencies[word.lower()]/len(i.sent)
 
     summarized_sentences = nlargest(size, sentence_scores, key=sentence_scores.get)
 

@@ -35,7 +35,7 @@ class imp_sent_api():
     def generateAbstract(self,query,impsentenceList,word_frequencies):
         # Här skulle jag vilja få in datavasObject samt word frequencies för ett visst dokument
         size=4
-        abstract = imp_sent_creator.generateAbstract(query, impsentenceList,word_frequencies,size)
+        abstract = imp_sent_creator.generateAbstract(query, impsentenceList, size, word_frequencies)
         return abstract
 
 if __name__ == '__main__':
