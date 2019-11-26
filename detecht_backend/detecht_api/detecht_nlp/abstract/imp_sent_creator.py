@@ -21,7 +21,7 @@ nlp = spacy.load("en_core_web_sm")
 
 
 
-def imp_sent_creator(doc, size, query):
+def imp_sent_creator(doc, size):
     imp_sentences = []
     docx = nlp(doc)
     word_frequencies = {}
@@ -49,10 +49,10 @@ def imp_sent_creator(doc, size, query):
                         sentence_scores[sent] = word_frequencies[word.text.lower()]/len(sent)
                     else:
                         sentence_scores[sent] += word_frequencies[word.text.lower()]/len(sent)
-                    if query!= 0:
-                        for key in query:
-                            if key in str(sent):
-                                sentence_scores[sent] += word_frequencies[word.text.lower()]/len(sent)
+                    #if query!= 0:
+                    #    for key in query:
+                    #        if key in str(sent):
+                    #            sentence_scores[sent] += word_frequencies[word.text.lower()]/len(sent)
 
 
     summarized_sentences = nlargest(size, sentence_scores, key=sentence_scores.get)
@@ -78,7 +78,28 @@ def imp_sent_creator(doc, size, query):
 
         pos += len(sent.text) + 1
 
+    #Onödig?
     imp_sentences.sort(key=attrgetter("order"), reverse=False)
 
-    return imp_sentences
+    return imp_sentences, word_frequencies
+
+def generateAbstract(query,impSentenceList):
+
+    query = query.split(" ")
+
+    for word in query:
+        if word in stopwords:
+            query.remove(word)
+
+    sentence_scores = {}
+    for i in impSentenceList:
+        sentence_scores[i.sent]=i.sent
+        for word in i.sent:
+            #Behöver databas
+            if word.text.lower() in word_frequencies.keys():
+                    for key in query:
+                        if key in str(sent):
+                            sentence_scores[sent] += word_frequencies[word.text.lower()]/len(sent)
+
+
 
