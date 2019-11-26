@@ -54,12 +54,13 @@ def getNgrams(input, n):
 def get_result(query):
     lines = open("result_1.txt").readlines()
     suggestions = []
-    pattern = '.*'.join(query)
-    regex = re.compile(pattern)
+    # pattern = '.*'.join(query)
+    # regex = re.compile(pattern)
     i = 0
     q = query.split()
     length = len(q)
     for line in lines:
+        # match = regex.search(line)
         s = line.split()
         s_sub = []
         w = ""
