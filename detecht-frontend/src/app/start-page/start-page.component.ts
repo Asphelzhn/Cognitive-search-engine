@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {InteractWithDocumentService} from '../network-services/interact-with-document.service';
+import {PreviewMessageService} from "../message-services/preview-message.service";
+import {NetworkInteractWithDocumentRequest} from '../network-services/network-data-types';
 
 @Component({
   selector: 'app-start-page',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private interact: InteractWithDocumentService) { }
+  test: NetworkInteractWithDocumentRequest;
 
   ngOnInit() {
+    this.test =  new NetworkInteractWithDocumentRequest()
+    // test: NetworkInteractWithDocumentRequest;
+    this.test.pdfName = 'apa';
+    this.test.userId = 'hej';
+    this.interact.previewDocument(this.test);
   }
 
 }

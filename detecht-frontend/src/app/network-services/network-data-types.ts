@@ -82,7 +82,7 @@ export class NetworkTrendingDocumentsRequest {
 }
 
 export class NetworkInteractWithDocumentRequest {
-  pdf_name: string;
-  user_id: string;
+  pdfName: string;
+  userId: string;
   type: string;
 }

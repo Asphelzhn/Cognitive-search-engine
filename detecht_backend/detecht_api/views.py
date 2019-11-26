@@ -188,9 +188,12 @@ class GetAnalytics(APIView):
 
 class InteractWithDocument(APIView):
     def post(self, request):
+        response = {
+            'success': True
+        }
         data_in = request.data
-        Preview_Document(pdf_name=data_in["pdf_name"], userid=data_in["user_id"], type = data_in["type"])
-        return
+        Preview_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
+        return JsonResponse(response)
 
 
 class TrendingDocuments(APIView):
