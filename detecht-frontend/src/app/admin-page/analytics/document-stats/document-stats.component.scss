@@ -1,4 +1,272 @@
-.individual-content {
+.container {
+  width: auto;
+  height: 100%;
+  /* UI Properties */
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 5px #00000017;
+  opacity: 1;
+}
+
+
+.pdf_name {
+  font-family: 'Poppins', sans-serif;
+  //font: SemiBold 30px/46px Poppins;
+  font-weight:600;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+  color: #000000;
+  top: 144px;
+  left: 168px;
+  width: 147px;
+  height: 20px;
+  /*  text-align: left;
+    font: Light 20px/30px Poppins;
+    letter-spacing: 0.2px;
+    color: #707070;*/
+  opacity: 1;
+  float : left;
+  margin-left: 17px;
+  margin-top: 17px;
+  margin-bottom: 5px;
+}
+
+.pdf_summary{
+  margin-top: 0;
+  margin-bottom: 3px;
+  //top: 183px;
+  //left: 1040px;
+  width: 100%;
+  height: 35px;
+  float: left;
+  margin-left: 17px;
+  font-family: Poppins, sans-serif;
+  letter-spacing: 0.2px;
+  color: #383838;
+  /* UI Properties */
+
+}
+
+.info-holder {
+  height: 8%;
+}
+
+.hr1{
+  border-bottom: 0.5px #707070 solid;
+  width: 100%;
+  float: left;
+  margin-top: 0;
+}
+
+Input-bar-holder{
+  height: 30px;
+  width : auto;
+
+}
+
+.text-edit-bar {
+  width: 50%;
+  float: right;
+  display: flex;
+
+
+}
+
+.searchTerm {
+  margin-left: 2%;
+  margin-top: 20px;
+  width: 80%;
+  border: 1px solid gray;
+  padding: 5px;
+  height: 20px;
+  font-style: italic;
+  font-family: Verdana;
+  //border-radius: 5px 0 0 5px;
+  //outline: none;
+  //color: #707070;
+}
+
+.searchTerm:focus{
+  // color: #707070;
+}
+
+
+.close  {
+  margin-top: 17px;
+  margin-right: 13px;
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+
+
+.bottom_container{
+  //top: 40%;
+  //margin-top: 75%;
+  position: absolute;
+  bottom: 30px;
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 30px;
+  // display: flex;
+
+
+  //justify-content: space-between;
+}
+
+.icon {
+
+  width: 20px;
+  height: 20px;
+  float: left ;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.text {
+  float: left;
+  font-weight: bold;
+}
+
+.saveButton{
+  float:right;
+  width: 80px;
+  height: 30px;
+  background-color: #B0D5D8;
+  border-radius: 3px;
+  border-color: #B0D5D8;
+  margin-bottom: 1%;
+  margin-right: 2%;
+  margin-top: 1%;
+  color: white;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  vertical-align: center;
+
+  .button-text {
+    width:auto;
+    height: 30px;
+    margin: 0px;
+    font-family: Poppins, sans-serif;
+    font-weight: bold;
+  }
+
+}
+
+.trash{
+  height: 20px;
+  width: 20px;
+  float: right;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 2%;
+  vertical-align: center;
+}
+
+.low_text{
+  float: left ;
+  font-family: Poppins, sans-serif;
+
+}
+
+.Middle-cont {
+  height: 75%;
+  width: 100%;
+}
+
+
+.hr2 {
+  border-bottom: 0.5px #707070 solid;
+  width: 100%;
+  float: left;
+  margin-top: 0;
+  bottom: 60px;
+}
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .bottom_container {
+    bottom: 80px;
+    position: inherit;
+
+  }
+  .trash{
+    float: left;
+    margin-left: 30%;
+  }
+  .saveButton {
+    float: right;
+    margin-right: 30%;
+  }
+  .icon{
+    position: center;
+    margin-left: 15%;
+  }
+}
+
+
+@media screen and (max-width: 995px) {
+  .Middle-cont{
+    height: 55%;
+  }
+
+  .trash{
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 2%;
+    vertical-align: center;
+  }
+  .saveButton {
+    float: right;
+    margin-bottom: 1%;
+    margin-right: 2%;
+    margin-top: 1%;
+  }
+  .icon{
+    float: left ;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+
+}
+
+
+
+
+
+@media screen and (max-width: 612px) {
+  .bottom_container{
+
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 8px;
+
+  }
+
+
+  .Middle-cont{
+    height: 40%;
+  }
+
+  .pdf_name {
+    width: auto;
+    font-size: 15px;
+  }
+  .pdf_summary{
+    width: auto;
+    font-size: 10px;
+    height : 15px;
+  }
+}
+
+
+/*.individual-content {
   display: flex;
   justify-content: space-between;
   margin: 5px 10px;
@@ -36,3 +304,4 @@
 }
 
 
+*/
