@@ -1,29 +1,29 @@
 <div class="search-result-container">
-  <div class="img-container">
-    <app-qr-code
-      [url]="staticUrl + 'pdf/' + result.name"
-    ></app-qr-code>
-  </div>
   <div class="body">
-    <a (click)="showPreview = true" href="{{staticUrl + 'pdf/' + result.name}}" target="_blank"><h5
-      class="card-title">{{result.title}}</h5></a>
-    <button type="button"
-            fileSaver
-            [method]="'GET'"
-            [fileName]="result.title"
-            [url]="staticUrl + 'pdf/' + result.name"
-            [header]="{token: 'demo'}"
-            [query]="{pi: 1, name: 'demo'}"
-
-    >Download
-    </button>
-
+    <div class="close">
+      <div id="close-button" (click)="removeResult(result.title)"></div>
+    </div>
+    <h5 class="card-title" (click)="showPreview = true">{{result.title}}</h5>
+    <div class="line"></div>
     <div class="keywords">
       <span class="keyword" *ngFor="let keyword of result.keywords"
-            [ngStyle]="{'background-color': 'rgb(' + 255 * (1 - keyword.weight) + ',' + 255 * (1 - keyword.weight) + ', 255 )'}">{{keyword.keyword}}</span>
+            [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}
+        , </span>
     </div>
-    <button (click)="showPreview = true">Show preview</button>
-    <button (click)="openDialog()">Show sentences</button>
+
+    <div id="button-container">
+      <div class="buttons" id="expand-button" (click)="openDialog()"></div>
+      <div id="download-button" class="buttons"
+           fileSaver
+           [method]="'GET'"
+           [fileName]="result.title"
+           [url]="staticUrl + 'pdf/' + result.name"
+           [header]="{token: 'demo'}"
+           [query]="{pi: 1, name: 'demo'}"
+
+      ></div>
+      <div class="buttons" id="like-button"></div>
+    </div>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
                              [result]="result"></app-search-result-preview>
