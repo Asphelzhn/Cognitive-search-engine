@@ -1,3 +1,96 @@
+<div class="container">
+
+  <div class="row">
+    <p class="title">Documents</p>
+
+    <div class="search">
+      <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString">
+      <button type="submit" class="searchButton" (click)="search()">
+        <img class = "search-icon" src="../../../../assets/admin-page/zoom-icon.png" alt="">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+  <!--
+  TODO: Implement ngrepeat and restservices for title and abstract
+  -->
+  <div class="documents-div">
+    <app-document-component title="Här är en titel" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-document-component>
+    <app-document-component title="Här är en titel" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-document-component>
+    <app-document-component title="Här är en titel" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-document-component>
+  </div>
+
+</div>
+
+<!--
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <p class="title">Edit document</p>
+    <img class="trash" src="../../../assets/ic_delete_24px@2x.png">
+
+
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <hr class = "hr">
+  <div class="result_holder">
+
+
+    <div class="result" >
+      <div class="line"></div>
+              <span class= "check_box" >
+                  </span>
+
+      <label class="check_container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+
+
+
+      <div class = "pdf_title">
+        <p>Pdf name</p>
+      </div>
+      <div class="pdf_text">
+        <p>pdf text</p>
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+</div>
+</body>
+</html>
+
+-->
+
+
+
+
+<!--
 <div class="doc-stats-content">
   <div class="switch-buttons">
     <button (click)="sortDownloadsArray()">show downloads</button>
@@ -19,3 +112,4 @@
     </div>
   </div>
 </div>
+-->

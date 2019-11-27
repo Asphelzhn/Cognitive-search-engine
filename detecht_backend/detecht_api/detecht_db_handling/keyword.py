@@ -179,8 +179,10 @@ def add_pdf_similarities(pdf1):
     #print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
-        a = item[0].get("pdf_name")
-        b = item[1].get("similarity")
+        a = item[0]
+        b = item[1]
+        # a = item[0].get("pdf_name")
+        # b = item[1].get("similarity")
        # print(pdf1)
         new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
         new.save()

@@ -1,4 +1,5 @@
 from detecht_api.detecht_nlp import create_abstract
+import time
 
 """
 Henrik & Oscar
@@ -44,5 +45,8 @@ query = "Sherlock to Holmes"
 
 
 def test():
-    create_abstract.create_abstract(document1, query)
-
+    create_abstract.create_hash(document1)
+    t0=time.time()
+    print("This is the summary: " +create_abstract.create_abstract(query,document1))
+    t1=time.time()
+    print(t1-t0)
