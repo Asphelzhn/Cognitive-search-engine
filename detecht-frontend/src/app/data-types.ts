@@ -36,5 +36,15 @@ export class Pdf {
 }
 
 export class TrendingDocumentsResponse {
-  pdfs: {pdf_name: string, trend_score: number}[];
+    pdfName: string;
+    trendScore: number;
+    title: string;
+
+
+  constructor(pdfName: string, trendScore: number, title: string) {
+    this.pdfName = pdfName;
+    this.trendScore = trendScore;
+    this.title = title;
+  }
 }
+

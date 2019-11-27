@@ -1,20 +1,13 @@
 <div class="container">
 
   <div class="row">
-    <button class="btn" (click)="changetoview()" [ngStyle]="{'color': [viewscolor]}">Most Views</button>
+    <button class="btn" (click)="changetoview()" [ngStyle]="{'color': [viewscolor]}">Most Favorites</button>
     <button class="btn" (click)="changetodownloads()" [ngStyle]="{'color': [downloadscolor]}">Most Downloads</button>
 
 
   </div>
-  <!--
-    TODO: Implement ngrepeat and restservices for title, abstract, views and downloads
-  -->
   <div class="documents-div">
-    <app-most-document title="Här är en titel" views="10203" downloads="32145" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-most-document>
-    <app-most-document title="Här är en titel" views="10203" downloads="32245" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-most-document>
-    <app-most-document title="Här är en titel" views="10203" downloads="31245" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-most-document>
-    <app-most-document title="Här är en titel" views="10203" downloads="1245" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-most-document>
-    <app-most-document title="Här är en titel" views="10203" downloads="45" abstract="Detta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstractDetta är ett abstract"></app-most-document>
+    <app-most-document *ngFor="let pdf of pdfs" [title]="pdf.title" [abstract]="pdf.file" [downloads]="pdf.downloads" [views]="pdf.favorites"></app-most-document>
 
   </div>
 

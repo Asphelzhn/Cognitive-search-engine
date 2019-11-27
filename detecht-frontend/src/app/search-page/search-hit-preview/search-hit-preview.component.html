@@ -5,22 +5,22 @@
     <h1>{{result.title}}</h1>
     <div class="button-group">
 
-      <span (click)="liked = !liked" *ngIf="!liked">
+      <span (click)="liked = !liked; like(result.name, true)" *ngIf="!liked">
         <img src="assets/user-page/save-button.png">
       </span>
-      <span (click)="liked = !liked" *ngIf="liked">
+      <span (click)="liked = !liked; like(result.name, false)" *ngIf="liked">
         <img src="assets/user-page/red-saved-button.png">
       </span>
-      <span
-        fileSaver
-        [method]="'GET'"
-        [fileName]="result.title"
-        [url]="staticUrl + 'pdf/' + result.name"
-        [header]="{token: 'demo'}"
-        [query]="{pi: 1, name: 'demo'}"
-      >
-        <img src="assets/user-page/download-button.png">
-      </span>
+        <span
+          fileSaver
+          [method]="'GET'"
+          [fileName]="result.title"
+          [url]="staticUrl + 'pdf/' + result.name"
+          [header]="{token: 'demo'}"
+          [query]="{pi: 1, name: 'demo'}"
+        >
+          <img src="assets/user-page/download-button.png" (click)="downloadInteraction()">
+        </span>
       <span>
         <img (click)="close()" src="assets/user-page/x-button.png">
       </span>
@@ -30,30 +30,30 @@
     <div class="qr-code-wrapper">
       <h2>QR-Code</h2>
       <div class="container">
-    <app-qr-code></app-qr-code>
+        <app-qr-code [url]="pdfUrl + result.name"></app-qr-code>
       </div>
     </div>
     <div class="abstract-wrapper">
       <h2>Abstracts</h2>
-        <div>
+      <div>
         <div *ngFor='let sentence of sentences' class="abstract">
           <p>"{{sentence}}"</p>
           <div class="button-wrapper">
             <img (click)="displayPreview(sentence)" src="assets/user-page/take-me-there-button.png">
           </div>
-          </div>
         </div>
+      </div>
     </div>
     <div class="dummy"></div>
     <div class="related-documents-wrapper">
       <h2>Related Documents</h2>
-      <div class="related-document">
-        <h3>{{result.title}}</h3>
+      <div class="related-document" *ngFor="let related of relatedSearches">
+        <h3>{{related.title}}</h3>
         <div class="icons">
-          <span (click)="liked = !liked" *ngIf="!liked">
+          <span (click)="related.liked = !related.liked; like(related.pdfName, true)" *ngIf="!related.liked">
             <img src="assets/user-page/save-button.png">
           </span>
-          <span href="#" (click)="liked = !liked" *ngIf="liked">
+          <span href="#" (click)="related.liked = !related.liked; like(related.pdfName, false)" *ngIf="related.liked">
             <img src="assets/user-page/red-saved-button.png">
           </span>
           <span href="#">
@@ -64,39 +64,6 @@
           </span>
         </div>
       </div>
-      <div class="related-document">
-        <h3>{{result.title}}</h3>
-        <div class="icons">
-          <span (click)="liked = !liked" *ngIf="!liked">
-            <img src="assets/user-page/save-button.png">
-          </span>
-          <span href="#" (click)="liked = !liked" *ngIf="liked">
-            <img src="assets/user-page/red-saved-button.png">
-          </span>
-          <span href="#">
-            <img src="assets/user-page/download-button.png">
-          </span>
-          <span href="#">
-            <img (click)="close()" src="assets/user-page/information-button.png">
-          </span>
-        </div>
-      </div><div class="related-document">
-      <h3>{{result.title}}</h3>
-      <div class="icons">
-          <span (click)="liked = !liked" *ngIf="!liked">
-            <img src="assets/user-page/save-button.png">
-          </span>
-        <span href="#" (click)="liked = !liked" *ngIf="liked">
-            <img src="assets/user-page/red-saved-button.png">
-          </span>
-        <span href="#">
-            <img src="assets/user-page/download-button.png">
-          </span>
-        <span href="#">
-            <img (click)="close()" src="assets/user-page/information-button.png">
-          </span>
-      </div>
-    </div>
 
 
     </div>

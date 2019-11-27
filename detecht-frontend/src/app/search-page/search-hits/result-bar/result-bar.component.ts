@@ -6,6 +6,9 @@ import {SearchHitPreviewComponent} from '../../search-hit-preview/search-hit-pre
 import {PreviewMessageService} from '../../../message-services/preview-message.service';
 import {FileSaverModule} from 'ngx-filesaver';
 import {SearchHitPreviewService} from '../../../message-services/search-hit-preview.service';
+import {NetworkFavoriteDocumentRequest, NetworkInteractWithDocumentRequest} from '../../../network-services/network-data-types';
+import {InteractWithDocumentService} from '../../../network-services/interact-with-document.service';
+import {UserFavoriteService} from '../../../network-services/user-favorite.service';
 
 
 @Component({
@@ -19,12 +22,15 @@ export class ResultBarComponent implements OnInit {
   showPreview: boolean;
   showSentences: boolean;
   liked: boolean;
+  userId: number;
   @Output() removeEvent: EventEmitter<string> = new EventEmitter();
   @Input() result: SearchResponse;
 
   constructor(
     private previewData: PreviewMessageService,
-    private searchHitPreviewService: SearchHitPreviewService
+    private searchHitPreviewService: SearchHitPreviewService,
+    private interactWithDocumentService: InteractWithDocumentService,
+    private userFavoriteService: UserFavoriteService
   ) {
   }
 
@@ -44,5 +50,21 @@ export class ResultBarComponent implements OnInit {
     // Ändras sen, behöver API
     this.liked = false;
 
+    this.userId = 0;
+
   }
+
+  downloadInteraction(): void {
+    const data = new NetworkInteractWithDocumentRequest(this.result.name, 0, 'Download');
+    this.interactWithDocumentService.downloadDocument(data);
+  }
+
+  like(pdfName: string, like: boolean): void {
+    const data = new NetworkFavoriteDocumentRequest();
+    data.pdfName = pdfName;
+    data.userId = this.userId;
+    data.like = like;
+    this.userFavoriteService.favoriteDocument(data);
+  }
+
 }

@@ -1,11 +1,7 @@
 <div class="container">
   <div class="left-content">
     <div class="card-div">
-      <!-- TODO: add rest service for downloads, favourites and documents-->
-      <app-stats
-        documents="12089"
-        favorites="13908"
-        downloads="14830">
+      <app-stats [documents]="numberDocuments" [downloads]="numberDownloads" [favorites]="numberFavorites">
       </app-stats>
     </div>
     <!--<div class="page-content">
@@ -29,10 +25,10 @@
       <div></div>
     </div> -->
     <div class="document-div">
-      <app-document-stats [pdfs]="results"></app-document-stats>
+      <app-document-stats></app-document-stats>
     </div>
   </div>
   <div class="right-content">
-    <app-most-views-downloads></app-most-views-downloads>
+    <app-most-views-downloads [pdfs]="results"></app-most-views-downloads>
   </div>
 </div>

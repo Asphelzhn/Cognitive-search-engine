@@ -13,17 +13,19 @@
 
     <div id="button-container">
       <div class="buttons" id="expand-button" (click)="openDialog()"></div>
-      <div id="download-button" class="buttons"
-           fileSaver
-           [method]="'GET'"
-           [fileName]="result.title"
-           [url]="staticUrl + 'pdf/' + result.name"
-           [header]="{token: 'demo'}"
-           [query]="{pi: 1, name: 'demo'}"
+      <span (click)="downloadInteraction()">
+        <div id="download-button" class="buttons"
+             fileSaver
+             [method]="'GET'"
+             [fileName]="result.title"
+             [url]="staticUrl + 'pdf/' + result.name"
+             [header]="{token: 'demo'}"
+             [query]="{pi: 1, name: 'demo'}"
 
-      ></div>
-      <div (click)="liked = !liked" *ngIf="!liked" class="buttons" id="like-button"></div>
-      <div (click)="liked = !liked" *ngIf="liked" class="buttons" id="liked-button"></div>
+        ></div>
+      </span>
+      <div (click)="liked = !liked; like(result.name, true)" *ngIf="!liked" class="buttons" id="like-button"></div>
+      <div (click)="liked = !liked; like(result.name, false)" *ngIf="liked" class="buttons" id="liked-button"></div>
 
     </div>
   </div>

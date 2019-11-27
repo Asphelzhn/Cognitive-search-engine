@@ -50,6 +50,10 @@
           height: auto;
         }
       }
+      
+      span:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -135,6 +139,10 @@
               width: 100%;
               height: auto;
             }
+          }
+          
+          span:hover {
+            cursor: pointer;
           }
 
         }

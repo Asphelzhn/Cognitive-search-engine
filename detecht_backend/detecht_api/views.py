@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
-from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf
+from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf
 
 """
 Oskar H & Armin
@@ -215,12 +215,15 @@ class TrendingDocuments(APIView):
             'success': False,
             'content': []
         }
+        print(trending_list)
         if trending_list != {}:
             response['success'] = True
             for pdf in trending_list:
+                print(pdf)
                 frontend_result = {
                     'pdf_name': pdf[0],
-                    'trend_score': pdf[1]
+                    'trend_score': pdf[1],
+                    'title': 'TITLE'
                 }
                 response['content'].append(frontend_result)
 
@@ -230,7 +233,10 @@ class TrendingDocuments(APIView):
 class UserFavorite(APIView):
     def post(self, request):
         data_in = request.data
-        add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+        if data_in["like"]:
+            add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+        else:
+            remove_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
         response = {
             'success': True
         }
@@ -244,13 +250,15 @@ class RelatedDocuments(APIView):
             'content': []
         }
         data_in = request.data
-        documentList = pdf_relevance(data_in['name'])
+        documentList = pdf_relevance(data_in)
         if documentList != []:
             response['success'] = True
             for pdf in documentList:
                 jsonPdf = {
                     'pdfName': pdf[0],
-                    'value': pdf[1]
+                    'value': pdf[1],
+                    'title': 'TITLE',
+                    'liked': False
                 }
                 response['content'].append(jsonPdf)
 

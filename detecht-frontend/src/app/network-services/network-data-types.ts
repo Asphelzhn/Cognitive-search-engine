@@ -42,7 +42,8 @@ export class NetworkTrendingDocumentsResponse {
   content: [
     {
       pdf_name: string;
-      trend_score: boolean;
+      trend_score: number;
+      title: string;
     }
   ];
 }
@@ -53,6 +54,8 @@ export class NetworkRelatedDocumentResponse {
     {
       pdfName: string;
       value: number;
+      title: string;
+      liked: boolean;
     }
   ];
 }
@@ -105,13 +108,21 @@ export class NetworkTrendingDocumentsRequest {
 
 export class NetworkInteractWithDocumentRequest {
   pdfName: string;
-  userId: string;
+  userId: number;
   type: string;
+
+
+  constructor(pdfName: string, userId: number, type: string) {
+    this.pdfName = pdfName;
+    this.userId = userId;
+    this.type = type;
+  }
 }
 
 export class NetworkFavoriteDocumentRequest {
   userId: number;
   pdfName: string;
+  like: boolean;
 }
 
 export class NetworkRelatedDocumentRequest {
