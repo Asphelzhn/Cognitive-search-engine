@@ -19,6 +19,7 @@ export class SearchHitPreviewComponent implements OnInit {
   rightSentence: string;
   sentences: string[];
   query: string;
+  liked: boolean;
 
   constructor(
     private searchService: SearchService,
@@ -51,6 +52,7 @@ export class SearchHitPreviewComponent implements OnInit {
 
     this.staticUrl = environment.staticUrl;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
+    this.liked = false;
   }
 
   displayPreview(sentence: string): void {

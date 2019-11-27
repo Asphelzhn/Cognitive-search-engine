@@ -57,7 +57,7 @@ export class AdminService {
         }
       );
     } else {
-      this.http.put<any>(environment.apiUrl + 'pdftoes/', {},
+      this.http.get<any>(environment.apiUrl + 'pdftoes/',
         {
           withCredentials: true,
           headers: new HttpHeaders({
@@ -66,8 +66,11 @@ export class AdminService {
         }
       ).pipe(catchError(this.networkService.handleError)).subscribe(
         (data: any) => {
-          console.log('SUCCESS!!!');
-          this.responseMessageSource.next('Files was successfully uploaded and processed');
+          if (data.success) {
+            this.responseMessageSource.next('Files was successfully uploaded and processed');
+          } else {
+            console.log('Error in pdf to es conversion');
+          }
         },
         (error: any) => {
           console.log(error);

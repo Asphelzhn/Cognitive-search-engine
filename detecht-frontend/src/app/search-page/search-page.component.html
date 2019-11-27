@@ -1,6 +1,9 @@
 <div class="full-page-container">
   <div class="search-bar">
     <app-search-bar [changePage]="false"></app-search-bar>
+    <a href="#" class="saved-documents">
+      <img (click)="router.navigate(['/saved']);" src="assets/user-page/saved-button.png">
+    </a>
   </div>
   <div class="container">
     <div class="search-result-container">
