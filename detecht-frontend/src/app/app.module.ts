@@ -35,6 +35,7 @@ import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documen
 import { FooterComponent } from './footer/footer.component';
 import { StatsComponent } from './admin-page/analytics/stats/stats.component';
 import {DocumentStatsComponent} from './admin-page/analytics/document-stats/document-stats.component';
+import { DocumentComponentComponent } from './admin-page/analytics/document-stats/document-component/document-component.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
     EditDocumentsComponent,
     FooterComponent,
     StatsComponent,
-    DocumentStatsComponent
+    DocumentStatsComponent,
+    DocumentComponentComponent
   ],
   imports: [
     BrowserModule,

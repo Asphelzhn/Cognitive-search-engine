@@ -9,6 +9,7 @@ import {Pdf} from '../../../data-types';
 export class DocumentStatsComponent implements OnInit {
 
   @Input() pdfs: Pdf[];
+  results: any;
   constructor() { }
 
   sortFavoritesArray() {

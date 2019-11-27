@@ -6,12 +6,13 @@
   text-align: center;
   font-family: Verdana, serif;
   display: grid;
-  grid-template-columns: 50%;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 50%));
+  overflow-wrap: normal;
 
   .left-content {
-    grid-area: 1 / 1 / 2 / 2;
-    background-color: red;
+    float: left;
     width: 100%;
+    min-width: 500px;
     display: inline-block;
     margin-left: 15px;
 
@@ -24,9 +25,9 @@
   }
 
   .right-content {
-    grid-area: 1 / 2 / 2 / 3;
-    background-color: #3a517f;
+    float: right;
     width: 100%;
+    min-width: 500px;
   }
 
 
