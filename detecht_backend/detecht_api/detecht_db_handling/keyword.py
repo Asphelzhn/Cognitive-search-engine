@@ -116,12 +116,12 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
         relevance_name = []
         relevance_value = []
         for i in pdf_list:
-            PDF_ord = i.get("keyword")
+            PDF_word = i.get("keyword")
 
             for a in focus_pdf:
-                fokus_ord = a.get("keyword")
+                focus_word = a.get("keyword")
                 # print("sakerfunkar")
-                if PDF_ord == fokus_ord:
+                if PDF_word == focus_word:
                     # print("saker funkar")
                     relevance += i.get("weight") * a.get("weight")
                     # Såhär långt så funkar allt som det ska
@@ -132,7 +132,10 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
         # print(relevance_value)
 
         relevance_table = []
-        i_old = relevance_name[0]
+        if relevance_name:
+            i_old = relevance_name[0]
+        else:
+            i_old=""
         a = 0  # Hålla koll på index för relevance vaule
         b = 0  # Hålla koll på index relevance table
         relevance = 0
