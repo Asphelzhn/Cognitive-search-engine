@@ -182,11 +182,11 @@ class AddPdfsToES(APIView):
         response = {
             'success': False
         }
-        try:
-            insert_all_staged_pdf_into_es()
-            response['success'] = True
-        except:
-            print("error occured")
+        # try:
+        insert_all_staged_pdf_into_es()
+        response['success'] = True
+        # except:
+        #     print("error occured")
         return JsonResponse(response)
 
 
