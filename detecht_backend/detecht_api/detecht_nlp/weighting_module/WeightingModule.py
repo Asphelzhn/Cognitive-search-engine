@@ -34,13 +34,13 @@ class WeightingModule:
         search_query = nlp(search_query)
         search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
 
-        for title in elastic_search_results:
+        for pdfname in elastic_search_results:
             # get document keywords in database
-            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=title)
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=pdfname)
             score_after_weight = 0
-            for name in name_weight_set:
-                keyword = nlp(name.keyword)
-                keyword_weight = name.weight
+            for doc in name_weight_set:
+                keyword = nlp(doc.keyword)
+                keyword_weight = doc.weight
 
                 # print(keyword)
                 # print(keyword)
