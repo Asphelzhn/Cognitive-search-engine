@@ -18,6 +18,7 @@ export class ResultBarComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   showSentences: boolean;
+  liked: boolean;
   @Output() removeEvent: EventEmitter<string> = new EventEmitter();
   @Input() result: SearchResponse;
 
@@ -39,6 +40,9 @@ export class ResultBarComponent implements OnInit {
     this.staticUrl = environment.staticUrl;
     this.showSentences = false;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
+
+    // Ändras sen, behöver API
+    this.liked = false;
 
   }
 }

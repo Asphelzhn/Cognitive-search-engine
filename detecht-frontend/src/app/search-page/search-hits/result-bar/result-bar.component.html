@@ -22,7 +22,9 @@
            [query]="{pi: 1, name: 'demo'}"
 
       ></div>
-      <div class="buttons" id="like-button"></div>
+      <div (click)="liked = !liked" *ngIf="!liked" class="buttons" id="like-button"></div>
+      <div (click)="liked = !liked" *ngIf="liked" class="buttons" id="liked-button"></div>
+
     </div>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
