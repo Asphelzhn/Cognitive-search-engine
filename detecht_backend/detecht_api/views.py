@@ -173,11 +173,15 @@ class DeletePdf(APIView):
 
 
 class AddPdfsToES(APIView):
-    def put(self, request):
-        insert_all_staged_pdf_into_es()
+    def get(self, request):
         response = {
-            'success': True
+            'success': False
         }
+        try:
+            insert_all_staged_pdf_into_es()
+            response['success'] = True
+        except:
+            print("error occured")
         return JsonResponse(response)
 
 
