@@ -13,7 +13,7 @@ export class DocumentComponentComponent implements OnInit {
 
   ngOnInit() {
     let index = Math.round(Math.random() * 2 + 1);
-    this.icon = '../../../../../assets/admin-page/color-bar-'+ index + '-icon.png';
+    this.icon = '../../../../../assets/admin-page/color-bar-' + index + '-icon.png';
 
   }
 
