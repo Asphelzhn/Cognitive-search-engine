@@ -38,6 +38,37 @@ export class NetworkGetAllPdfResponse {
     ];
 }
 
+export class NetworkTrendingDocumentsResponse {
+  content: [
+    {
+      pdf_name: string;
+      trend_score: boolean;
+    }
+  ];
+}
+
+export class NetworkRelatedDocumentResponse {
+  success: boolean;
+  content: [
+    {
+      pdfName: string;
+      value: number;
+    }
+  ];
+}
+
+export class NetworkAdminLoginResponse {
+  // tslint:disable-next-line:variable-name
+  key: string;
+  detail: string;
+}
+
+export class NetworkGetAnalyticsResponse {
+  documents: number;
+  downloads: number;
+  favorites: number;
+}
+
 /*
   REQUESTS TO SERVER
  */
@@ -67,3 +98,29 @@ export class NetworkPdfUploadRequest {
     this.file = file;
   }
 }
+
+export class NetworkTrendingDocumentsRequest {
+  size: number;
+}
+
+export class NetworkInteractWithDocumentRequest {
+  pdfName: string;
+  userId: string;
+  type: string;
+}
+
+export class NetworkFavoriteDocumentRequest {
+  userId: number;
+  pdfName: string;
+}
+
+export class NetworkRelatedDocumentRequest {
+  name: string;
+}
+
+export class NetworkAdminLoginRequest {
+  username: string;
+  // email: string;
+  password: string;
+}
+

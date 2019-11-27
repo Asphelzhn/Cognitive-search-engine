@@ -1,5 +1,6 @@
 from rest_framework.exceptions import ValidationError
 
+from detecht_api.detecht_db_handling.document_interaction import *
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
     Pdf_Similarities, User_Keyword
@@ -84,7 +85,7 @@ def date_calc(dateNow):
     return datenow1
 
 # interact with document
-def Preview_Document(pdf_name, userid, type):
+def Interact_Document(pdf_name, userid, type):
     dateNow = date.today()
     if type == "Preview":
         new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
@@ -92,6 +93,7 @@ def Preview_Document(pdf_name, userid, type):
     elif type == "Download":
         new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
         new.save()
+        update_downloads(pdf_name)
     else:
         print("error")
     return
@@ -147,19 +149,40 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
             # i_old=i
         else:
             relevance = 0
-            b = +1
-            # i_old = i
-            # relevance += relevance_value[a]
-            relevance_table.insert(b, [i, relevance_value[a]])
-        i_old = i
-        a += 1
+        # print(relevance_name)
+        # print(relevance_value)
 
-    final_list = []
-    for num in relevance_table:
-        if num not in final_list:
-            final_list.append(num)
+        relevance_table = []
+        i_old = relevance_name[0]
+        a = 0  # Hålla koll på index för relevance vaule
+        b = 0  # Hålla koll på index relevance table
+        relevance = 0
+        for i in relevance_name:
+            if i == i_old:
+                if not len(relevance_table) == 0:
+                    relevance_table.pop(b)
+                relevance += relevance_value[a]
+                relevance_table.insert(b, [i, relevance])
+                # print(str(relevance) + "   " + i)
+                # i_old=i
+            else:
+                relevance = 0
+                b = +1
+                # i_old = i
+                # relevance += relevance_value[a]
+                relevance_table.insert(b, [i, relevance_value[a]])
+            i_old = i
+            a += 1
 
-    final_list.sort(key=sortsecond, reverse=True)
+        final_list = []
+        for num in relevance_table:
+            if num not in final_list:
+                final_list.append(num)
+
+        final_list.sort(key=sortsecond, reverse=True)
+    except:
+        final_list = []
+
     return final_list
 
 
@@ -189,7 +212,6 @@ def add_all_pdf_similarities():
         object = object.get("pdf_name")
         add_pdf_similarities(object)
     return
-
 
 
 def add_user_keyword(id, key):

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GetAnalyticsService} from '../network-services/get-analytics.service';
 
 @Component({
   selector: 'app-start-page',
@@ -9,7 +10,6 @@ export class StartPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
