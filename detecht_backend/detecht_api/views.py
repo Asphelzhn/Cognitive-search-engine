@@ -85,7 +85,7 @@ class Search(APIView):
                 response['spellcheck'] = spellcheck
             response['totalResult'] = res['hits']
             content = res['results']
-            content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
+            # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
             for c in content:
                 response['content'].append(c.frontend_result(query))
             return JsonResponse(response)  # test

@@ -57,7 +57,9 @@ class WeightingModule:
 
         download_weight = 4
         favourite_weight = 6
-        for title in elastic_search_results:
+        for pdfname in elastic_search_results:
+            title = pdfname.replace("_"," ")
+            title = title.replace(".pdf","")
             record = models.Document.objects.get(title=title)
             download = record.downloads
             favourite = record.favorites
@@ -130,9 +132,9 @@ class WeightingModule:
     # This function is used for ask me a question, return the most frequent keyword and document list that include it
     def ask_a_question(ranked_by_weighting_module_results):
         keywords_dict = {}
-        for title in ranked_by_weighting_module_results:
+        for pdfname in ranked_by_weighting_module_results:
             # get document keywords in database
-            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=title)
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=pdfname)
             # print("query result")
             # print(name_weight_set)
             for name in name_weight_set:
@@ -166,7 +168,7 @@ class WeightingModule:
 if __name__ == '__main__':
     # This is the example how to use Weighting Module to add return a new sorted list.
 
-    elastic_search_results = ['Project management', 'python is amazing', 'programming book']
+    elastic_search_results = ['Project_management.pdf', 'python_is_amazing.pdf', 'programming_book.pdf']
     query = "I like computer"
 
     sorted_list = WeightingModule.calculate_score_after_weight(elastic_search_results, query)
