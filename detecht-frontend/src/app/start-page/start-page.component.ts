@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PdfToEsService} from '../network-services/pdf-to-es.service';
+import {GetAnalyticsService} from '../network-services/get-analytics.service';
 import {PreviewMessageService} from "../message-services/preview-message.service";
 import {NetworkAdminLoginRequest} from '../network-services/network-data-types';
 
@@ -10,7 +10,7 @@ import {NetworkAdminLoginRequest} from '../network-services/network-data-types';
 })
 export class StartPageComponent implements OnInit {
 
-  constructor(private interact: PdfToEsService) { }
+  constructor(private interact: GetAnalyticsService) { }
   test: NetworkAdminLoginRequest;
 
   ngOnInit() {
@@ -19,7 +19,9 @@ export class StartPageComponent implements OnInit {
     // this.test.username = 'apa';
     // this.test.password = 'bananbanan';
     // this.test.userId = 2;
-    this.interact.pdfToEs();
+    this.interact.getAnalytics().subscribe(
+      response => console.log(response)
+    );
   }
 
 }

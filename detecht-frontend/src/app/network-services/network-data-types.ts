@@ -63,6 +63,12 @@ export class NetworkAdminLoginResponse {
   detail: string;
 }
 
+export class NetworkGetAnalyticsResponse {
+  documents: number;
+  downloads: number;
+  favorites: number;
+}
+
 /*
   REQUESTS TO SERVER
  */
