@@ -33,3 +33,17 @@
 
 
 }
+
+@media screen and (max-width: 1156px) {
+  .container{
+    display: inline-block;
+
+    .right-content {
+      float: left;
+      padding-left: 15px;
+    }
+
+
+
+  }
+}
