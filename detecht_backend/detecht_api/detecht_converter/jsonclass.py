@@ -32,8 +32,8 @@ class JsonClass:
         databaseObjTemp = list()
         for imp_doc in json_doc["databaseObject"]:
             imp_obj = ImpSent()
-            imp_obj.set_sent(imp_doc['sent'])
-            # imp_obj.set_sent(nlp(imp_doc['sent']))
+            # imp_obj.set_sent(imp_doc['sent'])
+            imp_obj.set_sent(nlp(imp_doc['sent']))
             imp_obj.rank = imp_doc['rank']
             imp_obj.order = imp_doc['order']
             imp_obj.start_index = imp_doc['start_index']
@@ -94,6 +94,8 @@ class JsonClass:
             keywords_tmp.append(keyword_tmp.get_keyword_dict())
         databaseObjTemp = list()
         for imp_obj in self.databaseObject:
+            print(imp_obj.sent)
+            print(imp_obj.score)
             imp_obj_temp = {
                 'sent': str(imp_obj.sent),
                 'rank': imp_obj.rank,
