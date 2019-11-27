@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {GetAnalyticsService} from '../../../network-services/get-analytics.service';
-import {NetworkGetAnalyticsResponse} from '../../../network-services/network-data-types';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-stats',
@@ -8,14 +6,13 @@ import {NetworkGetAnalyticsResponse} from '../../../network-services/network-dat
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
+  @Input() downloads: number;
+  @Input() favorites: number;
+  @Input() documents: number;
 
-  constructor(private interact: GetAnalyticsService) { }
-  result: NetworkGetAnalyticsResponse;
+  constructor() { }
 
   ngOnInit() {
-    this.interact.getAnalytics().subscribe(
-      response => this.result = response
-    );
   }
 
 }
