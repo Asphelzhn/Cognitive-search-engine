@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
-from detecht_api.detecht_db_handling.keyword import Preview_Document
+from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
+from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf
 
 """
 Oskar H & Armin
@@ -11,7 +12,7 @@ Oskar H & Armin
 # imports by ARMIN
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, PDFImportance, UserFavorites, Keyword_distance
+from detecht_api.models import Keywords, UserFavorites, Keyword_distance
 
 # imports by OSKAR
 from detecht_api.models import Document #files
@@ -26,6 +27,8 @@ from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 from detecht_api.detecht_nlp.spell_check import spell_check
+
+from detecht_api.detecht_nlp.weighting_module import WeightingModule
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -83,6 +86,8 @@ class Search(APIView):
                 response['spellcheck'] = spellcheck
             response['totalResult'] = res['hits']
             content = res['results']
+            # TODO change input to pdf_name
+            # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
             for c in content:
                 response['content'].append(c.frontend_result(query))
             return JsonResponse(response)  # test
@@ -172,11 +177,15 @@ class DeletePdf(APIView):
 
 
 class AddPdfsToES(APIView):
-    def put(self, request):
-        insert_all_staged_pdf_into_es()
+    def get(self, request):
         response = {
-            'success': True
+            'success': False
         }
+        try:
+            insert_all_staged_pdf_into_es()
+            response['success'] = True
+        except:
+            print("error occured")
         return JsonResponse(response)
 
 
@@ -188,6 +197,60 @@ class GetAnalytics(APIView):
 
 class InteractWithDocument(APIView):
     def post(self, request):
+        response = {
+            'success': True
+        }
         data_in = request.data
-        Preview_Document(pdf_name=data_in["pdf_name"], userid=data_in["user_id"], type = data_in["type"])
-        return
+        Interact_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
+        return JsonResponse(response)
+
+
+class TrendingDocuments(APIView):
+    def post(self, request):
+        data_id = request.data
+        trending_list = Trending_docs(data_id["size"])
+
+        response = {
+            'success': False,
+            'content': []
+        }
+        if trending_list != {}:
+            response['success'] = True
+            for pdf in trending_list:
+                frontend_result = {
+                    'pdf_name': pdf[0],
+                    'trend_score': pdf[1]
+                }
+                response['content'].append(frontend_result)
+
+        return JsonResponse(response)
+
+
+class UserFavorite(APIView):
+    def post(self, request):
+        data_in = request.data
+        add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+        response = {
+            'success': True
+        }
+        return JsonResponse(response)
+
+
+class RelatedDocuments(APIView):
+    def post(self, request):
+        response = {
+            'success': False,
+            'content': []
+        }
+        data_in = request.data
+        documentList = pdf_relevance(data_in['name'])
+        if documentList != []:
+            response['success'] = True
+            for pdf in documentList:
+                jsonPdf = {
+                    'pdfName': pdf[0],
+                    'value': pdf[1]
+                }
+                response['content'].append(jsonPdf)
+
+        return JsonResponse(response)

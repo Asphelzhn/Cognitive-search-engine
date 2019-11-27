@@ -42,7 +42,7 @@ export class SearchService {
     this.http.post< NetworkSearchResponse >(environment.apiUrl + 'search/', {
       query}, {
       withCredentials: true,
-      headers: new HttpHeaders({
+        headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }).pipe(catchError(this.networkService.handleError)).subscribe(
