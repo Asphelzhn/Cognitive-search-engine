@@ -28,6 +28,8 @@ from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_int
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 from detecht_api.detecht_nlp.spell_check import spell_check
 
+from detecht_api.detecht_nlp.weighting_module import WeightingModule
+
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
@@ -84,6 +86,7 @@ class Search(APIView):
                 response['spellcheck'] = spellcheck
             response['totalResult'] = res['hits']
             content = res['results']
+            # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
             for c in content:
                 response['content'].append(c.frontend_result(query))
             return JsonResponse(response)  # test
