@@ -106,7 +106,8 @@ class GetAbstract(APIView):
             query = input["query"]
             res = search.get_pdf(pdf)
             response['success'] = True
-            response['abstracts'] = res['j_class'].get_abstract(query)
+            for imp_obj in res['j_class'].get_abstract(query):
+                response['abstracts'].append({'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
