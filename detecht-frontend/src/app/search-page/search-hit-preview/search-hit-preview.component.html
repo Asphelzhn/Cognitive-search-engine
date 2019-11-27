@@ -5,8 +5,11 @@
     <h1>{{result.title}}</h1>
     <div class="button-group">
 
-      <span>
+      <span (click)="liked = !liked" *ngIf="!liked">
         <img src="assets/user-page/save-button.png">
+      </span>
+      <span (click)="liked = !liked" *ngIf="liked">
+        <img src="assets/user-page/red-saved-button.png">
       </span>
       <span
         fileSaver
