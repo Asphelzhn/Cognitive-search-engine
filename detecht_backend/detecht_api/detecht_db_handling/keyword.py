@@ -33,6 +33,7 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
+    #print(keyword+"    "+ weight)
     if len(new.pdf_name) <=50:
         new.save()
     else:
@@ -111,12 +112,12 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
     relevance_name = []
     relevance_value = []
     for i in pdf_list:
-        PDF_ord = i.get("keyword")
+        PDF_word = i.get("keyword")
 
         for a in focus_pdf:
-            fokus_ord = a.get("keyword")
+            focus_word = a.get("keyword")
             # print("sakerfunkar")
-            if PDF_ord == fokus_ord:
+            if PDF_word == focus_word:
                 # print("saker funkar")
                 relevance += i.get("weight") * a.get("weight")
                 # Såhär långt så funkar allt som det ska
@@ -165,12 +166,12 @@ def sortsecond(val):
 
 def add_pdf_similarities(pdf1):
     similarity_list = pdf_relevance(pdf1)
-    print(similarity_list)
+    #print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
-        a = item[0]
-        b = item[1]
-        print(pdf1)
+        a = item[0].get("pdf_name")
+        b = item[1].get("similarity")
+       # print(pdf1)
         new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
         new.save()
     return
@@ -180,7 +181,7 @@ def add_all_pdf_similarities():
     all_files = Pdf_Name_Keyword_Weight.objects.all().values_list("pdf_name").distinct()
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
-        object = object[0]
+        object = object.get("pdf_name")
         add_pdf_similarities(object)
     return
 
