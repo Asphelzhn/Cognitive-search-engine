@@ -38,6 +38,8 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
 import { DocumentComponentComponent } from './admin-page/analytics/document-stats/document-component/document-component.component';
 import { MostViewsDownloadsComponent } from './admin-page/analytics/most-views-downloads/most-views-downloads.component';
 import { MostDocumentComponent } from './admin-page/analytics/most-views-downloads/most-document/most-document.component';
+import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
+import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { MostDocumentComponent } from './admin-page/analytics/most-views-downloa
     SearchResultPreviewComponent,
     SearchHitPreviewComponent,
     QrCodeComponent,
+    TrendingDocumentsComponent,
+    TrendingDocumentComponent,
     SavedDocumentsPageComponent,
     LoginPageComponent,
     AdminNavbarComponent,
