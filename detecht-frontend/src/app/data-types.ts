@@ -34,3 +34,7 @@ export class Pdf {
     this.favorites = favorites;
   }
 }
+
+export class TrendingDocumentsResponse {
+  pdfs: {pdf_name: string, trend_score: number}[];
+}

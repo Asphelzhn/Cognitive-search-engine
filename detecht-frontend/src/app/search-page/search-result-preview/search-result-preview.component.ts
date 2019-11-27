@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {SearchResponse} from '../../data-types';
 import {PreviewMessageService} from '../../message-services/preview-message.service';
 import {PdfViewerComponent} from 'ng2-pdf-viewer';
@@ -28,11 +28,12 @@ export class SearchResultPreviewComponent implements OnInit {
 
   search() {
     if (this.sentence !== undefined) {
-    this.pdfViewer.pdfFindController.executeCommand('find', {
-      caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: this.sentence
-    });
+      this.pdfViewer.pdfFindController.executeCommand('find', {
+        caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true, query: this.sentence
+      });
     }
   }
+
   ngOnInit() {
   }
 }

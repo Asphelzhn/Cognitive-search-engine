@@ -5,22 +5,49 @@
 
 .search-result-container {
   width: 70%;
-  margin-top: 40px;
 }
 
 .search-sidebar {
   width: 30%;
-  margin-left: 40px;
-  margin-top: 40px;
+
 }
 
-.container {
-  display: flex;
-  height: 1400px;
+.saved-documents {
+
+  img {
+    width: 161px;
+    heigth: 74px;
+  }
+}
+
+.full-page-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  //overflow-x: hidden;
   background-image: url("../../assets/backgrounds/result-background.png");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
+
+  @media screen and (max-width: 640px) {
+    background-image: url("../../assets/backgrounds/result-background-iPhone-5.png");
+  }
+  @media screen and (max-width: 830px) {
+    background-image: url("../../assets/backgrounds/result-background-iPhone-XR.png");
+  }
+  @media screen and (max-width: 992px) {
+    background-image: url("../../assets/backgrounds/result-background-narrow.png");
+  }
+  @media screen and (min-width: 992px) {
+    background-image: url("../../assets/backgrounds/result-background.png");
+  }
+  @media screen and (min-width: 1200px) {
+    background-image: url("../../assets/backgrounds/result-background-wide.png");
+  }
+}
+
+.container {
+  display: flex;
 }
 
 

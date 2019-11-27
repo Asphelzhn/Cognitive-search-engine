@@ -5,15 +5,25 @@
     <h1>{{result.title}}</h1>
     <div class="button-group">
 
-      <a href="#">
+      <span (click)="liked = !liked" *ngIf="!liked">
         <img src="assets/user-page/save-button.png">
-      </a>
-      <a href="#">
+      </span>
+      <span (click)="liked = !liked" *ngIf="liked">
+        <img src="assets/user-page/red-saved-button.png">
+      </span>
+      <span
+        fileSaver
+        [method]="'GET'"
+        [fileName]="result.title"
+        [url]="staticUrl + 'pdf/' + result.name"
+        [header]="{token: 'demo'}"
+        [query]="{pi: 1, name: 'demo'}"
+      >
         <img src="assets/user-page/download-button.png">
-      </a>
-      <a href="#">
+      </span>
+      <span>
         <img (click)="close()" src="assets/user-page/x-button.png">
-      </a>
+      </span>
     </div>
   </header>
   <div class="body">
@@ -40,45 +50,53 @@
       <div class="related-document">
         <h3>{{result.title}}</h3>
         <div class="icons">
-          <a href="#">
+          <span (click)="liked = !liked" *ngIf="!liked">
             <img src="assets/user-page/save-button.png">
-          </a>
-          <a href="#">
+          </span>
+          <span href="#" (click)="liked = !liked" *ngIf="liked">
+            <img src="assets/user-page/red-saved-button.png">
+          </span>
+          <span href="#">
             <img src="assets/user-page/download-button.png">
-          </a>
-          <a href="#">
+          </span>
+          <span href="#">
             <img (click)="close()" src="assets/user-page/information-button.png">
-          </a>
+          </span>
         </div>
       </div>
       <div class="related-document">
         <h3>{{result.title}}</h3>
         <div class="icons">
-          <a href="#">
+          <span (click)="liked = !liked" *ngIf="!liked">
             <img src="assets/user-page/save-button.png">
-          </a>
-          <a href="#">
+          </span>
+          <span href="#" (click)="liked = !liked" *ngIf="liked">
+            <img src="assets/user-page/red-saved-button.png">
+          </span>
+          <span href="#">
             <img src="assets/user-page/download-button.png">
-          </a>
-          <a href="#">
+          </span>
+          <span href="#">
             <img (click)="close()" src="assets/user-page/information-button.png">
-          </a>
+          </span>
         </div>
-      </div>
-      <div class="related-document">
-        <h3>{{result.title}}</h3>
-        <div class="icons">
-          <a href="#">
+      </div><div class="related-document">
+      <h3>{{result.title}}</h3>
+      <div class="icons">
+          <span (click)="liked = !liked" *ngIf="!liked">
             <img src="assets/user-page/save-button.png">
-          </a>
-          <a href="#">
+          </span>
+        <span href="#" (click)="liked = !liked" *ngIf="liked">
+            <img src="assets/user-page/red-saved-button.png">
+          </span>
+        <span href="#">
             <img src="assets/user-page/download-button.png">
-          </a>
-          <a href="#">
+          </span>
+        <span href="#">
             <img (click)="close()" src="assets/user-page/information-button.png">
-          </a>
-        </div>
+          </span>
       </div>
+    </div>
 
 
     </div>

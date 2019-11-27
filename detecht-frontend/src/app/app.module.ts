@@ -85,3 +85,4 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
   entryComponents: [SearchHitPreviewComponent]
 })
 export class AppModule { }
+
