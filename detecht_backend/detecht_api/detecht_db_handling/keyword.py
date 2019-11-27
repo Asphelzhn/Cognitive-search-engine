@@ -116,12 +116,12 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
         relevance_name = []
         relevance_value = []
         for i in pdf_list:
-            PDF_ord = i.get("keyword")
+            PDF_word = i.get("keyword")
 
             for a in focus_pdf:
-                fokus_ord = a.get("keyword")
+                focus_word = a.get("keyword")
                 # print("sakerfunkar")
-                if PDF_ord == fokus_ord:
+                if PDF_word == focus_word:
                     # print("saker funkar")
                     relevance += i.get("weight") * a.get("weight")
                     # Såhär långt så funkar allt som det ska
@@ -132,11 +132,10 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
         # print(relevance_value)
 
         relevance_table = []
-        if relevance_name: #checks so the  relevance table is  not empty
+        if relevance_name:
             i_old = relevance_name[0]
         else:
             i_old=""
-
         a = 0  # Hålla koll på index för relevance vaule
         b = 0  # Hålla koll på index relevance table
         relevance = 0
@@ -150,37 +149,19 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
                 # i_old=i
             else:
                 relevance = 0
-            # print(relevance_name)
-            # print(relevance_value)
+                b = +1
+                # i_old = i
+                # relevance += relevance_value[a]
+                relevance_table.insert(b, [i, relevance_value[a]])
+            i_old = i
+            a += 1
 
-            relevance_table = []
-            i_old = relevance_name[0]
-            a = 0  # Hålla koll på index för relevance vaule
-            b = 0  # Hålla koll på index relevance table
-            relevance = 0
-            for i in relevance_name:
-                if i == i_old:
-                    if not len(relevance_table) == 0:
-                        relevance_table.pop(b)
-                    relevance += relevance_value[a]
-                    relevance_table.insert(b, [i, relevance])
-                    # print(str(relevance) + "   " + i)
-                    # i_old=i
-                else:
-                    relevance = 0
-                    b = +1
-                    # i_old = i
-                    # relevance += relevance_value[a]
-                    relevance_table.insert(b, [i, relevance_value[a]])
-                i_old = i
-                a += 1
+        final_list = []
+        for num in relevance_table:
+            if num not in final_list:
+                final_list.append(num)
 
-            final_list = []
-            for num in relevance_table:
-                if num not in final_list:
-                    final_list.append(num)
-
-            final_list.sort(key=sortsecond, reverse=True)
+        final_list.sort(key=sortsecond, reverse=True)
     except:
         final_list = []
 
@@ -198,8 +179,10 @@ def add_pdf_similarities(pdf1):
     #print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
-        a = item[0].get("pdf_name")
-        b = item[1].get("similarity")
+        a = item[0]
+        b = item[1]
+        # a = item[0].get("pdf_name")
+        # b = item[1].get("similarity")
        # print(pdf1)
         new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
         new.save()

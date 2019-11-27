@@ -86,6 +86,7 @@ class Search(APIView):
                 response['spellcheck'] = spellcheck
             response['totalResult'] = res['hits']
             content = res['results']
+            # TODO change input to pdf_name
             # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
             for c in content:
                 response['content'].append(c.frontend_result(query))
@@ -105,7 +106,8 @@ class GetAbstract(APIView):
             query = input["query"]
             res = search.get_pdf(pdf)
             response['success'] = True
-            response['abstracts'] = res['j_class'].get_abstract(query)
+            for imp_obj in res['j_class'].get_abstract(query):
+                response['abstracts'].append({'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
@@ -180,12 +182,11 @@ class AddPdfsToES(APIView):
         response = {
             'success': False
         }
-        try:
-            insert_all_staged_pdf_into_es()
-            response['success'] = True
-        except:
-            print("error occured")
-
+        # try:
+        insert_all_staged_pdf_into_es()
+        response['success'] = True
+        # except:
+        #     print("error occured")
         return JsonResponse(response)
 
 
