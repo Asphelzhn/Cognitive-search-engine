@@ -35,6 +35,8 @@ import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documen
 import { FooterComponent } from './footer/footer.component';
 import { StatsComponent } from './admin-page/analytics/stats/stats.component';
 import {DocumentStatsComponent} from './admin-page/analytics/document-stats/document-stats.component';
+import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
+import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
     SearchResultPreviewComponent,
     SearchHitPreviewComponent,
     QrCodeComponent,
+    TrendingDocumentsComponent,
+    TrendingDocumentComponent,
     SavedDocumentsPageComponent,
     LoginPageComponent,
     AdminNavbarComponent,
