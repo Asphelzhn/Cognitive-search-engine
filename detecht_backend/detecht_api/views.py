@@ -204,7 +204,7 @@ class InteractWithDocument(APIView):
         data_in = request.data
         Interact_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
         if data_in["type"]=="Download":
-            update_downloads(data_in["pdfName"])
+            update_downloads("detecht_api/static/pdf/" + data_in["pdfName"])
         return JsonResponse(response)
 
 
@@ -217,15 +217,13 @@ class TrendingDocuments(APIView):
             'success': False,
             'content': []
         }
-        print(trending_list)
         if trending_list != {}:
             response['success'] = True
             for pdf in trending_list:
-                print(pdf)
                 frontend_result = {
                     'pdf_name': pdf[0],
                     'trend_score': pdf[1],
-                    'title': 'TITLE'
+                    'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title
                 }
                 response['content'].append(frontend_result)
 
@@ -237,7 +235,7 @@ class UserFavorite(APIView):
         data_in = request.data
         if data_in["like"]:
             add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
-            update_favorites(data_in["pdfName"])
+            update_favorites("detecht_api/static/pdf/" + data_in["pdfName"])
         else:
             remove_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
         response = {
@@ -260,7 +258,7 @@ class RelatedDocuments(APIView):
                 jsonPdf = {
                     'pdfName': pdf[0],
                     'value': pdf[1],
-                    'title': 'TITLE',
+                    'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title,
                     'liked': False
                 }
                 response['content'].append(jsonPdf)
