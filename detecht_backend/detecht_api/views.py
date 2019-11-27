@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
-from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf
+from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf, update_downloads, update_favorites
 
 """
 Oskar H & Armin
@@ -203,6 +203,8 @@ class InteractWithDocument(APIView):
         }
         data_in = request.data
         Interact_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
+        if data_in["type"]=="Download":
+            update_downloads(data_in["pdfName"])
         return JsonResponse(response)
 
 
@@ -235,6 +237,7 @@ class UserFavorite(APIView):
         data_in = request.data
         if data_in["like"]:
             add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+            update_favorites(data_in["pdfName"])
         else:
             remove_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
         response = {
