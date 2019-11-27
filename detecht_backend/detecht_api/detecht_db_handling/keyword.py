@@ -128,7 +128,7 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
     # print(relevance_value)
 
     relevance_table = []
-    if not relevance_name: #checks so the  relevance table is  not empty
+    if relevance_name: #checks so the  relevance table is  not empty
         i_old = relevance_name[0]
     else:
         i_old=""
