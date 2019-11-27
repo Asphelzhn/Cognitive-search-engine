@@ -128,7 +128,11 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
     # print(relevance_value)
 
     relevance_table = []
-    i_old = relevance_name[0]
+    if not relevance_name: #checks so the  relevance table is  not empty
+        i_old = relevance_name[0]
+    else:
+        i_old=""
+
     a = 0  # Hålla koll på index för relevance vaule
     b = 0  # Hålla koll på index relevance table
     relevance = 0
