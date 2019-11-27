@@ -182,6 +182,7 @@ class AddPdfsToES(APIView):
             response['success'] = True
         except:
             print("error occured")
+
         return JsonResponse(response)
 
 
