@@ -44,7 +44,6 @@ class Yake4Keyword():
         new_keywords_list =[]
         for keyword_weight in keywords:
             weight = keyword_weight[1]
-            weight = 3
             if(weight == 0):
                 weight = 0.000000000000000001
             new_weight = 1.0/weight
@@ -54,7 +53,6 @@ class Yake4Keyword():
         max_weight = 0.000001
         for keyword_weight in new_keywords_list:
             weight = keyword_weight[1]
-            weight=3;
             if(weight > max_weight):
                 max_weight = weight
 

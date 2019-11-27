@@ -38,13 +38,11 @@ class JsonClass:
         for keyword in keywords_list:
             # TODO make the following work (the ones that created the database functionality)
             db_keyword.addKeyword(keyword[0])
-            db_keyword.Add_Pdf_Name_Keyword_Weight(pdf_name, keyword[0], keyword[1])
+            db_keyword.Add_Pdf_Name_Keyword_Weight(pdf_name, keyword[0], float(keyword[1]))
             json_obj.add_keyword(keyword[0], keyword[1])
-            #json_obj.add_keyword(keyword[0], keyword[1])
 
         # TODO make the following work (the ones that created the database functionality)
-        # db_keyword.add_pdf_similarities(pdf_name)
-
+        db_keyword.add_pdf_similarities(pdf_name)
         return json_obj
 
     def get_all_plaintext(self):  # return plain text from entire pdf
