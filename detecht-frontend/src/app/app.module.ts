@@ -26,7 +26,7 @@ import { RelatedSearchHitsComponent } from './search-page/related-search-hits/re
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
 import { SearchHitPreviewComponent } from './search-page/search-hit-preview/search-hit-preview.component';
-import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr-code.component';
+import { QrCodeComponent } from './search-page/search-hit-preview/qr-code/qr-code.component';
 import { SavedDocumentsPageComponent } from './saved-documents-page/saved-documents-page.component';
 import { LoginPageComponent } from './admin-page/login-page/login-page.component';
 import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.component';
@@ -89,3 +89,4 @@ import { TrendingDocumentComponent } from './start-page/trending-documents/trend
   entryComponents: [SearchHitPreviewComponent]
 })
 export class AppModule { }
+

@@ -79,17 +79,27 @@ class PDFImportance(models.Model):
     downloads = models.PositiveIntegerField(default=0)
     custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2)  # ex 0.99
 
-    def update_likes(self, pdf_name):
+    def update_likes(pdf_name):
         PDFImportance.objects.filter(pdf_name=pdf_name).update(likes=F('likes') + 1)
         return PDFImportance.objects.get(pdf_name=pdf_name).likes
 
-    def update_downloads(self, pdf_name):
+    def update_downloads(pdf_name):
         PDFImportance.objects.filter(pdf_name=pdf_name).update(downloads=F('downloads') + 1)
         return PDFImportance.objects.get(pdf_name=pdf_name).downloads
 
-    def update_weight(self, new_weight, pdf_name):
+    def update_weight(new_weight, pdf_name):
         PDFImportance.objects.filter(pdf_name=pdf_name).update(custom_weight=new_weight)
         return PDFImportance.objects.get(pdf_name=pdf_name).custom_weight
+
+    def top_likes(x):
+        like_list = PDFImportance.objects.order_by('-likes')[:x]
+        return like_list
+
+    def top_downloads(x):
+        download_list = PDFImportance.objects.order_by('-downloads')[:x]
+        return download_list
+
+
 
 
 # Henrik
@@ -105,6 +115,7 @@ class Pdf_Similarities(models.Model):
     similarity = models.FloatField()
 
 #Henrik & Carl
+
 
 class Interacted_documents(models.Model):
 
@@ -139,3 +150,8 @@ class Searches_Database(models.Model):
 class User_Keyword(models.Model):
     userID = models.TextField(max_length=20)
     keyword = models.TextField(max_length=50)
+
+
+class Search_Autocomplete(models.Model):
+    n_gram = models.TextField()
+    frequency = models.IntegerField()

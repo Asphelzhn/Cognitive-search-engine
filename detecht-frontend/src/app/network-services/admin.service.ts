@@ -23,35 +23,57 @@ export class AdminService {
     }).pipe(catchError(this.networkService.handleError));
   }
 
-  pdfUpload(networkPdfUploadRequest: NetworkPdfUploadRequest): void {
-    const formData = new FormData();
-    formData.append('title', networkPdfUploadRequest.title);
-    formData.append('file', networkPdfUploadRequest.file);
-    this.http.post< any >(environment.apiUrl + 'files/',
-      formData).pipe(catchError(this.networkService.handleError)).subscribe(
-      (data: any) => {
-        this.http.post< NetworkPdfUploadResponse >(environment.apiUrl + 'addfile/', {
-          data}, {
+  pdfUpload(networkPdfUploadRequests: NetworkPdfUploadRequest[]): void {
+    console.log(networkPdfUploadRequests);
+    if (networkPdfUploadRequests.length > 0) {
+      const formData = new FormData();
+      const fileData = networkPdfUploadRequests.pop();
+      formData.append('title', fileData.title);
+      formData.append('file', fileData.file);
+      this.http.post< any >(environment.apiUrl + 'files/',
+        formData).pipe(catchError(this.networkService.handleError)).subscribe(
+        (data: any) => {
+          this.http.post< NetworkPdfUploadResponse >(environment.apiUrl + 'addfile/', {
+            data}, {
+            withCredentials: true,
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            })
+          }).pipe(catchError(this.networkService.handleError)).subscribe(
+            (networkPdfUploadResponse: NetworkPdfUploadResponse) => {
+              if (networkPdfUploadResponse.success) {
+                this.pdfUpload(networkPdfUploadRequests);
+              } else {
+                console.log('Error when uploading pdf, please contact technical support');
+              }
+            },
+            (error: any) => {
+              console.log(error);
+            }
+          );
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.http.put<any>(environment.apiUrl + 'pdftoes/', {},
+        {
           withCredentials: true,
           headers: new HttpHeaders({
             'Content-Type': 'application/json'
           })
-        }).pipe(catchError(this.networkService.handleError)).subscribe(
-          (networkPdfUploadResponse: NetworkPdfUploadResponse) => {
-            if (networkPdfUploadResponse.success) {
-              this.responseMessageSource.next('File was successfully uploaded');
-            } else {
-              console.log('Error when uploading pdf, please contact technical support');
-            }
-          },
-          (error: any) => {
-            console.log(error);
-          }
-        );
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+        }
+      ).pipe(catchError(this.networkService.handleError)).subscribe(
+        (data: any) => {
+          console.log('SUCCESS!!!');
+          this.responseMessageSource.next('Files was successfully uploaded and processed');
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+    }
+
   }
 }
