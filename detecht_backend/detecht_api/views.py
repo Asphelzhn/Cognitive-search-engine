@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
-from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs
+from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
 from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf
 
 """
@@ -230,9 +230,19 @@ class UserFavorite(APIView):
 
 class RelatedDocuments(APIView):
     def post(self, request):
-        data_in = request.data
-
         response = {
-            'success': True
+            'success': False,
+            'content': []
         }
+        data_in = request.data
+        documentList = pdf_relevance(data_in['name'])
+        if documentList != []:
+            response['success'] = True
+            for pdf in documentList:
+                jsonPdf = {
+                    'pdfName': pdf[0],
+                    'value':pdf[1]
+                }
+                response['content'].append(jsonPdf)
+
         return JsonResponse(response)
