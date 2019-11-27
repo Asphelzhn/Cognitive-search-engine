@@ -59,7 +59,7 @@ export class NetworkRelatedDocumentResponse {
 
 export class NetworkAdminLoginResponse {
   // tslint:disable-next-line:variable-name
-  auth_token: string;
+  key: string;
   detail: string;
 }
 
@@ -114,7 +114,7 @@ export class NetworkRelatedDocumentRequest {
 
 export class NetworkAdminLoginRequest {
   username: string;
-  email: string;
+  // email: string;
   password: string;
 }
 

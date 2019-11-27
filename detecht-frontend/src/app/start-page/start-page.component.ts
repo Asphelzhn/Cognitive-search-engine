@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {RelatedDocumentService} from '../network-services/related-document.service';
+import {AdminLoginService} from '../network-services/admin-login.service';
 import {PreviewMessageService} from "../message-services/preview-message.service";
-import {NetworkRelatedDocumentRequest} from '../network-services/network-data-types';
+import {NetworkAdminLoginRequest} from '../network-services/network-data-types';
 
 @Component({
   selector: 'app-start-page',
@@ -10,15 +10,18 @@ import {NetworkRelatedDocumentRequest} from '../network-services/network-data-ty
 })
 export class StartPageComponent implements OnInit {
 
-  constructor(private interact: RelatedDocumentService) { }
-  test: NetworkRelatedDocumentRequest;
+  constructor(private interact: AdminLoginService) { }
+  test: NetworkAdminLoginRequest;
 
   ngOnInit() {
-    this.test =  new NetworkRelatedDocumentRequest()
+    this.test =  new NetworkAdminLoginRequest()
     // test: NetworkInteractWithDocumentRequest;
-    this.test.name = 'apa';
+    this.test.username = 'apa';
+    this.test.password = 'bananbanan';
     //this.test.userId = 2;
-    this.interact.relatedDocument(this.test);
+    this.interact.adminLogin(this.test).subscribe(
+      response => console.log(response)
+    );
   }
 
 }

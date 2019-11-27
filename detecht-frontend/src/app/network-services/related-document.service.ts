@@ -21,6 +21,6 @@ export class RelatedDocumentService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })}
-      ).pipe(catchError(this.networkService.handleError));
+    ).pipe(catchError(this.networkService.handleError));
   }
 }

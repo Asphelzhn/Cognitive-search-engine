@@ -13,8 +13,10 @@ export class AdminLoginService {
 
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
-  relatedDocument(data: NetworkAdminLoginRequest): Observable<NetworkAdminLoginResponse> {
-    return this.http.post<NetworkAdminLoginResponse>(environment.apiUrl + 'relateddocuments/', JSON.stringify(data), {
+  // returns {"key": xxxx } when login is correct.
+  // Otherwise see: https://sunscrapers.com/blog/django-rest-framework-login-and-authentication/
+  adminLogin(data: NetworkAdminLoginRequest): any {
+    return this.http.post<any>(environment.plainUrl + 'rest-auth/login/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
