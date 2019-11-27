@@ -81,6 +81,7 @@ class WeightingModule:
 
     def calculate_score_after_weight(elastic_search_results, search_query):
         score_dict = {}
+        print(elastic_search_results)
         length = len(elastic_search_results)
 
         # weight of each factors
