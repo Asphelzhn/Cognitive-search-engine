@@ -47,6 +47,22 @@ export class NetworkTrendingDocumentsResponse {
   ];
 }
 
+export class NetworkRelatedDocumentResponse {
+  success: boolean;
+  content: [
+    {
+      pdfName: string;
+      value: number;
+    }
+  ];
+}
+
+export class NetworkAdminLoginResponse {
+  // tslint:disable-next-line:variable-name
+  auth_token: string;
+  detail: string;
+}
+
 /*
   REQUESTS TO SERVER
  */
@@ -90,5 +106,15 @@ export class NetworkInteractWithDocumentRequest {
 export class NetworkFavoriteDocumentRequest {
   userId: number;
   pdfName: string;
+}
+
+export class NetworkRelatedDocumentRequest {
+  name: string;
+}
+
+export class NetworkAdminLoginRequest {
+  username: string;
+  email: string;
+  password: string;
 }
 

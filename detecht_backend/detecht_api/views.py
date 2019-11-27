@@ -241,7 +241,7 @@ class RelatedDocuments(APIView):
             for pdf in documentList:
                 jsonPdf = {
                     'pdfName': pdf[0],
-                    'value':pdf[1]
+                    'value': pdf[1]
                 }
                 response['content'].append(jsonPdf)
 

@@ -18,7 +18,6 @@ export class InteractWithDocumentService {
 
   previewDocument(data: NetworkInteractWithDocumentRequest): any {
     data.type = 'Preview';
-    console.log(data);
     this.http.post<any>(environment.apiUrl + 'interactwithdocument/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({
@@ -27,7 +26,6 @@ export class InteractWithDocumentService {
     }).pipe(catchError(this.networkService.handleError)).subscribe(
       response => console.log(response)
     );
-    console.log(environment.apiUrl + 'interactwithdocument/');
   }
 
   downloadDocument(data: NetworkInteractWithDocumentRequest): any {
