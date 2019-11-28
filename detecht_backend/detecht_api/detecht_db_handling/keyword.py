@@ -105,55 +105,37 @@ def Interact_Document(pdf_name, userid, type):
 
 
 def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
-    focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
+    try:
+        focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
 
-    pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
-        "pdf_name")
+        pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
+            "pdf_name")
 
-    relevance_table = []
-    relevance = 0
-    relevance_name = []
-    relevance_value = []
-    for i in pdf_list:
-        PDF_word = i.get("keyword")
-
-        for a in focus_pdf:
-            focus_word = a.get("keyword")
-            # print("sakerfunkar")
-            if PDF_word == focus_word:
-                # print("saker funkar")
-                relevance += i.get("weight") * a.get("weight")
-                # Såhär långt så funkar allt som det ska
-        relevance_name.append(i.get("pdf_name"))
-        relevance_value.append(relevance)
+        relevance_table = []
         relevance = 0
-    # print(relevance_name)
-    # print(relevance_value)
+        relevance_name = []
+        relevance_value = []
+        for i in pdf_list:
+            PDF_word = i.get("keyword")
 
-    relevance_table = []
-    if relevance_name: #checks so the  relevance table is  not empty
-        i_old = relevance_name[0]
-    else:
-        i_old=""
-
-    a = 0  # Hålla koll på index för relevance vaule
-    b = 0  # Hålla koll på index relevance table
-    relevance = 0
-    for i in relevance_name:
-        if i == i_old:
-            if not len(relevance_table) == 0:
-                relevance_table.pop(b)
-            relevance += relevance_value[a]
-            relevance_table.insert(b, [i, relevance])
-            # print(str(relevance) + "   " + i)
-            # i_old=i
-        else:
+            for a in focus_pdf:
+                focus_word = a.get("keyword")
+                # print("sakerfunkar")
+                if PDF_word == focus_word:
+                    # print("saker funkar")
+                    relevance += i.get("weight") * a.get("weight")
+                    # Såhär långt så funkar allt som det ska
+            relevance_name.append(i.get("pdf_name"))
+            relevance_value.append(relevance)
             relevance = 0
         # print(relevance_name)
         # print(relevance_value)
 
         relevance_table = []
-        i_old = relevance_name[0]
+        if relevance_name:
+            i_old = relevance_name[0]
+        else:
+            i_old=""
         a = 0  # Hålla koll på index för relevance vaule
         b = 0  # Hålla koll på index relevance table
         relevance = 0
@@ -197,8 +179,10 @@ def add_pdf_similarities(pdf1):
     #print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
-        a = item[0].get("pdf_name")
-        b = item[1].get("similarity")
+        a = item[0]
+        b = item[1]
+        # a = item[0].get("pdf_name")
+        # b = item[1].get("similarity")
        # print(pdf1)
         new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
         new.save()

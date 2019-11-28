@@ -14,7 +14,7 @@ By Severn
 
 def upload():
     t1 = time.clock()
-    content = open("big.txt").read()
+    content = open("detecht_api/detecht_nlp/autocompleteWords/big.txt").read()
     n_grams = n_gram.getNgrams(content, 6)
     sortedNGrams = sorted(n_grams.items(), key=operator.itemgetter(1), reverse=True)  # =True descending sort
     t2 = time.clock()

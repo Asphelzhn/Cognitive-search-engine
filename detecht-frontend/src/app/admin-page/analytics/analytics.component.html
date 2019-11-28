@@ -1,12 +1,14 @@
 <div class="container">
   <div class="left-content">
-    <app-stats></app-stats>
-    <div class="page-content">
-      <div class="upload-content">
-        <button routerLink="/upload" class="upload-btn">Upload document</button>
-      </div>
+    <div class="card-div">
+      <app-stats [documents]="numberDocuments" [downloads]="numberDownloads" [favorites]="numberFavorites">
+      </app-stats>
+    </div>
+    <!--<div class="page-content">
       <div class="view-content" >
-        <h2>Browse all of your documents</h2>
+
+
+        <h2>Documents</h2>
         <div class="search">
           <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
           <button type="submit" (click)="search()" class="searchButton">
@@ -16,14 +18,17 @@
         <div>
           <div class="individual-content" *ngFor="let pdf of pdfs">
             <h5 class="card-heading">{{pdf.title}}</h5>
-            <!--  <button type="submit" (click)="deletePDF(pdf.title)">Delete</button>-->
+              <button type="submit" (click)="deletePDF(pdf.title)">Delete</button>
           </div>
         </div>
       </div>
       <div></div>
+    </div> -->
+    <div class="document-div">
+      <app-document-stats></app-document-stats>
     </div>
   </div>
   <div class="right-content">
-    <app-document-stats [pdfs]="results"></app-document-stats>
+    <app-most-views-downloads [pdfs]="results"></app-most-views-downloads>
   </div>
 </div>

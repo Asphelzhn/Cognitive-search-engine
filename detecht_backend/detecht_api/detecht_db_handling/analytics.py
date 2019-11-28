@@ -6,9 +6,9 @@ def get_analytics_document():
     nr_of_downloads = Document.objects.all().aggregate(Sum('downloads'))
     nr_of_favorites = Document.objects.all().aggregate(Sum('favorites'))
     res = {
-        'documents' : nr_of_documents,
-        'downloads' : nr_of_downloads,
-        'favorites' : nr_of_favorites
+        'documents': nr_of_documents,
+        'downloads': nr_of_downloads['downloads__sum'],
+        'favorites': nr_of_favorites['favorites__sum']
     }
     return res
 

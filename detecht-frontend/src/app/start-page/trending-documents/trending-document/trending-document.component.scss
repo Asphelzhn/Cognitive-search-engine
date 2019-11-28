@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+a {
+  color: #FFF;
+  text-decoration: none;
+};
+
+#container {
+  min-width: 300px;
+  width: 25%;
+  height: 53px;
+  /* UI Properties */
+  padding: 20px;
+  display: inline-block;
+  margin: 10px;
+  background: #C3C3C3 0% 0% no-repeat padding-box;
+  border-radius: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  letter-spacing: 0;
+  color: #FFFFFF;
+  opacity: 1;
+
+
+  .document-title-div {
+    margin-top: 13px;
+    margin-bottom: 0px;
+    height: 27px;
+    vertical-align: middle;
+    overflow: hidden;
+
+
+  }
+
+
+  .button-div {
+    width: 240px;
+    margin: 0 auto;
+  }
+
+  p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+  }
+
+  .document-button {
+    display: inline-block;
+    margin: 10px 5px -10px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-color: darkgrey;
+    border: none;
+    background-position: center;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .document-button:hover {
+    background-color: #383838;
+  }
+
+  .preview {
+    background-image: url("../../../../assets/user-page/expand-icon.png");
+  }
+
+  .download {
+    background-image: url("../../../../assets/user-page/download-search-page-icon.png");
+  }
+
+  .liked {
+    background-image: url("../../../../assets/user-page/like-icon.png");
+  }
+
+  .liked:hover {
+    background-color: crimson;
+  }
+
+}
+
+#container:hover {
+  background-color: #666666;
+}
