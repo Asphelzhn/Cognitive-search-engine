@@ -14,8 +14,7 @@ from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import (Interact_Document,
                                                      Trending_docs,
-                                                     pdf_relevance,
-                                                     Document)
+                                                     pdf_relevance)
 from detecht_api.detecht_db_handling.document_interaction import (
     add_favorite_pdf, remove_favorite_pdf,
     update_downloads, update_favorites)
@@ -23,7 +22,7 @@ from detecht_api.detecht_db_handling.document_interaction import (
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, UserFavorites
+from detecht_api.models import Keywords, UserFavorites, Document
 
 # Import commented since it is not used in file and tests are complaining
 # about it but i dont want to remove it completely //Jakob
