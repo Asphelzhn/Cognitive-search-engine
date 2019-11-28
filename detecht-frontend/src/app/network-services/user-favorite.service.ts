@@ -34,4 +34,12 @@ export class UserFavoriteService {
     }).pipe(catchError(this.networkService.handleError));
   }
 
+  isFavorite(data: NetworkFavoriteDocumentRequest): any {
+    this.http.post(environment.apiUrl + 'isfavorite/', JSON.stringify(data), {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.networkService.handleError));
+  }
 }
