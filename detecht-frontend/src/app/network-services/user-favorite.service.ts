@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NetworkFavoriteDocumentRequest, NetworkGetFavoriteDocumentsResponse} from './network-data-types';
+import {NetworkFavoriteDocumentRequest, NetworkGetFavoriteDocumentsResponse, NetworkIsFavoriteResponse} from './network-data-types';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
@@ -34,8 +34,8 @@ export class UserFavoriteService {
     }).pipe(catchError(this.networkService.handleError));
   }
 
-  isFavorite(data: NetworkFavoriteDocumentRequest): any {
-    this.http.post(environment.apiUrl + 'isfavorite/', JSON.stringify(data), {
+  isFavorite(data: NetworkFavoriteDocumentRequest): Observable<NetworkIsFavoriteResponse> {
+    return this.http.post<NetworkIsFavoriteResponse>(environment.apiUrl + 'isfavorite/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
