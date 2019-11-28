@@ -40,6 +40,7 @@ import { MostViewsDownloadsComponent } from './admin-page/analytics/most-views-d
 import { MostDocumentComponent } from './admin-page/analytics/most-views-downloads/most-document/most-document.component';
 import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
 import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
+import { SavedDocumentComponent } from './saved-documents-page/saved-document/saved-document.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { TrendingDocumentComponent } from './start-page/trending-documents/trend
     DocumentStatsComponent,
     DocumentComponentComponent,
     MostViewsDownloadsComponent,
-    MostDocumentComponent
+    MostDocumentComponent,
+    SavedDocumentComponent
   ],
   imports: [
     BrowserModule,

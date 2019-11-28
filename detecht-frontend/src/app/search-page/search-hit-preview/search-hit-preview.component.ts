@@ -97,12 +97,12 @@ export class SearchHitPreviewComponent implements OnInit {
   displayPreview(sentence: string): void {
     this.showPreview = true;
     this.rightSentence = sentence;
-    const data = new NetworkInteractWithDocumentRequest(this.result.name, 0, 'Preview');
+    const data = new NetworkInteractWithDocumentRequest(this.result.name, this.userId, 'Preview');
     this.interactWithDocumentService.previewDocument(data);
   }
 
   downloadInteraction(): void {
-    const data = new NetworkInteractWithDocumentRequest(this.result.name, 0, 'Download');
+    const data = new NetworkInteractWithDocumentRequest(this.result.name, this.userId, 'Download');
     this.interactWithDocumentService.downloadDocument(data);
   }
 
