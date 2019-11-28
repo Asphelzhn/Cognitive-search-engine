@@ -1,6 +1,6 @@
 
 import {Component, Input, OnInit} from '@angular/core';
-import {SearchResponse} from '../../data-types';
+import {SearchResponse, Spellcheck} from '../../data-types';
 import {SearchService} from '../../network-services/search.service';
 import {environment} from '../../../environments/environment';
 
@@ -14,7 +14,6 @@ export class SearchHitsComponent implements OnInit {
 
   results: SearchResponse[];
   staticUrl: string;
-  spellcheck: string;
   numberOfHits: number;
   @Input() result: SearchResponse;
   counter: number;
@@ -28,12 +27,6 @@ export class SearchHitsComponent implements OnInit {
     this.staticUrl = environment.staticUrl;
     this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
     this.searchService.totalResults.subscribe(totalResults => this.numberOfHits = totalResults);
-    this.searchService.spellcheck.subscribe(spellcheck => this.spellcheck = spellcheck);
-  }
-
-  searchForSpellcheck() {
-    this.searchService.search(this.spellcheck);
-    this.spellcheck = undefined;
   }
 
   removeResult(title: string) {

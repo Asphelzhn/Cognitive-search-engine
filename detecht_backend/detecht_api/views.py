@@ -29,6 +29,7 @@ from detecht_api.detecht_db_handling.analytics import get_analytics_document
 from detecht_api.detecht_nlp.spell_check import spell_check
 
 from detecht_api.detecht_nlp.weighting_module import WeightingModule
+from detecht_api.detecht_db_handling import get_autocomplete
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -67,23 +68,16 @@ class Search(APIView):
             'success': False,
             'totalResult': 0,
             'content': [],
-            'spellcheck': ''
+            'spellcheck': []
         }
         input = request.data
         if input != {}:
             query = input["query"]
             res = search.search(query, 10)
             response['success'] = True
-            spellcheck = spell_check.correction(query)
-            print("'" + spellcheck + "'")
-            for c in spellcheck:
-                print(ord(c))
-            print("'" + query + "'")
-            for c in query:
-                print(ord(c))
-            # TODO this below does wierdly not work
-            if str(spell_check).strip() != str(query).strip():
-                response['spellcheck'] = spellcheck
+            words = query.split()
+            for word in words:
+                response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
             response['totalResult'] = res['hits']
             content = res['results']
             # TODO change input to pdf_name
@@ -262,5 +256,20 @@ class RelatedDocuments(APIView):
                     'liked': False
                 }
                 response['content'].append(jsonPdf)
-
         return JsonResponse(response)
+
+
+class GetAutoComplete(APIView):
+    def post(self, request):
+        response = {
+            'success': False,
+            'autocomplete': []
+        }
+        input = request.data
+        if input != {}:
+            query = input["query"]
+            response['success'] = True
+            response['autocomplete'] = get_autocomplete.get_autocomplete(query)
+            return JsonResponse(response)
+        return JsonResponse(response)
+

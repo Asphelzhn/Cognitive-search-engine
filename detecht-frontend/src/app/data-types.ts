@@ -48,3 +48,13 @@ export class TrendingDocumentsResponse {
   }
 }
 
+export class Spellcheck {
+  word: string;
+  spellcheck: string[];
+
+
+  constructor(word: string, spellcheck: string[]) {
+    this.word = word;
+    this.spellcheck = spellcheck;
+  }
+}

@@ -13,7 +13,7 @@ export class NetworkSearchResponse {
     keywords: {keyword: string, weight: number}[];
     // pdfContent: string;
   }[];
-  spellcheck: string;
+  spellcheck: {word: string, spellcheck: string[]}[];
 }
 
 export class NetworkPdfUploadResponse {
@@ -24,6 +24,11 @@ export class NetworkPdfUploadResponse {
 export class NetworkAbstractResponse {
   success: boolean;
   abstracts: {sentence: string}[];
+}
+
+export class NetworkAutoCompleteResponse {
+  success: boolean;
+  autocomplete: string[];
 }
 
 export class NetworkGetAllPdfResponse {

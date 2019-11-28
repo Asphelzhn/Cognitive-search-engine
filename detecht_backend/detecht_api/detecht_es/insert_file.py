@@ -27,7 +27,6 @@ def inject_one_file(json_obj):
     doc_count = es.cat.count(index="db", params={"format": "json"})
     doc_id_tmp = doc_count[0]["count"] #Counts the number of ids in the index, Returns an array of some sort
     doc_id = int(doc_id_tmp) + 1
-    print(json_obj)
     es.index(index="db", doc_type="doc", id=doc_id, body=json_obj)
 
 
