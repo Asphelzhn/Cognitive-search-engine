@@ -14,6 +14,7 @@ import {
 import {InteractWithDocumentService} from '../../../network-services/interact-with-document.service';
 import {UserFavoriteService} from '../../../network-services/user-favorite.service';
 import {SearchService} from '../../../network-services/search.service';
+import {AdminLoginService} from '../../../network-services/admin-login.service';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class ResultBarComponent implements OnInit {
     private previewData: PreviewMessageService,
     private searchHitPreviewService: SearchHitPreviewService,
     private interactWithDocumentService: InteractWithDocumentService,
+    private adminLoginService: AdminLoginService,
     private userFavoriteService: UserFavoriteService
   ) {
   }
@@ -54,6 +56,22 @@ export class ResultBarComponent implements OnInit {
     this.staticUrl = environment.staticUrl;
     this.showSentences = false;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
+
+    this.adminLoginService.userId.subscribe((userId) => {
+      this.userId = userId;
+      this.userFavoriteService.isFavorite(new NetworkFavoriteDocumentRequest(userId, this.result.name, true)).subscribe(
+        (data) => {
+          if (data.success) {
+            this.liked = data.favorite;
+          } else {
+            console.log('Error looking if doc is favorite');
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
 
     // Ändras sen, behöver API
     this.liked = false;
@@ -85,11 +103,7 @@ export class ResultBarComponent implements OnInit {
   }
 
   like(pdfName: string, like: boolean): void {
-    const data = new NetworkFavoriteDocumentRequest();
-    data.pdfName = pdfName;
-    data.userId = this.userId;
-    data.like = like;
-    this.userFavoriteService.favoriteDocument(data);
+    this.userFavoriteService.favoriteDocument(new NetworkFavoriteDocumentRequest(this.userId, pdfName, like));
   }
 
   topAbstract(): Abstract {

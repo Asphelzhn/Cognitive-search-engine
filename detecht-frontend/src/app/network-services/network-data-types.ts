@@ -153,6 +153,13 @@ export class NetworkFavoriteDocumentRequest {
   userId: number;
   pdfName: string;
   like: boolean;
+
+
+  constructor(userId: number, pdfName: string, like: boolean) {
+    this.userId = userId;
+    this.pdfName = pdfName;
+    this.like = like;
+  }
 }
 
 export class NetworkRelatedDocumentRequest {

@@ -14,6 +14,7 @@ import {SearchHitPreviewService} from '../../message-services/search-hit-preview
 import {InteractWithDocumentService} from '../../network-services/interact-with-document.service';
 import {RelatedDocumentService} from '../../network-services/related-document.service';
 import {UserFavoriteService} from '../../network-services/user-favorite.service';
+import {AdminLoginService} from '../../network-services/admin-login.service';
 
 @Component({
   selector: 'app-search-hit-preview',
@@ -42,6 +43,7 @@ export class SearchHitPreviewComponent implements OnInit {
     private searchHitPreviewService: SearchHitPreviewService,
     private interactWithDocumentService: InteractWithDocumentService,
     private relatedDocumentService: RelatedDocumentService,
+    private adminLoginService: AdminLoginService,
     private userFavoriteService: UserFavoriteService
   ) { }
 
@@ -53,7 +55,6 @@ export class SearchHitPreviewComponent implements OnInit {
 
     this.staticUrl = environment.staticUrl;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
-    this.liked = false;
 
     this.relatedDocumentService.relatedDocument(this.result.name).subscribe(
       (data: NetworkRelatedDocumentResponse) => {
@@ -73,7 +74,22 @@ export class SearchHitPreviewComponent implements OnInit {
       );
 
     this.pdfUrl = environment.pdfUrl;
-    this.userId = 0;
+
+    this.adminLoginService.userId.subscribe((userId) => {
+      this.userId = userId;
+      this.userFavoriteService.isFavorite(new NetworkFavoriteDocumentRequest(userId, this.result.name, true)).subscribe(
+        (data) => {
+          if (data.success) {
+            this.liked = data.favorite;
+          } else {
+            console.log('Error looking if doc is favorite');
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
 
   }
 
@@ -91,11 +107,7 @@ export class SearchHitPreviewComponent implements OnInit {
   }
 
   like(pdfName: string, like: boolean): void {
-    const data = new NetworkFavoriteDocumentRequest();
-    data.pdfName = pdfName;
-    data.userId = this.userId;
-    data.like = like;
-    this.userFavoriteService.favoriteDocument(data);
+    this.userFavoriteService.favoriteDocument(new NetworkFavoriteDocumentRequest(this.userId, pdfName, like));
   }
 
 }
