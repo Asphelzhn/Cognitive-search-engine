@@ -245,7 +245,7 @@ class RelatedDocuments(APIView):
             'content': []
         }
         data_in = request.data
-        documentList = pdf_relevance(data_in)
+        documentList = pdf_relevance(data_in['pdfName'])
         if documentList != []:
             response['success'] = True
             for pdf in documentList:
@@ -253,7 +253,7 @@ class RelatedDocuments(APIView):
                     'pdfName': pdf[0],
                     'value': pdf[1],
                     'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title,
-                    'liked': False
+                    'liked': is_favorite(data_in['userId'], pdf[0])
                 }
                 response['content'].append(jsonPdf)
         return JsonResponse(response)
@@ -312,3 +312,28 @@ class IsFavorite(APIView):
             response['favorite'] = isFav
 
         return JsonResponse(response)
+
+class GetDoc(APIView):
+    def post(self, request): #input: "searchString"
+        response = {
+            'success': False,
+            'pdfTitle': '',
+            'pdfName': '',
+            'keywords': [],
+            'abstracts': []
+        }
+        input = request.data
+        if input != {}:
+            pdf = input["pdfName"]
+            query = input["query"]
+            res = search.get_pdf(pdf)
+            frontendresp = res['j_class'].frontend_result(query)
+            response['pdfTitle'] = frontendresp['pdfTitle']
+            response['pdfName'] = frontendresp['pdfName']
+            response['keywords'] = frontendresp['keywords']
+            response['success'] = True
+            for imp_obj in res['j_class'].get_abstract(query):
+                response['abstracts'].append({'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
+

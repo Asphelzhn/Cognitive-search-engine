@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserFavoriteService} from '../network-services/user-favorite.service';
-import {Abstract, SavedDocument} from '../data-types';
+import {Abstract, SavedDocument, SearchResponse} from '../data-types';
 import {NetworkGetFavoriteDocumentsResponse, NetworkRelatedDocumentResponse} from '../network-services/network-data-types';
 import {AdminLoginService} from '../network-services/admin-login.service';
+import {SearchHitPreviewService} from '../message-services/search-hit-preview.service';
 
 @Component({
   selector: 'app-saved-documents-page',
@@ -14,9 +15,17 @@ export class SavedDocumentsPageComponent implements OnInit {
   savedDocuments: SavedDocument[] = [];
   userId: number;
 
-  constructor(private userFavoriteService: UserFavoriteService, private adminLoginService: AdminLoginService) { }
+  previewResult: SearchResponse;
+  abstracts: Abstract[];
+
+  constructor(private userFavoriteService: UserFavoriteService,
+              private adminLoginService: AdminLoginService,
+              private searchHitPreviewService: SearchHitPreviewService) { }
 
   ngOnInit() {
+
+    this.searchHitPreviewService.result.subscribe(result => this.previewResult = result);
+    this.searchHitPreviewService.abstracts.subscribe(abstracts => this.abstracts = abstracts);
 
     this.adminLoginService.userId.subscribe((userId) => {
       this.userId = userId;

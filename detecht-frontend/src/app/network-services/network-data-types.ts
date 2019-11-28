@@ -30,6 +30,18 @@ export class NetworkAbstractResponse {
   }[];
 }
 
+export class GetDocResponse {
+  success: boolean;
+  pdfTitle: string;
+  pdfName: string;
+  keywords: {keyword: string, weight: number}[];
+  abstracts: {
+    sentence: string;
+    score: number;
+    page: number;
+  }[];
+}
+
 export class NetworkAutoCompleteResponse {
   success: boolean;
   autocomplete: string[];
