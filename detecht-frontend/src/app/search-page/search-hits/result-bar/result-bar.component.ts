@@ -55,7 +55,7 @@ export class ResultBarComponent implements OnInit {
   }
 
   downloadInteraction(): void {
-    const data = new NetworkInteractWithDocumentRequest(this.result.name, 0, 'Download');
+    const data = new NetworkInteractWithDocumentRequest(this.result.name, this.userId, 'Download');
     this.interactWithDocumentService.downloadDocument(data);
   }
 

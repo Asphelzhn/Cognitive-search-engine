@@ -1,7 +1,30 @@
-<app-search-bar [changePage]="false"></app-search-bar>
-<div>
-  Here saved document page should be created :D <br/>
-  Talk to Armin regarding how to get the documents to the component
+<div class = "container m-0 p-0">
+  <app-search-bar [changePage]="false"></app-search-bar>
+  <div class="saved-documents">
+    <div class="header">
+      SAVED DOCUMENTS
+      <!--TODO: Rest service for title, sentences and keyword (probably, not quite sure what it is supposed to show) -->
+    </div>
+    <app-saved-document inputtitle="Index value in a sentence"
+                        inputsentence1="The quantitative index is divided into bigger index value and lesser index value."
+                        inputsentence2="Get the vulnerability grade of water supply network through index value of the water node."
+                        inputsentence3="By health as judge business network offer the same load situation and index value , operation of state of service health index that algorithm draw, realize CDN overall load balancing."
+                        keyword="index">
+    </app-saved-document>
+    <app-saved-document inputtitle="Lined out in a sentence"
+                        inputsentence1="The second week involves setting up the rod, taking line out and roll casting."
+                        inputsentence2="He lined out the route for the sightseers."
+                        inputsentence3="McKinty hacked through a loose ball to set up a line out just inside the Collegians half which skipper Don Whittle won."
+                        keyword="lined out">
+    </app-saved-document>
+    <app-saved-document inputtitle="Pre-set in a sentence"
+                        inputsentence1="Use a pre-set list of common, standard competencies, and then customize it to the specific needs of your organization."
+                        inputsentence2="How many pre-set templates come in the box?"
+                        inputsentence3="When the pre-set time is up, the connecting passage is clear and the air-operated sounding element is forced to make sound by the airflow."
+                        keyword="pre-set">
+    </app-saved-document>
+
+  </div>
 </div>
 
 
