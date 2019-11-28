@@ -1,6 +1,5 @@
 from detecht_api.detecht_nlp.abstract import imp_sent_creator
 import time
-import sys
 """
 Henrik
 """
@@ -67,7 +66,7 @@ query = "Sherlock to Holmes"
 
 
 def test():
-    table = imp_sent_creator.imp_sent_creator(document1, 20)
+    # table = imp_sent_creator.imp_sent_creator(document1, 20)
     # print("This is the size of the storage: " + str(sys.getsizeof(table)))
     # a = ""
     # for i in table:
@@ -93,5 +92,5 @@ if __name__ == '__main__':
     test()
     t1=time.time()
     print(len(document1.split()))
-    print((t1-t0)/len(document1.split()))
-    print((t1-t0)*200*7/len(document1.split()))
+    print((t1 - t0)/len(document1.split()))
+    print((t1 - t0) * 200 * 7/len(document1.split()))

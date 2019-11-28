@@ -14,7 +14,8 @@ from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import (Interact_Document,
                                                      Trending_docs,
-                                                     pdf_relevance)
+                                                     pdf_relevance,
+                                                     Document)
 from detecht_api.detecht_db_handling.document_interaction import (
     add_favorite_pdf, remove_favorite_pdf,
     update_downloads, update_favorites)
@@ -22,7 +23,7 @@ from detecht_api.detecht_db_handling.document_interaction import (
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
-from detecht_api.models import Keywords, UserFavorites, Keyword_distance
+from detecht_api.models import Keywords, UserFavorites
 
 # Import commented since it is not used in file and tests are complaining
 # about it but i dont want to remove it completely //Jakob
@@ -39,6 +40,7 @@ from detecht_api.detecht_nlp.spell_check import spell_check
 
 # from detecht_api.detecht_nlp.weighting_module import WeightingModule
 from detecht_api.detecht_db_handling import get_autocomplete
+from detecht_api.serializers import DocumentSerializer
 
 
 class HomePageView(TemplateView):
@@ -330,10 +332,11 @@ class GetLikedDocs(APIView):
                     'keywords': pdf['keywords'],
                     'abstracts': []
                 }
-                for imp_obj in search.get_pdf(res.pdf_name)[
-                    'j_class'].get_abstract(str(
-                    sorted(pdf['keywords'], key=lambda i: i['weight'],
-                           reverse=True)[0]['keyword'])):
+                for imp_obj in search.get_pdf(
+                        res.pdf_name)['j_class'].get_abstract(
+                    str(sorted(pdf['keywords'],
+                               key=lambda i: i['weight'],
+                               reverse=True)[0]['keyword'])):
                     pdf_response['abstracts'].append(
                         {'sentence': str(imp_obj.sent), 'score': imp_obj.score,
                          'page': imp_obj.page})

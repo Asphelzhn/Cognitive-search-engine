@@ -70,8 +70,8 @@ query = "Sherlock to Holmes"
 
 def test():
     create_abstract.create_hash(document1)
-    t0=time.time()
+    t0 = time.time()
     print("This is the summary: " + create_abstract.create_abstract(
         query, document1))
-    t1=time.time()
-    print(t1-t0)
+    t1 = time.time()
+    print(t1 - t0)

@@ -1,7 +1,7 @@
 # encoding: utf-8
 from detecht_api.detecht_nlp.abstract import imp_sent_creator
 import time
-import sys
+# import sys
 from detecht_api.detecht_nlp.abstract import test_imp_sent_creator
 
 '''
@@ -11,17 +11,15 @@ from detecht_api.detecht_nlp.abstract import test_imp_sent_creator
 @desc: This is using a trie to implement autocomplete for one word
 '''
 # from detecht_api.detecht_nlp.autocompleOneWord import autocomplete_one_word
-import time
 # import re
 # from collections import Counter
-# import sys
 
 
 class imp_sent_api():
     def upload_find_relevant_sentences(self, text):
-        size = 80
+        size = 40
         databaseObject, word_frequencies = \
-            imp_sent_creator.imp_sent_creator(text, 40)
+            imp_sent_creator.imp_sent_creator(text, size)
         # Allt som returneras ska in i databasen för varje dokument
         # DatabaseObject är en lista av 80st ImpSent med följande info:
         # class ImpSent:

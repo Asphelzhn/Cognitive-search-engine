@@ -1,6 +1,6 @@
 from rest_framework.exceptions import ValidationError
-
-from detecht_api.detecht_db_handling.document_interaction import *
+from detecht_api.detecht_db_handling.document_interaction import \
+    update_downloads
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import (Keywords, Keyword_distance,
                                 Pdf_Name_Keyword_Weight, Interacted_documents,
@@ -40,8 +40,8 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
     new = Pdf_Name_Keyword_Weight(pdf_name=pdf,
                                   keyword=keyword,
                                   weight=weight)
-    #print(keyword+"    "+ weight)
-    if len(new.pdf_name) <=50:
+    # print(keyword+"    "+ weight)
+    if len(new.pdf_name) <= 50:
         new.save()
     else:
         print("error")
@@ -156,7 +156,7 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance]
         if relevance_name:
             i_old = relevance_name[0]
         else:
-            i_old=""
+            i_old = ""
         a = 0  # Hålla koll på index för relevance vaule
         b = 0  # Hålla koll på index relevance table
         relevance = 0
@@ -183,7 +183,7 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance]
                 final_list.append(num)
 
         final_list.sort(key=sortsecond, reverse=True)
-    except:
+    except ValidationError:
         final_list = []
 
     return final_list
@@ -197,14 +197,14 @@ def sortsecond(val):
 
 def add_pdf_similarities(pdf1):
     similarity_list = pdf_relevance(pdf1)
-    #print(similarity_list)
+    # print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
         a = item[0]
         b = item[1]
         # a = item[0].get("pdf_name")
         # b = item[1].get("similarity")
-       # print(pdf1)
+        # print(pdf1)
         new = Pdf_Similarities(document_name1=pdf1,
                                document_name2=a,
                                similarity=b)

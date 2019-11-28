@@ -31,9 +31,6 @@ class ImpSent:
     def set_end_index(self, sent_end):
         self.end_index = sent_end
 
-    def set_end_index(self, sent_end):
-        self.end_index = sent_end
-
     def set_score(self, sent_score):
         self.score = sent_score
 

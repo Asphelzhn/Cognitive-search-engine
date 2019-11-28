@@ -1,9 +1,8 @@
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-from detecht_api.detecht_nlp.abstract.class_imp_set import *
 from heapq import nlargest
 from operator import attrgetter
-import time
+from detecht_api.detecht_nlp.abstract.class_imp_set import ImpSent
 
 """
 Henrik & Oscar

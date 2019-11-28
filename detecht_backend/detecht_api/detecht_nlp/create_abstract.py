@@ -18,8 +18,8 @@ hashForSpeed = Counter()
 
 def create_hash(doc):
     docx = nlp(doc)
-    i = 0
-    j = 0
+    # i = 0
+    # j = 0
     for word in docx:
         if word.text not in stopwords:
             hashForSpeed[word.text] = hashForSpeed[word.text] + 1

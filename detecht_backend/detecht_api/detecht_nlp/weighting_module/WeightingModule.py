@@ -58,8 +58,8 @@ class WeightingModule:
         download_weight = 4
         favourite_weight = 6
         for pdfname in elastic_search_results:
-            title = pdfname.replace("_"," ")
-            title = title.replace(".pdf","")
+            title = pdfname.replace("_", " ")
+            title = title.replace(".pdf", "")
             record = models.Document.objects.get(title=title)
             download = record.downloads
             favourite = record.favorites
