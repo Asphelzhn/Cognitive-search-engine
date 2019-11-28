@@ -5,6 +5,7 @@
 
 .search-result-container {
   width: 70%;
+  height:8000px;
 }
 
 .search-sidebar {
@@ -25,9 +26,9 @@
   min-width: 100vw;
   //overflow-x: hidden;
   background-image: url("/static/assets/backgrounds/result-background.png");
-  background-size: cover;
+  background-size: contain;
   background-position: top;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
 
   @media screen and (max-width: 640px) {
     background-image: url("/static/assets/backgrounds/result-background-iPhone-5.png");
