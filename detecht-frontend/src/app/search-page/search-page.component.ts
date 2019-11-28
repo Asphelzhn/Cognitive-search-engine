@@ -13,6 +13,7 @@ export class SearchPageComponent implements OnInit {
   staticUrl: string;
   @Input() result: SearchResponse;
   previewResult: SearchResponse;
+  abstracts: Abstracts[];
 
   constructor(private searchHitPreviewService: SearchHitPreviewService,
               private router: Router) {
@@ -23,6 +24,7 @@ export class SearchPageComponent implements OnInit {
   ngOnInit() {
     this.staticUrl = environment.staticUrl;
     this.searchHitPreviewService.result.subscribe(result => this.previewResult = result);
+    this.searchHitPreviewService.abstracts.subscribe(abstracts => this.abstracts = abstracts);
   }
 
 }

@@ -36,10 +36,10 @@
     <div class="abstract-wrapper">
       <h2>Abstracts</h2>
       <div>
-        <div *ngFor='let sentence of sentences' class="abstract">
-          <p>"{{sentence}}"</p>
+        <div *ngFor='let abstract of abstracts' class="abstract">
+          <p>"{{abstract.sentence}}"</p>
           <div class="button-wrapper">
-            <img (click)="displayPreview(sentence)" src="assets/user-page/take-me-there-button.png">
+            <img (click)="displayPreview(abstract)" src="assets/user-page/take-me-there-button.png">
           </div>
         </div>
       </div>

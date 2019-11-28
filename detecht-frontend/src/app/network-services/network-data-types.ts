@@ -23,7 +23,11 @@ export class NetworkPdfUploadResponse {
 
 export class NetworkAbstractResponse {
   success: boolean;
-  abstracts: {sentence: string}[];
+  abstracts: {
+    sentence: string;
+    score: number;
+    page: number;
+  }[];
 }
 
 export class NetworkAutoCompleteResponse {

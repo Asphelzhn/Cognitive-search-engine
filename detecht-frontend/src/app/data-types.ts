@@ -58,3 +58,15 @@ export class Spellcheck {
     this.spellcheck = spellcheck;
   }
 }
+
+export class Abstract {
+  sentence: string;
+  score: number;
+  page: number;
+
+  constructor(sentence: string, score: number, page: number) {
+    this.sentence = sentence;
+    this.score = score;
+    this.page = page;
+  }
+}

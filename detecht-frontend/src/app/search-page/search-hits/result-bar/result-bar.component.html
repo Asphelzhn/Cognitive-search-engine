@@ -6,9 +6,8 @@
     <h5 class="card-title" (click)="showPreview = true">{{result.title}}</h5>
     <div class="line"></div>
     <div class="keywords">
-      <span class="keyword" *ngFor="let keyword of result.keywords"
-            [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}
-        , </span>
+      <!--<p class="keyword" *ngFor="let abstract of abstracts">"{{abstract.sentence}}"</p>-->
+      <p class="keyword">"{{topAbstract().sentence}}"</p>
     </div>
 
     <div id="button-container">

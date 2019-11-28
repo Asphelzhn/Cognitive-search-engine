@@ -25,7 +25,7 @@ export class SearchHitPreviewComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   rightSentence: string;
-  sentences: string[];
+  @Input() abstracts: Abstract[];
   query: string;
   liked: boolean;
   pdfUrl: string;
@@ -37,7 +37,6 @@ export class SearchHitPreviewComponent implements OnInit {
   }[];
 
   constructor(
-    private searchService: SearchService,
     private previewData: PreviewMessageService,
     private searchHitPreviewService: SearchHitPreviewService,
     private interactWithDocumentService: InteractWithDocumentService,
@@ -46,27 +45,10 @@ export class SearchHitPreviewComponent implements OnInit {
   ) { }
 
   close() {
-    this.searchHitPreviewService.changeResult(undefined);
+    this.searchHitPreviewService.changeResult(undefined, []);
   }
 
   ngOnInit() {
-    this.searchService.currentSearch.subscribe(query => this.query = query);
-    this.searchService.abstract(new NetworkAbstractRequest(this.query, this.result.name)).subscribe(
-      (data: NetworkAbstractResponse) => {
-        if (data.success) {
-          this.sentences = [];
-          for (const abstract of data.abstracts) {
-            this.sentences.push(abstract.sentence);
-          }
-          console.log(this.sentences);
-        } else {
-          console.log('Error when getting schedule, please refresh the results');
-        }
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
 
     this.staticUrl = environment.staticUrl;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
@@ -94,9 +76,9 @@ export class SearchHitPreviewComponent implements OnInit {
 
   }
 
-  displayPreview(sentence: string): void {
+  displayPreview(abstract: Abstract): void {
     this.showPreview = true;
-    this.rightSentence = sentence;
+    this.rightSentence = abstract.sentence;
     const data = new NetworkInteractWithDocumentRequest(this.result.name, this.userId, 'Preview');
     this.interactWithDocumentService.previewDocument(data);
   }
