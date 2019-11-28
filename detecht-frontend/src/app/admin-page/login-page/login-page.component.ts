@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminLoginService} from '../../network-services/admin-login.service';
 import {NetworkAdminLoginRequest} from '../../network-services/network-data-types';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -9,7 +10,7 @@ import {NetworkAdminLoginRequest} from '../../network-services/network-data-type
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private adminLoginService: AdminLoginService) { }
+  constructor(private adminLoginService: AdminLoginService, private router: Router) { }
   loginData: NetworkAdminLoginRequest;
   username: string;
   password: string;
@@ -22,15 +23,13 @@ export class LoginPageComponent implements OnInit {
     this.loginData = new NetworkAdminLoginRequest();
     this.loginData.username = this.username;
     this.loginData.password = this.password;
-    console.log(this.loginData);
     this.adminLoginService.adminLogin(this.loginData).subscribe(
       (response) => {
-        console.log('LoginResonse');
-        console.log(response);
+        this.adminLoginService.setCookie(response.user);
+        this.router.navigateByUrl('');
       },
       (error) => {
         this.errorMessage = 'Wrong user name or password';
-        console.log(error);
       }
     );
 

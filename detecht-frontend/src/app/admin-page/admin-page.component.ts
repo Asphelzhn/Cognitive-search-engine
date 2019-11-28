@@ -27,9 +27,8 @@ export class AdminPageComponent implements OnInit {
   ngOnInit() {
     this.adminNavbarToPageService.page.subscribe(page => this.page = page);
     this.adminLoginService.userId.subscribe((id) => {
-      // TODO change to 1
-      if (id < 0) {
-        this.router.navigateByUrl('');
+      if (id < 1) {
+        this.router.navigateByUrl('/login');
       }
     });
   }
