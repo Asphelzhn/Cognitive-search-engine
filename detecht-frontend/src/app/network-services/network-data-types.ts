@@ -97,6 +97,11 @@ export class NetworkGetAnalyticsResponse {
   favorites: number;
 }
 
+export class  NetworkIsFavoriteResponse {
+  success: boolean;
+  favorite: boolean;
+}
+
 /*
   REQUESTS TO SERVER
  */
