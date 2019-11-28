@@ -48,9 +48,9 @@ export class SavedDocumentComponent implements OnInit {
     this.interactWithDocumentService.downloadDocument(data);
   }
 
-  like(pdfName: string, like: boolean): void {
+  like(like: boolean): void {
     const data = new NetworkFavoriteDocumentRequest();
-    data.pdfName = pdfName;
+    data.pdfName = this.inputfile;
     data.userId = this.userId;
     data.like = like;
     this.userFavoriteService.favoriteDocument(data);

@@ -292,7 +292,6 @@ class GetLikedDocs(APIView):
                     'keywords': pdf['keywords'],
                     'abstracts': []
                 }
-                print(search.get_pdf(res.pdf_name)['j_class'].get_abstract(str(sorted(pdf['keywords'], key= lambda i: i['weight'], reverse=True)[0]['keyword'])))
                 for imp_obj in search.get_pdf(res.pdf_name)['j_class'].get_abstract(str(sorted(pdf['keywords'], key= lambda i: i['weight'], reverse=True)[0]['keyword'])):
                     pdf_response['abstracts'].append(
                         {'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})

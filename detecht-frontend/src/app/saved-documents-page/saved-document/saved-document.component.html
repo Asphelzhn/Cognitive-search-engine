@@ -3,8 +3,8 @@
     <div class="document-title-div"[innerHTML]="title"></div>
     <div class="button-div">
       <input type="submit" class="preview document-button" value = ""/>
-      <input type="submit" class="download document-button" value = ""/>
-      <input type="submit" class="liked document-button" value = ""/>
+      <input type="submit" class="download document-button" value = "" (click)="downloadInteraction()"/>
+      <input type="submit" class="liked document-button" value = "" (click)="like(false)"/>
     </div>
   </div>
   <div class="sentences-div">
