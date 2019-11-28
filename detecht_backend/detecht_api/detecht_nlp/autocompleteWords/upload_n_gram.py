@@ -1,17 +1,14 @@
-import os
-import django
 import operator
 import time
+from detecht_api.django_setup import very_important
 from detecht_api.models import Search_Autocomplete
 from detecht_api.detecht_nlp.autocompleteWords import n_gram
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
-django.setup()
 
 '''
 By Severn
 '''
 
+very_important()
 
 def upload():
     t1 = time.clock()
