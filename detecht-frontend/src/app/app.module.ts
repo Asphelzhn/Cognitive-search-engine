@@ -35,6 +35,12 @@ import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documen
 import { FooterComponent } from './footer/footer.component';
 import { StatsComponent } from './admin-page/analytics/stats/stats.component';
 import {DocumentStatsComponent} from './admin-page/analytics/document-stats/document-stats.component';
+import { DocumentComponentComponent } from './admin-page/analytics/document-stats/document-component/document-component.component';
+import { MostViewsDownloadsComponent } from './admin-page/analytics/most-views-downloads/most-views-downloads.component';
+import { MostDocumentComponent } from './admin-page/analytics/most-views-downloads/most-document/most-document.component';
+import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
+import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
+import { SavedDocumentComponent } from './saved-documents-page/saved-document/saved-document.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +58,8 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
     SearchResultPreviewComponent,
     SearchHitPreviewComponent,
     QrCodeComponent,
+    TrendingDocumentsComponent,
+    TrendingDocumentComponent,
     SavedDocumentsPageComponent,
     LoginPageComponent,
     AdminNavbarComponent,
@@ -59,7 +67,11 @@ import {DocumentStatsComponent} from './admin-page/analytics/document-stats/docu
     EditDocumentsComponent,
     FooterComponent,
     StatsComponent,
-    DocumentStatsComponent
+    DocumentStatsComponent,
+    DocumentComponentComponent,
+    MostViewsDownloadsComponent,
+    MostDocumentComponent,
+    SavedDocumentComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,7 @@
       display: flex;
       flex-direction: row;
 
-      a {
+      span {
         width: 40px;
         height: 40px;
         display: flex;
@@ -49,6 +49,10 @@
           width: 100%;
           height: auto;
         }
+      }
+      
+      span:hover {
+        cursor: pointer;
       }
     }
   }
@@ -125,7 +129,7 @@
           width: 70%;
           margin: 1rem auto;
 
-          a {
+          span {
             width: 60px;
             height: 60px;
             display: flex;
@@ -135,6 +139,10 @@
               width: 100%;
               height: auto;
             }
+          }
+          
+          span:hover {
+            cursor: pointer;
           }
 
         }

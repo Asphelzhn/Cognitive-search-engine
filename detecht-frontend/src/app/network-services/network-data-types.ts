@@ -13,7 +13,7 @@ export class NetworkSearchResponse {
     keywords: {keyword: string, weight: number}[];
     // pdfContent: string;
   }[];
-  spellcheck: string;
+  spellcheck: {word: string, spellcheck: string[]}[];
 }
 
 export class NetworkPdfUploadResponse {
@@ -23,7 +23,16 @@ export class NetworkPdfUploadResponse {
 
 export class NetworkAbstractResponse {
   success: boolean;
-  abstracts: {sentence: string}[];
+  abstracts: {
+    sentence: string;
+    score: number;
+    page: number;
+  }[];
+}
+
+export class NetworkAutoCompleteResponse {
+  success: boolean;
+  autocomplete: string[];
 }
 
 export class NetworkGetAllPdfResponse {
@@ -36,6 +45,56 @@ export class NetworkGetAllPdfResponse {
       favorites: number;
     }
     ];
+}
+
+export class NetworkTrendingDocumentsResponse {
+  content: [
+    {
+      pdf_name: string;
+      trend_score: number;
+      title: string;
+    }
+    ];
+}
+
+export class NetworkRelatedDocumentResponse {
+  success: boolean;
+  content: [
+    {
+      pdfName: string;
+      value: number;
+      title: string;
+      liked: boolean;
+    }
+    ];
+}
+
+export class NetworkGetFavoriteDocumentsResponse {
+  success: boolean;
+  pdfs: [
+    {
+      title: string;
+      pdfName: string;
+      keywords: {keyword: string, weight: number}[];
+      abstracts: {
+        sentence: string;
+        score: number;
+        page: number;
+      }[];
+    }
+    ];
+}
+
+export class NetworkAdminLoginResponse {
+  // tslint:disable-next-line:variable-name
+  key: string;
+  detail: string;
+}
+
+export class NetworkGetAnalyticsResponse {
+  documents: number;
+  downloads: number;
+  favorites: number;
 }
 
 /*
@@ -67,3 +126,37 @@ export class NetworkPdfUploadRequest {
     this.file = file;
   }
 }
+
+export class NetworkTrendingDocumentsRequest {
+  size: number;
+}
+
+export class NetworkInteractWithDocumentRequest {
+  pdfName: string;
+  userId: number;
+  type: string;
+
+
+  constructor(pdfName: string, userId: number, type: string) {
+    this.pdfName = pdfName;
+    this.userId = userId;
+    this.type = type;
+  }
+}
+
+export class NetworkFavoriteDocumentRequest {
+  userId: number;
+  pdfName: string;
+  like: boolean;
+}
+
+export class NetworkRelatedDocumentRequest {
+  name: string;
+}
+
+export class NetworkAdminLoginRequest {
+  username: string;
+  // email: string;
+  password: string;
+}
+

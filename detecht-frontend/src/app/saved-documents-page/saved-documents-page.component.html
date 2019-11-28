@@ -1,7 +1,18 @@
-<app-search-bar [changePage]="false"></app-search-bar>
-<div>
-  Here saved document page should be created :D <br/>
-  Talk to Armin regarding how to get the documents to the component
+<div class = "container m-0 p-0">
+  <app-search-bar [changePage]="false"></app-search-bar>
+  <div class="saved-documents">
+    <div class="header">
+      SAVED DOCUMENTS
+    </div>
+    <app-saved-document *ngFor="let doc of savedDocuments"
+                        [inputfile]="doc.pdfName"
+                        [inputtitle]="doc.title"
+                        [keyword]="getBestKeyword(doc)"
+                        [inputsentence1]="doc.abstracts.pop().sentence"
+                        [inputsentence2]="doc.abstracts.pop().sentence"
+                        [inputsentence3]="doc.abstracts.pop().sentence">
+    </app-saved-document>
+  </div>
 </div>
 
 
