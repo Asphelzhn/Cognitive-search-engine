@@ -11,6 +11,7 @@ import {NgxKjuaModule} from 'ngx-kjua';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,7 +93,9 @@ import { SavedDocumentComponent } from './saved-documents-page/saved-document/sa
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    CookieService],
   bootstrap: [AppComponent],
   entryComponents: [SearchHitPreviewComponent]
 })

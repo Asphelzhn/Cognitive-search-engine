@@ -9,10 +9,11 @@ import {NetworkAdminLoginRequest} from '../../network-services/network-data-type
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private interact: AdminLoginService) { }
+  constructor(private adminLoginService: AdminLoginService) { }
   loginData: NetworkAdminLoginRequest;
   username: string;
   password: string;
+  errorMessage: string;
 
   ngOnInit() {
   }
@@ -22,8 +23,15 @@ export class LoginPageComponent implements OnInit {
     this.loginData.username = this.username;
     this.loginData.password = this.password;
     console.log(this.loginData);
-    this.interact.adminLogin(this.loginData).subscribe(
-      response => console.log(response)
+    this.adminLoginService.adminLogin(this.loginData).subscribe(
+      (response) => {
+        console.log('LoginResonse');
+        console.log(response);
+      },
+      (error) => {
+        this.errorMessage = 'Wrong user name or password';
+        console.log(error);
+      }
     );
 
   }
