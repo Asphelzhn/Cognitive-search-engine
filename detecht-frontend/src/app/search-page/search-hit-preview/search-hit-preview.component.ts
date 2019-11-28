@@ -25,6 +25,7 @@ export class SearchHitPreviewComponent implements OnInit {
   staticUrl: string;
   showPreview: boolean;
   rightSentence: string;
+  rightPage: number;
   @Input() abstracts: Abstract[];
   query: string;
   liked: boolean;
@@ -79,6 +80,7 @@ export class SearchHitPreviewComponent implements OnInit {
   displayPreview(abstract: Abstract): void {
     this.showPreview = true;
     this.rightSentence = abstract.sentence;
+    this.rightPage = abstract.page;
     const data = new NetworkInteractWithDocumentRequest(this.result.name, this.userId, 'Preview');
     this.interactWithDocumentService.previewDocument(data);
   }
