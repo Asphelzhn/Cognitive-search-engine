@@ -65,8 +65,9 @@ document1 = "To Sherlock Holmes she is always the woman. I have seldom " \
             "had formerly been in part my own. "
 query = "Sherlock to Holmes"
 
-# def test():
-# table = imp_sent_creator.imp_sent_creator(document1, 20)
+
+def test():
+    imp_sent_creator.imp_sent_creator(document1, 20)
 # print("This is the size of the storage: " + str(sys.getsizeof(table)))
 # a = ""
 # for i in table:
@@ -89,7 +90,7 @@ query = "Sherlock to Holmes"
 
 if __name__ == '__main__':
     t0 = time.time()
-    # test()
+    test()
     t1 = time.time()
     print(len(document1.split()))
     print((t1 - t0) / len(document1.split()))
