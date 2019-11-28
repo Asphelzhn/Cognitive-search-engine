@@ -19,7 +19,8 @@ def get_file(filename):
     return contents
 
 
-# not sure on how the tell it that it's supposed to go for the index db in our ES stack. but this may work.
+# not sure on how the tell it that it's supposed to go for the index
+# db in our ES stack. but this may work.
 def inject_one_file(json_obj):
     es.indices.refresh(index="db")  # refreshes the index
     doc_count = es.cat.count(index="db", params={"format": "json"})

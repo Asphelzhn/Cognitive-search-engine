@@ -34,7 +34,8 @@ class WeightingModule:
 
         for pdfname in elastic_search_results:
             # get document keywords in database
-            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=pdfname)
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(
+                pdf_name=pdfname)
             score_after_weight = 0
             for doc in name_weight_set:
                 keyword = nlp(doc.keyword)
@@ -143,7 +144,8 @@ class WeightingModule:
         keywords_dict = {}
         for pdfname in ranked_by_weighting_module_results:
             # get document keywords in database
-            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=pdfname)
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(
+                pdf_name=pdfname)
             # print("query result")
             # print(name_weight_set)
             for name in name_weight_set:
@@ -180,7 +182,9 @@ if __name__ == '__main__':
     # This is the example how to use Weighting Module to add
     # return a new sorted list.
 
-    elastic_search_results = ['Project_management.pdf', 'python_is_amazing.pdf', 'programming_book.pdf']
+    elastic_search_results = ['Project_management.pdf',
+                              'python_is_amazing.pdf',
+                              'programming_book.pdf']
     query = "I like computer"
 
     sorted_list = WeightingModule.calculate_score_after_weight(

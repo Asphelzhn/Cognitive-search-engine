@@ -2,29 +2,27 @@
 Oskar H & Armin
 """
 from rest_framework import viewsets
-from detecht_api.detecht_es import search, insert_file
-from detecht_api.detecht_db_handling.staged_pdf import (
-    insert_all_staged_pdf_into_es, add_staged_pdf)
-from detecht_api.detecht_db_handling.analytics import get_analytics_document
-from detecht_api.detecht_nlp.spell_check import spell_check
+# from detecht_api.detecht_es import search, insert_file
+# from detecht_api.detecht_db_handling.staged_pdf import (
+#     insert_all_staged_pdf_into_es, add_staged_pdf)
+# from detecht_api.detecht_db_handling.analytics import get_analytics_document
+# from detecht_api.detecht_nlp.spell_check import spell_check
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-from rest_framework.views import APIView
+# from rest_framework.views import APIView
 
-from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
-from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf, update_downloads, update_favorites
-
-"""
-Oskar H & Armin
-"""
-
+from detecht_api.detecht_db_handling.keyword import (Interact_Document,
+                                                     Trending_docs,
+                                                     pdf_relevance)
+from detecht_api.detecht_db_handling.document_interaction import (
+    add_favorite_pdf, remove_favorite_pdf,
+    update_downloads, update_favorites)
 
 # imports by ARMIN
-from rest_framework.permissions import IsAuthenticated
+# from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from detecht_api.models import Keywords, UserFavorites, Keyword_distance
-
 
 # Import commented since it is not used in file and tests are complaining
 # about it but i dont want to remove it completely //Jakob
@@ -34,12 +32,14 @@ from detecht_api.models import Keywords, UserFavorites, Keyword_distance
 
 # Our packages
 from detecht_api.detecht_es import search, insert_file
-from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
+from detecht_api.detecht_db_handling.staged_pdf import (
+    insert_all_staged_pdf_into_es, add_staged_pdf)
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 from detecht_api.detecht_nlp.spell_check import spell_check
 
-from detecht_api.detecht_nlp.weighting_module import WeightingModule
+# from detecht_api.detecht_nlp.weighting_module import WeightingModule
 from detecht_api.detecht_db_handling import get_autocomplete
+
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -88,11 +88,15 @@ class Search(APIView):
             response['success'] = True
             words = query.split()
             for word in words:
-                response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
+                response['spellcheck'].append({'word': word,
+                                               'spellcheck': sorted(
+                                                   spell_check.candidates(
+                                                       word))})
             response['totalResult'] = res['hits']
             content = res['results']
             # TODO change input to pdf_name
-            # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
+            # content = WeightingModule.WeightingModule.\
+            #     calculate_score_after_weight(content, query)
             for c in content:
                 response['content'].append(c.frontend_result(query))
             return JsonResponse(response)  # test
@@ -112,7 +116,9 @@ class GetAbstract(APIView):
             res = search.get_pdf(pdf)
             response['success'] = True
             for imp_obj in res['j_class'].get_abstract(query):
-                response['abstracts'].append({'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
+                response['abstracts'].append(
+                    {'sentence': str(imp_obj.sent), 'score': imp_obj.score,
+                     'page': imp_obj.page})
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
@@ -142,7 +148,7 @@ class AddFile(APIView):
 # BEGIN: Code written by Armin
 class Keyword(APIView):
     # permission_classes = (IsAuthenticated,)
-    def post(self, request): #input: "keyword"
+    def post(self, request):  # input: "keyword"
         input = request.data
 
         wordToStore = input["keyword"]
@@ -152,12 +158,12 @@ class Keyword(APIView):
 
 
 #    def post(self, request): #input: keyword1, keyword2, similarity
-#input = request.data
-#message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
-#input = request
-#test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
-#UserFavorites.remove_favorite_pdf(1, "hej")
-#message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
+# input = request.data
+# message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
+# input = request
+# test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
+# UserFavorites.remove_favorite_pdf(1, "hej")
+# message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
 #       return HttpResponse(message)
 
 # def post(self, request): #input: keyword1, keyword2, similarity
@@ -221,8 +227,9 @@ class InteractWithDocument(APIView):
             'success': True
         }
         data_in = request.data
-        Interact_Document(pdf_name=data_in["pdfName"], userid=data_in["userId"], type = data_in["type"])
-        if data_in["type"]=="Download":
+        Interact_Document(pdf_name=data_in["pdfName"],
+                          userid=data_in["userId"], type=data_in["type"])
+        if data_in["type"] == "Download":
             update_downloads("detecht_api/static/pdf/" + data_in["pdfName"])
         return JsonResponse(response)
 
@@ -242,7 +249,8 @@ class TrendingDocuments(APIView):
                 frontend_result = {
                     'pdf_name': pdf[0],
                     'trend_score': pdf[1],
-                    'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title
+                    'title': Document.objects.get(
+                        file="detecht_api/static/pdf/" + pdf[0]).title
                 }
                 response['content'].append(frontend_result)
 
@@ -253,10 +261,12 @@ class UserFavorite(APIView):
     def post(self, request):
         data_in = request.data
         if data_in["like"]:
-            add_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+            add_favorite_pdf(user_id=data_in["userId"],
+                             pdf_name=data_in["pdfName"])
             update_favorites("detecht_api/static/pdf/" + data_in["pdfName"])
         else:
-            remove_favorite_pdf(user_id=data_in["userId"], pdf_name=data_in["pdfName"])
+            remove_favorite_pdf(user_id=data_in["userId"],
+                                pdf_name=data_in["pdfName"])
         response = {
             'success': True
         }
@@ -277,7 +287,8 @@ class RelatedDocuments(APIView):
                 jsonPdf = {
                     'pdfName': pdf[0],
                     'value': pdf[1],
-                    'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title,
+                    'title': Document.objects.get(
+                        file="detecht_api/static/pdf/" + pdf[0]).title,
                     'liked': False
                 }
                 response['content'].append(jsonPdf)
@@ -298,6 +309,7 @@ class GetAutoComplete(APIView):
             return JsonResponse(response)
         return JsonResponse(response)
 
+
 class GetLikedDocs(APIView):
     def post(self, request):
         response = {
@@ -310,18 +322,21 @@ class GetLikedDocs(APIView):
             result = UserFavorites.objects.filter(user_id=user_id)
             response['success'] = True
             for res in result:
-                pdf = search.get_pdf(res.pdf_name)['j_class'].frontend_result('')
+                pdf = search.get_pdf(res.pdf_name)['j_class'].frontend_result(
+                    '')
                 pdf_response = {
                     'title': pdf['pdfTitle'],
                     'pdfName': pdf['pdfName'],
                     'keywords': pdf['keywords'],
                     'abstracts': []
                 }
-                for imp_obj in search.get_pdf(res.pdf_name)['j_class'].get_abstract(str(sorted(pdf['keywords'], key= lambda i: i['weight'], reverse=True)[0]['keyword'])):
+                for imp_obj in search.get_pdf(res.pdf_name)[
+                    'j_class'].get_abstract(str(
+                    sorted(pdf['keywords'], key=lambda i: i['weight'],
+                           reverse=True)[0]['keyword'])):
                     pdf_response['abstracts'].append(
-                        {'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
+                        {'sentence': str(imp_obj.sent), 'score': imp_obj.score,
+                         'page': imp_obj.page})
                 response['pdfs'].append(pdf_response)
             return JsonResponse(response)
         return JsonResponse(response)
-
-

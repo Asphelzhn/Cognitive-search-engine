@@ -28,7 +28,8 @@ def addKeyword(keyword):
 # add similarity for keyword.
 def KeywordSimilarity(keyword1, keyword2, keywordId2):
     newDistance = Keyword_distance(id_1=keyword1.id, id_2=keywordId2,
-                                   similarity=word_similarity(keyword1.word, keyword2))
+                                   similarity=word_similarity(
+                                       keyword1.word, keyword2))
     newDistance.save()
     return
 
@@ -36,7 +37,9 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # Henrik
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
-    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf,
+                                  keyword=keyword,
+                                  weight=weight)
     #print(keyword+"    "+ weight)
     if len(new.pdf_name) <=50:
         new.save()
@@ -119,11 +122,14 @@ def Interact_Document(pdf_name, userid, type):
 #     new.save()
 
 
-def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
+def pdf_relevance(name):  # returns a array [pdf_name, relevance]
+    # that is ordered highest to lowest on relevance.
     try:
-        focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
+        focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(
+            pdf_name=name).values("keyword", "weight")
 
-        pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
+        pdf_list = Pdf_Name_Keyword_Weight.objects.values(
+            "pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
             "pdf_name")
 
         relevance_table = []
@@ -199,7 +205,9 @@ def add_pdf_similarities(pdf1):
         # a = item[0].get("pdf_name")
         # b = item[1].get("similarity")
        # print(pdf1)
-        new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
+        new = Pdf_Similarities(document_name1=pdf1,
+                               document_name2=a,
+                               similarity=b)
         new.save()
     return
 

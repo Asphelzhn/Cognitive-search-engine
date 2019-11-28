@@ -9,10 +9,14 @@ from django.db.models import F
 
 class Document(models.Model):
     title = models.CharField(max_length=200)
-    file = models.FileField(upload_to='detecht_api/static/pdf', max_length=100, blank=True)
+    file = models.FileField(upload_to='detecht_api/static/pdf',
+                            max_length=100,
+                            blank=True)
     downloads = models.PositiveIntegerField(default=0)
     favorites = models.PositiveIntegerField(default=0)
-    custom_weight = models.DecimalField(default=0, max_digits=3, decimal_places=2)  # ex 0.99
+    custom_weight = models.DecimalField(default=0,
+                                        max_digits=3,
+                                        decimal_places=2)  # ex 0.99
 
     def __unicode__(self):
         return self.title
@@ -71,7 +75,6 @@ class Keyword_distance(models.Model):
 class UserFavorites(models.Model):
     pdf_name = models.CharField(max_length=200)
     user_id = models.PositiveIntegerField()
-
 
     def remove_favorite_pdf(user_id, pdf_name):
         favorite_pdf = UserFavorites.objects.filter(user_id=user_id,
