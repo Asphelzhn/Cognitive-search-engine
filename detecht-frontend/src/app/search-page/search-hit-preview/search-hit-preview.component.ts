@@ -5,10 +5,8 @@ import {Abstract, SearchResponse} from '../../data-types';
 import {SearchService} from '../../network-services/search.service';
 import {PreviewMessageService} from '../../message-services/preview-message.service';
 import {
-  NetworkAbstractRequest,
-  NetworkAbstractResponse, NetworkFavoriteDocumentRequest,
-  NetworkInteractWithDocumentRequest, NetworkRelatedDocumentResponse,
-  NetworkSearchResponse
+  NetworkFavoriteDocumentRequest,
+  NetworkInteractWithDocumentRequest, NetworkRelatedDocumentResponse
 } from '../../network-services/network-data-types';
 import {SearchHitPreviewService} from '../../message-services/search-hit-preview.service';
 import {InteractWithDocumentService} from '../../network-services/interact-with-document.service';
@@ -44,6 +42,7 @@ export class SearchHitPreviewComponent implements OnInit {
     private interactWithDocumentService: InteractWithDocumentService,
     private relatedDocumentService: RelatedDocumentService,
     private adminLoginService: AdminLoginService,
+    private searchService: SearchService,
     private userFavoriteService: UserFavoriteService
   ) { }
 
@@ -53,25 +52,10 @@ export class SearchHitPreviewComponent implements OnInit {
 
   ngOnInit() {
 
+    this.searchService.currentSearch.subscribe(query => this.query = query);
+
     this.staticUrl = environment.staticUrl;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
-
-    this.relatedDocumentService.relatedDocument(this.result.name).subscribe(
-      (data: NetworkRelatedDocumentResponse) => {
-        if (data.success) {
-          this.relatedSearches = [];
-          for (const related of data.content) {
-            this.relatedSearches.push({title: related.title, pdfName: related.pdfName, liked: related.liked});
-          }
-          console.log(this.relatedSearches);
-        } else {
-          console.log('Error when getting schedule, please refresh the results');
-        }
-      },
-      (error: any) => {
-        console.log(error);
-      }
-      );
 
     this.pdfUrl = environment.pdfUrl;
 
@@ -89,6 +73,24 @@ export class SearchHitPreviewComponent implements OnInit {
           console.log(error);
         }
       );
+
+      this.relatedDocumentService.relatedDocument({pdfName: this.result.name, userId: userId}).subscribe(
+        (data: NetworkRelatedDocumentResponse) => {
+          if (data.success) {
+            this.relatedSearches = [];
+            for (const related of data.content) {
+              this.relatedSearches.push({title: related.title, pdfName: related.pdfName, liked: related.liked});
+            }
+            console.log(this.relatedSearches);
+          } else {
+            console.log('Error when getting schedule, please refresh the results');
+          }
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+
     });
 
   }
@@ -108,6 +110,23 @@ export class SearchHitPreviewComponent implements OnInit {
 
   like(pdfName: string, like: boolean): void {
     this.userFavoriteService.favoriteDocument(new NetworkFavoriteDocumentRequest(this.userId, pdfName, like));
+  }
+
+  changeDocument(pdfName: string): void {
+    this.searchService.getDoc(pdfName, this.query).subscribe(
+      (data) => {
+        if (data.success) {
+          const newAbstracts = [];
+          for (const abstract of data.abstracts) {
+            newAbstracts.push(new Abstract(abstract.sentence, abstract.score, abstract.page));
+          }
+          this.searchHitPreviewService.changeResult(new SearchResponse(data.pdfTitle, data.pdfName, data.keywords), newAbstracts);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

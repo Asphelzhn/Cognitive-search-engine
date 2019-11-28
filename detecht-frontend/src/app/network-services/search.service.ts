@@ -5,7 +5,13 @@ import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
-import {NetworkAbstractRequest, NetworkAbstractResponse, NetworkAutoCompleteResponse, NetworkSearchResponse} from './network-data-types';
+import {
+  GetDocResponse,
+  NetworkAbstractRequest,
+  NetworkAbstractResponse,
+  NetworkAutoCompleteResponse,
+  NetworkSearchResponse
+} from './network-data-types';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +80,16 @@ export class SearchService {
   autocomplete(query: string): Observable<NetworkAutoCompleteResponse> {
     return this.http.post< NetworkAutoCompleteResponse >(environment.apiUrl + 'getautocomplete/', {
       query}, {
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.networkService.handleError));
+  }
+
+  getDoc(pdfName: string, query: string): Observable<GetDocResponse> {
+    return this.http.post< GetDocResponse >(environment.apiUrl + 'getdoc/', {
+      pdfName, query}, {
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
