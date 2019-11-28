@@ -25,7 +25,7 @@ from rest_framework import status, viewsets, serializers
 # Our packages
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-from detecht_api.detecht_db_handling.analytics import get_analytics_document
+from detecht_api.detecht_db_handling.analytics import get_analytics_document, is_favorite
 from detecht_api.detecht_nlp.spell_check import spell_check
 
 from detecht_api.detecht_nlp.weighting_module import WeightingModule
@@ -299,4 +299,16 @@ class GetLikedDocs(APIView):
             return JsonResponse(response)
         return JsonResponse(response)
 
+class IsFavorite(APIView):
+    def post(self, request):
+        input = request.data
+        response = {
+            'success': False,
+            'favorite': False
+        }
+        if input !={}:
+            isFav = is_favorite(input['userId'], input['pdfName'])
+            response['success'] = True
+            response['favorite'] = isFav
 
+        return JsonResponse(response)

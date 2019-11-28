@@ -35,7 +35,8 @@ urlpatterns = [
     url(r'^api/trendingdocuments/$', views.TrendingDocuments.as_view()),
     url(r'^api/userfavorite/$', views.UserFavorite.as_view()),
     url(r'^api/getuserfavorites/$', views.GetLikedDocs.as_view()),
-    url(r'^api/relateddocuments/$', views.RelatedDocuments.as_view())
+    url(r'^api/relateddocuments/$', views.RelatedDocuments.as_view()),
+    url(r'^api/isfavorite/$', views.IsFavorite.as_view())
 
 
 ]
