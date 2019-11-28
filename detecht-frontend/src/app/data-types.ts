@@ -70,3 +70,19 @@ export class Abstract {
     this.page = page;
   }
 }
+
+
+export class SavedDocument {
+  title: string;
+  pdfName: string;
+  keywords: {keyword: string, weight: number}[];
+  abstracts: Abstract[];
+
+
+  constructor(title: string, pdfName: string, keywords: { keyword: string; weight: number }[], abstracts: Abstract[]) {
+    this.title = title;
+    this.pdfName = pdfName;
+    this.keywords = keywords;
+    this.abstracts = abstracts;
+  }
+}

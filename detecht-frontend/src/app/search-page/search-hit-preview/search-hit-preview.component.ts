@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {environment} from '../../../environments/environment';
-import {SearchResponse} from '../../data-types';
+import {Abstract, SearchResponse} from '../../data-types';
 import {SearchService} from '../../network-services/search.service';
 import {PreviewMessageService} from '../../message-services/preview-message.service';
 import {

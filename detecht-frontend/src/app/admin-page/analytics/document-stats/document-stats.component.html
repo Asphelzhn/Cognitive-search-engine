@@ -11,9 +11,6 @@
       </button>
     </div>
   </div>
-  <!--
-  TODO: Implement ngrepeat and restservices for title and abstract
-  -->
   <div class="documents-div">
     <app-document-component *ngFor="let pdf of pdfs" [title]="pdf.title" [abstract]="pdf.name"></app-document-component>
   </div>

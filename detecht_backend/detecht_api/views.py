@@ -128,8 +128,8 @@ class AddFile(APIView):
 
 # BEGIN: Code written by Armin
 class Keyword(APIView):
-   # permission_classes = (IsAuthenticated,)
-   def post(self, request): #input: "keyword"
+    # permission_classes = (IsAuthenticated,)
+    def post(self, request): #input: "keyword"
         input = request.data
 
         wordToStore = input["keyword"]
@@ -140,13 +140,13 @@ class Keyword(APIView):
 #class KeywordSimilarity(APIView):
 
 #    def post(self, request): #input: keyword1, keyword2, similarity
-        #input = request.data
-        #message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
-        #input = request
-        #test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
-        #UserFavorites.remove_favorite_pdf(1, "hej")
-        #message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
- #       return HttpResponse(message)
+#input = request.data
+#message = UserFavorites.add_favorite_pdf(1, input["favoritepdf"])
+#input = request
+#test = UserFavorites.objects.filter(user_id=1, pdf_name="hej")
+#UserFavorites.remove_favorite_pdf(1, "hej")
+#message = UserFavorites.objects.get(user_id=1, pdf_name="hej").pdf_name
+#       return HttpResponse(message)
 
 # END: Code written by Armin
 
@@ -272,4 +272,32 @@ class GetAutoComplete(APIView):
             response['autocomplete'] = get_autocomplete.get_autocomplete(query)
             return JsonResponse(response)
         return JsonResponse(response)
+
+class GetLikedDocs(APIView):
+    def post(self, request):
+        response = {
+            'success': False,
+            'pdfs': []
+        }
+        input = request.data
+        if input != {}:
+            user_id = input
+            result = UserFavorites.objects.filter(user_id=user_id)
+            response['success'] = True
+            for res in result:
+                pdf = search.get_pdf(res.pdf_name)['j_class'].frontend_result('')
+                pdf_response = {
+                    'title': pdf['pdfTitle'],
+                    'pdfName': pdf['pdfName'],
+                    'keywords': pdf['keywords'],
+                    'abstracts': []
+                }
+                print(search.get_pdf(res.pdf_name)['j_class'].get_abstract(str(sorted(pdf['keywords'], key= lambda i: i['weight'], reverse=True)[0]['keyword'])))
+                for imp_obj in search.get_pdf(res.pdf_name)['j_class'].get_abstract(str(sorted(pdf['keywords'], key= lambda i: i['weight'], reverse=True)[0]['keyword'])):
+                    pdf_response['abstracts'].append(
+                        {'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
+                response['pdfs'].append(pdf_response)
+            return JsonResponse(response)
+        return JsonResponse(response)
+
 

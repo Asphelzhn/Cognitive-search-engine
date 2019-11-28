@@ -54,7 +54,7 @@ export class NetworkTrendingDocumentsResponse {
       trend_score: number;
       title: string;
     }
-  ];
+    ];
 }
 
 export class NetworkRelatedDocumentResponse {
@@ -66,7 +66,23 @@ export class NetworkRelatedDocumentResponse {
       title: string;
       liked: boolean;
     }
-  ];
+    ];
+}
+
+export class NetworkGetFavoriteDocumentsResponse {
+  success: boolean;
+  pdfs: [
+    {
+      title: string;
+      pdfName: string;
+      keywords: {keyword: string, weight: number}[];
+      abstracts: {
+        sentence: string;
+        score: number;
+        page: number;
+      }[];
+    }
+    ];
 }
 
 export class NetworkAdminLoginResponse {

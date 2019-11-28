@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {SearchResponse} from '../data-types';
+import {Abstract, SearchResponse} from '../data-types';
 import {SearchHitPreviewService} from '../message-services/search-hit-preview.service';
 import {Router} from '@angular/router';
 
@@ -13,7 +13,7 @@ export class SearchPageComponent implements OnInit {
   staticUrl: string;
   @Input() result: SearchResponse;
   previewResult: SearchResponse;
-  abstracts: Abstracts[];
+  abstracts: Abstract[];
 
   constructor(private searchHitPreviewService: SearchHitPreviewService,
               private router: Router) {
