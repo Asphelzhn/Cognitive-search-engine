@@ -16,7 +16,7 @@ export class MostDocumentComponent implements OnInit {
 
   ngOnInit() {
     const index = Math.round(Math.random() * 2 + 1);
-    this.icon = '../../../../../assets/admin-page/color-bar-' + index + '-icon.png';
+    this.icon = 'static/assets/admin-page/color-bar-' + index + '-icon.png';
   }
 
 }

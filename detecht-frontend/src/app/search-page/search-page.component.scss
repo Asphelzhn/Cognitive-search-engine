@@ -24,25 +24,25 @@
   min-height: 100vh;
   min-width: 100vw;
   //overflow-x: hidden;
-  background-image: url("../../assets/backgrounds/result-background.png");
+  background-image: url("/static/assets/backgrounds/result-background.png");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
 
   @media screen and (max-width: 640px) {
-    background-image: url("../../assets/backgrounds/result-background-iPhone-5.png");
+    background-image: url("/static/assets/backgrounds/result-background-iPhone-5.png");
   }
   @media screen and (max-width: 830px) {
-    background-image: url("../../assets/backgrounds/result-background-iPhone-XR.png");
+    background-image: url("/static/assets/backgrounds/result-background-iPhone-XR.png");
   }
   @media screen and (max-width: 992px) {
-    background-image: url("../../assets/backgrounds/result-background-narrow.png");
+    background-image: url("/static/assets/backgrounds/result-background-narrow.png");
   }
   @media screen and (min-width: 992px) {
-    background-image: url("../../assets/backgrounds/result-background.png");
+    background-image: url("/static/assets/backgrounds/result-background.png");
   }
   @media screen and (min-width: 1200px) {
-    background-image: url("../../assets/backgrounds/result-background-wide.png");
+    background-image: url("/static/assets/backgrounds/result-background-wide.png");
   }
 }
 
