@@ -14,7 +14,6 @@ export class UserFavoriteService {
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
   favoriteDocument(data: NetworkFavoriteDocumentRequest): any {
-    console.log(data);
     this.http.post<any>(environment.apiUrl + 'userfavorite/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({
