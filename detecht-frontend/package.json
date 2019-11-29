@@ -23,8 +23,11 @@
     "@angular/router": "^8.2.14",
     "@types/file-saver": "^2.0.1",
     "file-saver": "^2.0.2",
-    "mem": "^6.0.0",
+    "https-proxy-agent": "^3.0.1",
+    "material": "^0.4.3",
+    "ng2-file-upload": "^1.4.0",
     "ng2-pdf-viewer": "^5.3.4",
+    "ngx-cookie-service": "^2.2.0",
     "ngx-filesaver": "^8.1.0",
     "ngx-kjua": "^1.6.0",
     "npm": "^6.13.1",
@@ -33,8 +36,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.19",
-    "@angular/cli": "^8.3.19",
+    "@angular-devkit/build-angular": "^0.803.20",
+    "@angular/cli": "^8.3.20",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
     "@types/jasmine": "~3.3.8",

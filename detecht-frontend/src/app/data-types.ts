@@ -18,3 +18,71 @@ export class SearchResponse {
   }
 }
 
+export class Pdf {
+  id: number;
+  file: string;
+  title: string;
+  downloads: number;
+  favorites: number;
+
+
+  constructor(id: number, file: string, title: string, downloads: number, favorites: number) {
+    this.id = id;
+    this.file = file;
+    this.title = title;
+    this.downloads = downloads;
+    this.favorites = favorites;
+  }
+}
+
+export class TrendingDocumentsResponse {
+    pdfName: string;
+    trendScore: number;
+    title: string;
+
+
+  constructor(pdfName: string, trendScore: number, title: string) {
+    this.pdfName = pdfName;
+    this.trendScore = trendScore;
+    this.title = title;
+  }
+}
+
+export class Spellcheck {
+  word: string;
+  spellcheck: string[];
+
+
+  constructor(word: string, spellcheck: string[]) {
+    this.word = word;
+    this.spellcheck = spellcheck;
+  }
+}
+
+export class Abstract {
+  sentence: string;
+  score: number;
+  page: number;
+
+  constructor(sentence: string, score: number, page: number) {
+    this.sentence = sentence;
+    this.score = score;
+    this.page = page;
+  }
+}
+
+
+export class SavedDocument {
+  title: string;
+  pdfName: string;
+  keywords: {keyword: string, weight: number}[];
+  abstracts: Abstract[];
+
+
+  constructor(title: string, pdfName: string, keywords: { keyword: string; weight: number }[], abstracts: Abstract[]) {
+    this.title = title;
+    this.pdfName = pdfName;
+    this.keywords = keywords;
+    this.abstracts = abstracts;
+  }
+}

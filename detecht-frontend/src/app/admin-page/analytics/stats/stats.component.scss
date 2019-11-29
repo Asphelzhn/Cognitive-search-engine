@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300&display=swap');
+
+.stats-content {
+  text-align: center;
+  width: 96%;
+  height: 350px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+.stats-card {
+  width: 30%;
+  min-width: 150px;
+  height: 336px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  vertical-align: middle;
+  display: table-cell;
+  top: 126px;
+  box-shadow: 0 0 10px #00000017;
+  border-radius: 2px;
+  opacity: 1;
+  color: #ffffff;
+
+  img {
+    width: 30px;
+    height: auto;
+  }
+
+  .icon-div {
+    margin-top: 115px;
+    height: 50px;
+    vertical-align: center;
+  }
+
+  .data-div {
+    font-family: Montserrat, serif;
+    font-size: 38px;
+    font-weight: lighter;
+  }
+}
+
+
+#downloads {
+  background: #EBD9D9 0 0 no-repeat padding-box;
+  float: left;
+}
+
+#favourites {
+  background: #C7D4DB 0 0 no-repeat padding-box;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#documents{
+  background: #B0D5D8 0 0 no-repeat padding-box;
+  float: right;
+}

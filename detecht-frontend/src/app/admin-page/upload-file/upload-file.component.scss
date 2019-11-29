@@ -1,28 +1,18 @@
-.upload-page-content{
-  height: 25%;
-  width: 45%;
-  background-color: #ffffff;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  float: left;
-  h4{
-    margin-left: 8px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
+.grid-container{
+  background-color: #F5F5F5;
+  display: grid;
+  grid-template-columns: auto auto;
+  height: auto;
+  width: auto;
 }
 
-.choosed-documents {
-  height: 25%;
-  width: 45%;
+.grid-item{
+  height: 100%;
+  width: 90%;
   background-color: #ffffff;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  float: right;
+  margin: 20px auto;
+  justify-content: center;
+  text-align: center;
   h4{
     margin-left: 8px;
     margin-top: 8px;
@@ -31,29 +21,51 @@
 }
 
 .selected-documents{
-  height: 75%;
+  height: 80%;
   width: 95%;
   border: 1px solid lightgrey;
+  margin: auto;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: Verdana;
-}
+  text-align: center;
 
-.sidenav {
-  display: compact;
-  justify-content: center;
-
-
-  button {
-    background-color: #B0D5D8;
-    color: #ffffff;
+  label{
+    width: 20%;
+    height: 25px;
+    background: #B0D5D8;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
     border: none;
-    padding: 4px 11px;
-    margin: 2px;
+    margin: 100px auto;
     cursor: pointer;
+    display: table;
+  }
+
+  input[type="file"] {
+    display: none;
   }
 }
+
+.input-button {
+  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+#choosed-file {
+  width: auto;
+  height: 20px;
+  text-align: left;
+  border-bottom: #383838;
+  // font: bold;
+  font-family: Verdana;
+  font-size: 16px;
+
+}
+
+
 .file-buttons{
   display: flex;
   justify-content: center;
@@ -71,9 +83,44 @@
   }
 }
 
-.container{
-  background-color: #F5F5F5;
-  height: 1400px;
-  width: auto;
+#uploading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 400px;
+  margin-left: -250px;
+  margin-top: -200px;
+
+  background-color: white;
+  border: 2px solid black;
 }
 
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 992px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .grid-item {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    grid-row-gap: 200px;
+  }
+}
+
+@media screen and (max-width: 612px) {
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .grid-item{
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+
+}

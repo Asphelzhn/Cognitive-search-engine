@@ -23,6 +23,8 @@ class WeightingModule:
     # def __init__(self):
     #     global nlp = spacy.load('en_core_web_sm')
 
+
+
     def get_factors(elastic_search_results, keyword_similarity, popularity):
         pass
 
@@ -32,13 +34,13 @@ class WeightingModule:
         search_query = nlp(search_query)
         search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
 
-        for title in elastic_search_results:
+        for pdfname in elastic_search_results:
             # get document keywords in database
-            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=title)
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=pdfname)
             score_after_weight = 0
-            for name in name_weight_set:
-                keyword = nlp(name.keyword)
-                keyword_weight = name.weight
+            for doc in name_weight_set:
+                keyword = nlp(doc.keyword)
+                keyword_weight = doc.weight
 
                 # print(keyword)
                 # print(keyword)
@@ -55,7 +57,9 @@ class WeightingModule:
 
         download_weight = 4
         favourite_weight = 6
-        for title in elastic_search_results:
+        for pdfname in elastic_search_results:
+            title = pdfname.replace("_"," ")
+            title = title.replace(".pdf","")
             record = models.Document.objects.get(title=title)
             download = record.downloads
             favourite = record.favorites
@@ -79,6 +83,7 @@ class WeightingModule:
 
     def calculate_score_after_weight(elastic_search_results, search_query):
         score_dict = {}
+        print(elastic_search_results)
         length = len(elastic_search_results)
 
         # weight of each factors
@@ -124,12 +129,53 @@ class WeightingModule:
             result_list.append(element[0])
         return result_list
 
+    # This function is used for ask me a question, return the most frequent keyword and document list that include it
+    def ask_a_question(ranked_by_weighting_module_results):
+        keywords_dict = {}
+        for pdfname in ranked_by_weighting_module_results:
+            # get document keywords in database
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=pdfname)
+            # print("query result")
+            # print(name_weight_set)
+            for name in name_weight_set:
+                keyword = name.keyword
+                # print(keyword)
+                if keyword in keywords_dict.keys():
+                    keywords_dict[keyword] += 1
+                else:
+                    keywords_dict[keyword] = 1
+        # print("dict is")
+        # print(keywords_dict)
+        sorted_keywords_list = sorted(keywords_dict.items(),key=lambda t:t[1], reverse=True)
+        occur_most_keyword = sorted_keywords_list[0][0]
+        # print(sorted_keywords_list)
+        # print(occur_most_keyword)
 
-# This is the example how to use Weighting Module to add return a new sorted list.
+        prune_result_list =[]
+        for title in ranked_by_weighting_module_results:
+            # get document keywords in database
+            name_weight_set = models.Pdf_Name_Keyword_Weight.objects.filter(pdf_name=title)
+            for name in name_weight_set:
+                keyword = name.keyword
+                pdf_name = name.pdf_name
+                if(keyword == occur_most_keyword):
+                    prune_result_list.append(pdf_name)
+                    break
+        return occur_most_keyword,prune_result_list
+
+
+
 if __name__ == '__main__':
-    elastic_search_results = ['Project management', 'python is amazing', 'programming book']
+    # This is the example how to use Weighting Module to add return a new sorted list.
+
+    elastic_search_results = ['Project_management.pdf', 'python_is_amazing.pdf', 'programming_book.pdf']
     query = "I like computer"
 
     sorted_list = WeightingModule.calculate_score_after_weight(elastic_search_results, query)
 
     print(sorted_list)
+
+    # This is used for test ask me a question function
+    keyword,prune_list = WeightingModule.ask_a_question(sorted_list)
+    print(keyword)
+    print(prune_list)

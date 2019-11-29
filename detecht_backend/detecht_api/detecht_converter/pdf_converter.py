@@ -1,58 +1,52 @@
-import PyPDF2
-import json
+from pdfminer.converter import TextConverter
+from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfparser import PDFParser
 import os
-import re
+import io
 
-def convert_pdf_to_json():
-
-    # get all PDFs  in the path
-    path = "detecht_api/static/pdf"
+#carl
+#This method extracts one PDF at a time and outputs the scanned pages, along with the date created
+def pdf_extractor(pdf_name):
+    path = "detecht_api/static/pdf/"
+    pages = []
+    date_created = None
     with os.scandir(path) as it:
         for entry in it:
-            if entry.name.endswith(".pdf") and entry.is_file():
-                print("Currently scanning: " + entry.name)
-                file = entry.path
+            if entry.name.endswith(".pdf") and entry.is_file() and entry.name == pdf_name:
 
-                # read the current pdf
-                read_pdf = PyPDF2.PdfFileReader(file, strict=False)
-                all_pages = {}
+                fp = open(path + entry.name, 'rb')
 
-                # iterate all pages
-                all_text = ""
-                for page in range(read_pdf.getNumPages()):
-                    data = read_pdf.getPage(page)
-                    page_text = data.extractText()
-                    modified_text = re.sub("\n", "", page_text)
-                    all_text = all_text + modified_text
+                device = None
+                retstr = None
+                # Iterate over the pages
 
-                all_pages["All_text"] = all_text
+                for page in PDFPage.get_pages(fp):
+                    rsrcmgr = PDFResourceManager()
+                    retstr = io.StringIO()
+                    device = TextConverter(rsrcmgr, retstr)
+                    interpreter = PDFPageInterpreter(rsrcmgr, device)
 
-                # creates a JSON file
-                filename = entry.name
-                filename = filename[:-4]
-                filepath = 'detecht_api/static/json/' + filename + '.json'
-                with open(filepath,'w+') as outfile:
-                    json.dump(all_pages, outfile)
+                    interpreter.process_page(page)
+                    pagetext = retstr.getvalue()
+                    pagetext = pagetext[:-1]
+                    pages.append(pagetext)
+                    retstr.close()
 
-def pdf_to_json(pdf_name):
+                device.close()
+                retstr.close()
 
-    # get all PDFs  in the path
-    path = "detecht_api/static/pdf/"
-    with open(path + pdf_name, 'rb') as file:
+                parser = PDFParser(fp)
+                doc = PDFDocument(parser)
+                fp.close()
+                date_created = doc.info[0]["CreationDate"]
+                date_created = str(date_created[1:10])
+                date_created = date_created[3:-1]
+                date_created = date_created[0:4]+"-"+date_created[4:6]+"-"+date_created[5:7]
 
-        # read the current pdf
-        read_pdf = PyPDF2.PdfFileReader(file, strict=False)
-        all_pages = {}
+            #filepath = "detecht_api/static/json/"+pdf_name[:-4]+".txt"
+            #with open(filepath, 'w+', encoding="utf-8") as f:
+            #   print(document,file=f)
 
-        # iterate all pages
-        all_text = ""
-        for page in range(read_pdf.getNumPages()):
-            data = read_pdf.getPage(page)
-            page_text = data.extractText()
-            modified_text = re.sub("\n", "", page_text)
-            all_text = all_text + modified_text
-
-        all_pages["All_text"] = all_text
-
-        return all_text
-
+    return pages, date_created

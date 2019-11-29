@@ -5,6 +5,8 @@
       style="display: block;"
       [src]="(staticUrl+'pdf/'+result.name)"
       (text-layer-rendered)="search()"
+      [page]="page"
+      [show-all]="false"
     >
     </pdf-viewer>
 

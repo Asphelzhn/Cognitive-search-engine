@@ -1,113 +1,49 @@
 .container{
-  display: flex;
-  height: 30%;
+  height: 100%;
+  min-width: 500px;
   width: 100%;
   background-color: #F5F5F5;
   text-align: center;
-  font-family: Verdana;
+  font-family: Verdana, serif;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 50%));
+  overflow-wrap: normal;
 
-  .upload-link{
-      width: 10%;
-      justify-content: center;
-
-      button {
-        background-color: #B0D5D8;
-        color: #ffffff;
-        border: none;
-        padding: 4px 11px;
-        margin: 2px;
-        cursor: pointer;
-        font-family: Verdana;
-      }
-  }
-  .upload-btn {
-    background-color: #ffffff;
-    font-size: 17px;
-    padding: 14px 7px;
-    margin-top: 0px;
-    font-family: Verdana;
-  }
-  .upload-btn:hover {
-    background-color: #F0F0F0;
-    color: #000000;
-    font-family: Verdana;
-  }
-}
-
-.view-content{
-  width: 47%;
-  height: auto;
-  overflow: scroll;
-  display: flex;
-  margin: 10px;
-  background-color: #ffffff;
-  font-family: Verdana;
-  h3{
-    margin:3px;
+  .left-content {
+    float: left;
     width: 100%;
+    min-width: 500px;
+    display: inline-block;
+    margin-left: 15px;
+
+    .card-div {
+      height: 336px;
+    }
+    .document-div {
+      height: calc(90% - 336px);
+    }
   }
-  h5{
-    margin: 5px;
+
+  .right-content {
+    float: right;
+    width: 100%;
+    min-width: 500px;
   }
+
+
+
 }
 
-.stats {
-  height: 100%;
-  width: 40%;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
+@media screen and (max-width: 1156px) {
+  .container{
+    display: inline-block;
 
-.stat {
-  height: 80%;
-  width: 47%;
-  background-color: #EFD8D8;
-  justify-content: center;
-  float: left;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  font-family: Verdana;
-  h2{
-    margin:3px;
+    .right-content {
+      float: left;
+      padding-left: 15px;
+    }
+
+
+
   }
 }
-
-.most-content{
-  height: 100%;
-  width: 50%;
-  background-color: #ffffff;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  float: left;
-  font-family: Verdana;
-  h4{
-    margin-left: 8px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-}
-
-.individual-content {
-  border-bottom: 1px solid;
-  border-top: 1px solid;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  display: compact;
-  justify-content: center;
-  font-family: Verdana;
-
-  h5{
-    text-align: left;
-    margin-left: 5px;
-  }
-  button{
-    text-align: right;
-    margin-right: 10px;
-  }
-}
-
-

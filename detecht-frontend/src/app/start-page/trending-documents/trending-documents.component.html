@@ -1,0 +1,5 @@
+<p id="trending-documents-title">TRENDS RIGHT NOW</p>
+
+<div class="documents-div">
+  <app-trending-document *ngFor="let doc of trendingDocs" [pdfName]="doc.pdfName" [title]="doc.title"></app-trending-document>
+</div>

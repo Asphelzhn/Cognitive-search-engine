@@ -2,6 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {MatDialogModule} from '@angular/material';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { FileSaverModule } from 'ngx-filesaver';
+import {NgxKjuaModule} from 'ngx-kjua';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
+import {MatTabsModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,22 +26,22 @@ import { AnalyticsComponent } from './admin-page/analytics/analytics.component';
 import { RelatedSearchHitsComponent } from './search-page/related-search-hits/related-search-hits.component';
 import { RelatedResultBarComponent } from './search-page/related-search-hits/related-result-bar/related-result-bar.component';
 import {SearchResultPreviewComponent} from './search-page/search-result-preview/search-result-preview.component';
-import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { SearchHitPreviewComponent } from './search-page/search-hit-preview/search-hit-preview.component';
-import {MatDialogModule} from '@angular/material';
-import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
-import { FileSaverModule } from 'ngx-filesaver';
-import { QrCodeComponent } from './search-page/search-hits/result-bar/qr-code/qr-code.component';
-import {NgxKjuaModule} from 'ngx-kjua';
+import { QrCodeComponent } from './search-page/search-hit-preview/qr-code/qr-code.component';
 import { SavedDocumentsPageComponent } from './saved-documents-page/saved-documents-page.component';
 import { LoginPageComponent } from './admin-page/login-page/login-page.component';
 import { AdminNavbarComponent } from './admin-page/admin-navbar/admin-navbar.component';
 import { RelatedSearchesDecisionTreeComponent } from './search-page/related-searches-decision-tree/related-searches-decision-tree.component';
 import { EditDocumentsComponent } from './admin-page/edit-documents/edit-documents.component';
 import { FooterComponent } from './footer/footer.component';
-import { SearchEditDocComponent } from './admin-page/edit-documents/search-edit-doc/search-edit-doc.component';
-import { EditComponentComponent } from './admin-page/edit-documents/edit-component/edit-component.component';
+import { StatsComponent } from './admin-page/analytics/stats/stats.component';
+import {DocumentStatsComponent} from './admin-page/analytics/document-stats/document-stats.component';
+import { DocumentComponentComponent } from './admin-page/analytics/document-stats/document-component/document-component.component';
+import { MostViewsDownloadsComponent } from './admin-page/analytics/most-views-downloads/most-views-downloads.component';
+import { MostDocumentComponent } from './admin-page/analytics/most-views-downloads/most-document/most-document.component';
+import { TrendingDocumentsComponent } from './start-page/trending-documents/trending-documents.component';
+import { TrendingDocumentComponent } from './start-page/trending-documents/trending-document/trending-document.component';
+import { SavedDocumentComponent } from './saved-documents-page/saved-document/saved-document.component';
 
 @NgModule({
   declarations: [
@@ -49,28 +59,45 @@ import { EditComponentComponent } from './admin-page/edit-documents/edit-compone
     SearchResultPreviewComponent,
     SearchHitPreviewComponent,
     QrCodeComponent,
+    TrendingDocumentsComponent,
+    TrendingDocumentComponent,
     SavedDocumentsPageComponent,
     LoginPageComponent,
     AdminNavbarComponent,
     RelatedSearchesDecisionTreeComponent,
     EditDocumentsComponent,
     FooterComponent,
-    SearchEditDocComponent,
-    EditComponentComponent,
+    StatsComponent,
+    DocumentStatsComponent,
+    DocumentComponentComponent,
+    MostViewsDownloadsComponent,
+    MostDocumentComponent,
+    SavedDocumentComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     PdfViewerModule,
     MatDialogModule,
     NoopAnimationsModule,
     FileSaverModule,
-    NgxKjuaModule
+    NgxKjuaModule,
+    AppRoutingModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
-  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    CookieService],
   bootstrap: [AppComponent],
   entryComponents: [SearchHitPreviewComponent]
 })
 export class AppModule { }
+
