@@ -78,18 +78,18 @@ class Search(APIView):
             for word in words:
                 response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
 
-            weighted = WeightingModule.WeightingModule.calculate_score_after_weight(
-                search.formated_search(query, 1000)
-                , query)
+            formated = search.formated_search(query, 1000)
+            print(formated)
+            print(type(formated))
+            if len(formated) > 0:
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query)
+                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
+                # TODO add loop to alter result multiple times and using newWeighted to make the result better
+                response['askQuestion'] = {'keyword': askquestion, 'type': 2}
 
-            askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
-            # TODO add loop to alter result multiple times and using newWeighted to make the result better
-
-            response['askQuestion'] = {'keyword': askquestion, 'type': 2}
-
-            for pdf_name in weighted:
-                response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
-                response['totalResult'] += 1
+                for pdf_name in weighted:
+                    response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
+                    response['totalResult'] += 1
             print(response)
             response['success'] = True
             return JsonResponse(response)  # test
