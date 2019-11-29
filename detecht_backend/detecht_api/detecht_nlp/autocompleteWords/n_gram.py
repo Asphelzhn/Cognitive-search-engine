@@ -13,7 +13,7 @@ By Severn
 def cleanText(input):
     input = re.sub('\n+', " ", input).lower()  # Match line breaks
     # with spaces to replace spaces
-    input = re.sub('[\[0-9\]*]', "", input)  # Eliminate reference
+    input = re.sub('\[[0-9]\]*', "", input)  # Eliminate reference
     # tags like [1]p
     input = re.sub(' +', " ", input)  # Replace consecutive spaces
     # with one space
