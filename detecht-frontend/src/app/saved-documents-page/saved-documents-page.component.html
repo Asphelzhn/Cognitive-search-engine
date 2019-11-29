@@ -8,9 +8,9 @@
                         [inputfile]="doc.pdfName"
                         [inputtitle]="doc.title"
                         [keyword]="getBestKeyword(doc)"
-                        [inputsentence1]="doc.abstracts.pop().sentence"
-                        [inputsentence2]="doc.abstracts.pop().sentence"
-                        [inputsentence3]="doc.abstracts.pop().sentence"
+                        [inputsentence1]="doc.abstracts[0].sentence"
+                        [inputsentence2]="doc.abstracts[1].sentence"
+                        [inputsentence3]="doc.abstracts[2].sentence"
                         [userId]="userId">
     </app-saved-document>
   </div>
