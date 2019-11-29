@@ -1,5 +1,5 @@
 <div class = "container m-0 p-0">
-  <app-search-bar [changePage]="false"></app-search-bar>
+  <app-search-bar [changePage]="true"></app-search-bar>
   <div class="saved-documents">
     <div class="header">
       SAVED DOCUMENTS
@@ -10,9 +10,10 @@
                         [keyword]="getBestKeyword(doc)"
                         [inputsentence1]="doc.abstracts.pop().sentence"
                         [inputsentence2]="doc.abstracts.pop().sentence"
-                        [inputsentence3]="doc.abstracts.pop().sentence">
+                        [inputsentence3]="doc.abstracts.pop().sentence"
+                        [userId]="userId">
     </app-saved-document>
   </div>
 </div>
-
+<app-search-hit-preview *ngIf="previewResult" [result]="previewResult" [abstracts]="abstracts"></app-search-hit-preview>
 

@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NetworkFavoriteDocumentRequest, NetworkInteractWithDocumentRequest} from '../../network-services/network-data-types';
 import {InteractWithDocumentService} from '../../network-services/interact-with-document.service';
 import {UserFavoriteService} from '../../network-services/user-favorite.service';
+import {Abstract, SearchResponse} from '../../data-types';
+import {SearchService} from '../../network-services/search.service';
+import {SearchHitPreviewService} from '../../message-services/search-hit-preview.service';
 
 @Component({
   selector: 'app-saved-document',
@@ -19,10 +22,14 @@ export class SavedDocumentComponent implements OnInit {
   sentence2: string;
   sentence3: string;
   title: string;
-  userId: number;
+  @Input() userId: number;
+  liked: boolean;
 
 
-  constructor(private interactWithDocumentService: InteractWithDocumentService, private userFavoriteService: UserFavoriteService) {}
+  constructor(private interactWithDocumentService: InteractWithDocumentService,
+              private userFavoriteService: UserFavoriteService,
+              private searchService: SearchService,
+              private searchHitPreviewService: SearchHitPreviewService) {}
 
 
 
@@ -32,8 +39,18 @@ export class SavedDocumentComponent implements OnInit {
     this.sentence3 = this.boldstring(this.inputsentence3, this.keyword);
     this.title = this.boldstring(this.inputtitle, this.keyword);
 
-    this.userId = 0;
-
+    this.userFavoriteService.isFavorite(new NetworkFavoriteDocumentRequest(this.userId, this.inputfile, true)).subscribe(
+      (data) => {
+        if (data.success) {
+          this.liked = data.favorite;
+        } else {
+          console.log('Error looking if doc is favorite');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 
@@ -49,10 +66,25 @@ export class SavedDocumentComponent implements OnInit {
   }
 
   like(like: boolean): void {
-    const data = new NetworkFavoriteDocumentRequest();
-    data.pdfName = this.inputfile;
-    data.userId = this.userId;
-    data.like = like;
-    this.userFavoriteService.favoriteDocument(data);
+    this.userFavoriteService.favoriteDocument(new NetworkFavoriteDocumentRequest(this.userId, this.inputfile, like));
   }
+
+  changeDocument(pdfName: string): void {
+    this.searchService.getDoc(pdfName, this.keyword).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.success) {
+          const newAbstracts = [];
+          for (const abstract of data.abstracts) {
+            newAbstracts.push(new Abstract(abstract.sentence, abstract.score, abstract.page));
+          }
+          this.searchHitPreviewService.changeResult(new SearchResponse(data.pdfTitle, data.pdfName, data.keywords), newAbstracts);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 }

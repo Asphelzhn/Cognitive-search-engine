@@ -57,7 +57,7 @@ def get_pdf(query):
 
 def formatted_search(query, size=1):
     body = {
-        "_source": ["title"],
+        "_source": ["pdf_name"],
         "size": size,
         "query": {
             "query_string": {
@@ -69,9 +69,8 @@ def formatted_search(query, size=1):
     }
 
     res = es.search(index="db", body=body)
-    print(res)
     titles = list()
     for hit in res['hits']['hits']:
-        title = "%(title)s" % hit["_source"]
+        title = "%(pdf_name)s" % hit["_source"]
         titles.append(title)
     return titles

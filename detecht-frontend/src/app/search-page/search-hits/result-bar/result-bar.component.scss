@@ -41,19 +41,19 @@
     }
 
     #download-button {
-      background-image: url("../../../../assets/user-page/download-button.png");
+      background-image: url("/static/assets/user-page/download-button.png");
     }
 
     #expand-button {
-      background-image: url("../../../../assets/user-page/expand-info-button.png");
+      background-image: url("/static/assets/user-page/expand-info-button.png");
     }
 
     #like-button {
-      background-image: url("../../../../assets/user-page/save-button.png");
+      background-image: url("/static/assets/user-page/save-button.png");
     }
 
     #liked-button {
-      background-image: url("../../../../assets/user-page/red-saved-button.png ");
+      background-image: url("/static/assets/user-page/red-saved-button.png ");
     }
     .close {
       text-align: right;
@@ -66,7 +66,7 @@
       display: inline-block;
       height: 25px;
       width: 25px;
-      background-image: url("../../../../assets/user-page/X-icon.png");
+      background-image: url("/static/assets/user-page/X-icon.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 20px;

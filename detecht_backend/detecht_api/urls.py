@@ -18,6 +18,8 @@ urlpatterns = [
     path('admin_db/', admin.site.urls),
     url(r'^$', views.HomePageView.as_view()),
     url(r'^admin/', views.HomePageView.as_view()),
+    url(r'^search/', views.HomePageView.as_view()),
+    url(r'^saved/', views.HomePageView.as_view()),
     url(r'^upload/', views.HomePageView.as_view()),
     url(r'^api/addfile/$', views.AddFile.as_view()),
     url(r'^api/search/$', views.Search.as_view()),
@@ -34,7 +36,9 @@ urlpatterns = [
     url(r'^api/trendingdocuments/$', views.TrendingDocuments.as_view()),
     url(r'^api/userfavorite/$', views.UserFavorite.as_view()),
     url(r'^api/getuserfavorites/$', views.GetLikedDocs.as_view()),
-    url(r'^api/relateddocuments/$', views.RelatedDocuments.as_view())
+    url(r'^api/getdoc/$', views.GetDoc.as_view()),
+    url(r'^api/relateddocuments/$', views.RelatedDocuments.as_view()),
+    url(r'^api/isfavorite/$', views.IsFavorite.as_view())
 
 
 ]
