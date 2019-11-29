@@ -101,9 +101,9 @@ class Search(APIView):
             print(formated)
             print(type(formated))
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule\
+                weighted = WeightingModule.WeightingModule \
                     .calculate_score_after_weight(formated, query)
-                askquestion, newWeighted = WeightingModule.WeightingModule\
+                askquestion, newWeighted = WeightingModule.WeightingModule \
                     .ask_a_question(weighted)
                 # TODO add loop to alter result multiple times and using
                 #  newWeighted to make the result better
@@ -358,6 +358,7 @@ class GetLikedDocs(APIView):
             return JsonResponse(response)
         return JsonResponse(response)
 
+
 class IsFavorite(APIView):
     def post(self, request):
         input = request.data
@@ -365,15 +366,16 @@ class IsFavorite(APIView):
             'success': False,
             'favorite': False
         }
-        if input !={}:
+        if input != {}:
             isFav = is_favorite(input['userId'], input['pdfName'])
             response['success'] = True
             response['favorite'] = isFav
 
         return JsonResponse(response)
 
+
 class GetDoc(APIView):
-    def post(self, request): #input: "searchString"
+    def post(self, request):  # input: "searchString"
         response = {
             'success': False,
             'pdfTitle': '',
