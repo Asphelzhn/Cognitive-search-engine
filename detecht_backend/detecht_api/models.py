@@ -153,3 +153,8 @@ class User_Keyword(models.Model):
 class Search_Autocomplete(models.Model):
     n_gram = models.TextField()
     frequency = models.IntegerField()
+
+
+class TotalKeywords(models.Model):
+    word = models.TextField(max_length=50)
+    frequency = models.BigIntegerField(default=1)
