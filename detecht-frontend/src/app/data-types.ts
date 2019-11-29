@@ -86,3 +86,14 @@ export class SavedDocument {
     this.abstracts = abstracts;
   }
 }
+
+export class AskQuestion {
+  keyword: string;
+  type: number; // Values: 0 - false, 1 - true, 2 - ask
+
+
+  constructor(keyword: string, type: number) {
+    this.keyword = keyword;
+    this.type = type;
+  }
+}
