@@ -1,6 +1,6 @@
 import operator
 import time
-from detecht_api.django_setup import very_important
+from detecht_api.django_setup import initialize_django
 from detecht_api.models import Search_Autocomplete
 from detecht_api.detecht_nlp.autocompleteWords import n_gram
 
@@ -8,7 +8,7 @@ from detecht_api.detecht_nlp.autocompleteWords import n_gram
 By Severn
 '''
 
-very_important()
+initialize_django()
 
 
 def upload():

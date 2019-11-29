@@ -97,7 +97,7 @@ class Search(APIView):
                      'spellcheck': sorted(spell_check.candidates(word))
                      })
 
-            formated = search.formated_search(query, 1000)
+            formated = search.formatted_search(query, 1000)
             print(formated)
             print(type(formated))
             if len(formated) > 0:
