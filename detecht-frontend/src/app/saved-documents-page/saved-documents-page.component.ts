@@ -30,7 +30,8 @@ export class SavedDocumentsPageComponent implements OnInit {
     this.adminLoginService.userId.subscribe((userId) => {
       this.userId = userId;
 
-      this.userFavoriteService.getFavoriteDocuments(this.userId).subscribe(
+      console.log(userId);
+      this.userFavoriteService.getFavoriteDocuments(userId).subscribe(
         (data: NetworkGetFavoriteDocumentsResponse) => {
           console.log(data);
           if (data.success) {
