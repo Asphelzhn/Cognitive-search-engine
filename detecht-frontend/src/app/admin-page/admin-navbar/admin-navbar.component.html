@@ -1,6 +1,10 @@
-<div id="horizontal"> Here admin navbar should be created</div>
+<div id="horizontal">
+  <div class="form-group">
+    <button class="btn btn-primary upload-file-btn"  (click)="onSubmit()"><h5>Log out</h5></button>
+  </div>
+</div>
 <div id="vertical">
-  <span (click)="changePage('analytics')">Click for Analytics</span>
-  <span (click)="changePage('upload')">Click for Upload document</span>
-  <span (click)="changePage('edit')">Click for Edit documents</span>
+  <span (click)="changePage('analytics')"><img src = "static/assets/admin-page/account-circle-icon.png"></span>
+  <span (click)="changePage('upload')"><img src = "static/assets/admin-page/file-upload-icon.png"></span>
+  <span (click)="changePage('edit')"><img src = "static/assets/admin-page/border-color-icon.png"></span>
 </div>

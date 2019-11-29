@@ -13,6 +13,10 @@ export class AdminNavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+    //TODO Fix service to log out admin
+  }
+
   changePage(newPage: string): void {
     this.adminNavbarToPageService.changePage(newPage);
   }
