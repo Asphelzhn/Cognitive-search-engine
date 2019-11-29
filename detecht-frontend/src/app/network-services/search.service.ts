@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {SearchResponse, Spellcheck} from '../data-types';
+import {AskQuestion, SearchResponse, Spellcheck} from '../data-types';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {NetworkService} from './network.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -42,11 +42,11 @@ export class SearchService {
     }).pipe(catchError(this.networkService.handleError));
   }
 
-  search(query: string): void {
+  search(query: string, askQuestions: AskQuestion[] = []): void {
     this.currentSearchSource.next(query);
 
     this.http.post< NetworkSearchResponse >(environment.apiUrl + 'search/', {
-      query}, {
+      query, askQuestions}, {
       withCredentials: true,
         headers: new HttpHeaders({
         'Content-Type': 'application/json'

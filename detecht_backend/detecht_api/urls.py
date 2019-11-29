@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin_db/', admin.site.urls),
     url(r'^$', views.HomePageView.as_view()),
     url(r'^admin/', views.HomePageView.as_view()),
+    url(r'^search/', views.HomePageView.as_view()),
     url(r'^saved/', views.HomePageView.as_view()),
     url(r'^upload/', views.HomePageView.as_view()),
     url(r'^api/addfile/$', views.AddFile.as_view()),
