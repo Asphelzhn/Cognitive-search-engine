@@ -58,9 +58,7 @@ class WeightingModule:
         download_weight = 4
         favourite_weight = 6
         for pdfname in elastic_search_results:
-            title = pdfname.replace("_"," ")
-            title = title.replace(".pdf","")
-            record = models.Document.objects.get(title=title)
+            record = models.Document.objects.get(file='detecht_api/static/pdf/' + pdfname)
             download = record.downloads
             favourite = record.favorites
             score = download * download_weight + favourite * favourite_weight
@@ -83,7 +81,6 @@ class WeightingModule:
 
     def calculate_score_after_weight(elastic_search_results, search_query):
         score_dict = {}
-        print(elastic_search_results)
         length = len(elastic_search_results)
 
         # weight of each factors
