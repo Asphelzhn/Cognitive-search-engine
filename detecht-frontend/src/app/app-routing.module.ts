@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'upload', component: UploadFileComponent },
-  { path: 'login', component: LoginPageComponent}
+  { path: 'login', component: LoginPageComponent},
   { path: 'edit', component: EditDocumentsComponent }
 ];
 
