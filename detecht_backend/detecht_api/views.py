@@ -22,6 +22,8 @@ from detecht_api.detecht_db_handling.document_interaction import (
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+
+from detecht_api.detecht_nlp.weighting_module import WeightingModule
 from detecht_api.models import Keywords, UserFavorites, Document
 
 # Import commented since it is not used in file and tests are complaining
@@ -32,8 +34,11 @@ from detecht_api.models import Keywords, UserFavorites, Document
 
 # Our packages
 from detecht_api.detecht_es import search, insert_file
-from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-from detecht_api.detecht_db_handling.analytics import get_analytics_document, is_favorite
+from detecht_api.detecht_db_handling.staged_pdf import (
+    insert_all_staged_pdf_into_es,
+    add_staged_pdf)
+from detecht_api.detecht_db_handling.analytics import (get_analytics_document,
+                                                       is_favorite)
 from detecht_api.detecht_nlp.spell_check import spell_check
 
 # from detecht_api.detecht_nlp.weighting_module import WeightingModule
@@ -87,19 +92,26 @@ class Search(APIView):
             query = input["query"]
             words = query.split()
             for word in words:
-                response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
+                response['spellcheck'].append(
+                    {'word': word,
+                     'spellcheck': sorted(spell_check.candidates(word))
+                     })
 
             formated = search.formated_search(query, 1000)
             print(formated)
             print(type(formated))
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query)
-                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
-                # TODO add loop to alter result multiple times and using newWeighted to make the result better
+                weighted = WeightingModule.WeightingModule\
+                    .calculate_score_after_weight(formated, query)
+                askquestion, newWeighted = WeightingModule.WeightingModule\
+                    .ask_a_question(weighted)
+                # TODO add loop to alter result multiple times and using
+                #  newWeighted to make the result better
                 response['askQuestion'] = {'keyword': askquestion, 'type': 2}
 
                 for pdf_name in weighted:
-                    response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
+                    response['content'].append(search.get_pdf(
+                        pdf_name)['j_class'].frontend_result(query))
                     response['totalResult'] += 1
             print(response)
             response['success'] = True
@@ -291,7 +303,8 @@ class RelatedDocuments(APIView):
                 jsonPdf = {
                     'pdfName': pdf[0],
                     'value': pdf[1],
-                    'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title,
+                    'title': Document.objects.get(
+                        file="detecht_api/static/pdf/" + pdf[0]).title,
                     'liked': is_favorite(data_in['userId'], pdf[0])
                 }
                 response['content'].append(jsonPdf)
@@ -379,7 +392,8 @@ class GetDoc(APIView):
             response['keywords'] = frontendresp['keywords']
             response['success'] = True
             for imp_obj in res['j_class'].get_abstract(query):
-                response['abstracts'].append({'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
+                response['abstracts'].append({'sentence': str(imp_obj.sent),
+                                              'score': imp_obj.score,
+                                              'page': imp_obj.page})
             return JsonResponse(response)  # test
         return JsonResponse(response)
-

@@ -10,6 +10,7 @@ By Severn
 
 very_important()
 
+
 def upload():
     t1 = time.clock()
     content = open("detecht_api/detecht_nlp/autocompleteWords/big.txt").read()
