@@ -114,6 +114,10 @@ export class  NetworkIsFavoriteResponse {
   favorite: boolean;
 }
 
+export class NetworkSuccessResponse {
+  success: boolean;
+}
+
 /*
   REQUESTS TO SERVER
  */
