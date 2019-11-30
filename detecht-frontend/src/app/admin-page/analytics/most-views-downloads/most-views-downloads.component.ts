@@ -11,12 +11,14 @@ export class MostViewsDownloadsComponent implements OnInit {
   downloadscolor: string;
   viewactive: boolean;
   @Input() pdfs: Pdf[];
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.viewscolor = '#000000';
     this.downloadscolor = '#a0a0a0';
     this.viewactive = true;
+    this.sortFavoritesArray();
   }
 
   changetoview() {

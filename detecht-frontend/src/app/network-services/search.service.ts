@@ -42,11 +42,11 @@ export class SearchService {
     }).pipe(catchError(this.networkService.handleError));
   }
 
-  search(query: string, askQuestions: AskQuestion[] = []): void {
+  search(query: string, userId = -1, askQuestions: AskQuestion[] = []): void {
     this.currentSearchSource.next(query);
 
     this.http.post< NetworkSearchResponse >(environment.apiUrl + 'search/', {
-      query, askQuestions}, {
+      query, askQuestions, userId}, {
       withCredentials: true,
         headers: new HttpHeaders({
         'Content-Type': 'application/json'
