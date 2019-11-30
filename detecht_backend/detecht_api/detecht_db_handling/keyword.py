@@ -3,8 +3,15 @@ from rest_framework.exceptions import ValidationError
 from detecht_api.detecht_db_handling.document_interaction import *
 from detecht_api.detecht_nlp.word_similarity import word_similarity
 from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
-    Pdf_Similarities, User_Keyword
+    Pdf_Similarities, User_Keyword, TotalKeywords
 from datetime import date
+
+def addTotalKeywords(word):
+    newword, created = TotalKeywords.objects.get_or_create(word=word)
+    if created:
+        newword.save()
+    else:
+        TotalKeywords.objects.update(frequency=F('frequency') + 1)
 
 
 # add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned

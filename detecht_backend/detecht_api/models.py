@@ -6,6 +6,9 @@ from django.db.models import F
 """
 Oskar H
 """
+class TotalKeywords(models.Model):
+    word = models.TextField(max_length=50)
+    frequency = models.BigIntegerField(default=1)
 
 
 class Document(models.Model):
