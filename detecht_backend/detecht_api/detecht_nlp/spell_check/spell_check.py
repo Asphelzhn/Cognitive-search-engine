@@ -24,10 +24,10 @@ def correction(word):
 
 def candidates(word):
     """Generate possible spelling corrections for word."""
-    all_possible_spelling_corrections = (known([word]) or
-                                         known(edits1(word)) or
-                                         known(edits2(word)) or
-                                         [word])
+    all_possible_spelling_corrections = (known([word])
+                                         or known(edits1(word))
+                                         or known(edits2(word))
+                                         or [word])
     return all_possible_spelling_corrections
 
 

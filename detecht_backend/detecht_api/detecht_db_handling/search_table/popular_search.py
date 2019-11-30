@@ -79,6 +79,6 @@ if __name__ == '__main__':
     # get ten days earlier
     start_date = end_date - timedelta(days=10)
     popular_in_time = get_period_popular_search(start_date, end_date)
-    print("#"*30)
+    print("#" * 30)
     print("poplular search in a time:")
     print(popular_in_time)
