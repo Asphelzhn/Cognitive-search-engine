@@ -101,7 +101,7 @@ class Search(APIView):
             if input['userId'] and input['userId'] > 0:
                 user_id = input['userId']
 
-            formated = search.formated_search(query, 1000)
+            formated = search.formatted_search(query, 1000)
             if len(formated) > 0:
                 weighted = WeightingModule.WeightingModule\
                     .calculate_score_after_weight(formated, query, user_id)
