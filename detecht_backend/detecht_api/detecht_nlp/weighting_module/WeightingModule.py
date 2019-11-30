@@ -45,7 +45,7 @@ class WeightingModule:
                 if doc.keyword in user_keywords:
                     score_after_weight += 1
 
-            similarity_list.append(score_after_weight)
+            similarity_list.append(score_after_weight)  # Detta borde kasta ett error 
 
         return similarity_list
 
