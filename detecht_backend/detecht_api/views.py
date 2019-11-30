@@ -69,7 +69,7 @@ class Search(APIView):
             'totalResult': 0,
             'content': [],
             'spellcheck': [],
-            'askQuestion': []
+            'askQuestions': []
         }
         input = request.data
         if input != {}:
@@ -78,14 +78,30 @@ class Search(APIView):
             for word in words:
                 response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
 
+            user_id = -1
+            if input['userId'] and input['userId'] > 0:
+                user_id = input['userId']
+
             formated = search.formated_search(query, 1000)
-            print(formated)
-            print(type(formated))
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query)
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
                 askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
-                # TODO add loop to alter result multiple times and using newWeighted to make the result better
-                response['askQuestion'] = {'keyword': askquestion, 'type': 2}
+
+                ignore = []
+                for question in input['askQuestions']:
+                    if askquestion == question['keyword'] and question['type'] == 0:
+                        ignore.append(question['keyword'])
+                        input['askQuestions'].append({'keyword': askquestion, 'type': 0})
+                    elif askquestion == question['keyword'] and question['type'] == 1:
+                        ignore.append(question['keyword'])
+                        input['askQuestions'].append({'keyword': askquestion, 'type': 1})
+                        weighted = newWeighted
+                    else:
+                        break
+                    askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted, ignore)
+
+                if len(askquestion) > 0:
+                    response['askQuestions'].append({'keyword': askquestion, 'type': 2})
 
                 for pdf_name in weighted:
                     response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))

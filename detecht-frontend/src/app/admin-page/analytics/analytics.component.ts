@@ -50,6 +50,7 @@ export class AnalyticsComponent implements OnInit {
           console.log(pdf.id, pdf.file.split('/static/pdf/')[1]);
           this.pdfs.push( new Pdf(pdf.id, pdf.file.split('/static/pdf/')[1], pdf.title, pdf.downloads, pdf.favorites));
         }
+        this.pdfs.sort((a, b) => b.favorites - a.favorites);
         console.log(this.pdfs);
         this.results = this.pdfs;
       },

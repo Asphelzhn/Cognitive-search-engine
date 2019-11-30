@@ -3,7 +3,15 @@
     <div class="document-title-div"[innerHTML]="title"></div>
     <div class="button-div">
       <input type="submit" class="preview document-button" value = "" (click)="changeDocument(inputfile)"/>
-      <input type="submit" class="download document-button" value = "" (click)="downloadInteraction()"/>
+      <input type="submit" value = "" class="download document-button"
+             fileSaver
+             [method]="'GET'"
+             [fileName]="inputfile"
+             [url]="staticUrl + 'pdf/' + inputfile"
+             [header]="{token: 'demo'}"
+             [query]="{pi: 1, name: 'demo'}" (click)="downloadInteraction()"
+      />
+
       <input type="submit" class="liked document-button" value = "" (click)="like(false)"/>
     </div>
   </div>

@@ -11,11 +11,10 @@ Keyword similarity (compilation of the weight of matched keywords)
 Popularity (#downloads & #favorites)
 '''
 import spacy
-
 from detecht_api import models
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
 
 class WeightingModule:
@@ -29,7 +28,7 @@ class WeightingModule:
         pass
 
     # calculate the similarity between search_query and each document keyword
-    def calculate_keyword_similarity(elastic_search_results, search_query):
+    def calculate_keyword_similarity(elastic_search_results, search_query, user_keywords = []):
         similarity_list = []
         search_query = nlp(search_query)
         search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
@@ -42,11 +41,10 @@ class WeightingModule:
                 keyword = nlp(doc.keyword)
                 keyword_weight = doc.weight
 
-                # print(keyword)
-                # print(keyword)
-
                 similarity = (keyword.similarity(search_query_no_stop)) * keyword_weight
                 score_after_weight += similarity
+                if doc.keyword in user_keywords:
+                    score_after_weight += 1
 
             similarity_list.append(score_after_weight)
 
@@ -79,7 +77,13 @@ class WeightingModule:
 
         return (temp - min) / minus_result
 
-    def calculate_score_after_weight(elastic_search_results, search_query):
+    def calculate_score_after_weight(elastic_search_results, search_query, user_id = -1):
+        user_keywords = []
+        if user_id != -1:
+            user_keywords_result = models.User_Keyword.objects.filter(userID=user_id)
+            for user_keyword in user_keywords_result:
+                user_keywords.append(user_keyword.keyword)
+
         score_dict = {}
         length = len(elastic_search_results)
 
@@ -95,7 +99,7 @@ class WeightingModule:
             length -= 1
 
         # add keyword similarity to weight
-        similarity_score_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query)
+        similarity_score_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query, user_keywords)
         max_score = max(similarity_score_list)
         min_score = min(similarity_score_list)
         normalize_similarity_score_list = []
@@ -127,7 +131,7 @@ class WeightingModule:
         return result_list
 
     # This function is used for ask me a question, return the most frequent keyword and document list that include it
-    def ask_a_question(ranked_by_weighting_module_results):
+    def ask_a_question(ranked_by_weighting_module_results, ignore = []):
         keywords_dict = {}
         for pdfname in ranked_by_weighting_module_results:
             # get document keywords in database
@@ -137,10 +141,11 @@ class WeightingModule:
             for name in name_weight_set:
                 keyword = name.keyword
                 # print(keyword)
-                if keyword in keywords_dict.keys():
-                    keywords_dict[keyword] += 1
-                else:
-                    keywords_dict[keyword] = 1
+                if keyword not in ignore:
+                    if keyword in keywords_dict.keys():
+                        keywords_dict[keyword] += 1
+                    else:
+                        keywords_dict[keyword] = 1
         # print("dict is")
         # print(keywords_dict)
         sorted_keywords_list = sorted(keywords_dict.items(),key=lambda t:t[1], reverse=True)

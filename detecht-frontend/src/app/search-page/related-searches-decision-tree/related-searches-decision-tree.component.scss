@@ -9,7 +9,6 @@
   .bubble {
     background: #C7D4DB 0% 0% no-repeat padding-box;
     border-radius: 100px;
-    opacity: 1 !important;
     text-align: center;
     font: Medium 25px/14px Poppins;
     letter-spacing: 1px;
@@ -17,14 +16,54 @@
 
     margin: 20px auto;
     padding: 15px;
+
+    text-transform: uppercase;
   }
 
   .big {
     width: 80%;
+    font-size: 23px;
   }
 
   .small {
     width: 50%;
+    font-size: 17px;
+  }
+
+  #filter:hover {
+    cursor: pointer;
+    background-color: #919DA4;
+  }
+
+  .answer {
+    .button {
+      background: rgba(102, 102, 102, 0.29) 0 0 no-repeat padding-box;
+      border-radius: 17px;
+      font-size: 13px;
+      display: inline-block;
+      padding: 7px 30px;
+      color: black;
+
+    }
+    .button:hover {
+      background-color: #707070;
+    }
+
+    .yes {
+      margin-right: 60px;
+    }
+
+    .no {
+
+    }
+
+  }
+
+  #askQuestion {
+    background-image: url("/static/assets/user-page/dotted-line.png");
+    background-repeat: no-repeat;
+    background-position: center 45px;
+    background-size: 5px 40px;
   }
 
 }
