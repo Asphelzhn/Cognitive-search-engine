@@ -12,7 +12,8 @@ from collections import Counter
 import sys
 
 
-def words(text): return re.findall(r'\w+', text.lower())
+def words(text):
+    return re.findall(r'\w+', text.lower())
 
 
 class autocompleteWord():
@@ -50,10 +51,10 @@ if __name__ == '__main__':
     t7 = time.clock()
     print(autocomp)
     print()
-    print("Hash time: " + str(t2-t1))
-    print("Dictionary time: " + str(t3-t2))
-    print("Trie create first node time: " + str(t4-t3))
-    print("Trie completion time: " + str(t5-t4))
-    print("Autocomplete time: " + str(t7-t6))
-    print("Size of hash: "+str(sys.getsizeof(word_counter)))
-    print("Size of trie: "+str(sys.getsizeof(theTrie)))
+    print("Hash time: " + str(t2 - t1))
+    print("Dictionary time: " + str(t3 - t2))
+    print("Trie create first node time: " + str(t4 - t3))
+    print("Trie completion time: " + str(t5 - t4))
+    print("Autocomplete time: " + str(t7 - t6))
+    print("Size of hash: " + str(sys.getsizeof(word_counter)))
+    print("Size of trie: " + str(sys.getsizeof(theTrie)))

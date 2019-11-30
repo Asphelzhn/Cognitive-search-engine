@@ -32,15 +32,15 @@ class Trie:
 
     def insert_word_node(self, node, value_pair):
         temp_word_list = [i[0] for i in node.word_list]
-        if (len(node.word_list) < self.sizeOfSuggestions
-                and value_pair[0] not in temp_word_list):
+        if (len(node.word_list) < self.sizeOfSuggestions and
+                value_pair[0] not in temp_word_list):
             node.word_list.append(value_pair)
         elif value_pair[0] in temp_word_list:
             i = node.word_list.index(value_pair[0])
             del node.word_list[i]
             node.word_list.append(value_pair)
-        elif value_pair[1] > node.word_list[self.sizeOfSuggestions-1][1]:
-            del node.word_list[self.sizeOfSuggestions-1]
+        elif value_pair[1] > node.word_list[self.sizeOfSuggestions - 1][1]:
+            del node.word_list[self.sizeOfSuggestions - 1]
             node.word_list.append(value_pair)
 
         # Sorts all word tuples with largest first
