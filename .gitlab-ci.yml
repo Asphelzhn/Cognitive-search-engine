@@ -12,7 +12,7 @@ stages:
 
 Complexity:
   before_script:
- - pip install radon
+  - pip install radon
   - radon --version
   - shopt -s globstar
   stage: Metrics
