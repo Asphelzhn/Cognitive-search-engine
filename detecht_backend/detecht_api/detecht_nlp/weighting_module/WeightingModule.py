@@ -45,7 +45,8 @@ class WeightingModule:
                 if doc.keyword in user_keywords:
                     score_after_weight += 1
 
-            similarity_list.append(score_after_weight)  # Detta borde kasta ett error 
+            similarity_list.append(
+                score_after_weight)  # Detta borde kasta ett error
 
         return similarity_list
 
@@ -114,8 +115,8 @@ class WeightingModule:
         index = 0
         for result in elastic_search_results:
             score_after_keyword_weight = (
-                weight_keyword_similarity
-                * normalize_similarity_score_list[index])
+                    weight_keyword_similarity
+                    * normalize_similarity_score_list[index])
 
             score_dict[result] += score_after_keyword_weight
             index += 1
@@ -141,9 +142,9 @@ class WeightingModule:
             result_list.append(element[0])
         return result_list
 
-    # This function is used for ask me a question,
-    # return the most frequent keyword and document list that include it
-    def ask_a_question(ranked_by_weighting_module_results):
+    # This function is used for ask me a question, return the most
+    # frequent keyword and document list that include it
+    def ask_a_question(ranked_by_weighting_module_results, ignore=[]):
         keywords_dict = {}
         for pdfname in ranked_by_weighting_module_results:
             # get document keywords in database
@@ -154,15 +155,19 @@ class WeightingModule:
             for name in name_weight_set:
                 keyword = name.keyword
                 # print(keyword)
-                if keyword in keywords_dict.keys():
-                    keywords_dict[keyword] += 1
-                else:
-                    keywords_dict[keyword] = 1
+                if keyword not in ignore:
+                    if keyword in keywords_dict.keys():
+                        keywords_dict[keyword] += 1
+                    else:
+                        keywords_dict[keyword] = 1
+
+        for key in keywords_dict:
+            keywords_dict[key] = abs(len(keywords_dict) - keywords_dict[key])
+
         # print("dict is")
         # print(keywords_dict)
         sorted_keywords_list = sorted(keywords_dict.items(),
-                                      key=lambda t: t[1],
-                                      reverse=True)
+                                      key=lambda t: t[1], reverse=False)
         occur_most_keyword = sorted_keywords_list[0][0]
         # print(sorted_keywords_list)
         # print(occur_most_keyword)
