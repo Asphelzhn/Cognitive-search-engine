@@ -5,49 +5,49 @@ before_script:
 
 
 stages:
-#  - Metrics
-#  - Code grade_allowed to fail
+  - Metrics
+  - Code grade_allowed to fail
   - Static Analysis
   
 
-#Complexity:
-#  before_script:
-# - pip install radon
-#  - radon --version
-#  - shopt -s globstar
-#  stage: Metrics
-#  script:
-#  - radon cc **/*.py -a
+Complexity:
+  before_script:
+  - pip install radon
+  - radon --version
+  - shopt -s globstar
+  stage: Metrics
+  script:
+  - radon cc **/*.py -a
   
-#Maintainability:
-#  before_script:
-#  - pip install radon
-#  - radon --version
-#  - shopt -s globstar
+Maintainability:
+  before_script:
+  - pip install radon
+  - radon --version
+  - shopt -s globstar
   
-#  stage: Metrics
-#  script:
-#  - radon mi **/*.py
-#  
-#Raw metrics:
-#  before_script:
-#  - pip install radon
-#  - radon --version
-#  - shopt -s globstar
-#  stage: Metrics
-#  script:
-#  - radon raw **/*.py
+  stage: Metrics
+  script:
+  - radon mi **/*.py
+  
+Raw metrics:
+  before_script:
+  - pip install radon
+  - radon --version
+  - shopt -s globstar
+  stage: Metrics
+  script:
+  - radon raw **/*.py
   
 
 
-#Code grade:
-#  before_script:
-#  - pip install pylint
-#  - pylint --version
-#  stage: Code grade_allowed to fail
-#  script:
-#  - pylint **/*.py
-#  allow_failure: true
+Code grade:
+  before_script:
+  - pip install pylint
+  - pylint --version
+  stage: Code grade_allowed to fail
+  script:
+  - pylint */*/*.py
+  allow_failure: true
 
 Flake8 with line lenght:
   before_script:
@@ -57,7 +57,6 @@ Flake8 with line lenght:
   script:
   - flake8 --max-line-length=79 --benchmark --ignore=W605,C901,W503
   
-  allow_failure: true
   
 Flake8 with maximum complexity:
   before_script:
