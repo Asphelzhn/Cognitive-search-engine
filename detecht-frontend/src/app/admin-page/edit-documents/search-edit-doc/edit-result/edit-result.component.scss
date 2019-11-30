@@ -126,4 +126,27 @@
 
   }
 
+  .saveButton {
+    float: right;
+    width: 80px;
+    height: 30px;
+    background-color: #B0D5D8;
+    border-radius: 3px;
+    border-color: #B0D5D8;
+    margin-bottom: 1%;
+    margin-right: 2%;
+    margin-top: 1%;
+    color: white;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    vertical-align: center;
+
+    .button-text {
+      width: auto;
+      height: 30px;
+      margin: 0px;
+      font-family: Poppins, sans-serif;
+      font-weight: bold;
+    }
+  }
 }
