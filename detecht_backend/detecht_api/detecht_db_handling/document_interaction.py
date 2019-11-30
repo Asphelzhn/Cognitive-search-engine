@@ -33,5 +33,8 @@ def get_filename(title):
     return name
 
 def change_pdf_name(oldName, newName):
-    Document.objects.get(title=oldName).title = newName
+    a = Document.objects.get(title=oldName).title
+    if a != {}:
+        a = newName
+        a.save()
     return newName

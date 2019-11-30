@@ -370,4 +370,7 @@ class changePdfName(APIView):
         input = request.data
         change_pdf_name(input['oldName'], input['newName']);
         print("done")
-        return JsonResponse()
+        response = {
+            'success': True
+        }
+        return JsonResponse(response)
