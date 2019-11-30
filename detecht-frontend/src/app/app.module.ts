@@ -44,6 +44,7 @@ import { TrendingDocumentComponent } from './start-page/trending-documents/trend
 import { SavedDocumentComponent } from './saved-documents-page/saved-document/saved-document.component';
 import { SearchEditDocComponent} from './admin-page/edit-documents/search-edit-doc/search-edit-doc.component';
 import {EditComponentComponent} from './admin-page/edit-documents/edit-component/edit-component.component';
+import { EditResultComponent } from './admin-page/edit-documents/search-edit-doc/edit-result/edit-result.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {EditComponentComponent} from './admin-page/edit-documents/edit-component
     MostDocumentComponent,
     SavedDocumentComponent,
     SearchEditDocComponent,
-    EditComponentComponent
+    EditComponentComponent,
+    EditResultComponent
   ],
   imports: [
     BrowserModule,

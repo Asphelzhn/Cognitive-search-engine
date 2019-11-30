@@ -24,32 +24,8 @@
 
   <hr class = "hr">
   <div class="result_holder">
-
-    <div class="result" *ngFor='let result of results' >
-      <div class="line" ></div>
-
-<!--      <label><input type="checkbox" class="check_box"></label>-->
-<!--      <input type="checkbox" name="vehicle" value="Bike" class="check_box">-->
-
-
-
-<!--      should when checked make the pdf appear in edit-component, unchecking should make it dissapear from edit-comp-->
-      <label class="check_container" >
-        <input type="checkbox">
-        <span class="checkmark"></span>
-      </label>
-
-
-
-      <div class = "pdf_title" >
-        <p>{{result.name}}</p>
-      </div>
-      <div class="pdf_text">
-        <p>pdf text</p>
-      </div>
-    </div>
+    <app-edit-result *ngFor='let result of results' [title]="result.title" [abstract]="result.name"></app-edit-result>
   </div>
-
 </div>
 
 <!--
