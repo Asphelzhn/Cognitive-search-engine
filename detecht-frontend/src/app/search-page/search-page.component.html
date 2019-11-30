@@ -1,6 +1,9 @@
 <div class="full-page-container">
   <div class="search-bar">
     <app-search-bar [changePage]="false"></app-search-bar>
+    <a class="saved-documents">
+      <img routerLink="/saved" src="static/assets/user-page/saved-button.png">
+    </a>
   </div>
   <div class="container">
     <div class="search-result-container">
@@ -11,5 +14,5 @@
     </div>
   </div>
 </div>
-<app-search-hit-preview *ngIf="previewResult" [result]="previewResult"></app-search-hit-preview>
+<app-search-hit-preview *ngIf="previewResult" [result]="previewResult" [abstracts]="abstracts"></app-search-hit-preview>
 

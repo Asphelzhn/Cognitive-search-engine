@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+.container{
+  background-image: url("/static/assets/backgrounds/home-background.png");/* The image used */
+  background-color: #ffffff; /* Used if the image is unavailable */
+  width: auto;
+  min-height: 100vh;
+  height: auto; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;/* Resize the background image to cover the entire container */
+  padding-bottom: 100px;
+}
+
+.saved-documents {
+  margin-top: 160px;
+  margin-left: 5%;
+}
+
+.header {
+  color: #383838;
+  padding-left: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+}

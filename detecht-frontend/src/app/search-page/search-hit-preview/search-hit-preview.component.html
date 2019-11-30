@@ -5,78 +5,63 @@
     <h1>{{result.title}}</h1>
     <div class="button-group">
 
-      <a href="#">
-        <img src="assets/user-page/save-button.png">
-      </a>
-      <a href="#">
-        <img src="assets/user-page/download-button.png">
-      </a>
-      <a href="#">
-        <img (click)="close()" src="assets/user-page/download-button.png">
-      </a>
+      <span (click)="liked = !liked; like(result.name, true)" *ngIf="!liked">
+        <img src="/static/assets/user-page/save-button.png">
+      </span>
+      <span (click)="liked = !liked; like(result.name, false)" *ngIf="liked">
+        <img src="/static/assets/user-page/red-saved-button.png">
+      </span>
+        <span
+          fileSaver
+          [method]="'GET'"
+          [fileName]="result.title"
+          [url]="staticUrl + 'pdf/' + result.name"
+          [header]="{token: 'demo'}"
+          [query]="{pi: 1, name: 'demo'}"
+        >
+          <img src="/static/assets/user-page/download-button.png" (click)="downloadInteraction()">
+        </span>
+      <span>
+        <img (click)="close()" src="/static/assets/user-page/x-button.png">
+      </span>
     </div>
   </header>
   <div class="body">
     <div class="qr-code-wrapper">
       <h2>QR-Code</h2>
       <div class="container">
-    <app-qr-code></app-qr-code>
+        <app-qr-code [url]="pdfUrl + result.name"></app-qr-code>
       </div>
     </div>
     <div class="abstract-wrapper">
       <h2>Abstracts</h2>
-        <div>
-        <div *ngFor='let sentence of sentences' class="abstract">
-          <p>"{{sentence}}"</p>
+      <div>
+        <div *ngFor='let abstract of abstracts' class="abstract">
+          <p>"{{abstract.sentence}}"</p>
           <div class="button-wrapper">
-            <img (click)="displayPreview(sentence)" src="assets/user-page/take-me-there-button.png">
-          </div>
+            <img (click)="displayPreview(abstract)" src="/static/assets/user-page/take-me-there-button.png">
           </div>
         </div>
+      </div>
     </div>
     <div class="dummy"></div>
     <div class="related-documents-wrapper">
       <h2>Related Documents</h2>
-      <div class="related-document">
-        <h3>{{result.title}}</h3>
+      <div class="related-document" *ngFor="let related of relatedSearches">
+        <h3>{{related.title}}</h3>
         <div class="icons">
-          <a href="#">
-            <img src="assets/user-page/information-button.png">
-          </a>
-          <a href="#">
-            <img src="assets/user-page/download-button.png">
-          </a>
-          <a href="#">
-            <img (click)="close()" src="assets/user-page/save-button.png">
-          </a>
-        </div>
-      </div>
-      <div class="related-document">
-        <h3>{{result.title}}</h3>
-        <div class="icons">
-          <a href="#">
-            <img src="assets/user-page/information-button.png">
-          </a>
-          <a href="#">
-            <img src="assets/user-page/download-button.png">
-          </a>
-          <a href="#">
-            <img (click)="close()" src="assets/user-page/save-button.png">
-          </a>
-        </div>
-      </div>
-      <div class="related-document">
-        <h3>{{result.title}}</h3>
-        <div class="icons">
-          <a href="#">
-            <img src="assets/user-page/information-button.png">
-          </a>
-          <a href="#">
-            <img src="assets/user-page/download-button.png">
-          </a>
-          <a href="#">
-            <img (click)="close()" src="assets/user-page/save-button.png">
-          </a>
+          <span (click)="related.liked = !related.liked; like(related.pdfName, true)" *ngIf="!related.liked">
+            <img src="/static/assets/user-page/save-button.png">
+          </span>
+          <span href="#" (click)="related.liked = !related.liked; like(related.pdfName, false)" *ngIf="related.liked">
+            <img src="/static/assets/user-page/red-saved-button.png">
+          </span>
+          <span href="#">
+            <img src="/static/assets/user-page/download-button.png">
+          </span>
+          <span href="#">
+            <img (click)="changeDocument(related.pdfName)" src="/static/assets/user-page/information-button.png">
+          </span>
         </div>
       </div>
 
@@ -84,5 +69,5 @@
     </div>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"
-                             [result]="result" [sentence]="rightSentence"></app-search-result-preview>
+                             [result]="result" [sentence]="rightSentence" [page]="rightPage"></app-search-result-preview>
 </div>

@@ -20,6 +20,7 @@ export class SearchResultPreviewComponent implements OnInit {
   @Input() staticUrl: string;
   @Input() result: SearchResponse;
   @Input() sentence: string;
+  @Input() page: number;
   @ViewChild(PdfViewerComponent, {static: false}) private pdfViewer;
 
   closeMessage() {

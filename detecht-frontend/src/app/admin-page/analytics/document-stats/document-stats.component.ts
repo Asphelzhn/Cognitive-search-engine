@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Pipe, PipeTransform} from '@angular/core';
-import {Pdf} from '../../../data-types';
+import {Pdf, SearchResponse} from '../../../data-types';
+import {SearchService} from '../../../network-services/search.service';
 
 @Component({
   selector: 'app-document-stats',
@@ -8,21 +9,17 @@ import {Pdf} from '../../../data-types';
 })
 export class DocumentStatsComponent implements OnInit {
 
-  @Input() pdfs: Pdf[];
-  constructor() { }
+  pdfs: SearchResponse[];
+  searchString: string;
+  constructor(private searchService: SearchService) { }
 
-  sortFavoritesArray() {
-    console.log('in downloads');
-    console.log(this.pdfs);
-    this.pdfs.sort((a, b) => b.favorites - a.favorites);
+  ngOnInit() {
+    this.searchString = '';
+    this.searchService.searchResponse.subscribe(searchResult => this.pdfs = searchResult);
   }
 
-  sortDownloadsArray() {
-    console.log('in downloads');
-    console.log(this.pdfs);
-    this.pdfs.sort((a, b) => b.downloads - a.downloads);
+  search() {
+    this.searchService.search(this.searchString);
   }
-
-  ngOnInit() {}
 
 }

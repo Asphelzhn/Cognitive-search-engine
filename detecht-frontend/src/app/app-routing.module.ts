@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'saved', component: SavedDocumentsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'admin', component: AdminPageComponent },
-  { path: 'upload', component: UploadFileComponent }
+  { path: 'upload', component: UploadFileComponent },
+  { path: 'login', component: LoginPageComponent}
 ];
 
 @NgModule({

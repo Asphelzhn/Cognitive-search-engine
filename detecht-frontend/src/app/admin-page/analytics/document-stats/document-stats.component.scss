@@ -1,4 +1,363 @@
-.individual-content {
+.container {
+  margin-top: 40px;
+  width: 96%;
+  min-height: 450px;
+  /* UI Properties */
+  background: #FFFFFF;
+  box-shadow: 0px 0px 5px #00000017;
+  opacity: 1;
+  border-radius: 2px;
+}
+
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  font-weight: lighter;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+  color: #707070;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 28px;
+  /*  text-align: left;
+    font: Light 20px/30px Poppins;
+    letter-spacing: 0.2px;
+    color: #707070;*/
+  opacity: 1;
+  float : left;
+  margin-left: 2%;
+  margin-bottom: 0;
+}
+
+
+.row  {
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  display: flex;
+  border-bottom: #cccccc;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+
+.searchbar {
+
+  float: right;
+  width: 50%;
+  height : auto;
+  margin-top:7px;
+  margin-right :2%;
+}
+
+.button {
+  width: 10px;
+  height : 10px;
+  padding: 0px;
+  float:none;
+  background: blue;
+  color: antiquewhite;
+  display: block;
+  text-align: left;width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 7px;
+
+}
+
+.search_area {
+  width: 30%;
+}
+
+
+///////
+/*
+input[type=checkbox] {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 27px;
+}*/
+
+input[type=checkbox]:after {
+  content: " ";
+
+  background-color: #B0D5D8;
+  display: inline-block;
+  visibility: visible;
+}
+
+input[type=checkbox]:checked:after {
+  // content: "\2714";
+  //background-color: black;
+  // margin-left: 1px;
+  //margin-top: 0.5px;
+  position: center;
+  right: 2px;
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 3px;
+  border: 5px;
+  background-size: 16px;
+  /*background-image: url("../../../../assets/Group 33@2x.png");*/
+
+}
+
+
+/////
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+.search {
+  width: 70%;
+  float: right;
+  display: flex;
+  margin-top: 17px;
+  margin-right: 25px;
+  margin-left: 3px;
+}
+
+.searchTerm {
+  width: 120%;
+  border: 1px solid gray;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  //border-radius: 5px 0 0 5px;
+  //outline: none;
+  color: #707070;
+}
+
+.searchTerm:focus{
+  color: #707070;
+}
+
+.searchButton {
+  width: 50px;
+  height: 32px;
+  border: 1px solid #B0D5D8;
+  background: #B0D5D8;
+  text-align: center;
+  color: #fff;
+  //border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.result_holder{
+  margin-top: 2%;
+  width: 97%;
+  height: 70%;
+  margin-left: 3%;
+}
+
+
+result {
+  width: 100%;
+  height: 15%;
+
+
+}
+
+.result input ~ .check_box  {
+  background-color: #383838;
+}
+
+.pdf_title {
+  grid-area: auto;
+  font-size: 14px;
+  width: 40%;
+  height: 15px;
+  margin-left: 2%;
+
+
+}
+
+.pdf_text {
+  grid-area: auto;
+  float : left;
+  font-size: 8px;
+  width: 60%;
+  height: 14px;
+  color: gray;
+  margin-left: 2%;
+}
+
+.pdf_container{
+
+}
+
+.pdf_check_box {
+  background-color: blue;
+  height: 20px;
+  width: 20px;
+}
+
+
+.line {
+  float: left;
+  height: 35px;
+  width:3px;
+  background-color: #3a517f;
+  border-radius: 5px;
+  margin-right: 5px;
+  //margin-left: 2%;
+
+
+}
+
+.res_title {
+  font-size: 5px;
+}
+.res_text {
+  font-size: 3px;
+}
+
+.hr {
+  // border-bottom: 1px #707070 solid;
+  height: 0.5px;
+  width: 100%;
+  background-color: #808080;
+  border-color: white;
+  //margin-top: 23px;
+  //top: 500px;
+
+}
+
+.documents-div {
+  padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+.check_container {
+
+  float: right;
+  margin-right: 29px;
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  background-color: #B0D5D8;
+
+  margin-top: 2%;
+
+  display: block;
+
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  float: right;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  float: right;
+  //top: 0;
+  //left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 3px;
+  margin-right: 29px;
+
+}
+
+/* On mouse-over, add a grey background color */
+.check_container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check_container input:checked ~ .checkmark {
+  background-color: #b0d5d8;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check_container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check_container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+}
+
+
+.search-icon{
+  heigh:100%;
+  width: 100%;
+  //object-fit: none;
+}
+
+
+
+@media screen and (max-width: 612px) {
+  .searchTerm{
+    width: 0;
+    padding: 0;
+    border : 0px;
+  }
+  .trash {
+    float: right;
+    margin-left: 20%;
+
+  }
+
+  .search-icon{
+    margin-right: 1px;
+    float: right;
+  }
+  .search{
+    width: auto;
+    margin-right: 0;
+  }
+
+  .title {
+    font-size: 12px;
+    margin-top: 30px;
+  }
+}
+
+
+/*.individual-content {
   display: flex;
   justify-content: space-between;
   margin: 5px 10px;
@@ -36,3 +395,4 @@
 }
 
 
+*/

@@ -52,6 +52,11 @@ INSTALLED_APPS = [
     # CORS
     'corsheaders',
 ]
+
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'detecht_api.serializers.TokenSerializer'
+}
+
 # Added by Armin to enable token verification
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

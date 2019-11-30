@@ -6,23 +6,26 @@
     <h5 class="card-title" (click)="showPreview = true">{{result.title}}</h5>
     <div class="line"></div>
     <div class="keywords">
-      <span class="keyword" *ngFor="let keyword of result.keywords"
-            [ngStyle]="{'background-color': 'rgb(' + 224 * (1 - keyword.weight) + ',' + 224 * (1 - keyword.weight) + ', 224 )'}">{{keyword.keyword}}
-        , </span>
+      <!--<p class="keyword" *ngFor="let abstract of abstracts">"{{abstract.sentence}}"</p>-->
+      <p class="keyword" *ngIf="abstracts">"{{topAbstract().sentence}}"</p>
     </div>
 
     <div id="button-container">
       <div class="buttons" id="expand-button" (click)="openDialog()"></div>
-      <div id="download-button" class="buttons"
-           fileSaver
-           [method]="'GET'"
-           [fileName]="result.title"
-           [url]="staticUrl + 'pdf/' + result.name"
-           [header]="{token: 'demo'}"
-           [query]="{pi: 1, name: 'demo'}"
+      <span (click)="downloadInteraction()">
+        <div id="download-button" class="buttons"
+             fileSaver
+             [method]="'GET'"
+             [fileName]="result.title"
+             [url]="staticUrl + 'pdf/' + result.name"
+             [header]="{token: 'demo'}"
+             [query]="{pi: 1, name: 'demo'}"
 
-      ></div>
-      <div class="buttons" id="like-button"></div>
+        ></div>
+      </span>
+      <div (click)="liked = !liked; like(result.name, true)" *ngIf="!liked" class="buttons" id="like-button"></div>
+      <div (click)="liked = !liked; like(result.name, false)" *ngIf="liked" class="buttons" id="liked-button"></div>
+
     </div>
   </div>
   <app-search-result-preview [showPreview]=showPreview [staticUrl]="staticUrl"

@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+#container {
+  height: 353px;
+  max-width: 1080px;
+  /* UI Properties */
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  width: 85%;
+
+  .title-row {
+    height: 70px;
+    text-align: center;
+    border-bottom: #B1B1B1;
+    border-bottom-style: solid;
+    margin-bottom: 30px;
+  }
+  .document-title-div {
+    float: left;
+    padding-top: 5px;
+    font-size: 50px;
+    font-family: Verdana, serif;
+    text-align: left;
+    color: #383838;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 240px);
+  }
+
+  .button-div {
+    float: right;
+    width: 240px;
+    margin: 0 auto;
+  }
+
+
+  .document-button {
+    margin: 6px 5px 0px;
+    height: 58px;
+    width: 58px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-color: #C3C3C3;
+    border: none;
+    background-position: center;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .document-button:hover {
+    background-color: #B1B1B1;
+  }
+
+  .preview {
+    background-image: url("/static/assets/user-page/expand-icon.png");
+    background-size: 10px;
+  }
+
+  .download {
+    background-image: url("/static/assets/user-page/download-icon.png");
+    background-size: 20px;
+  }
+
+  .liked {
+    background-image: url("/static/assets/user-page/save-icon.png");
+    background-size: 19px;
+    background-color: #D16969;
+  }
+
+  .liked:hover {
+    background-color: #B85E5E;
+  }
+
+  .sentences-div {
+
+  }
+
+  .sentence-div {
+    float: left;
+    height: 70px;
+    font-size: 30px;
+    font-family: Verdana, serif;
+    font-style: italic;
+    color: #383838;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+}
+
+.hide {
+  display: none;
+}

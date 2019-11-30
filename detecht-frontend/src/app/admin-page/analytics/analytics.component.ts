@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../network-services/admin.service';
 import {Pdf, SearchResponse} from '../../data-types';
-import {SearchService} from '../../network-services/search.service';
+import {GetAnalyticsService} from '../../network-services/get-analytics.service';
+import {NetworkGetAnalyticsResponse} from '../../network-services/network-data-types';
 
 @Component({
   selector: 'app-analytics',
@@ -14,7 +15,11 @@ export class AnalyticsComponent implements OnInit {
   results: Pdf[];
   searchString: string;
 
-  constructor(private adminService: AdminService) {
+  numberDownloads: number;
+  numberFavorites: number;
+  numberDocuments: number;
+
+  constructor(private adminService: AdminService, private getAnalyticsService: GetAnalyticsService) {
   }
 
   search(): void {
@@ -43,10 +48,9 @@ export class AnalyticsComponent implements OnInit {
         data.data = data;
         for (const pdf of data.data) {
           console.log(pdf.id, pdf.file.split('/static/pdf/')[1]);
-          // this.pdfs.push( new Pdf(pdf.id, pdf.file.split('/static/pdf/')[1], pdf.title, pdf.downloads, pdf.favorites));
-          this.pdfs.push(new Pdf(pdf.id, pdf.file.split('/static/pdf/')[1], pdf.title,
-            Math.floor(Math.random() * Math.floor(100)), Math.floor(Math.random() * Math.floor(100))));
+          this.pdfs.push( new Pdf(pdf.id, pdf.file.split('/static/pdf/')[1], pdf.title, pdf.downloads, pdf.favorites));
         }
+        this.pdfs.sort((a, b) => b.favorites - a.favorites);
         console.log(this.pdfs);
         this.results = this.pdfs;
       },
@@ -54,5 +58,17 @@ export class AnalyticsComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this.getAnalyticsService.getAnalytics().subscribe(
+      (data: NetworkGetAnalyticsResponse) => {
+        this.numberDocuments = data.documents;
+        this.numberDownloads = data.downloads;
+        this.numberFavorites = data.favorites;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+
   }
 }

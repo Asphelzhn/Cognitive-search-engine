@@ -93,8 +93,6 @@ class JsonClass:
             keywords_tmp.append(keyword_tmp.get_keyword_dict())
         databaseObjTemp = list()
         for imp_obj in self.databaseObject:
-            print(imp_obj.sent)
-            print(imp_obj.score)
             imp_obj_temp = {
                 'sent': str(imp_obj.sent),
                 'rank': imp_obj.rank,

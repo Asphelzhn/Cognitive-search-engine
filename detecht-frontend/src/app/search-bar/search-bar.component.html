@@ -1,9 +1,43 @@
 <div class="search">
-    <!--<input (input)="search($event.target.value)"/> -->
+  <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
-    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchString"/>
+    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?"
+           [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
+
+    <!--AUTOCOMPLETE-->
+    <div id="autocompleteDropDown" *ngIf="autocomplete.length > 0">
+        <span *ngFor="let sentence of autocomplete"
+              (click)="autoComplete(sentence)">
+          {{sentence}}
+        </span>
+    </div>
+    <div id="autocompleteDownBackground" *ngIf="autocomplete.length > 0" (click)="closeAutocompleteDropDown()"></div>
+    <!--END AUTOCOMPLETE-->
+
+    <!--SPELLCHECK-->
+    <div type="text" name="search" id="spellcheckBox" class="searchTerm" placeholder="What are you looking for?"
+         *ngIf="showSpellcheck">
+      <span id="spellcheckBoxForeGround">
+        <span *ngFor="let spellcheckword of spellcheck">
+          <span class="{{spellcheckClass(spellcheckword)}}" (click)="pressedSpellcheck(spellcheckword)">{{spellcheckword.word}}</span>
+          <span (click)="pressedSpellcheck(undefined)" style="color: rgba(0,0,0,0);">a</span>
+        </span>
+      </span>
+      <span id="spellcheckBoxBackGround" (click)="pressedSpellcheck(undefined)"></span>
+      <!--<span (click)="pressedSpellcheck(undefined)" style="color: rgba(0,0,0,0);">-->
+      <!--abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwx</span>-->
+      <div id="spellcheckDropDown" *ngIf="showSpellcheckDropDown">
+        <span *ngFor="let word of spellcheckDropDown.spellcheck"
+              (click)="searchForSpellcheck(spellcheckDropDown.word, word)">
+          {{word}}
+        </span>
+      </div>
+      <div id="spellcheckDropDownBackground" *ngIf="showSpellcheckDropDown" (click)="closeSpellcheckDropDown()"></div>
+    </div>
+    <!--END SPELLCHECK-->
+
     <input type="submit" class="searchButton" value = ""/>
-      <i class="fas fa-search"></i>
+    <i class="fas fa-search"></i>
   </form>
 </div>
 

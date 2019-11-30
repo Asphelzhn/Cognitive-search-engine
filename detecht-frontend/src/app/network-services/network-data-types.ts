@@ -13,7 +13,13 @@ export class NetworkSearchResponse {
     keywords: {keyword: string, weight: number}[];
     // pdfContent: string;
   }[];
-  spellcheck: string;
+  spellcheck: {word: string, spellcheck: string[]}[];
+  askQuestions: AskQuestion[];
+}
+
+export class AskQuestion {
+  keyword: string;
+  type: number;
 }
 
 export class NetworkPdfUploadResponse {
@@ -23,7 +29,28 @@ export class NetworkPdfUploadResponse {
 
 export class NetworkAbstractResponse {
   success: boolean;
-  abstracts: {sentence: string}[];
+  abstracts: {
+    sentence: string;
+    score: number;
+    page: number;
+  }[];
+}
+
+export class GetDocResponse {
+  success: boolean;
+  pdfTitle: string;
+  pdfName: string;
+  keywords: {keyword: string, weight: number}[];
+  abstracts: {
+    sentence: string;
+    score: number;
+    page: number;
+  }[];
+}
+
+export class NetworkAutoCompleteResponse {
+  success: boolean;
+  autocomplete: string[];
 }
 
 export class NetworkGetAllPdfResponse {
@@ -42,9 +69,10 @@ export class NetworkTrendingDocumentsResponse {
   content: [
     {
       pdf_name: string;
-      trend_score: boolean;
+      trend_score: number;
+      title: string;
     }
-  ];
+    ];
 }
 
 export class NetworkRelatedDocumentResponse {
@@ -53,8 +81,26 @@ export class NetworkRelatedDocumentResponse {
     {
       pdfName: string;
       value: number;
+      title: string;
+      liked: boolean;
     }
-  ];
+    ];
+}
+
+export class NetworkGetFavoriteDocumentsResponse {
+  success: boolean;
+  pdfs: [
+    {
+      title: string;
+      pdfName: string;
+      keywords: {keyword: string, weight: number}[];
+      abstracts: {
+        sentence: string;
+        score: number;
+        page: number;
+      }[];
+    }
+    ];
 }
 
 export class NetworkAdminLoginResponse {
@@ -67,6 +113,11 @@ export class NetworkGetAnalyticsResponse {
   documents: number;
   downloads: number;
   favorites: number;
+}
+
+export class  NetworkIsFavoriteResponse {
+  success: boolean;
+  favorite: boolean;
 }
 
 /*
@@ -105,13 +156,28 @@ export class NetworkTrendingDocumentsRequest {
 
 export class NetworkInteractWithDocumentRequest {
   pdfName: string;
-  userId: string;
+  userId: number;
   type: string;
+
+
+  constructor(pdfName: string, userId: number, type: string) {
+    this.pdfName = pdfName;
+    this.userId = userId;
+    this.type = type;
+  }
 }
 
 export class NetworkFavoriteDocumentRequest {
   userId: number;
   pdfName: string;
+  like: boolean;
+
+
+  constructor(userId: number, pdfName: string, like: boolean) {
+    this.userId = userId;
+    this.pdfName = pdfName;
+    this.like = like;
+  }
 }
 
 export class NetworkRelatedDocumentRequest {

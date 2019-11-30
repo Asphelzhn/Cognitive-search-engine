@@ -1,15 +1,24 @@
 .container{
-  background-image: url("../../assets/backgrounds/home-background.png");/* The image used */
+  background-image: url("/static/assets/backgrounds/home-background.png");/* The image used */
   background-color: #ffffff; /* Used if the image is unavailable */
   width: auto;
-  height: 1080px; /* You must set a specified height */
+  min-height: 100vh;
+  height: auto; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;/* Resize the background image to cover the entire container */
 }
 
 .start-page-container {
-  padding-top: 350px;
+  padding-top: 300px;
+}
+
+.trending-documents-div {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
 }
 
 .logo-img {

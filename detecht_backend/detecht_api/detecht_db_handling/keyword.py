@@ -15,6 +15,9 @@ def addTotalKeywords(word):
 
 
 # add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned
+
+
+
 def addKeyword(keyword):
     keyword, created = Keywords.objects.get_or_create(word=keyword)
 
@@ -32,9 +35,11 @@ def addKeyword(keyword):
 
 # add similarity for keyword.
 def KeywordSimilarity(keyword1, keyword2, keywordId2):
-    newDistance = Keyword_distance(id_1=keyword1.id, id_2=keywordId2,
-                                   similarity=word_similarity(keyword1.word, keyword2))
-    newDistance.save()
+    similarity = word_similarity(keyword1.word, keyword2)
+    if similarity is not None:
+        newDistance = Keyword_distance(id_1=keyword1.id, id_2=keywordId2,
+                                   similarity=similarity)
+        newDistance.save()
     return
 
 
@@ -186,8 +191,10 @@ def add_pdf_similarities(pdf1):
     #print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
-        a = item[0].get("pdf_name")
-        b = item[1].get("similarity")
+        a = item[0]
+        b = item[1]
+        # a = item[0].get("pdf_name")
+        # b = item[1].get("similarity")
        # print(pdf1)
         new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
         new.save()
