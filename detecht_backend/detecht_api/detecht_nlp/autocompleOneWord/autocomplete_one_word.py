@@ -67,7 +67,7 @@ class Trie:
 
         for a, n in node.children.items():
             t = self.suggestions(n, word + a)
-            temp = temp+t
+            temp = temp + t
 
         return temp
 
