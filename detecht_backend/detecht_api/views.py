@@ -368,6 +368,6 @@ class GetDoc(APIView):
 class changePdfName(APIView):
     def post(self, request):
         input = request.data
-        # change_pdf_name(input['oldName'], input['newName']);
+        change_pdf_name(input['oldName'], input['newName']);
         print("done")
-        return
+        return JsonResponse()

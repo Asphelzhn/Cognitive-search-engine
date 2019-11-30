@@ -20,6 +20,7 @@ export class EditComponentComponent implements OnInit {
   }
 
   changeName() {
+    this.data = new NetworkChangeNameRequest();
     if (this.changeToName !== '') {
       this.data.newName = this.changeToName;
       this.data.oldName = this.pdfName;
