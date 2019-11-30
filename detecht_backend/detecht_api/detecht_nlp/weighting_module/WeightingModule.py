@@ -146,9 +146,13 @@ class WeightingModule:
                         keywords_dict[keyword] += 1
                     else:
                         keywords_dict[keyword] = 1
+
+        for key in keywords_dict:
+            keywords_dict[key] = abs(len(keywords_dict) - keywords_dict[key])
+
         # print("dict is")
         # print(keywords_dict)
-        sorted_keywords_list = sorted(keywords_dict.items(),key=lambda t:t[1], reverse=True)
+        sorted_keywords_list = sorted(keywords_dict.items(),key=lambda t:t[1], reverse=False)
         occur_most_keyword = sorted_keywords_list[0][0]
         # print(sorted_keywords_list)
         # print(occur_most_keyword)

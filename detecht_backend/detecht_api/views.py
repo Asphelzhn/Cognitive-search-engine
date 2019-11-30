@@ -91,10 +91,10 @@ class Search(APIView):
                 for question in input['askQuestions']:
                     if askquestion == question['keyword'] and question['type'] == 0:
                         ignore.append(question['keyword'])
-                        input['askQuestions'].append({'keyword': askquestion, 'type': 0})
+                        response['askQuestions'].append({'keyword': askquestion, 'type': 0})
                     elif askquestion == question['keyword'] and question['type'] == 1:
                         ignore.append(question['keyword'])
-                        input['askQuestions'].append({'keyword': askquestion, 'type': 1})
+                        response['askQuestions'].append({'keyword': askquestion, 'type': 1})
                         weighted = newWeighted
                     else:
                         break
@@ -102,6 +102,8 @@ class Search(APIView):
 
                 if len(askquestion) > 0:
                     response['askQuestions'].append({'keyword': askquestion, 'type': 2})
+
+                print(response['askQuestions'])
 
                 for pdf_name in weighted:
                     response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
