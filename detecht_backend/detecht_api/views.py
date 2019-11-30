@@ -68,22 +68,48 @@ class Search(APIView):
             'success': False,
             'totalResult': 0,
             'content': [],
-            'spellcheck': []
+            'spellcheck': [],
+            'askQuestions': []
         }
         input = request.data
         if input != {}:
             query = input["query"]
-            res = search.search(query, 10)
-            response['success'] = True
             words = query.split()
             for word in words:
                 response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
-            response['totalResult'] = res['hits']
-            content = res['results']
-            # TODO change input to pdf_name
-            # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
-            for c in content:
-                response['content'].append(c.frontend_result(query))
+
+            user_id = -1
+            if input['userId'] and input['userId'] > 0:
+                user_id = input['userId']
+
+            formated = search.formated_search(query, 1000)
+            if len(formated) > 0:
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
+
+                ignore = []
+                for question in input['askQuestions']:
+                    if askquestion == question['keyword'] and question['type'] == 0:
+                        ignore.append(question['keyword'])
+                        response['askQuestions'].append({'keyword': askquestion, 'type': 0})
+                    elif askquestion == question['keyword'] and question['type'] == 1:
+                        ignore.append(question['keyword'])
+                        response['askQuestions'].append({'keyword': askquestion, 'type': 1})
+                        weighted = newWeighted
+                    else:
+                        break
+                    askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted, ignore)
+
+                if len(askquestion) > 0:
+                    response['askQuestions'].append({'keyword': askquestion, 'type': 2})
+
+                print(response['askQuestions'])
+
+                for pdf_name in weighted:
+                    response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
+                    response['totalResult'] += 1
+            print(response)
+            response['success'] = True
             return JsonResponse(response)  # test
         return JsonResponse(response)
 

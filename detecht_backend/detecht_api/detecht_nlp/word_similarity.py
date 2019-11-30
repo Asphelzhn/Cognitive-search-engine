@@ -2,7 +2,6 @@ import spacy
 
 nlp = spacy.load("en_core_web_md")
 
-
 """"
 Henrik
 """
@@ -16,7 +15,8 @@ Henrik
 def word_similarity (word1, word2, size="md"):
     token1 = nlp(word1)
     token2 = nlp(word2)
-
-    return token1.similarity(token2)
+    if token1.vector_norm and token2.vector_norm:
+        return token1.similarity(token2)
+    return
 
 

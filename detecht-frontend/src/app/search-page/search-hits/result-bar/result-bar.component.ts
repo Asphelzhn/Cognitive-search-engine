@@ -73,10 +73,6 @@ export class ResultBarComponent implements OnInit {
       );
     });
 
-    // Ändras sen, behöver API
-    this.liked = false;
-    this.userId = 0;
-
     this.searchService.currentSearch.subscribe(query => this.query = query);
     this.searchService.abstract(new NetworkAbstractRequest(this.query, this.result.name)).subscribe(
       (data: NetworkAbstractResponse) => {

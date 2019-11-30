@@ -14,6 +14,12 @@ export class NetworkSearchResponse {
     // pdfContent: string;
   }[];
   spellcheck: {word: string, spellcheck: string[]}[];
+  askQuestions: AskQuestion[];
+}
+
+export class AskQuestion {
+  keyword: string;
+  type: number;
 }
 
 export class NetworkPdfUploadResponse {
