@@ -194,3 +194,7 @@ export class NetworkAdminLoginRequest {
   password: string;
 }
 
+export class NetworkChangeNameRequest {
+  oldName: string;
+  newName: string;
+}
