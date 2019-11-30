@@ -29,8 +29,9 @@ def addKeyword(keyword):
 def KeywordSimilarity(keyword1, keyword2, keywordId2):
     similarity = word_similarity(keyword1.word, keyword2)
     if similarity is not None:
-        newDistance = Keyword_distance(id_1=keyword1.id, id_2=keywordId2,
-                                   similarity=similarity)
+        newDistance = Keyword_distance(id_1=keyword1.id,
+                                       id_2=keywordId2,
+                                       similarity=similarity)
         newDistance.save()
     return
 
