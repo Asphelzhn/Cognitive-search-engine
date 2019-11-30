@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {DeletePdfService} from '../../../../network-services/delete-pdf.service';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../../network-services/search.service';
@@ -14,6 +14,8 @@ export class EditResultComponent implements OnInit {
   @Input() abstract: string;
   @Input() query: string;
   icon: string;
+  @Output() pdfNameEvent = new EventEmitter<string>();
+
   constructor(private deletePdfService: DeletePdfService, private searchService: SearchService, private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +28,10 @@ export class EditResultComponent implements OnInit {
       response => console.log(response)
     );
     this.searchService.search(this.query);
+  }
+
+  editDocument() {
+    this.pdfNameEvent.emit(this.title);
   }
 
 }

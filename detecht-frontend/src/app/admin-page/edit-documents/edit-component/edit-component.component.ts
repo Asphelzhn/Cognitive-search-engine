@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-edit-component',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-component.component.scss']
 })
 export class EditComponentComponent implements OnInit {
+
+  @Input() pdfName: string;
 
   constructor() { }
 

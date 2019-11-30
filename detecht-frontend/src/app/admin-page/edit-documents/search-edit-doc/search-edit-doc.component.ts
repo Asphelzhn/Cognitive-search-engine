@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../network-services/search.service';
 import {SearchResponse} from '../../../data-types';
@@ -17,6 +17,7 @@ export class SearchEditDocComponent implements OnInit {
   searchString: string;
   // @Input() changePage: boolean;
   @Input() result: SearchResponse;
+  @Output() pdfNameEvent = new EventEmitter<string>();
 
   ngOnInit() {
     this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
@@ -27,5 +28,8 @@ export class SearchEditDocComponent implements OnInit {
   search(): void {
     console.log('Searching for: ' + this.searchString);
     this.searchService.search(this.searchString);
+  }
+  editDocument($event) {
+    this.pdfNameEvent.emit($event);
   }
 }

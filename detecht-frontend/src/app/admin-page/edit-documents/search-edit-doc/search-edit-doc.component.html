@@ -16,6 +16,6 @@
 
   <hr class = "hr">
   <div class="result_holder">
-    <app-edit-result *ngFor='let result of results' [title]="result.title" [abstract]="result.name" [query]="searchString"></app-edit-result>
+    <app-edit-result *ngFor='let result of results' [title]="result.title" [abstract]="result.name" [query]="searchString" (pdfNameEvent)="editDocument($event)"></app-edit-result>
   </div>
 </div>

@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDocumentsComponent implements OnInit {
 
+  pdfName:string;
   constructor() { }
 
   ngOnInit() {
   }
 
+  editDocument($event) {
+    this.pdfName = $event;
+  }
 }
