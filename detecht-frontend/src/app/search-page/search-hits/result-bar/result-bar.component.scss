@@ -34,26 +34,40 @@
       display: inline-block;
       height: 50px;
       width: 50px;
+      border-radius: 50%;
+      background-color: #C3C3C3;
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 45px;
+      background-size: 20px;
       cursor: pointer;
     }
 
+    .buttons:hover {
+      background-color: #B1B1B1;
+    }
+
     #download-button {
-      background-image: url("/static/assets/user-page/download-button.png");
+      background-image: url("/static/assets/user-page/download-icon.png");
     }
 
     #expand-button {
-      background-image: url("/static/assets/user-page/expand-info-button.png");
+      background-image: url("/static/assets/user-page/expand-icon.png");
+      background-size: 10px;
+
     }
 
     #like-button {
-      background-image: url("/static/assets/user-page/save-button.png");
+      background-image: url("/static/assets/user-page/save-icon.png");
+      background-size: 19px;
     }
 
     #liked-button {
-      background-image: url("/static/assets/user-page/red-saved-button.png ");
+      background-image: url("/static/assets/user-page/save-icon.png ");
+      background-size: 19px;
+      background-color: #D16969;
+    }
+    #liked-button:hover {
+      background-color: #B85E5E;
     }
     .close {
       text-align: right;
