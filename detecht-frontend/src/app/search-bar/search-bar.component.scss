@@ -36,7 +36,8 @@
    width: 400px;
    font-size: 25px;
    border-radius: 25px;
-   border: 2px solid lightgrey;
+  border: 0;
+
    padding: 20px;
  }
 .search-bar {
@@ -73,7 +74,7 @@
   height: auto;
   background-color: white;
   border: 1px solid black;
-  
+
   span {
     display: block;
   }
@@ -93,19 +94,24 @@
 }
 
 #autocompleteDropDown {
-  position: fixed;
-  z-index: 1100;
-  width: 300px;
-  height: auto;
+
   background-color: white;
-  border: 1px solid black;
+  margin-top: -16px;
+  z-index: 999999;
+  position: relative;
+  border-radius: 0 0 40px 40px;
+  border-top: 1px solid #707070;
+  padding: 1rem 25px;
+  font-size: 25px;
 
   span {
     display: block;
-  }
-  span:hover {
-    background-color: #3a517f;
-    cursor: pointer;
+    padding: .5rem 0 .5rem 3rem;
+    background-image: url("../../assets/user-page/search-icon.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    color: #545C62;
+
   }
 }
 
