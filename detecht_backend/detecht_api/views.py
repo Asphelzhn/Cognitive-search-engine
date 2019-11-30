@@ -25,7 +25,7 @@ from rest_framework import status, viewsets, serializers
 # Our packages
 from detecht_api.detecht_es import search, insert_file
 from detecht_api.detecht_db_handling.staged_pdf import insert_all_staged_pdf_into_es, add_staged_pdf
-from detecht_api.detecht_db_handling.analytics import get_analytics_document
+from detecht_api.detecht_db_handling.analytics import get_analytics_document, is_favorite
 from detecht_api.detecht_nlp.spell_check import spell_check
 
 from detecht_api.detecht_nlp.weighting_module import WeightingModule
@@ -68,22 +68,32 @@ class Search(APIView):
             'success': False,
             'totalResult': 0,
             'content': [],
-            'spellcheck': []
+            'spellcheck': [],
+            'askQuestion': []
         }
         input = request.data
         if input != {}:
             query = input["query"]
-            res = search.search(query, 10)
-            response['success'] = True
             words = query.split()
             for word in words:
                 response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
-            response['totalResult'] = res['hits']
-            content = res['results']
-            # TODO change input to pdf_name
-            # content = WeightingModule.WeightingModule.calculate_score_after_weight(content, query)
-            for c in content:
-                response['content'].append(c.frontend_result(query))
+
+            user_id = -1
+            if input['userId'] and input['userId'] > 0:
+                user_id = input['userId']
+
+            formated = search.formated_search(query, 1000)
+            if len(formated) > 0:
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
+                # TODO add loop to alter result multiple times and using newWeighted to make the result better
+                response['askQuestion'] = {'keyword': askquestion, 'type': 2}
+
+                for pdf_name in weighted:
+                    response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
+                    response['totalResult'] += 1
+            print(response)
+            response['success'] = True
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
@@ -245,7 +255,7 @@ class RelatedDocuments(APIView):
             'content': []
         }
         data_in = request.data
-        documentList = pdf_relevance(data_in)
+        documentList = pdf_relevance(data_in['pdfName'])
         if documentList != []:
             response['success'] = True
             for pdf in documentList:
@@ -253,7 +263,7 @@ class RelatedDocuments(APIView):
                     'pdfName': pdf[0],
                     'value': pdf[1],
                     'title': Document.objects.get(file="detecht_api/static/pdf/" + pdf[0]).title,
-                    'liked': False
+                    'liked': is_favorite(data_in['userId'], pdf[0])
                 }
                 response['content'].append(jsonPdf)
         return JsonResponse(response)
@@ -299,4 +309,41 @@ class GetLikedDocs(APIView):
             return JsonResponse(response)
         return JsonResponse(response)
 
+class IsFavorite(APIView):
+    def post(self, request):
+        input = request.data
+        response = {
+            'success': False,
+            'favorite': False
+        }
+        if input !={}:
+            isFav = is_favorite(input['userId'], input['pdfName'])
+            response['success'] = True
+            response['favorite'] = isFav
+
+        return JsonResponse(response)
+
+class GetDoc(APIView):
+    def post(self, request): #input: "searchString"
+        response = {
+            'success': False,
+            'pdfTitle': '',
+            'pdfName': '',
+            'keywords': [],
+            'abstracts': []
+        }
+        input = request.data
+        if input != {}:
+            pdf = input["pdfName"]
+            query = input["query"]
+            res = search.get_pdf(pdf)
+            frontendresp = res['j_class'].frontend_result(query)
+            response['pdfTitle'] = frontendresp['pdfTitle']
+            response['pdfName'] = frontendresp['pdfName']
+            response['keywords'] = frontendresp['keywords']
+            response['success'] = True
+            for imp_obj in res['j_class'].get_abstract(query):
+                response['abstracts'].append({'sentence': str(imp_obj.sent), 'score': imp_obj.score, 'page': imp_obj.page})
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
 

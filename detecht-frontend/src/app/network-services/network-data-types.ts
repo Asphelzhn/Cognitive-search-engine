@@ -30,6 +30,18 @@ export class NetworkAbstractResponse {
   }[];
 }
 
+export class GetDocResponse {
+  success: boolean;
+  pdfTitle: string;
+  pdfName: string;
+  keywords: {keyword: string, weight: number}[];
+  abstracts: {
+    sentence: string;
+    score: number;
+    page: number;
+  }[];
+}
+
 export class NetworkAutoCompleteResponse {
   success: boolean;
   autocomplete: string[];
@@ -97,6 +109,11 @@ export class NetworkGetAnalyticsResponse {
   favorites: number;
 }
 
+export class  NetworkIsFavoriteResponse {
+  success: boolean;
+  favorite: boolean;
+}
+
 /*
   REQUESTS TO SERVER
  */
@@ -148,6 +165,13 @@ export class NetworkFavoriteDocumentRequest {
   userId: number;
   pdfName: string;
   like: boolean;
+
+
+  constructor(userId: number, pdfName: string, like: boolean) {
+    this.userId = userId;
+    this.pdfName = pdfName;
+    this.like = like;
+  }
 }
 
 export class NetworkRelatedDocumentRequest {

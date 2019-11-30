@@ -6,10 +6,10 @@
     <div class="button-group">
 
       <span (click)="liked = !liked; like(result.name, true)" *ngIf="!liked">
-        <img src="assets/user-page/save-button.png">
+        <img src="/static/assets/user-page/save-button.png">
       </span>
       <span (click)="liked = !liked; like(result.name, false)" *ngIf="liked">
-        <img src="assets/user-page/red-saved-button.png">
+        <img src="/static/assets/user-page/red-saved-button.png">
       </span>
         <span
           fileSaver
@@ -19,10 +19,10 @@
           [header]="{token: 'demo'}"
           [query]="{pi: 1, name: 'demo'}"
         >
-          <img src="assets/user-page/download-button.png" (click)="downloadInteraction()">
+          <img src="/static/assets/user-page/download-button.png" (click)="downloadInteraction()">
         </span>
       <span>
-        <img (click)="close()" src="assets/user-page/x-button.png">
+        <img (click)="close()" src="/static/assets/user-page/x-button.png">
       </span>
     </div>
   </header>
@@ -39,7 +39,7 @@
         <div *ngFor='let abstract of abstracts' class="abstract">
           <p>"{{abstract.sentence}}"</p>
           <div class="button-wrapper">
-            <img (click)="displayPreview(abstract)" src="assets/user-page/take-me-there-button.png">
+            <img (click)="displayPreview(abstract)" src="/static/assets/user-page/take-me-there-button.png">
           </div>
         </div>
       </div>
@@ -51,16 +51,16 @@
         <h3>{{related.title}}</h3>
         <div class="icons">
           <span (click)="related.liked = !related.liked; like(related.pdfName, true)" *ngIf="!related.liked">
-            <img src="assets/user-page/save-button.png">
+            <img src="/static/assets/user-page/save-button.png">
           </span>
           <span href="#" (click)="related.liked = !related.liked; like(related.pdfName, false)" *ngIf="related.liked">
-            <img src="assets/user-page/red-saved-button.png">
+            <img src="/static/assets/user-page/red-saved-button.png">
           </span>
           <span href="#">
-            <img src="assets/user-page/download-button.png">
+            <img src="/static/assets/user-page/download-button.png">
           </span>
           <span href="#">
-            <img (click)="close()" src="assets/user-page/information-button.png">
+            <img (click)="changeDocument(related.pdfName)" src="/static/assets/user-page/information-button.png">
           </span>
         </div>
       </div>

@@ -13,7 +13,7 @@ export class RelatedDocumentService {
 
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
-  relatedDocument(data: string): Observable<NetworkRelatedDocumentResponse> {
+  relatedDocument(data: any): Observable<NetworkRelatedDocumentResponse> {
     return this.http.post<NetworkRelatedDocumentResponse>(environment.apiUrl + 'relateddocuments/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({

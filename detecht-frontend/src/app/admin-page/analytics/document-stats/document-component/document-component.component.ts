@@ -12,8 +12,8 @@ export class DocumentComponentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let index = Math.round(Math.random() * 2 + 1);
-    this.icon = '../../../../../assets/admin-page/color-bar-' + index + '-icon.png';
+    const index = Math.round(Math.random() * 2 + 1);
+    this.icon = 'static/assets/admin-page/color-bar-' + index + '-icon.png';
 
   }
 

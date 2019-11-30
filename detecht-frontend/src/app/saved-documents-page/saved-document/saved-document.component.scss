@@ -54,17 +54,17 @@
   }
 
   .preview {
-    background-image: url("../../../assets/user-page/expand-icon.png");
+    background-image: url("/static/assets/user-page/expand-icon.png");
     background-size: 10px;
   }
 
   .download {
-    background-image: url("../../../assets/user-page/download-icon.png");
+    background-image: url("/static/assets/user-page/download-icon.png");
     background-size: 20px;
   }
 
   .liked {
-    background-image: url("../../../assets/user-page/save-icon.png");
+    background-image: url("/static/assets/user-page/save-icon.png");
     background-size: 19px;
     background-color: #D16969;
   }

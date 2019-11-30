@@ -11,11 +11,10 @@ Keyword similarity (compilation of the weight of matched keywords)
 Popularity (#downloads & #favorites)
 '''
 import spacy
-
 from detecht_api import models
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
 
 class WeightingModule:
@@ -29,7 +28,7 @@ class WeightingModule:
         pass
 
     # calculate the similarity between search_query and each document keyword
-    def calculate_keyword_similarity(elastic_search_results, search_query):
+    def calculate_keyword_similarity(elastic_search_results, search_query, user_keywords = []):
         similarity_list = []
         search_query = nlp(search_query)
         search_query_no_stop = nlp(''.join(([str(t) for t in search_query if not t.is_stop])))
@@ -42,11 +41,10 @@ class WeightingModule:
                 keyword = nlp(doc.keyword)
                 keyword_weight = doc.weight
 
-                # print(keyword)
-                # print(keyword)
-
                 similarity = (keyword.similarity(search_query_no_stop)) * keyword_weight
                 score_after_weight += similarity
+                if doc.keyword in user_keywords:
+                    score_after_weight += 1
 
             similarity_list.append(score_after_weight)
 
@@ -58,9 +56,7 @@ class WeightingModule:
         download_weight = 4
         favourite_weight = 6
         for pdfname in elastic_search_results:
-            title = pdfname.replace("_"," ")
-            title = title.replace(".pdf","")
-            record = models.Document.objects.get(title=title)
+            record = models.Document.objects.get(file='detecht_api/static/pdf/' + pdfname)
             download = record.downloads
             favourite = record.favorites
             score = download * download_weight + favourite * favourite_weight
@@ -81,9 +77,14 @@ class WeightingModule:
 
         return (temp - min) / minus_result
 
-    def calculate_score_after_weight(elastic_search_results, search_query):
+    def calculate_score_after_weight(elastic_search_results, search_query, user_id = -1):
+        user_keywords = []
+        if user_id != -1:
+            user_keywords_result = models.User_Keyword.objects.filter(userID=user_id)
+            for user_keyword in user_keywords_result:
+                user_keywords.append(user_keyword.keyword)
+
         score_dict = {}
-        print(elastic_search_results)
         length = len(elastic_search_results)
 
         # weight of each factors
@@ -98,7 +99,7 @@ class WeightingModule:
             length -= 1
 
         # add keyword similarity to weight
-        similarity_score_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query)
+        similarity_score_list = WeightingModule.calculate_keyword_similarity(elastic_search_results, search_query, user_keywords)
         max_score = max(similarity_score_list)
         min_score = min(similarity_score_list)
         normalize_similarity_score_list = []

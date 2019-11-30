@@ -7,7 +7,7 @@
     <div class="line"></div>
     <div class="keywords">
       <!--<p class="keyword" *ngFor="let abstract of abstracts">"{{abstract.sentence}}"</p>-->
-      <p class="keyword">"{{topAbstract().sentence}}"</p>
+      <p class="keyword" *ngIf="abstracts">"{{topAbstract().sentence}}"</p>
     </div>
 
     <div id="button-container">
