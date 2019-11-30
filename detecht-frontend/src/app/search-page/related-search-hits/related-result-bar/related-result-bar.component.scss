@@ -1,12 +1,10 @@
-.related-result-bar-container {
-  background: white;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 3px;
-  font-family: Verdana;
+.card-title:link {
+  color: #383838;
 
-  p,h5 {
-    margin:0;
-  }
+}
+.card-title:visited {
+  color: #383838;
+}
+.card-title:hover {
+  color: #707070;
 }

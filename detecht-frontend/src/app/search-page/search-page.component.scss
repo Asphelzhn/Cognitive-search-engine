@@ -5,7 +5,7 @@
 
 .search-result-container {
   width: 70%;
-  height:8000px;
+  height: auto;
 }
 
 .search-sidebar {
@@ -17,16 +17,16 @@
 
   img {
     width: 161px;
-    heigth: 74px;
+    height: 74px;
   }
 }
 
 .full-page-container {
   min-height: 100vh;
   min-width: 100vw;
-  //overflow-x: hidden;
+  overflow-x: hidden;
   background-image: url("/static/assets/backgrounds/result-background.png");
-  background-size: contain;
+  background-size: cover;
   background-position: top;
   background-repeat: repeat-y;
 
