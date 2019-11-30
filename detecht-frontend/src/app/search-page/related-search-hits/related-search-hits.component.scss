@@ -18,15 +18,21 @@
     font-size: 20px;
     letter-spacing: 0;
     color: #383838;
-    margin: 20px auto;
-    padding: 15px 15px 25px;
+    margin: 30px auto;
+    padding: 15px;
   }
 
   .big {
     width: 80%;
+    padding-bottom: 25px;
   }
 
   .small {
     width: 50%;
+  }
+
+  .result-div {
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
