@@ -78,11 +78,13 @@ class Search(APIView):
             for word in words:
                 response['spellcheck'].append({'word': word, 'spellcheck': sorted(spell_check.candidates(word))})
 
+            user_id = -1
+            if input['userId'] and input['userId'] > 0:
+                user_id = input['userId']
+
             formated = search.formated_search(query, 1000)
-            print(formated)
-            print(type(formated))
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query)
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
                 askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
                 # TODO add loop to alter result multiple times and using newWeighted to make the result better
                 response['askQuestion'] = {'keyword': askquestion, 'type': 2}

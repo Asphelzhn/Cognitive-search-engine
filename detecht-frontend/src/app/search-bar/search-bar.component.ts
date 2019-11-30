@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {SearchService} from '../network-services/search.service';
 import {SearchResponse, Spellcheck} from '../data-types';
 import {NetworkAutoCompleteResponse, NetworkSearchResponse} from '../network-services/network-data-types';
+import {AdminLoginService} from '../network-services/admin-login.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +12,7 @@ import {NetworkAutoCompleteResponse, NetworkSearchResponse} from '../network-ser
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(private searchService: SearchService, private router: Router) { }
+  constructor(private searchService: SearchService, private router: Router, private adminLoginService: AdminLoginService) { }
 
   searchString: string;
   spellcheck: Spellcheck[];
@@ -19,9 +20,12 @@ export class SearchBarComponent implements OnInit {
   showSpellcheckDropDown: boolean;
   spellcheckDropDown: Spellcheck;
   autocomplete: string[];
+  userId: number;
   @Input() changePage: boolean;
 
   ngOnInit() {
+    this.adminLoginService.userId.subscribe(userId => this.userId = userId );
+
     this.searchService.currentSearch.subscribe(query => this.searchString = query);
     this.searchService.spellcheck.subscribe((spellcheck) => {
       this.spellcheck = spellcheck;
@@ -100,7 +104,7 @@ export class SearchBarComponent implements OnInit {
   search(): void {
     console.log('Searching for: ' + this.searchString);
     this.autocomplete = [];
-    this.searchService.search(this.searchString);
+    this.searchService.search(this.searchString, this.userId);
     if (this.changePage) {
       this.router.navigateByUrl('search');
     }
@@ -119,7 +123,7 @@ export class SearchBarComponent implements OnInit {
       newQuery += ' ';
     }
     console.log('NewQuery:' + newQuery);
-    this.searchService.search(newQuery);
+    this.searchService.search(newQuery, this.userId);
   }
 
 }
