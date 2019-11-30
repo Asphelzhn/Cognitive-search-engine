@@ -88,8 +88,6 @@ class Search(APIView):
                 askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
 
                 ignore = []
-                print(input['askQuestions'])
-                print(type(input['askQuestions']))
                 for question in input['askQuestions']:
                     if askquestion == question['keyword'] and question['type'] == 0:
                         ignore.append(question['keyword'])

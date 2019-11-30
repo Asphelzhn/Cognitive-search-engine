@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../../network-services/search.service';
 import {AskQuestion} from '../../data-types';
+import {AdminLoginService} from '../../network-services/admin-login.service';
 
 @Component({
   selector: 'app-related-searches-decision-tree',
@@ -13,8 +14,10 @@ export class RelatedSearchesDecisionTreeComponent implements OnInit {
   showQuestion: boolean;
   askQuestionId: string;
   question: string;
+  query: string;
+  userId: number;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private adminLoginService: AdminLoginService) { }
 
   ngOnInit() {
 
@@ -29,6 +32,9 @@ export class RelatedSearchesDecisionTreeComponent implements OnInit {
         }
       }
     });
+
+    this.searchService.currentSearch.subscribe(query => this.query = query);
+    this.adminLoginService.userId.subscribe(userId => this.userId = userId);
   }
 
   alterView(): void {
@@ -37,6 +43,25 @@ export class RelatedSearchesDecisionTreeComponent implements OnInit {
     } else {
       this.askQuestionId = '';
     }
+  }
+
+  alterSearch(yes: boolean): void {
+    this.showQuestion = false;
+
+    const newaskQuestions: AskQuestion[] = [];
+    for (const askQuestion of this.askQuestions) {
+      if (askQuestion.type === 2) {
+        if (yes) {
+          newaskQuestions.push(new AskQuestion(askQuestion.keyword, 1));
+        } else {
+          newaskQuestions.push(new AskQuestion(askQuestion.keyword, 1));
+        }
+      } else {
+        newaskQuestions.push(askQuestion);
+      }
+    }
+
+    this.searchService.search(this.query, this.userId, newaskQuestions)
   }
 
 }

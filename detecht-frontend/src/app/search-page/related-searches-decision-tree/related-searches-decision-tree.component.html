@@ -5,8 +5,8 @@
     <div class="big bubble" *ngIf="askQuestionId === 'askQuestion'">
       Are you looking for documents about "{{question}}"?
       <div class="answer">
-        <div class="yes">yes</div>
-        <div class="no">no</div>
+        <div class="yes" (click)="alterSearch(true)">yes</div>
+        <div class="no" (click)="alterSearch(false)">no</div>
       </div>
     </div>
   </div>
