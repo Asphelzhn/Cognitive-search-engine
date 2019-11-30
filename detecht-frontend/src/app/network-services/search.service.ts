@@ -30,6 +30,9 @@ export class SearchService {
   private totalResultsSource = new BehaviorSubject<number>(0);
   totalResults = this.totalResultsSource.asObservable();
 
+  private askQuestionSource = new BehaviorSubject<AskQuestion[]>([]);
+  askQuestion = this.askQuestionSource.asObservable();
+
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
   abstract(networkAbstractRequest: NetworkAbstractRequest): Observable<NetworkAbstractResponse> {
@@ -67,6 +70,7 @@ export class SearchService {
             newSpellcheck.push(new Spellcheck(spellcheck.word, spellcheck.spellcheck));
           }
           this.spellcheckSource.next(newSpellcheck);
+          this.askQuestionSource.next(data.askQuestions);
         } else {
           console.log('Error when getting schedule, please refresh the results');
         }

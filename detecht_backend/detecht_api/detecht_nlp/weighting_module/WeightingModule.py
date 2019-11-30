@@ -131,7 +131,7 @@ class WeightingModule:
         return result_list
 
     # This function is used for ask me a question, return the most frequent keyword and document list that include it
-    def ask_a_question(ranked_by_weighting_module_results):
+    def ask_a_question(ranked_by_weighting_module_results, ignore = []):
         keywords_dict = {}
         for pdfname in ranked_by_weighting_module_results:
             # get document keywords in database
@@ -141,10 +141,11 @@ class WeightingModule:
             for name in name_weight_set:
                 keyword = name.keyword
                 # print(keyword)
-                if keyword in keywords_dict.keys():
-                    keywords_dict[keyword] += 1
-                else:
-                    keywords_dict[keyword] = 1
+                if keyword not in ignore:
+                    if keyword in keywords_dict.keys():
+                        keywords_dict[keyword] += 1
+                    else:
+                        keywords_dict[keyword] = 1
         # print("dict is")
         # print(keywords_dict)
         sorted_keywords_list = sorted(keywords_dict.items(),key=lambda t:t[1], reverse=True)
