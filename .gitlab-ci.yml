@@ -65,3 +65,6 @@ Flake8 with maximum complexity:
   stage: Static Analysis
   script:
   - flake8 --max-complexity 10 --benchmark --ignore=C901,W605,W503
+  
+
+  

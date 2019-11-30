@@ -13,7 +13,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='document',
             name='custom_weight',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=3),
+            field=models.DecimalField(decimal_places=2,
+                                      default=0,
+                                      max_digits=3),
         ),
         migrations.AlterField(
             model_name='document',
