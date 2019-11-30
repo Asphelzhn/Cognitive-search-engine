@@ -103,9 +103,12 @@ class Search(APIView):
 
             formated = search.formated_search(query, 1000)
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
-                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
-                # TODO add loop to alter result multiple times and using newWeighted to make the result better
+                weighted = WeightingModule.WeightingModule\
+                    .calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule\
+                    .WeightingModule.ask_a_question(weighted)
+                # TODO add loop to alter result multiple times and using
+                #  newWeighted to make the result better
                 response['askQuestion'] = {'keyword': askquestion, 'type': 2}
 
                 for pdf_name in weighted:
