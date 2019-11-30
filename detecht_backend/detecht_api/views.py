@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
-from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf, update_downloads, update_favorites, get_filename
+from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf, update_downloads, update_favorites, get_filename, change_pdf_name
 
 """
 Oskar H & Armin
@@ -365,3 +365,7 @@ class GetDoc(APIView):
             return JsonResponse(response)  # test
         return JsonResponse(response)
 
+class changePdfName(APIView):
+    def post(self, oldName, newName):
+        change_pdf_name(oldName, newName);
+        return

@@ -39,7 +39,8 @@ urlpatterns = [
     url(r'^api/getuserfavorites/$', views.GetLikedDocs.as_view()),
     url(r'^api/getdoc/$', views.GetDoc.as_view()),
     url(r'^api/relateddocuments/$', views.RelatedDocuments.as_view()),
-    url(r'^api/isfavorite/$', views.IsFavorite.as_view())
+    url(r'^api/isfavorite/$', views.IsFavorite.as_view()),
+    url(r'^api/changename/$', views.changePdfName.as_view())
 
 
 ]
