@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchService} from '../../network-services/search.service';
+import {AskQuestion} from '../../data-types';
 
 @Component({
   selector: 'app-related-searches-decision-tree',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatedSearchesDecisionTreeComponent implements OnInit {
 
-  constructor() { }
+  askQuestions: AskQuestion[];
+  showQuestion: boolean;
+  askQuestionId: string;
+  question: string;
+
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+
+    this.askQuestionId = '';
+
+    this.searchService.askQuestion.subscribe((askQuestions) => {
+      this.askQuestions = askQuestions;
+      for (const question of askQuestions) {
+        if (question.type === 2) {
+          this.showQuestion = true;
+          this.question = question.keyword;
+        }
+      }
+    });
+  }
+
+  alterView(): void {
+    if (this.askQuestionId === '') {
+      this.askQuestionId = 'askQuestion';
+    } else {
+      this.askQuestionId = '';
+    }
   }
 
 }

@@ -1,8 +1,14 @@
 <div id="container">
-  <p>Here related searches and the decision-tree should be designed!</p>
 
-  <div class="small bubble">Small bubble</div>
-
-  <div class="big bubble">Big bubble</div>
+  <div id="{{askQuestionId}}" *ngIf="showQuestion">
+    <div class="small bubble" id="filter" (click)="alterView()">Filter search results</div>
+    <div class="big bubble" *ngIf="askQuestionId === 'askQuestion'">
+      Are you looking for documents about "{{question}}"?
+      <div class="answer">
+        <div class="yes">yes</div>
+        <div class="no">no</div>
+      </div>
+    </div>
+  </div>
 </div>
 
