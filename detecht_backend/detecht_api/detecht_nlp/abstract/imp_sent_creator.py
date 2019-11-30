@@ -37,7 +37,10 @@ def listOfTextToList(list):
 def imp_sent_creator(doc, size):
     doc, endIndex1=listOfTextToList(doc)
     imp_sentences = []
-    docx = nlp(doc)
+    nlp = spacy.load("en_core_web_sm")
+    nlp.max_length= 100000000
+    #    t1=time.time()
+    docx = nlp(doc, disable=["tagger", "ner"])
     word_frequencies = {}
 
     for word in docx:
@@ -56,7 +59,7 @@ def imp_sent_creator(doc, size):
 
     sentence_scores = {}
     for sent in sentence_list:
-        if 5 < len(sent.text.split(' ')) < 30 and (sum(c.isalpha() for c in str(sent)) / len(str(sent))) > 0.75:
+        if 5 < len(sent.text.split(' ')) < 30 and (sum(c.isalpha() for c in str(sent)) / sum(c != " " for c in str(sent))) > 0.75:
             for word in sent:
                 if word.text.lower() in word_frequencies.keys():
                     if sent not in sentence_scores.keys():
