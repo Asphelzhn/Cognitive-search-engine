@@ -11,11 +11,10 @@ Keyword similarity (compilation of the weight of matched keywords)
 Popularity (#downloads & #favorites)
 '''
 import spacy
-
 from detecht_api import models
 from detecht_api.detecht_db_handling.analytics import get_analytics_document
 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
 
 class WeightingModule:
