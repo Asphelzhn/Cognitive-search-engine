@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {ChangeNameService} from '../../../network-services/change-name.service';
-import {NetworkChangeNameRequest} from "../../../network-services/network-data-types";
+import {NetworkChangeNameRequest} from '../../../network-services/network-data-types';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-component',
@@ -13,16 +14,17 @@ export class EditComponentComponent implements OnInit {
   changeToName: string;
   data: NetworkChangeNameRequest;
 
-  constructor(private changeNameService: ChangeNameService) { }
+  constructor(private changeNameService: ChangeNameService, private router: Router) { }
 
   ngOnInit() {
   }
 
   changeName() {
-    if (this.changeToName !== ''){
+    if (this.changeToName !== '') {
       this.data.newName = this.changeToName;
-      this.data.newName = this.pdfName;
+      this.data.oldName = this.pdfName;
       this.changeNameService.changeName(this.data);
+      this.pdfName = this.changeToName;
     }
   }
 
