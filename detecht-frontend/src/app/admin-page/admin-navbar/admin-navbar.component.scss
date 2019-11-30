@@ -16,7 +16,7 @@
     border: none;
     padding: 4px 11px;
     margin: 2px;
-    position:relative;
+    position: relative;
     top: 20%;
     right: 2%;
     cursor: pointer;
@@ -37,21 +37,45 @@
 
   span {
     margin-top: 20px;
-    display: block;
-  }
-
-  span:hover {
-    color: blue;
-    cursor: pointer;
-  }
-
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
     padding-top: 10px;
+    display: block;
+    height: 80px;
+    cursor: pointer;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
   }
+
+  #onAnalytics {
+    background-image: url("/static/assets/admin-page/account-circle-icon.png");
+  }
+
+  #offAnalytics {
+    /* TODO: Change to url("/static/assets/admin-page/account-circle-icon-light.png");
+     */
+    background-image: url("/static/assets/admin-page/dehaze-icon.png");
+  }
+
+  #onUpload {
+    background-image: url("/static/assets/admin-page/file-upload-icon.png");
+  }
+
+  #offUpload {
+    /* TODO Change to url("/static/assets/admin-page/file-upload-icon-light.png");
+    */
+    background-image: url("/static/assets/admin-page/dehaze-icon.png");
+  }
+
+  #onEdit {
+    background-image: url("/static/assets/admin-page/border-color-icon.png");
+  }
+
+  #offEdit {
+    /* TODO Change to url("/static/assets/admin-page/border-color-icon-light.png");
+    */
+    background-image: url("/static/assets/admin-page/dehaze-icon.png");
+  }
+
 }
 
 /* Responsive layout */
@@ -80,12 +104,10 @@
     width: 60px;
     text-align: center;
 
-    img {
-      height: 60%;
-      padding-left: 20%;
-      padding-right: 20%;
-      width: 60%;
+    span {
+      width: 100%;
       padding-top: 20%;
+      -webkit-background-size: 50px;
     }
   }
 
@@ -116,12 +138,10 @@
     width: 50px;
     text-align: center;
 
-    img {
-      height: 60%;
-      padding-left: 20%;
-      padding-right: 20%;
-      width: 60%;
-      padding-top: 20%;
+    span {
+      margin-top: 0;
+      width: 100%;
+      -webkit-background-size: 40px;
     }
   }
 

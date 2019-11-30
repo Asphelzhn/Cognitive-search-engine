@@ -1,8 +1,17 @@
-<div id="horizontal">
-    <button class="btn btn-primary log-out-btn" (click)="onSubmit()"><h3>Log out</h3></button>
+<div id = "horizontal">
+    <button class = "btn btn-primary log-out-btn" (click) = "onSubmit()"><h3>Log out</h3></button>
 </div>
-<div id="vertical">
+<div id = "vertical">
+  <!--
   <span (click)="changePage('analytics')"><img src = "static/assets/admin-page/account-circle-icon.png"></span>
   <span (click)="changePage('upload')"><img src = "static/assets/admin-page/file-upload-icon.png"></span>
   <span (click)="changePage('edit')"><img src = "static/assets/admin-page/border-color-icon.png"></span>
+  -->
+  <!-- TODO: Fix so only the image for the clicked button changes -->
+  <span (click) = "changePage('analytics'); this.liked = !this.liked" *ngIf = "this.liked" id = "onAnalytics"></span>
+  <span (click) = "this.liked = !this.liked; changePage('analytics')" *ngIf = "!this.liked" id = "offAnalytics"></span>
+  <span (click) = "changePage('upload'); this.liked = !this.liked" *ngIf = "this.liked" id = "onUpload"></span>
+  <span (click) = "this.liked = !this.liked; changePage('upload')" *ngIf = "!this.liked" id = "offUpload"></span>
+  <span (click) = "changePage('edit'); this.liked = !this.liked" *ngIf = "this.liked" id = "onEdit"></span>
+  <span (click) = "this.liked = !this.liked; changePage('edit')" *ngIf = "!this.liked" id = "offEdit"></span>
 </div>
