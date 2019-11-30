@@ -27,6 +27,6 @@ def remove_favorite_pdf(user_id, pdf_name):
     return
 
 def get_filename(title):
-    filename = Document.objects.get(title = title)
-    print(filename.file.name.replace('detecht_api/static/pdf/', ''))
-    return
+    filename = Document.objects.get(title=title)
+    name = filename.file.name.replace('detecht_api/static/pdf/', '')
+    return name

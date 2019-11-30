@@ -165,7 +165,9 @@ class DeletePdf(APIView):
         inputfile = request.data
 
         if inputfile !={}:
-            insert_file.delete_from_index(get_filename(inputfile["title"]))
+            delete = get_filename(inputfile["title"])
+            print(delete)
+            insert_file.delete_from_index(delete)
             Document.delete(inputfile["title"]) # runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)

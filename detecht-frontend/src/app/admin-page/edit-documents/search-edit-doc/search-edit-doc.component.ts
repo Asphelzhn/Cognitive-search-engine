@@ -27,11 +27,5 @@ export class SearchEditDocComponent implements OnInit {
   search(): void {
     console.log('Searching for: ' + this.searchString);
     this.searchService.search(this.searchString);
-    // if (!this.changePage) {
-    console.log('test1');
-
-    // this.router.navigateByUrl('search');
-    console.log('test');
-    // }
   }
 }
