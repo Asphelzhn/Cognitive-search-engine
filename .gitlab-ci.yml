@@ -55,7 +55,7 @@ Flake8 with line lenght:
   - flake8 --version
   stage: Static Analysis
   script:
-  - flake8 --max-line-length=79 --benchmark --ignore=W605 detecht_backend/detecht_api/detecht_nlp/autocompleteWords/n_gram.py
+  - flake8 --max-line-length=79 --benchmark 
   allow_failure: true
   
 Flake8 with maximum complexity:
