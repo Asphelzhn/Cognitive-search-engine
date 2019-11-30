@@ -55,7 +55,7 @@ Flake8 with line lenght:
   - flake8 --version
   stage: Static Analysis
   script:
-  - flake8 --max-line-length=79 --benchmark --ignore=W605,C901,W503 # --ignore=C901 --ignore=W503
+  - flake8 --max-line-length=79 --benchmark --ignore=W605,C901,W503
   
   allow_failure: true
   
@@ -65,7 +65,7 @@ Flake8 with maximum complexity:
   - flake8 --version
   stage: Static Analysis
   script:
-  - flake8 --max-complexity 10 --benchmark --ignore=C901 --ignore=W605 --ignore=W503#detecht_backend/detecht_api/detecht_nlp/imp_sent_creator.py --ignore=C901 detecht_backend/detecht_api/detecht_nlp/create_abstract.py
+  - flake8 --max-complexity 10 --benchmark --ignore=C901,W605,W503
   
 
   
