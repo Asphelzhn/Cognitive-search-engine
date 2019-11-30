@@ -55,7 +55,8 @@ Flake8 with line lenght:
   - flake8 --version
   stage: Static Analysis
   script:
-  - flake8 --max-line-length=79 --benchmark 
+  - flake8 --max-line-length=79 --benchmark # noqa: W605
+  
   allow_failure: true
   
 Flake8 with maximum complexity:
