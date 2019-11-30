@@ -148,9 +148,6 @@ class WeightingModule:
                         keywords_dict[keyword] = 1
 
         for key in keywords_dict:
-            print(key)
-            print(keywords_dict[key])
-            print(len(keywords_dict))
             keywords_dict[key] = abs(len(keywords_dict) - keywords_dict[key])
 
         # print("dict is")
