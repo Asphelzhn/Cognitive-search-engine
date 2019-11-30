@@ -20,4 +20,3 @@ def word_similarity(word1, word2, size="md"):
     if token1.vector_norm and token2.vector_norm:
         return token1.similarity(token2)
     return
-
