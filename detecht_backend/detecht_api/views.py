@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 
 from detecht_api.detecht_db_handling.keyword import Interact_Document, Trending_docs, pdf_relevance
-from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf, update_downloads, update_favorites
+from detecht_api.detecht_db_handling.document_interaction import add_favorite_pdf, remove_favorite_pdf, update_downloads, update_favorites, get_filename
 
 """
 Oskar H & Armin
@@ -165,8 +165,8 @@ class DeletePdf(APIView):
         inputfile = request.data
 
         if inputfile !={}:
-            insert_file.delete_from_index(inputfile["title"])
-            Document.delete(inputfile["title"]) #runs a function in models that deletes our pdf.
+            insert_file.delete_from_index(get_filename(inputfile["title"]))
+            Document.delete(inputfile["title"]) # runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 
