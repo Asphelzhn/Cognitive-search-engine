@@ -15,4 +15,4 @@ class keyword_class:
         return self.weight
 
     def get_keyword_dict(self):
-        return {'Keyword':self.keyword,'Weight':self.weight}
+        return {'Keyword': self.keyword, 'Weight': self.weight}

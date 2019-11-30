@@ -13,16 +13,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Keyword_distance',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('id_1', models.IntegerField()),
                 ('id_2', models.IntegerField()),
-                ('similarity', models.DecimalField(decimal_places=4, max_digits=5)),
+                ('similarity', models.DecimalField(decimal_places=4,
+                                                   max_digits=5)),
             ],
         ),
         migrations.CreateModel(
             name='Keywords',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('word', models.CharField(max_length=20)),
             ],
         ),

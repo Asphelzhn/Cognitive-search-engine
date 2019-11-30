@@ -12,7 +12,8 @@ from detecht_api.detecht_db_handling.keyword import addTotalKeywords
 from detecht_api.models import TotalKeywords
 from os import path
 
-def words(text): return re.findall(r'\w+', text.lower())
+def words(text):
+    return re.findall(r'\w+', text.lower())
 
 
 word_counter = Counter(words(open("detecht_api/detecht_nlp/spell_check/big.txt").read()))
@@ -29,6 +30,8 @@ if path.exists("temp.txt"):
 #    for word in doc:
 #        addTotalKeywords(word.text.lower())
 
+word_counter = Counter(words(open(
+    "detecht_api/detecht_nlp/spell_check/big.txt").read()))
 
 
 def P(word, N=sum(word_counter.values())):
@@ -45,7 +48,10 @@ def correction(word):
 
 def candidates(word):
     """Generate possible spelling corrections for word."""
-    all_possible_spelling_corrections = (known([word]) or known(edits1(word)) or known(edits2(word)) or [word])
+    all_possible_spelling_corrections = (known([word])
+                                         or known(edits1(word))
+                                         or known(edits2(word))
+                                         or [word])
     return all_possible_spelling_corrections
 
 

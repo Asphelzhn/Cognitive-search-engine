@@ -1,9 +1,11 @@
 from rest_framework.exceptions import ValidationError
-
-from detecht_api.detecht_db_handling.document_interaction import *
+from detecht_api.detecht_db_handling.document_interaction import \
+    update_downloads
 from detecht_api.detecht_nlp.word_similarity import word_similarity
-from detecht_api.models import Keywords, Keyword_distance, Pdf_Name_Keyword_Weight, Interacted_documents, \
-    Pdf_Similarities, User_Keyword, TotalKeywords
+from detecht_api.models import Keywords, Keyword_distance,Pdf_Name_Keyword_Weight, Interacted_documents,Pdf_Similarities, User_Keyword, TotalKeywords
+from detecht_api.models import (Keywords, Keyword_distance,
+                                Pdf_Name_Keyword_Weight, Interacted_documents,
+                                Pdf_Similarities, User_Keyword)
 from datetime import date
 
 def addTotalKeywords(word):
@@ -14,10 +16,8 @@ def addTotalKeywords(word):
         TotalKeywords.objects.update(frequency=F('frequency') + 1)
 
 
-# add keyword in db, if keyword alerady exists it is not added. If added true is returned. if it is in db False is returned
-
-
-
+# add keyword in db, if keyword already exists it is not added.
+# If added true is returned. if it is in db False is returned
 def addKeyword(keyword):
     keyword, created = Keywords.objects.get_or_create(word=keyword)
 
@@ -37,8 +37,9 @@ def addKeyword(keyword):
 def KeywordSimilarity(keyword1, keyword2, keywordId2):
     similarity = word_similarity(keyword1.word, keyword2)
     if similarity is not None:
-        newDistance = Keyword_distance(id_1=keyword1.id, id_2=keywordId2,
-                                   similarity=similarity)
+        newDistance = Keyword_distance(id_1=keyword1.id,
+                                       id_2=keywordId2,
+                                       similarity=similarity)
         newDistance.save()
     return
 
@@ -46,9 +47,11 @@ def KeywordSimilarity(keyword1, keyword2, keywordId2):
 # Henrik
 # add weight between pdf name and keyword
 def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
-    new = Pdf_Name_Keyword_Weight(pdf_name=pdf, keyword=keyword, weight=weight)
-    #print(keyword+"    "+ weight)
-    if len(new.pdf_name) <=50:
+    new = Pdf_Name_Keyword_Weight(pdf_name=pdf,
+                                  keyword=keyword,
+                                  weight=weight)
+    # print(keyword+"    "+ weight)
+    if len(new.pdf_name) <= 50:
         new.save()
     else:
         print("error")
@@ -59,7 +62,8 @@ def Add_Pdf_Name_Keyword_Weight(pdf, keyword, weight):
 
 def Trending_docs(size):
     list = Interacted_documents.objects.all().values().order_by("pdf_name")
-    pdf_name_lsit = Interacted_documents.objects.all().values("pdf_name").distinct()
+    pdf_name_lsit = (Interacted_documents.objects.all()
+                     .values("pdf_name").distinct())
 
     if size > len(pdf_name_lsit):
         size = len(pdf_name_lsit)
@@ -86,41 +90,56 @@ def Trending_docs(size):
 
     final_table = []
     for i in range(0, len(pdf_name_lsit)):
-        final_table.append([pdf_name_lsit[i].get("pdf_name"), Finale_value_table[i]])
+        final_table.append([pdf_name_lsit[i].get("pdf_name"),
+                            Finale_value_table[i]])
     final_table.sort(key=sortsecond, reverse=True)
     return_table = final_table[:size]
     return return_table
 
 
 def date_calc(dateNow):
-    datenow1 = int(dateNow.strftime("%d")) + 30 * (int(dateNow.strftime("%d")) - 1) + 365 * int(dateNow.strftime("%d"))
+    datenow1 = (int(dateNow.strftime("%d"))
+                + 30 * (int(dateNow.strftime("%d")) - 1)
+                + 365 * int(dateNow.strftime("%d")))
     return datenow1
+
 
 # interact with document
 def Interact_Document(pdf_name, userid, type):
     dateNow = date.today()
     if type == "Preview":
-        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Preview")
+        new = Interacted_documents(pdf_name=pdf_name,
+                                   date=dateNow,
+                                   userid=userid,
+                                   down_prev="Preview")
         new.save()
     elif type == "Download":
-        new = Interacted_documents(pdf_name=pdf_name, date=dateNow, userid=userid, down_prev="Download")
+        new = Interacted_documents(pdf_name=pdf_name,
+                                   date=dateNow,
+                                   userid=userid,
+                                   down_prev="Download")
         new.save()
         update_downloads(pdf_name)
     else:
         print("error")
     return
 
+
 # def Download_Document(pdf_name1, userid1):
 #     dateNow = date.today()
-#     new = Interacted_documents(pdf_name=pdf_name1, date=dateNow, userid=userid1, down_prev="Download")
+#     new = Interacted_documents(pdf_name=pdf_name1,
+#     date=dateNow, userid=userid1, down_prev="Download")
 #     new.save()
 
 
-def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordered highest to lowest on relevance.
+def pdf_relevance(name):  # returns a array [pdf_name, relevance]
+    # that is ordered highest to lowest on relevance.
     try:
-        focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(pdf_name=name).values("keyword", "weight")
+        focus_pdf = Pdf_Name_Keyword_Weight.objects.filter(
+            pdf_name=name).values("keyword", "weight")
 
-        pdf_list = Pdf_Name_Keyword_Weight.objects.values("pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
+        pdf_list = Pdf_Name_Keyword_Weight.objects.values(
+            "pdf_name", "keyword", "weight").exclude(pdf_name=name).order_by(
             "pdf_name")
 
         relevance_table = []
@@ -147,7 +166,7 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
         if relevance_name:
             i_old = relevance_name[0]
         else:
-            i_old=""
+            i_old = ""
         a = 0  # Hålla koll på index för relevance vaule
         b = 0  # Hålla koll på index relevance table
         relevance = 0
@@ -174,7 +193,7 @@ def pdf_relevance(name):  # returns a array [pdf_name, relevance] that is ordere
                 final_list.append(num)
 
         final_list.sort(key=sortsecond, reverse=True)
-    except:
+    except ValidationError:
         final_list = []
 
     return final_list
@@ -188,21 +207,24 @@ def sortsecond(val):
 
 def add_pdf_similarities(pdf1):
     similarity_list = pdf_relevance(pdf1)
-    #print(similarity_list)
+    # print(similarity_list)
     for item in similarity_list:
         Pdf_Similarities.objects.update()
         a = item[0]
         b = item[1]
         # a = item[0].get("pdf_name")
         # b = item[1].get("similarity")
-       # print(pdf1)
-        new = Pdf_Similarities(document_name1=pdf1, document_name2=a, similarity=b)
+        # print(pdf1)
+        new = Pdf_Similarities(document_name1=pdf1,
+                               document_name2=a,
+                               similarity=b)
         new.save()
     return
 
 
 def add_all_pdf_similarities():
-    all_files = Pdf_Name_Keyword_Weight.objects.all().values_list("pdf_name").distinct()
+    all_files = (Pdf_Name_Keyword_Weight.objects.all()
+                 .values_list("pdf_name").distinct())
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
         object = object.get("pdf_name")

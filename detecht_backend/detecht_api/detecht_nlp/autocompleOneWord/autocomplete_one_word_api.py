@@ -11,21 +11,25 @@ import re
 from collections import Counter
 import sys
 
-def words(text): return re.findall(r'\w+', text.lower())
 
-class autocomplete_word():
-    def __init__(self,number_of_autocompletes):
+def words(text):
+    return re.findall(r'\w+', text.lower())
+
+
+class autocompleteWord():
+    def __init__(self, number_of_autocompletes):
         # Creates hash
         word_count = Counter(words(open("big.txt").read()))
         # Makes it a dictionary
         dict_for_trie = dict(word_count)
-        # Creates the datastructure and forms it accordning to the number of auto corrects
+        # Creates the datastructure and forms it accordning to the number of
+        # auto corrects
         self.trie = autocomplete_one_word.Trie()
         self.trie.form_trie(dict_for_trie, number_of_autocompletes)
 
-        # Returns autocompleted suggestions. Returns -1 if it's a full word without suggestions.
-        # Returns zero if there are no suggestions
-    def autocomplete_one_word_api(self,text):
+        # Returns autocompleted suggestions. Returns -1 if it's a full word
+        # without suggestions. Returns zero if there are no suggestions
+    def autocomplete_one_word_api(self, text):
         suggestions = self.trie.find_word_suggestions(text)
         return suggestions
 
@@ -47,10 +51,10 @@ if __name__ == '__main__':
     t7 = time.clock()
     print(autocomp)
     print()
-    print("Hash time: " + str(t2-t1))
-    print("Dictionary time: " + str(t3-t2))
-    print("Trie create first node time: " + str(t4-t3))
-    print("Trie completion time: " + str(t5-t4))
-    print("Autocomplete time: " + str(t7-t6))
-    print("Size of hash: "+str(sys.getsizeof(word_counter)))
-    print("Size of trie: "+str(sys.getsizeof(theTrie)))
+    print("Hash time: " + str(t2 - t1))
+    print("Dictionary time: " + str(t3 - t2))
+    print("Trie create first node time: " + str(t4 - t3))
+    print("Trie completion time: " + str(t5 - t4))
+    print("Autocomplete time: " + str(t7 - t6))
+    print("Size of hash: " + str(sys.getsizeof(word_counter)))
+    print("Size of trie: " + str(sys.getsizeof(theTrie)))
