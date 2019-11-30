@@ -103,6 +103,8 @@ class Search(APIView):
                 if len(askquestion) > 0:
                     response['askQuestions'].append({'keyword': askquestion, 'type': 2})
 
+                print(response['askQuestions'])
+
                 for pdf_name in weighted:
                     response['content'].append(search.get_pdf(pdf_name)['j_class'].frontend_result(query))
                     response['totalResult'] += 1
