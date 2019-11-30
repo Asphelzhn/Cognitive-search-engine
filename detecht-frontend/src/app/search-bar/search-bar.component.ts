@@ -28,7 +28,7 @@ export class SearchBarComponent implements OnInit {
       if (spellcheck.length > 0) {
         this.showSpellcheck = false;
         for (const spellcheckWord of spellcheck) {
-          if (!spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase())) {
+          if (!spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) && !spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
             this.showSpellcheck = true;
           }
         }
@@ -42,7 +42,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   spellcheckClass(spellcheckWord: Spellcheck): string {
-    if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase())) {
+    if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) && !spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
       return '';
     } else {
       return 'misspelled';
@@ -53,7 +53,7 @@ export class SearchBarComponent implements OnInit {
     if (spellcheckWord === undefined) {
       this.showSpellcheck = false;
     } else {
-      if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase())) {
+      if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) && !spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
         this.showSpellcheck = false;
       } else {
         this.showSpellcheckDropDown = true;
