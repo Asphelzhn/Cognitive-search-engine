@@ -114,8 +114,8 @@ class WeightingModule:
         index = 0
         for result in elastic_search_results:
             score_after_keyword_weight = (
-                    weight_keyword_similarity
-                    * normalize_similarity_score_list[index])
+                weight_keyword_similarity
+                * normalize_similarity_score_list[index])
 
             score_dict[result] += score_after_keyword_weight
             index += 1
