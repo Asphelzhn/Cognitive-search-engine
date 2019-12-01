@@ -1,7 +1,7 @@
 <div class="search">
   <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
-    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?"
+    <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"
            [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
 
     <!--AUTOCOMPLETE-->
@@ -36,7 +36,7 @@
     </div>
     <!--END SPELLCHECK-->
 
-    <input type="submit" class="searchButton" value = ""/>
+
     <i class="fas fa-search"></i>
   </form>
 </div>
