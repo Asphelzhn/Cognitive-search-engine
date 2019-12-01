@@ -1,10 +1,18 @@
-<h2>Login</h2>
+<!--<h2>Login</h2>-->
 
-<div class="login">
-  <input type="text" name="username" placeholder="Username" [(ngModel)]="username">
-  <input type="password" name="password" placeholder="Password" [(ngModel)]="password">
-  <button type="submit" class="searchButton" (click)="onSubmit()">
-  </button>
-  {{errorMessage}}
+<div class = "container">
+  <div class = "login-box">
+    <h2>Admin Page</h2>
+    <br>
+    <img src = "static/assets/admin-page/people-icon.png">
+    <br>
+    <input type = "text" name = "username" placeholder = "Username" [(ngModel)] = "username">
+    <br>
+    <input type = "password" name = "password" placeholder = "Password" [(ngModel)] = "password">
+    <br>
+    <button type = "submit" class = "searchButton" (click) = "onSubmit()">Log in</button>
+    <br>
+    {{errorMessage}}
+  </div>
 </div>
 
