@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminNavbarToPageService} from '../../message-services/admin-navbar-to-page.service';
+import { AdminNavbarToPageService } from '../../message-services/admin-navbar-to-page.service';
+import {AdminLoginService} from '../../network-services/admin-login.service';
 
 @Component({
   selector: 'app-admin-navbar',
@@ -8,10 +9,17 @@ import {AdminNavbarToPageService} from '../../message-services/admin-navbar-to-p
 })
 export class AdminNavbarComponent implements OnInit {
 
-  constructor(private adminNavbarToPageService: AdminNavbarToPageService) { }
+  constructor(private adminNavbarToPageService: AdminNavbarToPageService, private adminLoginService: AdminLoginService) { }
+  currentPage: string;
 
   ngOnInit() {
+    this.adminNavbarToPageService.page.subscribe(page => this.currentPage = page);
   }
+
+  logout() {
+    this.adminLoginService.setCookie(0);
+  }
+
 
   changePage(newPage: string): void {
     this.adminNavbarToPageService.changePage(newPage);

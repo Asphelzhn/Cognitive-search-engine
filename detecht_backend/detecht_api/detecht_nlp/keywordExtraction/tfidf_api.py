@@ -7,8 +7,9 @@
 
 import detecht_api.detecht_nlp.keywordExtraction.tfidf.tfidf as tfidf
 
+
 class Tfidf4Keyword():
-    def tfidf_api(self,text, filename):
+    def tfidf_api(self, text, filename):
         pass
 
 
@@ -35,7 +36,7 @@ if __name__ == '__main__':
     print(wordWeightsZero1)
     print()
     print("tokenFrequency")
-    termWordWeights1 = tfidf.termfrequency(tokens1,wordWeightsZero1)
+    termWordWeights1 = tfidf.termfrequency(tokens1, wordWeightsZero1)
     termWordWeights2 = tfidf.termfrequency(tokens2, wordWeightsZero2)
     print(termWordWeights1)
     print(termWordWeights2)
@@ -50,22 +51,20 @@ if __name__ == '__main__':
     # IDF Test
     print()
     print("IDF")
-    IDF = tfidf.computeIDF([termWordWeights1,termWordWeights2])
+    IDF = tfidf.computeIDF([termWordWeights1, termWordWeights2])
     print(IDF)
 
     # TFIDF test
     print()
     print("TFIDF")
-    TFIDF1=tfidf.computeTFIDF(tf1,IDF)
-    TFIDF2=tfidf.computeTFIDF(tf2,IDF)
+    TFIDF1 = tfidf.computeTFIDF(tf1, IDF)
+    TFIDF2 = tfidf.computeTFIDF(tf2, IDF)
     print(TFIDF1)
     print(TFIDF2)
 
-
-    #TFIDF test of main
+    # TFIDF test of main
     print()
     print()
     print("main test:")
     s = tfidf.computeTFIDFmain([text1, text2])
     print(s)
-

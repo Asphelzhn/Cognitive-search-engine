@@ -12,6 +12,7 @@ import {
   NetworkAutoCompleteResponse,
   NetworkSearchResponse
 } from './network-data-types';
+import {RelatedSearchesService} from './related-searches.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,10 @@ export class SearchService {
   private totalResultsSource = new BehaviorSubject<number>(0);
   totalResults = this.totalResultsSource.asObservable();
 
-  constructor(private networkService: NetworkService, private http: HttpClient) { }
+  private askQuestionSource = new BehaviorSubject<AskQuestion[]>([]);
+  askQuestion = this.askQuestionSource.asObservable();
+
+  constructor(private networkService: NetworkService, private http: HttpClient, private relatedSearchesService: RelatedSearchesService) { }
 
   abstract(networkAbstractRequest: NetworkAbstractRequest): Observable<NetworkAbstractResponse> {
     return this.http.post< NetworkAbstractResponse >(environment.apiUrl + 'getabstract/', {
@@ -67,6 +71,8 @@ export class SearchService {
             newSpellcheck.push(new Spellcheck(spellcheck.word, spellcheck.spellcheck));
           }
           this.spellcheckSource.next(newSpellcheck);
+          this.askQuestionSource.next(data.askQuestions);
+          this.relatedSearchesService.update(query);
         } else {
           console.log('Error when getting schedule, please refresh the results');
         }

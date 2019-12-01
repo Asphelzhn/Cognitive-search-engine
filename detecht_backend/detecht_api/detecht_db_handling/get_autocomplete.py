@@ -1,14 +1,16 @@
 import os
+import django
+import time
+
+from detecht_api.models import Search_Autocomplete
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
-import django
-
 django.setup()
-from detecht_api.models import Search_Autocomplete
-import time
+
 '''
 By Severn
 '''
+
 
 def get_autocomplete(query):
     # search database, get all the n_gram start with query
