@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NetworkFavoriteDocumentRequest, NetworkInteractWithDocumentRequest} from '../../network-services/network-data-types';
+import {environment} from '../../../environments/environment';
 import {InteractWithDocumentService} from '../../network-services/interact-with-document.service';
 import {UserFavoriteService} from '../../network-services/user-favorite.service';
 import {Abstract, SearchResponse} from '../../data-types';
@@ -24,6 +25,7 @@ export class SavedDocumentComponent implements OnInit {
   title: string;
   @Input() userId: number;
   liked: boolean;
+  private staticUrl: string;
 
 
   constructor(private interactWithDocumentService: InteractWithDocumentService,
@@ -34,6 +36,7 @@ export class SavedDocumentComponent implements OnInit {
 
 
   ngOnInit() {
+    this.staticUrl = environment.staticUrl;
     this.sentence1 = this.boldstring(this.inputsentence1, this.keyword);
     this.sentence2 = this.boldstring(this.inputsentence2, this.keyword);
     this.sentence3 = this.boldstring(this.inputsentence3, this.keyword);
@@ -67,6 +70,7 @@ export class SavedDocumentComponent implements OnInit {
 
   like(like: boolean): void {
     this.userFavoriteService.favoriteDocument(new NetworkFavoriteDocumentRequest(this.userId, this.inputfile, like));
+    location.reload();
   }
 
   changeDocument(pdfName: string): void {

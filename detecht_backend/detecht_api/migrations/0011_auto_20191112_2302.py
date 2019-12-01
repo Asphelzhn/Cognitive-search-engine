@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Interacted_documents',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('down_prev', models.TextField(max_length=30)),
                 ('date', models.DateField()),
                 ('pdf_name', models.TextField(max_length=50)),
@@ -24,28 +27,42 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PDFImportance',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('pdf_name', models.CharField(max_length=200)),
                 ('likes', models.PositiveIntegerField(default=0)),
                 ('downloads', models.PositiveIntegerField(default=0)),
-                ('custom_weight', models.DecimalField(decimal_places=2, default=0, max_digits=3)),
+                ('custom_weight', models.DecimalField(decimal_places=2,
+                                                      default=0,
+                                                      max_digits=3)),
             ],
         ),
         migrations.CreateModel(
             name='Searches_Database',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('user_id', models.IntegerField(null=True)),
                 ('search_date', models.DateTimeField(auto_now_add=True)),
                 ('search_query', models.CharField(max_length=50)),
                 ('standardized_search_query', models.CharField(max_length=50)),
-                ('search_score', models.IntegerField(null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(10)])),
+                ('search_score', models.IntegerField(
+                    null=True, validators=[
+                        django.core.validators.MinValueValidator(1),
+                        django.core.validators.MaxValueValidator(10)])),
             ],
         ),
         migrations.CreateModel(
             name='User_Keyword',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('userID', models.TextField(max_length=20)),
                 ('keyword', models.TextField(max_length=50)),
             ],

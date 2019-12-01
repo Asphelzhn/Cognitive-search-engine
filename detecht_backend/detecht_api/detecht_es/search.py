@@ -1,18 +1,16 @@
-import json, requests, os
+import json
 from elasticsearch import Elasticsearch
 from detecht_api.detecht_converter.jsonclass import JsonClass
 
 """ Jakob and Henrik
     How to search after data from es"""
 
-# res = requests.get('http://localhost:9200')
-# print(res.content)
 es = None
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 if es.ping():
-    print('Connected to elasticsearch')
+    print('Search connected to Elasticsearch')
 else:
-    print('Could not connect to elasticsearch')
+    print('Search could not connect to Elasticsearch')
 
 
 # Should handle both single and multiple searches.
@@ -52,13 +50,14 @@ def get_pdf(query):
     }
     es.indices.refresh(index="db")
     res = es.search(index="db", body=body)
-    j_class = JsonClass.init_from_json(json.dumps(res['hits']['hits'][0]["_source"]))
+    j_class = JsonClass.init_from_json(json.dumps(
+        res['hits']['hits'][0]["_source"]))
     return {"j_class": j_class}
 
 
-def formated_search(query, size=1):
+def formatted_search(query, size=1):
     body = {
-        "_source": ["title"],
+        "_source": ["pdf_name"],
         "size": size,
         "query": {
             "query_string": {
@@ -70,10 +69,8 @@ def formated_search(query, size=1):
     }
 
     res = es.search(index="db", body=body)
-    print(res)
     titles = list()
     for hit in res['hits']['hits']:
-        title = "%(title)s" % hit["_source"]
+        title = "%(pdf_name)s" % hit["_source"]
         titles.append(title)
     return titles
-

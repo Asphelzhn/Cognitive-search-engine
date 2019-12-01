@@ -37,5 +37,3 @@ if __name__ == '__main__':
     print("Suggestion probability")
     for s in suggestions:
         print(spell.P(s))
-
-
