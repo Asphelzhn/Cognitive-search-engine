@@ -8,10 +8,19 @@
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;/* Resize the background image to cover the entire container */
 }
-
 .start-page-container {
   padding-top: 300px;
 }
+.saved-documents {
+  img {
+    width: 10%;
+    heigth: auto;
+    margin-top: 1%;
+    cursor: pointer;
+    margin-left: 85%;
+  }
+}
+
 
 .trending-documents-div {
   padding-top: 100px;

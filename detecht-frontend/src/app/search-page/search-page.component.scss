@@ -1,11 +1,11 @@
 .logo-img {
   width: 120px;
   height: 70px;
+  cursor:pointer;
 }
 
 .search-result-container {
   width: 70%;
-  height: auto;
 }
 
 .search-sidebar {
@@ -15,7 +15,7 @@
 }
 
 .saved-documents {
-
+cursor: pointer;
   img {
     width: 161px;
     height: 74px;
@@ -27,8 +27,11 @@
   min-width: 100vw;
   overflow-x: hidden;
   background-image: url("/static/assets/backgrounds/result-background.png");
-  background-size: cover;
   background-position: top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-repeat: repeat-y;
 
   @media screen and (max-width: 640px) {
