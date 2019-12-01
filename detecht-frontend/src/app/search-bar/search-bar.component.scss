@@ -27,7 +27,7 @@ input:focus {
   border: 0;
   box-sizing: border-box;
   background-color: #FFF;
-  background-image: url("../../static/assets/user-page/search-icon.png");
+  background-image: url("/static/assets/user-page/search-icon.png");
   background-repeat: no-repeat;
   background-position: left center;
   padding: 20px;
@@ -75,7 +75,7 @@ input:focus {
   span {
     display: block;
     padding: .5rem 0 .5rem 20%;
-    background-image: url("../../static/assets/user-page/search-icon.png");
+    background-image: url("/static/assets/user-page/search-icon.png");
     background-repeat: no-repeat;
     background-position: left center;
     background-position-x: 10%;
@@ -113,7 +113,7 @@ input:focus {
   span {
     display: block;
     padding: .5rem 0 .5rem 20%;
-    background-image: url("../../static/assets/user-page/search-icon.png");
+    background-image: url("/static/assets/user-page/search-icon.png");
     background-repeat: no-repeat;
     background-position: left center;
     background-position-x: 10%;

@@ -25,7 +25,7 @@ export class SavedDocumentComponent implements OnInit {
   title: string;
   @Input() userId: number;
   liked: boolean;
-  private staticUrl: string;
+  staticUrl: string;
 
 
   constructor(private interactWithDocumentService: InteractWithDocumentService,
