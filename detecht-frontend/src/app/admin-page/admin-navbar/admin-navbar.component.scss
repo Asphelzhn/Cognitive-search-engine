@@ -36,14 +36,15 @@
   text-align: center;
 
   span {
-    margin-top: 20px;
+    margin-top: 40px;
     padding-top: 10px;
     display: block;
-    height: 80px;
+    height: 30px;
     cursor: pointer;
     background-position-y: center;
     background-position-x: center;
     background-repeat: no-repeat;
+    background-size: contain;
   }
 
   #onAnalytics {
@@ -51,9 +52,8 @@
   }
 
   #offAnalytics {
-    /* TODO: Change to url("/static/assets/admin-page/account-circle-icon-light.png");
-     */
-    background-image: url("/static/assets/admin-page/dehaze-icon.png");
+    background-image: url("/static/assets/admin-page/account-circle-icon.png");
+    opacity: 0.51;
   }
 
   #onUpload {
@@ -61,9 +61,8 @@
   }
 
   #offUpload {
-    /* TODO Change to url("/static/assets/admin-page/file-upload-icon-light.png");
-    */
-    background-image: url("/static/assets/admin-page/dehaze-icon.png");
+    background-image: url("/static/assets/admin-page/file-upload-icon.png");
+    opacity: 0.51;
   }
 
   #onEdit {
@@ -71,9 +70,8 @@
   }
 
   #offEdit {
-    /* TODO Change to url("/static/assets/admin-page/border-color-icon-light.png");
-    */
-    background-image: url("/static/assets/admin-page/dehaze-icon.png");
+    background-image: url("/static/assets/admin-page/border-color-icon.png");
+    opacity: 0.51;
   }
 
 }
