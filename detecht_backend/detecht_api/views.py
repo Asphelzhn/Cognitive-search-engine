@@ -45,6 +45,9 @@ from detecht_api.detecht_nlp.spell_check import spell_check
 from detecht_api.detecht_db_handling import get_autocomplete
 from detecht_api.serializers import DocumentSerializer
 
+from detecht_api.detecht_nlp.related_searches import related_searches_api
+
+related_searches = related_searches_api.related_searches()
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -423,5 +426,20 @@ class GetDoc(APIView):
                 response['abstracts'].append({'sentence': str(imp_obj.sent),
                                               'score': imp_obj.score,
                                               'page': imp_obj.page})
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class RelatedSearches(APIView):
+    def post(self, request):  # input: "searchString"
+        response = {
+            'success': False,
+            'searches': []
+        }
+        input = request.data
+        if input != {}:
+            query = input["query"]
+            response["success"] = True
+            response["searches"] = related_searches.related_searches(query)
             return JsonResponse(response)  # test
         return JsonResponse(response)
