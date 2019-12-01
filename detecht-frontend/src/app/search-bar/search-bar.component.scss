@@ -23,7 +23,7 @@
    width: 100%;
    display: inline-block;
    font-size: 25px;
-   border-radius: 25px;
+   border-radius: 9999px;
   border: 0;
    box-sizing: border-box;
    background-image: url("../../static/assets/user-page/search-icon.png");
@@ -32,6 +32,7 @@
    padding: 20px;
    padding-left: 20%;
    background-position-x: 10%;
+   margin-top: 2rem;
  }
 .search-bar {
   width: auto;
