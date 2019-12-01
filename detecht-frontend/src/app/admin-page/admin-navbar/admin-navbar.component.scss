@@ -74,6 +74,10 @@
     opacity: 0.51;
   }
 
+  #offAnalytics:hover, #offUpload:hover, #offEdit:hover {
+    opacity: 1;
+  }
+
 }
 
 /* Responsive layout */

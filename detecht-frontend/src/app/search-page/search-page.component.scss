@@ -15,10 +15,17 @@
 }
 
 .saved-documents {
-cursor: pointer;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
   img {
     width: 161px;
     height: 74px;
+  }
+  
+  img:hover {
+    cursor: pointer;
   }
 }
 
