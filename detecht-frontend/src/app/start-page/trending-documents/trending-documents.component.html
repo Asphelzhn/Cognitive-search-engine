@@ -1,4 +1,4 @@
-<p id="trending-documents-title">Trending documents</p>
+<p id="trending-documents-title" *ngIf="trendingDocs.length > 0">Trending documents</p>
 
 <div class="documents-div">
   <app-trending-document *ngFor="let doc of trendingDocs" [pdfName]="doc.pdfName" [title]="doc.title"></app-trending-document>

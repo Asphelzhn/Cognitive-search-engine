@@ -10,6 +10,7 @@
 
 .search-sidebar {
   width: 30%;
+  padding-right: 20px;
 
 }
 
@@ -17,14 +18,14 @@
 cursor: pointer;
   img {
     width: 161px;
-    heigth: 74px;
+    height: 74px;
   }
 }
 
 .full-page-container {
   min-height: 100vh;
   min-width: 100vw;
-  //overflow-x: hidden;
+  overflow-x: hidden;
   background-image: url("/static/assets/backgrounds/result-background.png");
   background-position: top;
   -webkit-background-size: cover;

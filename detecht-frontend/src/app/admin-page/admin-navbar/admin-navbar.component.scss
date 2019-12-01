@@ -1,12 +1,26 @@
 #horizontal {
   position: fixed;
-  top: 0px;
+  top: 0;
   left: 111px;
-  right: 0px;
+  right: 0;
   height: 88px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 20px #00000029;
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  box-shadow: 0 3px 20px #00000029;
   opacity: 1;
+  text-align: right;
+
+
+  button {
+    background-color: #B0D5D8;
+    color: #ffffff;
+    border: none;
+    padding: 4px 11px;
+    margin: 2px;
+    position: relative;
+    top: 20%;
+    right: 2%;
+    cursor: pointer;
+  }
 }
 
 #vertical {
@@ -16,17 +30,120 @@
   bottom: 0;
   width: 111px;
   z-index: 1110;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 20px #00000029;
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  box-shadow: 0 3px 20px #00000029;
   opacity: 1;
+  text-align: center;
 
   span {
-    margin-top: 20px;
+    margin-top: 40px;
+    padding-top: 10px;
     display: block;
+    height: 30px;
+    cursor: pointer;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
-  span:hover {
-    color: blue;
-    cursor: pointer;
+  #onAnalytics {
+    background-image: url("/static/assets/admin-page/account-circle-icon.png");
   }
+
+  #offAnalytics {
+    background-image: url("/static/assets/admin-page/account-circle-icon.png");
+    opacity: 0.51;
+  }
+
+  #onUpload {
+    background-image: url("/static/assets/admin-page/file-upload-icon.png");
+  }
+
+  #offUpload {
+    background-image: url("/static/assets/admin-page/file-upload-icon.png");
+    opacity: 0.51;
+  }
+
+  #onEdit {
+    background-image: url("/static/assets/admin-page/border-color-icon.png");
+  }
+
+  #offEdit {
+    background-image: url("/static/assets/admin-page/border-color-icon.png");
+    opacity: 0.51;
+  }
+
 }
+
+/* Responsive layout */
+
+@media screen and (max-width: 992px) {
+
+  #horizontal {
+    left: 60px;
+    height: 50px;
+
+    button {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      top: 10%;
+      height: 80%;
+
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  #vertical {
+    width: 60px;
+    text-align: center;
+
+    span {
+      width: 100%;
+      padding-top: 20%;
+      -webkit-background-size: 50px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 612px) {
+
+  #horizontal {
+    left: 50px;
+    height: 40px;
+
+    button {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      top: 10%;
+      height: 80%;
+
+      h3 {
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+  }
+
+  #vertical {
+    width: 50px;
+    text-align: center;
+
+    span {
+      margin-top: 0;
+      width: 100%;
+      -webkit-background-size: 40px;
+    }
+  }
+
+}
+
+
+
