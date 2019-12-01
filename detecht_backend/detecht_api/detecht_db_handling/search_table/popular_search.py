@@ -1,4 +1,4 @@
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 
 from detecht_api import models
 import spacy
@@ -9,14 +9,18 @@ Edward and Severn
 
 nlp = spacy.load("en_core_web_sm")
 
+
 # end_date could be none, which mean till now
 def word_frequency(start_date, end_date=datetime.now()):
     if(start_date is not None):
         search_start_date = start_date
         search_end_date = end_date
-        query = models.Searches_Database.objects.filter(search_date__range=(start_date,end_date)).values_list("standardized_search_query")
+        search_filter = models.Searches_Database.objects.filter(
+            search_date__range=(search_start_date, search_end_date))
+        query = search_filter.values_list("standardized_search_query")
     else:
-        query = models.Searches_Database.objects.all().values_list("standardized_search_query")
+        query = models.Searches_Database.objects.all().values_list(
+            "standardized_search_query")
 
     # put all the words of standardized_search_query into one list
     words = []
@@ -25,7 +29,8 @@ def word_frequency(start_date, end_date=datetime.now()):
         temp = row[0]
         # print(temp)
         # print(type(temp))
-        temp = temp.replace("[", "").replace("]", "").replace("'", "").replace(" ", "")
+        temp = (temp.replace("[", "").replace("]", "")
+                .replace("'", "").replace(" ", ""))
         # print(temp)
         list = temp.split(",")
         for word in list:
@@ -41,7 +46,9 @@ def word_frequency(start_date, end_date=datetime.now()):
             word_frequency_dict[word] = 1
     # print(word_frequency_dict)
     # return a dictionary with sorted word frequency
-    sorted_word_frequency_dict = sorted(word_frequency_dict.items(),key=lambda item:item[1], reverse=True)
+    sorted_word_frequency_dict = sorted(word_frequency_dict.items(),
+                                        key=lambda item: item[1],
+                                        reverse=True)
 
     return sorted_word_frequency_dict
 
@@ -57,21 +64,21 @@ def get_popular_search():
 def get_period_popular_search(date1, date2):
     if date1 > date2:
         return "Wrong input"
-    return word_frequency(date1,date2)
+    return word_frequency(date1, date2)
 
 
 # this is example of how to get popular search during a time
 if __name__ == '__main__':
 
     popular = get_popular_search()
-    print("poplular search:")
+    print("popular search:")
     print(popular)
 
     # specify a time
     end_date = datetime.now()
     # get ten days earlier
-    start_date = end_date - timedelta(days= 10)
-    popular_in_time = get_period_popular_search(start_date,end_date)
-    print("#"*30)
+    start_date = end_date - timedelta(days=10)
+    popular_in_time = get_period_popular_search(start_date, end_date)
+    print("#" * 30)
     print("poplular search in a time:")
     print(popular_in_time)
