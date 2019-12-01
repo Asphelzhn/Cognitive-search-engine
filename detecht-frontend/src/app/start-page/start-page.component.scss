@@ -27,3 +27,18 @@
   margin-right: auto;
   width: 50%;
 }
+
+.saved-documents {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+  img {
+    width: 161px;
+    height: 74px;
+  }
+
+  img:hover {
+    cursor: pointer;
+  }
+}

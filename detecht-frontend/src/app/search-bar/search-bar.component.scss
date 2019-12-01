@@ -15,25 +15,26 @@
   }
 }
 
- input:focus {
+input:focus {
   outline-width: 0;
 }
 
- .searchTerm {
-   width: 100%;
-   display: inline-block;
-   font-size: 25px;
-   border-radius: 9999px;
+.searchTerm {
+  width: 100%;
+  display: inline-block;
+  font-size: 25px;
+  border-radius: 9999px;
   border: 0;
-   box-sizing: border-box;
-   background-image: url("../../static/assets/user-page/search-icon.png");
-   background-repeat: no-repeat;
-   background-position: left center;
-   padding: 20px;
-   padding-left: 20%;
-   background-position-x: 10%;
-   margin-top: 2rem;
- }
+  box-sizing: border-box;
+  background-color: #FFF;
+  background-image: url("../../static/assets/user-page/search-icon.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding: 20px;
+  padding-left: 20%;
+  background-position-x: 10%;
+  margin-top: 2rem;
+}
 .search-bar {
   width: auto;
   height: 30px;
@@ -62,19 +63,30 @@
 }
 
 #spellcheckDropDown {
-  position: fixed;
-  z-index: 1100;
-  width: 300px;
-  height: auto;
   background-color: white;
-  border: 1px solid black;
+  margin-top: -16px;
+  z-index: 999999;
+  position: relative;
+  border-radius: 0 0 40px 40px;
+  border-top: 1px solid #707070;
+  padding: 1rem 0px;
+  font-size: 25px;
 
   span {
     display: block;
-  }
-  span:hover {
-    background-color: #3a517f;
-    cursor: pointer;
+    padding: .5rem 0 .5rem 20%;
+    background-image: url("../../static/assets/user-page/search-icon.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-position-x: 10%;
+    color: #545C62;
+    transition: background-color 300ms;
+
+    &:hover {
+      background-color: #eeeeee;
+      cursor: pointer;
+    }
+
   }
 }
 

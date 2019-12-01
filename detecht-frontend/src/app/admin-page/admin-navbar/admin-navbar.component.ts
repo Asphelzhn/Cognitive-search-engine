@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminNavbarToPageService } from '../../message-services/admin-navbar-to-page.service';
 import {AdminLoginService} from '../../network-services/admin-login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-navbar',
@@ -9,7 +10,9 @@ import {AdminLoginService} from '../../network-services/admin-login.service';
 })
 export class AdminNavbarComponent implements OnInit {
 
-  constructor(private adminNavbarToPageService: AdminNavbarToPageService, private adminLoginService: AdminLoginService) { }
+  constructor(private adminNavbarToPageService: AdminNavbarToPageService,
+              private adminLoginService: AdminLoginService,
+              private router: Router) { }
   currentPage: string;
 
   ngOnInit() {
@@ -18,6 +21,7 @@ export class AdminNavbarComponent implements OnInit {
 
   logout() {
     this.adminLoginService.setCookie(0);
+    this.router.navigateByUrl('');
   }
 
 
