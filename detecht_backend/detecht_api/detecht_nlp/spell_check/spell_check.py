@@ -1,10 +1,34 @@
+import time
 import re
 from collections import Counter
 
+#import spacy
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
+import django
+django.setup()
+t1=time.time()
+from detecht_api.detecht_db_handling.keyword import addTotalKeywords
+from detecht_api.models import TotalKeywords
+from os import path
 
 def words(text):
     return re.findall(r'\w+', text.lower())
 
+
+word_counter = Counter(words(open("detecht_api/detecht_nlp/spell_check/big.txt").read()))
+if path.exists("temp.txt"):
+    word_counter.update(words(open("temp.txt").read()))
+
+#def uploadTxt(string):
+#    t0=time.time()
+#    nlp = spacy.load("en_core_web_sm")
+#    nlp.max_length= 100000000
+#    t1=time.time()
+#    doc = nlp(string, disable=["tagger", "parser", "ner"])
+#    t2=time.time()
+#    for word in doc:
+#        addTotalKeywords(word.text.lower())
 
 word_counter = Counter(words(open(
     "detecht_api/detecht_nlp/spell_check/big.txt").read()))
@@ -18,8 +42,8 @@ def P(word, N=sum(word_counter.values())):
 
 def correction(word):
     """Most probable spelling correction for word."""
-    most_probable = max(candidates(word), key=P)
-    return most_probable
+    mostProbable = max(candidates(word), key=P)
+    return mostProbable
 
 
 def candidates(word):
