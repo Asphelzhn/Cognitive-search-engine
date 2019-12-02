@@ -39,6 +39,7 @@ def inject_by_name(filename):
 
 
 def delete_from_index(filename):
+    print(filename)
     es.indices.refresh(index="db")
     body = {
         "query": {
