@@ -13,8 +13,8 @@ export class DeletePdfService {
 
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
-  deletePdf(title: string): Observable<NetworkSuccessResponse> {
-    return this.http.post<NetworkSuccessResponse>(environment.apiUrl + 'deletepdf/', {title}, {
+  deletePdf(pdfName: string): Observable<NetworkSuccessResponse> {
+    return this.http.post<NetworkSuccessResponse>(environment.apiUrl + 'deletepdf/', {pdfName}, {
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
