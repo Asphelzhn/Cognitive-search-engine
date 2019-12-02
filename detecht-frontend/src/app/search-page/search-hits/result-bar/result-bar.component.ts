@@ -81,7 +81,6 @@ export class ResultBarComponent implements OnInit {
           for (const abstract of data.abstracts) {
             this.abstracts.push(new Abstract(abstract.sentence, abstract.score, abstract.page));
           }
-          console.log(this.abstracts);
         } else {
           console.log('Error when getting schedule, please refresh the results');
         }

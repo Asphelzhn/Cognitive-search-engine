@@ -1,7 +1,13 @@
 <div class = "container m-0 p-0">
+  <a class="saved-documents">
+    <img routerLink="/saved" src="static/assets/user-page/saved-button.png">
+  </a>
   <div class = "start-page-container">
     <img src= "static/assets/user-page/logo-icon.png" class="logo-img" alt="logo">
     <app-search-bar [changePage]="true"></app-search-bar>
+    <a class="saved-documents">
+      <img routerLink="/saved" src="static/assets/user-page/saved-button.png">
+    </a>
     <div class="trending-documents-div">
       <app-trending-documents></app-trending-documents>
     </div>

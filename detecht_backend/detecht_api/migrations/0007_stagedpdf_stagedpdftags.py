@@ -13,7 +13,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='stagedPdf',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('pdf_name', models.CharField(max_length=200)),
                 ('title', models.CharField(max_length=200)),
             ],
@@ -21,7 +24,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='stagedPdfTags',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('staged_pdf_id', models.IntegerField()),
                 ('tag', models.CharField(max_length=200)),
             ],

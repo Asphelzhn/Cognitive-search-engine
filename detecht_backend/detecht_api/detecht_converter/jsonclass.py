@@ -1,8 +1,8 @@
 import json
 import ast
 import spacy
-from detecht_api.detecht_converter.section_class import *
-from detecht_api.detecht_converter.keyword_class import *
+# from detecht_api.detecht_converter.section_class import *
+from detecht_api.detecht_converter.keyword_class import keyword_class
 # from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
 from detecht_api.detecht_es.insert_file import inject_one_file
 from detecht_api.detecht_nlp.keywordExtraction.yake_api import Yake4Keyword
@@ -14,10 +14,13 @@ from detecht_api.detecht_db_handling import keyword as db_keyword
 abstract = imp_sent_api.imp_sent_api()
 nlp = spacy.load("en_core_web_sm")
 
+
 # Jakob, Carl, Oscar and Henrik
 class JsonClass:
 
-    def __init__(self, pdf_name, title, date_created, databaseObject, word_frequencies=dict(), pages=list()):
+    def __init__(self, pdf_name, title, date_created,
+                 databaseObject, word_frequencies=dict(),
+                 pages=list()):
         self.pdf_name = pdf_name
         self.title = title
         self.keywords = list()
@@ -42,11 +45,16 @@ class JsonClass:
             imp_obj.page = imp_doc['page']
             databaseObjTemp.append(imp_obj)
 
-        json_obj = cls(json_doc["pdf_name"], json_doc["title"], json_doc["date_created"], databaseObjTemp,
-                       ast.literal_eval(json_doc["word_frequencies"]), json_doc["pages"])
+        json_obj = cls(json_doc["pdf_name"],
+                       json_doc["title"],
+                       json_doc["date_created"],
+                       databaseObjTemp,
+                       ast.literal_eval(json_doc["word_frequencies"]),
+                       json_doc["pages"])
 
         for keyword in json_doc["keywords"]:
-            json_obj.keywords.append(keyword_class(keyword["Keyword"], keyword["Weight"]))
+            json_obj.keywords.append(keyword_class(keyword["Keyword"],
+                                                   keyword["Weight"]))
         return json_obj
 
     @classmethod
@@ -54,17 +62,28 @@ class JsonClass:
         pdf_extraction = pdf_extractor(pdf_name)
         date_created = pdf_extraction[1]
         pages = pdf_extraction[0]
-        databaseObject, word_frequencies = abstract.upload_find_relevant_sentences(pages)
-        json_obj = cls(pdf_name, title, date_created, databaseObject, word_frequencies, pages)
+        databaseObject, word_frequencies = \
+            abstract.upload_find_relevant_sentences(pages)
+        json_obj = cls(pdf_name,
+                       title,
+                       date_created,
+                       databaseObject,
+                       word_frequencies,
+                       pages)
 
-        keywords_list = Yake4Keyword.yake_api(json_obj.get_all_plaintext(), pdf_name)
+        keywords_list = Yake4Keyword.yake_api(json_obj.get_all_plaintext(),
+                                              pdf_name)
         for keyword in keywords_list:
-            # TODO make the following work (the ones that created the database functionality)
+            # TODO make the following work (the ones that created
+            #  the database functionality)
             db_keyword.addKeyword(keyword[0])
-            db_keyword.Add_Pdf_Name_Keyword_Weight(pdf_name, keyword[0], float(keyword[1]))
+            db_keyword.Add_Pdf_Name_Keyword_Weight(pdf_name,
+                                                   keyword[0],
+                                                   float(keyword[1]))
             json_obj.add_keyword(keyword[0], keyword[1])
 
-        # TODO make the following work (the ones that created the database functionality)
+        # TODO make the following work (the ones that created
+        #  the database functionality)
         db_keyword.add_pdf_similarities(pdf_name)
         return json_obj
 
@@ -74,7 +93,8 @@ class JsonClass:
             full_text += page
         return full_text
 
-    def get_plaintext(self, start_page, end_page):  # return plain text from start_page to end_page
+    def get_plaintext(self, start_page, end_page):  # return plain text
+        # from start_page to end_page
         segment_text = ""
         iteration_amount = end_page - start_page
         for i in range(iteration_amount):
@@ -84,8 +104,10 @@ class JsonClass:
     def frontend_result(self, query):
         keywords = []
         for keyword in self.keywords:
-            keywords.append({'keyword': keyword.get_keyword(), 'weight': keyword.get_weight()})
-        return {'pdfTitle': self.title, 'pdfName': self.pdf_name, 'keywords': keywords}
+            keywords.append({'keyword': keyword.get_keyword(),
+                             'weight': keyword.get_weight()})
+        return {'pdfTitle': self.title, 'pdfName': self.pdf_name,
+                'keywords': keywords}
 
     def get_json_object(self):
         keywords_tmp = list()
@@ -113,7 +135,8 @@ class JsonClass:
             'date_created': self.date_created}
         return json.dumps(a)
 
-    # Adds whole document to one string, can be a problem with memory management
+    # Adds whole document to one string,
+    # can be a problem with memory management
     def get_date_created(self):
         return self.date_created
 
@@ -134,13 +157,16 @@ class JsonClass:
 
     # Samuel
     def get_abstract(self, query):
-        return abstract.generateAbstract(query, self.databaseObject, self.word_frequencies)
+        return abstract.generateAbstract(query,
+                                         self.databaseObject,
+                                         self.word_frequencies)
 
     # Jakob
     def inject_to_es(self):
         inject_one_file(self.get_json_object())
 
-# Commented this since we wont be using sections (Carl and Oscar) told me Nicklas that I think
+# Commented this since we wont be using sections (Carl and Oscar)
+# told me Nicklas that I think
 # def add_pages(self):
 #     json_tmp = json.loads(self.pdf_name.read())
 #     attr = str

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../../network-services/search.service';
-import {AskQuestion} from '../../data-types';
+import {AskQuestion, SearchResponse} from '../../data-types';
 import {AdminLoginService} from '../../network-services/admin-login.service';
 
 @Component({
@@ -16,10 +16,12 @@ export class RelatedSearchesDecisionTreeComponent implements OnInit {
   question: string;
   query: string;
   userId: number;
+  results: SearchResponse[];
 
   constructor(private searchService: SearchService, private adminLoginService: AdminLoginService) { }
 
   ngOnInit() {
+    this.searchService.searchResponse.subscribe(searchResult => this.results = searchResult);
 
     this.askQuestionId = '';
 

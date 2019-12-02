@@ -1,6 +1,11 @@
-<div id="horizontal"> Here admin navbar should be created</div>
-<div id="vertical">
-  <span (click)="changePage('analytics')">Click for Analytics</span>
-  <span (click)="changePage('upload')">Click for Upload document</span>
-  <span (click)="changePage('edit')">Click for Edit documents</span>
+<div id = "horizontal">
+    <button class = "btn btn-primary log-out-btn" (click) = "logout()"><h3>Log out</h3></button>
+</div>
+<div id = "vertical">
+  <span (click) = "changePage('analytics')" *ngIf = "currentPage === 'analytics'" id = "onAnalytics"></span>
+  <span (click) = "changePage('analytics')" *ngIf = "currentPage !== 'analytics'" id = "offAnalytics"></span>
+  <span (click) = "changePage('upload')" *ngIf = "currentPage === 'upload'" id = "onUpload"></span>
+  <span (click) = "changePage('upload')" *ngIf = "currentPage !== 'upload'" id = "offUpload"></span>
+  <span (click) = "changePage('edit')" *ngIf = "currentPage === 'edit'" id = "onEdit"></span>
+  <span (click) = "changePage('edit')" *ngIf = "currentPage !== 'edit'" id = "offEdit"></span>
 </div>

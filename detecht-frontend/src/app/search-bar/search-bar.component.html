@@ -1,7 +1,7 @@
 <div class="search">
   <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
-    <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?"
+    <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"
            [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
 
     <!--AUTOCOMPLETE-->
@@ -15,8 +15,7 @@
     <!--END AUTOCOMPLETE-->
 
     <!--SPELLCHECK-->
-    <div type="text" name="search" id="spellcheckBox" class="searchTerm" placeholder="What are you looking for?"
-         *ngIf="showSpellcheck">
+    <div type="text" id="spellcheckBox" class="searchTerm" *ngIf="showSpellcheck">
       <span id="spellcheckBoxForeGround">
         <span *ngFor="let spellcheckword of spellcheck">
           <span class="{{spellcheckClass(spellcheckword)}}" (click)="pressedSpellcheck(spellcheckword)">{{spellcheckword.word}}</span>
@@ -24,19 +23,17 @@
         </span>
       </span>
       <span id="spellcheckBoxBackGround" (click)="pressedSpellcheck(undefined)"></span>
-      <!--<span (click)="pressedSpellcheck(undefined)" style="color: rgba(0,0,0,0);">-->
-      <!--abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwx</span>-->
-      <div id="spellcheckDropDown" *ngIf="showSpellcheckDropDown">
+    </div>
+    <div id="spellcheckDropDown" *ngIf="showSpellcheckDropDown">
         <span *ngFor="let word of spellcheckDropDown.spellcheck"
               (click)="searchForSpellcheck(spellcheckDropDown.word, word)">
           {{word}}
         </span>
-      </div>
-      <div id="spellcheckDropDownBackground" *ngIf="showSpellcheckDropDown" (click)="closeSpellcheckDropDown()"></div>
     </div>
+    <div id="spellcheckDropDownBackground" *ngIf="showSpellcheckDropDown" (click)="closeSpellcheckDropDown()"></div>
     <!--END SPELLCHECK-->
 
-    <input type="submit" class="searchButton" value = ""/>
+
     <i class="fas fa-search"></i>
   </form>
 </div>
