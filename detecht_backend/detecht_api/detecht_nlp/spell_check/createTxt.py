@@ -13,13 +13,9 @@ def creteTxt(arrayOfTxt):
     f = open("tempcopy.txt", "a")
 
     for i in arrayOfTxt:
-        print(1)
         docx=nlp(i)
         for sentence in docx.sents:
-            print(2)
-            print(len(str(sentence)))
             if 5 < len(sentence.text.split(' ')) < 30 and (sum(c.isalpha() for c in str(sentence)) / sum(c != " " for c in str(sentence))) > 0.75:
-                print(3)
                 f.write(sentence.text)
     f.write(" ")
     f.close()

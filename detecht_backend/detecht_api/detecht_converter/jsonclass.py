@@ -10,6 +10,8 @@ from detecht_api.detecht_converter.pdf_converter import pdf_extractor
 from detecht_api.detecht_nlp.abstract import imp_sent_api
 from detecht_api.detecht_nlp.abstract.class_imp_set import ImpSent
 from detecht_api.detecht_db_handling import keyword as db_keyword
+from detecht_api.detecht_nlp.spell_check import createTxt
+from detecht_api.detecht_nlp.autocompleteWords import upload_n_gram
 
 abstract = imp_sent_api.imp_sent_api()
 nlp = spacy.load("en_core_web_sm")
@@ -62,8 +64,9 @@ class JsonClass:
         pdf_extraction = pdf_extractor(pdf_name)
         date_created = pdf_extraction[1]
         pages = pdf_extraction[0]
-        databaseObject, word_frequencies = \
-            abstract.upload_find_relevant_sentences(pages)
+        createTxt.creteTxt(pages)
+        upload_n_gram.upload()
+        databaseObject, word_frequencies = abstract.upload_find_relevant_sentences(pages)
         json_obj = cls(pdf_name,
                        title,
                        date_created,
