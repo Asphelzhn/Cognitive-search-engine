@@ -5,9 +5,9 @@
 @desc: Using levehnstein distance for spell check
 """
 import time
+import detecht_api.detecht_nlp.spell_check.spell_check as spell
 
 t0 = time.time()
-import detecht_api.detecht_nlp.spell_check.spell_check as spell
 
 t1 = time.time()
 print("Import time: " + str(t1 - t0))
@@ -24,7 +24,8 @@ class spellCheck4SearchWord():
         return suggested_spell_check
 
     def upload_first_time(self):
-        spell.uploadTxt(open("detecht_api/detecht_nlp/spell_check/big.txt").read())
+        spell.uploadTxt(open(
+            "detecht_api/detecht_nlp/spell_check/big.txt").read())
         print("uploaded")
 
     def upload_new_text(self, text):

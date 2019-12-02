@@ -56,7 +56,8 @@ class WeightingModule:
         favourite_weight = 6
         for pdfname in elastic_search_results:
             print(pdfname)
-            record = models.Document.objects.get(file='detecht_api/static/pdf/' + pdfname)
+            record = models.Document.objects.get(
+                file='detecht_api/static/pdf/' + pdfname)
             download = record.downloads
             favourite = record.favorites
             score = download * download_weight + favourite * favourite_weight
@@ -161,7 +162,9 @@ class WeightingModule:
                         keywords_dict[keyword] = 1
 
         for key in keywords_dict:
-            keywords_dict[key] = abs((len(ranked_by_weighting_module_results)/2) - keywords_dict[key])
+            keywords_dict[key] = abs(
+                (len(ranked_by_weighting_module_results) / 2)
+                - keywords_dict[key])
 
         # print("dict is")
         # print(keywords_dict)

@@ -10,7 +10,7 @@ Henrik & Oscar
 
 stopwords = list(STOP_WORDS)
 nlp = spacy.load("en_core_web_sm")
-nlp.max_length= 100000000
+nlp.max_length = 100000000
 
 
 # The sentences are returned in a array where the first sentence
@@ -63,8 +63,8 @@ def imp_sent_creator(doc, size):
     sentence_scores = {}
     for sent in sentence_list:
         if 5 < len(sent.text.split(' ')) < 30\
-                and(sum(c.isalpha()
-                        for c in str(sent)) / sum(c != " " for c in str(sent))) > 0.75:
+                and(sum(c.isalpha() for c in str(sent))
+                    / sum(c != " " for c in str(sent))) > 0.75:
 
             for word in sent:
                 if word.text.lower() in word_frequencies.keys():

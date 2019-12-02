@@ -1,10 +1,4 @@
-import os
 from os import path
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
-import django
-
-django.setup()
 import operator
 import time
 from detecht_api.django_setup import initialize_django
@@ -22,7 +16,7 @@ def upload():
     t1 = time.clock()
     content = open("detecht_api/detecht_nlp/autocompleteWords/big.txt").read()
     if path.exists("temp.txt"):
-        content =content + " " + open("temp.txt").read()
+        content = content + " " + open("temp.txt").read()
     n_grams = n_gram.getNgrams(content, 6)
     sortedNGrams = sorted(n_grams.items(), key=operator.itemgetter(1),
                           reverse=True)  # =True descending sort

@@ -67,12 +67,13 @@ class JsonClass:
         try:
             datetime.datetime.strftime(pdf_extraction[1], '%Y-%m-%d')
             date_created = pdf_extraction[1]
-        except:
+        except ValueError:
             date_created = datetime.date.today().strftime('%Y-%m-%d')
         pages = pdf_extraction[0]
         createTxt.creteTxt(pages)
         upload_n_gram.upload()
-        databaseObject, word_frequencies = abstract.upload_find_relevant_sentences(pages)
+        databaseObject, word_frequencies = abstract\
+            .upload_find_relevant_sentences(pages)
         json_obj = cls(pdf_name,
                        title,
                        date_created,
