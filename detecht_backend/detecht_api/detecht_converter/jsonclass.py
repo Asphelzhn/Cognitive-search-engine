@@ -1,6 +1,7 @@
 import json
 import ast
 import spacy
+import datetime
 # from detecht_api.detecht_converter.section_class import *
 from detecht_api.detecht_converter.keyword_class import keyword_class
 # from detecht_api.detecht_nlp.imp_sent_creator import imp_sent_creator
@@ -60,7 +61,12 @@ class JsonClass:
     @classmethod
     def init_from_pdf(cls, pdf_name, title, tags):
         pdf_extraction = pdf_extractor(pdf_name)
-        date_created = pdf_extraction[1]
+        date_created = None
+        try:
+            datetime.datetime.strftime(pdf_extraction[1], '%Y-%m-%d')
+            date_created = pdf_extraction[1]
+        except:
+            date_created = datetime.date.today().strftime('%Y-%m-%d')
         pages = pdf_extraction[0]
         databaseObject, word_frequencies = \
             abstract.upload_find_relevant_sentences(pages)
