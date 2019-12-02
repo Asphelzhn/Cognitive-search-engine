@@ -17,7 +17,7 @@ from detecht_api.detecht_db_handling.keyword import (Interact_Document,
                                                      pdf_relevance)
 from detecht_api.detecht_db_handling.document_interaction import (
     add_favorite_pdf, remove_favorite_pdf,
-    update_downloads, update_favorites)
+    update_downloads, update_favorites, change_pdf_name)
 
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
@@ -441,4 +441,19 @@ class RelatedSearches(APIView):
             response["success"] = True
             response["searches"] = related_searches.related_searches(query)
             return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class ChangeName(APIView):
+    def post(self, request):  # input: "searchString"
+        response = {
+            'success': False
+        }
+        input = request.data
+        if input != {}:
+            pdf_name = input["pdfName"]
+            new_title = input["newTitle"]
+            change_pdf_name(pdf_name, new_title)
+            response["success"] = True
+            return JsonResponse(response)
         return JsonResponse(response)

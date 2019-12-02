@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {DeletePdfService} from '../../../../network-services/delete-pdf.service';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../../network-services/search.service';
+import {SearchResponse} from '../../../../data-types';
 
 @Component({
   selector: 'app-edit-result',
@@ -10,11 +11,10 @@ import {SearchService} from '../../../../network-services/search.service';
 })
 export class EditResultComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() abstract: string;
+  @Input() result: SearchResponse;
   @Input() query: string;
   icon: string;
-  @Output() pdfNameEvent = new EventEmitter<string>();
+  @Output() pdfNameEvent = new EventEmitter<SearchResponse>();
 
   constructor(private deletePdfService: DeletePdfService, private searchService: SearchService, private router: Router) { }
 
@@ -24,14 +24,14 @@ export class EditResultComponent implements OnInit {
   }
 
   delete() {
-    this.deletePdfService.deletePdf(this.title).subscribe(
+    this.deletePdfService.deletePdf(this.result.name).subscribe(
       response => console.log(response)
     );
     this.searchService.search(this.query);
   }
 
   editDocument() {
-    this.pdfNameEvent.emit(this.title);
+    this.pdfNameEvent.emit(this.result);
   }
 
 }

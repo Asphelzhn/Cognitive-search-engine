@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^api/getdoc/$', views.GetDoc.as_view()),
     url(r'^api/relateddocuments/$', views.RelatedDocuments.as_view()),
     url(r'^api/relatedsearches/$', views.RelatedSearches.as_view()),
+    url(r'^api/changename/$', views.ChangeName.as_view()),
     url(r'^api/isfavorite/$', views.IsFavorite.as_view())
 
 

@@ -195,6 +195,6 @@ export class NetworkAdminLoginRequest {
 }
 
 export class NetworkChangeNameRequest {
-  oldName: string;
-  newName: string;
+  pdfName: string;
+  newTitle: string;
 }

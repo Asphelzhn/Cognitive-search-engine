@@ -13,11 +13,20 @@ export class ChangeNameService {
   constructor(private networkService: NetworkService, private http: HttpClient) { }
 
   changeName(data: NetworkChangeNameRequest): void {
-    this.http.post(environment.apiUrl + 'changename/', JSON.stringify(data), {
+    this.http.post<any>(environment.apiUrl + 'changename/', JSON.stringify(data), {
       withCredentials: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })}
-    ).pipe(catchError(this.networkService.handleError)).subscribe();
+    ).pipe(catchError(this.networkService.handleError)).subscribe(
+      (response) => {
+        if (!response.success) {
+          console.log('Error in changing name');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

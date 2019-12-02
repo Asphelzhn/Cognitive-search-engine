@@ -3,15 +3,15 @@
     <img class = "search-icon" src="{{icon}}" alt="">
   </div>
   <div class="title-div">
-    {{title}}
+    {{result.title}}
   </div>
   <div class="abstract-div">
-    {{abstract}}
+    {{result.name}}
   </div>
-  <label class="check_container" (click)="editDocument()" >
-    <input type="checkbox">
-    <span class="checkmark"></span>
-  </label>
+  <!--<label class="check_container" (click)="editDocument()" >-->
+    <!--<input type="checkbox">-->
+    <!--<span class="checkmark"></span>-->
+  <!--</label>-->
   <button type="submit" class="saveButton" (click)="delete()">
     <p class="button-text">Delete</p>
   </button>

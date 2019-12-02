@@ -32,9 +32,14 @@ def get_filename(title):
     name = filename.file.name.replace('detecht_api/static/pdf/', '')
     return name
 
-def change_pdf_name(oldName, newName):
-    a = Document.objects.get(title=oldName).title
+
+def change_pdf_name(pdf_name, new_title):
+    a = Document.objects.get(file='detecht_api/static/pdf/' + pdf_name)
+    print(a)
     if a != {}:
-        a = newName
+        a.title = new_title
         a.save()
-    return newName
+        print(a)
+        print(a.title)
+        print(a.file)
+    return new_title
