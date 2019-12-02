@@ -8,7 +8,7 @@ nlp = spacy.load("en_core_web_sm")
 
 def creteTxt(arrayOfTxt):
     if path.exists("temp.txt"):
-        dest = shutil.copyfile("temp.txt", "tempcopy.txt")
+        shutil.copyfile("temp.txt", "tempcopy.txt")
     f = open("tempcopy.txt", "a")
 
     for i in arrayOfTxt:

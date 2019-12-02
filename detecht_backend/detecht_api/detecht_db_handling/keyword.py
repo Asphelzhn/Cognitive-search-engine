@@ -231,7 +231,7 @@ def add_all_pdf_similarities():
                  .values_list("pdf_name").distinct())
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
-       # object = object.get("pdf_name")
+        # object = object.get("pdf_name")
         add_pdf_similarities(object)
     return
 
