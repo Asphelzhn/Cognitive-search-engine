@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchResponse} from '../../data-types';
 
 @Component({
   selector: 'app-edit-documents',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDocumentsComponent implements OnInit {
 
+  result: SearchResponse;
   constructor() { }
 
   ngOnInit() {
   }
 
+  editDocument($event) {
+    this.result = $event;
+  }
 }

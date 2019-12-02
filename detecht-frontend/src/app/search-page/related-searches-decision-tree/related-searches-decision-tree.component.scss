@@ -29,32 +29,34 @@
     width: 50%;
     font-size: 17px;
   }
-  
+
   #filter:hover {
     cursor: pointer;
+    background-color: #919DA4;
   }
 
   .answer {
-
-    .yes {
+    .button {
       background: rgba(102, 102, 102, 0.29) 0 0 no-repeat padding-box;
       border-radius: 17px;
       font-size: 13px;
       display: inline-block;
       padding: 7px 30px;
       color: black;
+
+    }
+    .button:hover {
+      background-color: #707070;
+    }
+
+    .yes {
       margin-right: 60px;
     }
 
     .no {
-      background: rgba(102, 102, 102, 0.29) 0 0 no-repeat padding-box;
-      border-radius: 17px;
-      font-size: 13px;
-      display: inline-block;
-      padding: 7px 30px;
-      color: black;
 
     }
+
   }
 
   #askQuestion {

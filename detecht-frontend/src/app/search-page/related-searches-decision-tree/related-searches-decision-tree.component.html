@@ -1,14 +1,15 @@
-<div id="container">
+<div id="container" *ngIf="results.length > 0">
 
   <div id="{{askQuestionId}}" *ngIf="showQuestion">
     <div class="small bubble" id="filter" (click)="alterView()">Filter search results</div>
     <div class="big bubble" *ngIf="askQuestionId === 'askQuestion'">
       Are you looking for documents about "{{question}}"?
       <div class="answer">
-        <div class="yes" (click)="alterSearch(true)">yes</div>
-        <div class="no" (click)="alterSearch(false)">no</div>
+        <div class="button yes" (click)="alterSearch(true)">yes</div>
+        <div class="button no" (click)="alterSearch(false)">no</div>
       </div>
     </div>
+    <app-related-search-hits></app-related-search-hits>
   </div>
 </div>
 

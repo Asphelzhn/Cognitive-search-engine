@@ -17,7 +17,7 @@ from detecht_api.detecht_db_handling.keyword import (Interact_Document,
                                                      pdf_relevance)
 from detecht_api.detecht_db_handling.document_interaction import (
     add_favorite_pdf, remove_favorite_pdf,
-    update_downloads, update_favorites)
+    update_downloads, update_favorites, change_pdf_name)
 
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
@@ -45,6 +45,9 @@ from detecht_api.detecht_nlp.spell_check import spell_check
 from detecht_api.detecht_db_handling import get_autocomplete
 from detecht_api.serializers import DocumentSerializer
 
+from detecht_api.detecht_nlp.related_searches import related_searches_api
+
+related_searches = related_searches_api.related_searches()
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -103,10 +106,8 @@ class Search(APIView):
 
             formated = search.formatted_search(query, 1000)
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule\
-                    .calculate_score_after_weight(formated, query, user_id)
-                askquestion, newWeighted = WeightingModule\
-                    .WeightingModule.ask_a_question(weighted)
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
 
                 ignore = []
                 for question in input['askQuestions']:
@@ -236,10 +237,9 @@ class DeletePdf(APIView):
 
         inputfile = request.data
 
-        if inputfile != {}:
-            insert_file.delete_from_index(inputfile["title"])
-            Document.delete(inputfile["title"])  # runs a function in models
-            # that deletes our pdf.
+        if inputfile !={}:
+            insert_file.delete_from_index(inputfile["pdfName"])
+            Document.delete(inputfile["pdfName"])  # runs a function in models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 
@@ -424,4 +424,34 @@ class GetDoc(APIView):
                                               'score': imp_obj.score,
                                               'page': imp_obj.page})
             return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class RelatedSearches(APIView):
+    def post(self, request):  # input: "searchString"
+        response = {
+            'success': False,
+            'searches': []
+        }
+        input = request.data
+        if input != {}:
+            query = input["query"]
+            response["success"] = True
+            response["searches"] = related_searches.related_searches(query)
+            return JsonResponse(response)  # test
+        return JsonResponse(response)
+
+
+class ChangeName(APIView):
+    def post(self, request):  # input: "searchString"
+        response = {
+            'success': False
+        }
+        input = request.data
+        if input != {}:
+            pdf_name = input["pdfName"]
+            new_title = input["newTitle"]
+            change_pdf_name(pdf_name, new_title)
+            response["success"] = True
+            return JsonResponse(response)
         return JsonResponse(response)

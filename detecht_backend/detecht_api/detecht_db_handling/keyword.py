@@ -2,10 +2,18 @@ from rest_framework.exceptions import ValidationError
 from detecht_api.detecht_db_handling.document_interaction import \
     update_downloads
 from detecht_api.detecht_nlp.word_similarity import word_similarity
+from detecht_api.models import Keywords, Keyword_distance,Pdf_Name_Keyword_Weight, Interacted_documents,Pdf_Similarities, User_Keyword, TotalKeywords
 from detecht_api.models import (Keywords, Keyword_distance,
                                 Pdf_Name_Keyword_Weight, Interacted_documents,
                                 Pdf_Similarities, User_Keyword)
 from datetime import date
+
+def addTotalKeywords(word):
+    newword, created = TotalKeywords.objects.get_or_create(word=word)
+    if created:
+        newword.save()
+    else:
+        TotalKeywords.objects.update(frequency=F('frequency') + 1)
 
 
 # add keyword in db, if keyword already exists it is not added.
@@ -219,7 +227,7 @@ def add_all_pdf_similarities():
                  .values_list("pdf_name").distinct())
     # Not sure if it's okay to pick it up from here but i think it should work
     for object in all_files:
-        object = object.get("pdf_name")
+       # object = object.get("pdf_name")
         add_pdf_similarities(object)
     return
 
@@ -228,3 +236,5 @@ def add_user_keyword(id, key):
     new = User_Keyword(userID=id, keyword=key)
     new.save()
     return
+
+

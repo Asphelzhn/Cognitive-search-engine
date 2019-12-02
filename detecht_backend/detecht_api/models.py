@@ -6,6 +6,9 @@ from django.db.models import F
 """
 Oskar H
 """
+class TotalKeywords(models.Model):
+    word = models.TextField(max_length=50)
+    frequency = models.BigIntegerField(default=1)
 
 
 class Document(models.Model):
@@ -23,12 +26,9 @@ class Document(models.Model):
         return self.title
 
     def delete(inputName):
-        pdfToDelete = Document.objects.get(title=str(inputName))
-        default_storage.delete(pdfToDelete.file.name)  # This part is deleting
-        # the pdf file from our storage.
+        default_storage.delete('detecht_api/static/pdf/' + str(inputName))  # This part is deleting the pdf file from our storage.
 
-        Document.objects.filter(title=str(inputName)).delete()  # This part
-        # is deleteting the row in db.
+        Document.objects.filter(file='detecht_api/static/pdf/' + str(inputName)).delete()  # This part is deleteting the row in db.
         return
 
 

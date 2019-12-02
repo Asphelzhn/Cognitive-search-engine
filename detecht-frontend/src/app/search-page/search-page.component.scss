@@ -1,33 +1,44 @@
 .logo-img {
   width: 120px;
   height: 70px;
+  cursor:pointer;
 }
 
 .search-result-container {
   width: 70%;
-  height:8000px;
 }
 
 .search-sidebar {
   width: 30%;
+  padding-right: 20px;
 
 }
 
 .saved-documents {
+  position: fixed;
+  top: 30px;
+  right: 30px;
 
   img {
     width: 161px;
-    heigth: 74px;
+    height: 74px;
+  }
+  
+  img:hover {
+    cursor: pointer;
   }
 }
 
 .full-page-container {
   min-height: 100vh;
   min-width: 100vw;
-  //overflow-x: hidden;
+  overflow-x: hidden;
   background-image: url("/static/assets/backgrounds/result-background.png");
-  background-size: contain;
   background-position: top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-repeat: repeat-y;
 
   @media screen and (max-width: 640px) {
