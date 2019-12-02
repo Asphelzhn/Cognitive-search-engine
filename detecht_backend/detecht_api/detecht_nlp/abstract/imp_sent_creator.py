@@ -10,6 +10,7 @@ Henrik & Oscar
 
 stopwords = list(STOP_WORDS)
 nlp = spacy.load("en_core_web_sm")
+nlp.max_length= 100000000
 
 
 # The sentences are returned in a array where the first sentence
@@ -39,8 +40,8 @@ def listOfTextToList(list):
 def imp_sent_creator(doc, size):
     doc, endIndex1 = listOfTextToList(doc)
     imp_sentences = []
-    nlp = spacy.load("en_core_web_sm")
-    nlp.max_length= 100000000
+    # nlp = spacy.load("en_core_web_sm")
+    # nlp.max_length= 100000000
     #    t1=time.time()
     docx = nlp(doc, disable=["tagger", "ner"])
     word_frequencies = {}
