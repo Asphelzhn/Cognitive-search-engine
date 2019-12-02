@@ -120,6 +120,10 @@ export class  NetworkIsFavoriteResponse {
   favorite: boolean;
 }
 
+export class NetworkSuccessResponse {
+  success: boolean;
+}
+
 /*
   REQUESTS TO SERVER
  */
@@ -190,3 +194,7 @@ export class NetworkAdminLoginRequest {
   password: string;
 }
 
+export class NetworkChangeNameRequest {
+  pdfName: string;
+  newTitle: string;
+}

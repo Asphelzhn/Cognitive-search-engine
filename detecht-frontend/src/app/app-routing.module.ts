@@ -6,6 +6,7 @@ import { UploadFileComponent } from './admin-page/upload-file/upload-file.compon
 import { StartPageComponent } from './start-page/start-page.component';
 import { SavedDocumentsPageComponent } from './saved-documents-page/saved-documents-page.component';
 import { LoginPageComponent } from './admin-page/login-page/login-page.component';
+import {EditDocumentsComponent} from './admin-page/edit-documents/edit-documents.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'upload', component: UploadFileComponent },
-  { path: 'login', component: LoginPageComponent}
+  { path: 'login', component: LoginPageComponent},
+  { path: 'edit', component: EditDocumentsComponent }
 ];
 
 @NgModule({
