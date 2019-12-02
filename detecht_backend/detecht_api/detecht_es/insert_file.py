@@ -43,7 +43,7 @@ def delete_from_index(filename):
     es.indices.refresh(index="db")
     body = {
         "query": {
-            "match": {
+            "term": {
                 "pdf_name": filename
             }
         }
