@@ -105,7 +105,7 @@ class Search(APIView):
             if input['userId'] and input['userId'] > 0:
                 user_id = input['userId']
 
-            formated = search.formatted_search(query, 1000)
+            formated, response['totalResult'] = search.formatted_search(query, 1000)
             if len(formated) > 0:
                 weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
                 askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
@@ -134,12 +134,7 @@ class Search(APIView):
                         {'keyword': askquestion,
                          'type': 2})
 
-                response['totalResult'] = len(weighted)
-                counter = 0
                 for pdf_name in weighted:
-                    if counter >= 10:
-                        break
-                    counter += 1
                     response['content'].append(search.get_pdf(
                         pdf_name)['j_class'].frontend_result(query))
             print(response)
