@@ -137,8 +137,9 @@ class Search(APIView):
                 response['totalResult'] = len(weighted)
                 counter = 0
                 for pdf_name in weighted:
-                    if ++counter >= 10:
+                    if counter >= 10:
                         break
+                    counter += 1
                     response['content'].append(search.get_pdf(
                         pdf_name)['j_class'].frontend_result(query))
             print(response)
