@@ -329,7 +329,11 @@ class RelatedDocuments(APIView):
         documentList = pdf_relevance(data_in['pdfName'])
         if documentList != []:
             response['success'] = True
+            counter = 0
             for pdf in documentList:
+                if counter >= 3:
+                    break
+                counter += 1
                 jsonPdf = {
                     'pdfName': pdf[0],
                     'value': pdf[1],
