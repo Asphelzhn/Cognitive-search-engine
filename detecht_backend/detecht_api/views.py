@@ -107,8 +107,10 @@ class Search(APIView):
 
             formated, response['totalResult'] = search.formatted_search(query, 1000)
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
-                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
+                weighted = WeightingModule.WeightingModule\
+                    .calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule\
+                    .WeightingModule.ask_a_question(weighted)
 
                 ignore = []
                 for question in input['askQuestions']:
@@ -127,7 +129,8 @@ class Search(APIView):
                         weighted = newWeighted
                     else:
                         break
-                    askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted, ignore)
+                    askquestion, newWeighted = WeightingModule\
+                        .WeightingModule.ask_a_question(weighted, ignore)
 
                 if len(askquestion) > 0:
                     response['askQuestions'].append(
