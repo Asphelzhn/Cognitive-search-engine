@@ -2,6 +2,8 @@ from rest_framework.exceptions import ValidationError
 from detecht_api.detecht_db_handling.document_interaction import \
     update_downloads
 from detecht_api.detecht_nlp.word_similarity import word_similarity
+from detecht_api.django_setup import initialize_django()
+from django.db.models import F
 from detecht_api.models import (Keywords,
                                 Keyword_distance,
                                 Pdf_Name_Keyword_Weight,
@@ -11,6 +13,7 @@ from detecht_api.models import (Keywords,
                                 TotalKeywords)
 from datetime import date
 
+initialize_django()
 
 def addTotalKeywords(word):
     newword, created = TotalKeywords.objects.get_or_create(word=word)
