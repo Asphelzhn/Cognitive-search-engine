@@ -107,10 +107,8 @@ class Search(APIView):
 
             formated = search.formatted_search(query, 1000)
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule\
-                    .calculate_score_after_weight(formated, query, user_id)
-                askquestion, newWeighted = WeightingModule.WeightingModule\
-                    .ask_a_question(weighted)
+                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
 
                 ignore = []
                 for question in input['askQuestions']:
@@ -129,20 +127,20 @@ class Search(APIView):
                         weighted = newWeighted
                     else:
                         break
-                    askquestion, newWeighted = WeightingModule\
-                        .WeightingModule.ask_a_question(weighted, ignore)
+                    askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted, ignore)
 
                 if len(askquestion) > 0:
                     response['askQuestions'].append(
                         {'keyword': askquestion,
                          'type': 2})
 
-                print(response['askQuestions'])
-
+                response['totalResult'] = len(weighted)
+                counter = 0
                 for pdf_name in weighted:
+                    if ++counter >= 10:
+                        break
                     response['content'].append(search.get_pdf(
                         pdf_name)['j_class'].frontend_result(query))
-                    response['totalResult'] += 1
             print(response)
             response['success'] = True
             return JsonResponse(response)  # test
