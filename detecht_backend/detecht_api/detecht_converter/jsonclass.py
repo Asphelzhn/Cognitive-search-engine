@@ -65,7 +65,7 @@ class JsonClass:
         pdf_extraction = pdf_extractor(pdf_name)
         date_created = None
         try:
-            datetime.datetime.strftime(pdf_extraction[1], '%Y-%m-%d')
+            datetime.datetime.strptime(pdf_extraction[1], '%Y-%m-%d')
             date_created = pdf_extraction[1]
         except ValueError:
             date_created = datetime.date.today().strftime('%Y-%m-%d')
