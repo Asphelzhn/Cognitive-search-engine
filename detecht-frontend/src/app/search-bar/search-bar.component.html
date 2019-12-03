@@ -1,4 +1,7 @@
 <div class="search">
+  <div class="home" *ngIf="showHome">
+    <img routerLink="" src="static/assets/user-page/logo-icon.png">
+  </div>
   <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
     <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"

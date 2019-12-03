@@ -12,6 +12,11 @@
   padding-top: 300px;
 }
 
+.search{
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
 
 .trending-documents-div {
   padding-top: 100px;
@@ -40,5 +45,11 @@
 
   img:hover {
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 1090px) {
+  .logo-img {
+    margin-bottom: -75px;
   }
 }
