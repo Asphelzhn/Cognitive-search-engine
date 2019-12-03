@@ -22,6 +22,7 @@ export class SearchBarComponent implements OnInit {
   autocomplete: string[];
   userId: number;
   @Input() changePage: boolean;
+  @Input() showHome = true;
 
   ngOnInit() {
     this.adminLoginService.userId.subscribe(userId => this.userId = userId );
