@@ -54,7 +54,7 @@
   cursor: pointer;
 }
 
-#choosed-file {
+#chosen-file {
   width: auto;
   height: 20px;
   text-align: left;
@@ -67,20 +67,24 @@
 
 
 .file-buttons{
-  display: flex;
+  display: block;
   justify-content: center;
   margin-top: 280px;
   margin-left: auto;
   margin-right: auto;
 
-  button {
-    background-color: #B0D5D8;
-    color: #ffffff;
-    border: none;
-    padding: 4px 11px;
-    margin: 2px;
-    cursor: pointer;
-  }
+    button {
+      background-color: #B0D5D8;
+      color: #ffffff;
+      border: none;
+      padding: 4px 11px;
+      cursor: pointer;
+
+      h5 {
+        font-size: small;
+      }
+    }
+
 }
 
 #uploading {
@@ -91,9 +95,34 @@
   height: 400px;
   margin-left: -250px;
   margin-top: -200px;
+  text-align: center;
 
   background-color: white;
   border: 2px solid black;
+
+  .loader {
+    position: absolute;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #B0D5D8; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    left: 35%;
+    top: 20%;
+    text-align: center;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .response-message {
+    padding-top: 170px;
+  }
+
+
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
@@ -108,6 +137,21 @@
     margin-bottom: 0px;
     grid-row-gap: 200px;
   }
+
+  #uploading {
+    left: 40%;
+    width: 300px;
+    height: 200px;
+    margin-left: -50px;
+    margin-top: -50px;
+    .loader {
+      left: 25%;
+      top: 10%;
+    }
+    .response-message {
+      padding-top: 80px;
+    }
+  }
 }
 
 @media screen and (max-width: 612px) {
@@ -121,6 +165,24 @@
     flex-direction: column;
     margin-top: 5px;
     margin-bottom: 0px;
+  }
+
+  #uploading {
+    left: 25%;
+    width: 200px;
+    height: 100px;
+    margin-left: 50px;
+    margin-top: 0;
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      left: 30%;
+      top: 10%;
+    }
+    .response-message {
+      padding-top: 0;
+    }
   }
 
 }
