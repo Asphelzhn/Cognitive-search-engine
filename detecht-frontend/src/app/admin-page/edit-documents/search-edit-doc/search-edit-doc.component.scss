@@ -25,7 +25,6 @@
   opacity: 1;
   float : left;
   margin-left: 2%;
-  margin-bottom: 0;
 }
 
 .trash {
@@ -244,6 +243,7 @@ result {
 
 .hr {
   // border-bottom: 1px #707070 solid;
+  margin-top: 15px;
   height: 0.5px;
   width: 100%;
   background-color: #808080;
