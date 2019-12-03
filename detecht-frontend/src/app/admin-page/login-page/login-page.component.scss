@@ -52,68 +52,18 @@
   }
 }
 
-/* Responsive layout */
-@media screen and (min-width: 1600px) {
-  .container {
-    background-image: url("/static/assets/backgrounds/home-background-wide.png");/* The image used */
-
-    .login-box {
-      position: absolute;
-      top: 50%;
-      left: 45%;
-      width: auto;
-      height: auto;
-
-      background-color: #FFFFFF;
-      text-align: center;
-
-      h2 {
-        font-size: xx-large;
-        padding-bottom: 10px;
-      }
-
-      img {
-        padding-bottom: 50px;
-        width: 200px;
-
-      }
-
-      input {
-        height: auto;
-        margin-bottom: 30px;
-        width: 800px;
-        font-size: xx-large;
-        border: 5px solid darkslategrey;
-      }
-
-      .searchButton {
-        cursor: pointer;
-        background-color: #FFFFFF;
-        color: #000000;
-        height: auto;
-        width: 800px;
-        font-size: xx-large;
-        padding: 12px 33px;
-        margin: 10px;
-        border: 5px solid darkslategrey;
-      }
-
-    }
-  }
-
-}
 @media screen and (max-width: 992px) {
   .container {
     background-image: url("/static/assets/backgrounds/home-background-narrow.png");/* The image used */
+    text-align: center;
 
     .login-box {
-      position: absolute;
       top: 50%;
-      left: 50%;
-      width: auto;
-      height: 500px;
-      margin-left: -200px;
+      left: 40%;
+      margin-left: 0;
       margin-top: -225px;
+      width: auto;
+      height: auto;
       background-color: #FFFFFF;
       text-align: center;
 

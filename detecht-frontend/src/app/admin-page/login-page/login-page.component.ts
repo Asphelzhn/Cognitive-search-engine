@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
     this.adminLoginService.adminLogin(this.loginData).subscribe(
       (response) => {
         this.adminLoginService.setCookie(response.user);
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/admin');
       },
       (error) => {
         this.errorMessage = 'Wrong user name or password';
