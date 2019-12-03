@@ -69,8 +69,15 @@ def formatted_search(query, size=1):
     }
 
     res = es.search(index="db", body=body)
+    print(res)
+    num_hits = res['hits']['total']['value']
+    print(num_hits)
     titles = list()
+    counter = 0
     for hit in res['hits']['hits']:
+        if counter >= 10:
+            break
+        counter += 1
         title = "%(pdf_name)s" % hit["_source"]
         titles.append(title)
-    return titles
+    return titles, num_hits
