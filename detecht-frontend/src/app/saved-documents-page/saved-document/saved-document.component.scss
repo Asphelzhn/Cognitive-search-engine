@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 #container {
-  height: 353px;
+  height: 200px;
   max-width: 1080px;
   /* UI Properties */
   font-family: 'Poppins', sans-serif;
@@ -12,12 +12,12 @@
     text-align: center;
     border-bottom: #B1B1B1;
     border-bottom-style: solid;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   .document-title-div {
     float: left;
-    padding-top: 5px;
-    font-size: 50px;
+    padding-top: 15px;
+    font-size: 30px;
     font-family: Verdana, serif;
     text-align: left;
     color: #383838;
@@ -79,12 +79,12 @@
 
   .sentence-div {
     float: left;
-    height: 70px;
-    font-size: 30px;
+    height: 30px;
+    font-size: 20px;
     font-family: Verdana, serif;
     font-style: italic;
     color: #383838;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 10px;
     white-space: nowrap;
     overflow: hidden;
