@@ -2,25 +2,26 @@ import time
 import re
 from collections import Counter
 
-#import spacy
-import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'detecht_backend.settings'
-import django
-django.setup()
-t1=time.time()
-from detecht_api.detecht_db_handling.keyword import addTotalKeywords
-from detecht_api.models import TotalKeywords
+# import spacy
+from detecht_api.django_setup import initialize_django
+# from detecht_api.detecht_db_handling.keyword import addTotalKeywords
+# from detecht_api.models import TotalKeywords
 from os import path
+
+initialize_django()
+t1 = time.time()
+
 
 def words(text):
     return re.findall(r'\w+', text.lower())
 
 
-word_counter = Counter(words(open("detecht_api/detecht_nlp/spell_check/big.txt").read()))
+word_counter = Counter(words(
+    open("detecht_api/detecht_nlp/spell_check/big.txt").read()))
 if path.exists("temp.txt"):
     word_counter.update(words(open("temp.txt").read()))
 
-#def uploadTxt(string):
+# def uploadTxt(string):
 #    t0=time.time()
 #    nlp = spacy.load("en_core_web_sm")
 #    nlp.max_length= 100000000

@@ -49,6 +49,7 @@ from detecht_api.detecht_nlp.related_searches import related_searches_api
 
 related_searches = related_searches_api.related_searches()
 
+
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
@@ -106,8 +107,10 @@ class Search(APIView):
 
             formated = search.formatted_search(query, 1000)
             if len(formated) > 0:
-                weighted = WeightingModule.WeightingModule.calculate_score_after_weight(formated, query, user_id)
-                askquestion, newWeighted = WeightingModule.WeightingModule.ask_a_question(weighted)
+                weighted = WeightingModule.WeightingModule\
+                    .calculate_score_after_weight(formated, query, user_id)
+                askquestion, newWeighted = WeightingModule.WeightingModule\
+                    .ask_a_question(weighted)
 
                 ignore = []
                 for question in input['askQuestions']:
@@ -237,9 +240,10 @@ class DeletePdf(APIView):
 
         inputfile = request.data
 
-        if inputfile !={}:
+        if inputfile != {}:
             insert_file.delete_from_index(inputfile["pdfName"])
-            Document.delete(inputfile["pdfName"])  # runs a function in models that deletes our pdf.
+            Document.delete(inputfile["pdfName"])  # runs a function in
+            # models that deletes our pdf.
             response['success'] = True
         return JsonResponse(response)
 
