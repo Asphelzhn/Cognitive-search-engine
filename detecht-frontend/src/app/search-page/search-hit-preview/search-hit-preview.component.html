@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="abstract-wrapper">
-      <h2>Abstracts</h2>
+      <h2>Excerpts</h2>
       <div>
         <div *ngFor='let abstract of abstracts' class="abstract">
           <p>"{{abstract.sentence}}"</p>
@@ -56,7 +56,14 @@
           <span href="#" (click)="related.liked = !related.liked; like(related.pdfName, false)" *ngIf="related.liked">
             <img src="/static/assets/user-page/red-saved-button.png">
           </span>
-          <span href="#">
+          <span href="#"
+              fileSaver
+              [method]="'GET'"
+              [fileName]="result.title"
+              [url]="staticUrl + 'pdf/' + related.pdfName"
+              [header]="{token: 'demo'}"
+              [query]="{pi: 1, name: 'demo'}"
+            >
             <img src="/static/assets/user-page/download-button.png">
           </span>
           <span href="#">

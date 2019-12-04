@@ -1,3 +1,17 @@
+h2 {
+  font-family: Poppins;
+}
+
+h1 {
+  font-family: Verdana;
+}
+
+.abstract {
+  font-family: Helvetica Neue;
+}
+.related-document {
+  font-family: Verdana;
+}
 #background {
   position: fixed;
   z-index: 1100;
@@ -50,7 +64,7 @@
           height: auto;
         }
       }
-      
+
       span:hover {
         cursor: pointer;
       }
@@ -141,7 +155,7 @@
               height: auto;
             }
           }
-          
+
           span:hover {
             cursor: pointer;
           }
