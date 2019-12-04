@@ -7,6 +7,15 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.start-page-container {
+  padding-top: 300px;
+}
+
+.search{
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
 
 .search-bar {
   position: absolute;
@@ -47,37 +56,8 @@
   }
 }
 
-@media screen and (max-width: 900px) {
-  .search-bar {
-    position: absolute;
-    top: 27%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 60%;
-  }
-
+@media only screen and (max-width: 1090px) {
   .logo-img {
-    display: block;
-    width: 430px;
-    top: 15%;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    margin-bottom: -75px;
   }
-}
-
-@media screen and (max-width: 612px) {
-  .logo-img {
-    width: 300px;
-  }
-  .trending-documents-div{
-    width: 100%;
-    left: 0;
-    top: 57%;
-  }
-
-  .search-bar {
-    width:100%;
-  }
-
 }
