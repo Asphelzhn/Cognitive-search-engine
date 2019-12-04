@@ -61,7 +61,7 @@ def formatted_search(query, size=1):
         "size": size,
         "query": {
             "query_string": {
-                "fields": ["title^10", "pdf_name^1", "pages^1", "keywords^8"],
+                "fields": ["title^10", "pages^1", "keywords^8"],
                 "query": query,
 
             }
