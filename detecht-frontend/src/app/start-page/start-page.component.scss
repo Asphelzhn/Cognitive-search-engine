@@ -9,17 +9,17 @@
 }
 
 .search-bar {
-  position:absolute;
-  top:38%;
+  position: absolute;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, 0);
-  width:60%;
+  width: 60%;
 }
 
 .logo-img {
   display: block;
   width: 430px;
-  top: 26%;
+  top: 18%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -46,13 +46,33 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .search-bar {
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 60%;
+  }
+
+  .logo-img {
+    display: block;
+    width: 430px;
+    top: 15%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
 @media screen and (max-width: 612px) {
   .logo-img {
-    width:300px;
+    width: 300px;
   }
   .trending-documents-div{
-    width:100%;
-    left:0%;
+    width: 100%;
+    left: 0;
     top: 57%;
   }
 
