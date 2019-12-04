@@ -75,13 +75,13 @@ input:focus {
 .search-bar-container {
   position: relative;
 
-  input[type="submit"] {
+  span {
+    display: block;
     position: absolute;
     top: 2rem;
     left: 3rem;
-    background: none;
     border: 0;
-    padding: 30px;
+    padding: 40px;
     background-image: url("/static/assets/user-page/search-icon.png");
     background-repeat: no-repeat;
     background-position: center center;
