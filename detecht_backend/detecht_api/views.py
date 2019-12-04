@@ -242,6 +242,8 @@ class DeletePdf(APIView):
             insert_file.delete_from_index(inputfile["pdfName"])
             Document.delete(inputfile["pdfName"])  # runs a function in
             # models that deletes our pdf.
+            #delete from favorites table
+            remove_favorite_pdf(inputfile["pdfName"])
             response['success'] = True
         return JsonResponse(response)
 
