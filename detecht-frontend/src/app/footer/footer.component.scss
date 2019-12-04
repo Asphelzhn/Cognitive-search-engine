@@ -29,3 +29,15 @@ footer {
     float: right;
   }
 }
+@media screen and (max-width: 612px) {
+footer {
+  margin: -40px 0px 0px 0px;
+  padding-top: 10px;
+  font-size:13px;
+  a{
+    font-size:13px;
+  }
+
+}
+}
+

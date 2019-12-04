@@ -1,44 +1,83 @@
-.container{
-  background-image: url("/static/assets/backgrounds/home-background.png");/* The image used */
-  background-color: #ffffff; /* Used if the image is unavailable */
-  width: auto;
+.container {
   min-height: 100vh;
-  height: auto; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover;/* Resize the background image to cover the entire container */
-}
-.start-page-container {
-  padding-top: 300px;
+  min-width: 100vw;
+  overflow-x: hidden;
+  background-image: url("/static/assets/backgrounds/home-background.png");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-
-.trending-documents-div {
-  padding-top: 100px;
-  padding-bottom: 100px;
-  margin-left: 2%;
-  margin-right: 2%;
-  width: 96%;
+.search-bar {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 60%;
 }
 
 .logo-img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  width: 430px;
+  top: 18%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.trending-documents-div {
+  position:absolute;
+  left:12%;
+  top: 52%;
+  width: 76%;
 }
 
 .saved-documents {
-  position: fixed;
+  position: absolute;
   top: 30px;
   right: 30px;
 
   img {
-    width: 161px;
-    height: 74px;
+    width: 141px;
+    height: 60px;
   }
 
   img:hover {
     cursor: pointer;
   }
+}
+
+@media screen and (max-width: 900px) {
+  .search-bar {
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 60%;
+  }
+
+  .logo-img {
+    display: block;
+    width: 430px;
+    top: 15%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media screen and (max-width: 612px) {
+  .logo-img {
+    width: 300px;
+  }
+  .trending-documents-div{
+    width: 100%;
+    left: 0;
+    top: 57%;
+  }
+
+  .search-bar {
+    width:100%;
+  }
+
 }

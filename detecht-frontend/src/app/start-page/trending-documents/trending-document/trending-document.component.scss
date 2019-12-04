@@ -3,7 +3,9 @@
 a {
   color: #FFF;
   text-decoration: none;
-};
+}
+
+;
 
 #container {
   min-width: 300px;
@@ -85,4 +87,20 @@ a {
 
 #container:hover {
   background-color: #666666;
+}
+
+
+@media screen and (max-width: 612px) {
+  #container {
+    height: 8px;
+    font-size: 10px;
+    width: 20%;
+    min-width: 100px;
+
+    .document-title-div {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      height: 12px;
+    }
+  }
 }

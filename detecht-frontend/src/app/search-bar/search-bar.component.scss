@@ -35,6 +35,14 @@ input:focus {
   background-position-x: 10%;
   margin-top: 2rem;
 }
+@media screen and (max-width: 612px) {
+  .searchTerm
+  {
+    font-size:20px;
+  }
+}
+
+
 .search-bar {
   width: auto;
   height: 30px;
