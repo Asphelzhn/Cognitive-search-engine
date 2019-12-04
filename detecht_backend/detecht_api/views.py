@@ -17,7 +17,7 @@ from detecht_api.detecht_db_handling.keyword import (Interact_Document,
                                                      pdf_relevance)
 from detecht_api.detecht_db_handling.document_interaction import (
     add_favorite_pdf, remove_favorite_pdf,
-    update_downloads, update_favorites, change_pdf_name)
+    update_downloads, update_favorites, change_pdf_name, remove_pdf_from_favorites)
 
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
@@ -243,7 +243,7 @@ class DeletePdf(APIView):
             Document.delete(inputfile["pdfName"])  # runs a function in
             # models that deletes our pdf.
             #delete from favorites table
-            remove_favorite_pdf(inputfile["pdfName"])
+            remove_pdf_from_favorites(inputfile["pdfName"])
             response['success'] = True
         return JsonResponse(response)
 
