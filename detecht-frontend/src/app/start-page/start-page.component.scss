@@ -19,7 +19,7 @@
 
 .search-bar {
   position: absolute;
-  top: 30%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, 0);
   width: 60%;
@@ -28,7 +28,7 @@
 .logo-img {
   display: block;
   width: 430px;
-  top: 18%;
+  top: 29%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -37,7 +37,7 @@
 .trending-documents-div {
   position:absolute;
   left:12%;
-  top: 52%;
+  top: 54%;
   width: 76%;
 }
 
@@ -60,4 +60,23 @@
   .logo-img {
     margin-bottom: -75px;
   }
+  .trending-documents-div {
+    top: 65%;
+  }
+}
+
+@media screen and (max-width: 612px) {
+  .logo-img {
+    width: 300px;
+  }
+  .trending-documents-div{
+    width: 100%;
+    left: 0;
+    top: 67%;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
 }
