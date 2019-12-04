@@ -29,7 +29,8 @@ export class AdminLoginService {
   }
 
   setCookie(userId: number): void {
-    this.cookieService.set('realyDiffucultHashForUserId', userId.toString());
+    this.cookieService.set('realyDiffucultHashForUserId', userId.toString(), 10, '/');
+    this.userIdSource.next(userId);
   }
 
   checkLoggedIn(): void {
