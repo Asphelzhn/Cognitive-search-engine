@@ -17,7 +17,8 @@ from detecht_api.detecht_db_handling.keyword import (Interact_Document,
                                                      pdf_relevance)
 from detecht_api.detecht_db_handling.document_interaction import (
     add_favorite_pdf, remove_favorite_pdf,
-    update_downloads, update_favorites, change_pdf_name)
+    update_downloads, update_favorites, change_pdf_name,
+    remove_pdf_from_favorites)
 
 # imports by ARMIN
 # from rest_framework.permissions import IsAuthenticated
@@ -140,7 +141,7 @@ class Search(APIView):
 
                 for pdf_name in weighted:
                     response['content'].append(search.get_pdf(
-                        pdf_name)['j_class'].frontend_result(query))
+                        pdf_name, False)['j_class'].frontend_result(query))
             print(response)
             response['success'] = True
             return JsonResponse(response)  # test
@@ -242,6 +243,8 @@ class DeletePdf(APIView):
             insert_file.delete_from_index(inputfile["pdfName"])
             Document.delete(inputfile["pdfName"])  # runs a function in
             # models that deletes our pdf.
+            # delete from favorites table
+            remove_pdf_from_favorites(inputfile["pdfName"])
             response['success'] = True
         return JsonResponse(response)
 

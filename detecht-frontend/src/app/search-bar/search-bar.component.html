@@ -1,17 +1,22 @@
 <div class="search">
+  <div class="home" *ngIf="showHome">
+    <img routerLink="" src="static/assets/user-page/logo-icon.png">
+  </div>
   <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
-    <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"
-           [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
-
+    <div class="search-bar-container">
+      <span class="button" (click)="search()"></span>
+      <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"
+             [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
+    </div>
     <!--AUTOCOMPLETE-->
-    <div id="autocompleteDropDown" *ngIf="autocomplete.length > 0">
+    <div id="autocompleteDropDown" *ngIf="autocomplete.length > 0 && searchString !== ''">
         <span *ngFor="let sentence of autocomplete"
               (click)="autoComplete(sentence)">
           {{sentence}}
         </span>
     </div>
-    <div id="autocompleteDownBackground" *ngIf="autocomplete.length > 0" (click)="closeAutocompleteDropDown()"></div>
+    <div id="autocompleteDownBackground" *ngIf="autocomplete.length > 0 && searchString !== ''" (click)="closeAutocompleteDropDown()"></div>
     <!--END AUTOCOMPLETE-->
 
     <!--SPELLCHECK-->

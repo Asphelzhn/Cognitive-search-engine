@@ -23,6 +23,7 @@ export class SearchHitPreviewComponent implements OnInit {
   @Input() result: SearchResponse;
   staticUrl: string;
   showPreview: boolean;
+  showAllPages: boolean;
   rightSentence: string;
   rightPage: number;
   @Input() abstracts: Abstract[];
@@ -95,7 +96,13 @@ export class SearchHitPreviewComponent implements OnInit {
 
   }
 
+  displayPreviewAllPages(): void {
+    this.showAllPages = true;
+    this.showPreview = true;
+  }
+
   displayPreview(abstract: Abstract): void {
+    this.showAllPages = false;
     this.showPreview = true;
     this.rightSentence = abstract.sentence;
     this.rightPage = abstract.page;

@@ -37,7 +37,7 @@ def search(query, size=100):
 
 
 # Should handle both single and multiple searches.
-def get_pdf(query):
+def get_pdf(query, abstract=True):
     body = {
         "size": 1,
         "query": {
@@ -51,7 +51,7 @@ def get_pdf(query):
     es.indices.refresh(index="db")
     res = es.search(index="db", body=body)
     j_class = JsonClass.init_from_json(json.dumps(
-        res['hits']['hits'][0]["_source"]))
+        res['hits']['hits'][0]["_source"]), abstract)
     return {"j_class": j_class}
 
 
@@ -61,7 +61,7 @@ def formatted_search(query, size=1):
         "size": size,
         "query": {
             "query_string": {
-                "fields": ["title^10", "pdf_name^1", "pages^1", "keywords^8"],
+                "fields": ["title^10", "pages^1", "keywords^8"],
                 "query": query,
 
             }

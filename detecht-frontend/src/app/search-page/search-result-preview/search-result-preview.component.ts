@@ -17,6 +17,7 @@ export class SearchResultPreviewComponent implements OnInit {
   }
 
   @Input() showPreview: boolean;
+  @Input() showAllPages: boolean;
   @Input() staticUrl: string;
   @Input() result: SearchResponse;
   @Input() sentence: string;

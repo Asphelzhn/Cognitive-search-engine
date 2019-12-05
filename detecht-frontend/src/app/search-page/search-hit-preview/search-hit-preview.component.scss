@@ -1,3 +1,24 @@
+h2 {
+  font-family: Poppins;
+}
+
+h1 {
+  font-family: Verdana;
+}
+
+.abstract {
+  font-family: "Helvetica Neue";
+  font-weight: 300;
+}
+.related-document {
+  font-family: Verdana;
+}
+
+.showAllPdf {
+  display: block;
+  margin: 20px auto;
+}
+
 #background {
   position: fixed;
   z-index: 1100;
@@ -50,7 +71,7 @@
           height: auto;
         }
       }
-      
+
       span:hover {
         cursor: pointer;
       }
@@ -74,6 +95,12 @@
         padding: 0.3rem;
       }
 
+      img {
+        margin-top: 1rem;
+        width: 120px;
+        cursor: pointer;
+      }
+
     }
     .abstract-wrapper {
       width: 50%;
@@ -90,6 +117,7 @@
           background-color: #e0e0e0;
           border-radius: 25px;
           box-sizing: border-box;
+          overflow: hidden;
 
           p {
             font-style: italic;
@@ -141,7 +169,7 @@
               height: auto;
             }
           }
-          
+
           span:hover {
             cursor: pointer;
           }

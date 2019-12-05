@@ -10,7 +10,7 @@ import {NetworkSearchResponse, NetworkTrendingDocumentsResponse} from '../../net
 })
 export class TrendingDocumentsComponent implements OnInit {
 
-  trendingDocs: TrendingDocumentsResponse[];
+  trendingDocs: TrendingDocumentsResponse[] = null;
 
   constructor(private trendingDocumentsService: TrendingDocumentsService) { }
 

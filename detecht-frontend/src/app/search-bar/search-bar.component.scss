@@ -1,47 +1,120 @@
 .search {
   width: auto;
   position: relative;
-  display:flex;
+  display:grid;
+  grid-template-columns: 20% 60% 20%;
   justify-content: center;
   font-family: Verdana;
 
   margin-bottom: 20px;
 
   form {
+    grid-column: 2;
     width: 100%;
     margin: 0 1rem;
     max-width: 1000px;
     height: auto;
   }
+
+  .home {
+    grid-column: 1;
+    img {
+      height: 60px;
+      padding-top: 40px;
+      padding-left: 20px;
+    }
+  }
 }
+
+@media only screen and (max-width: 1090px) {
+  .search {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 80px 60px;
+
+    form {
+      grid-row: 2;
+      grid-column: 1/2;
+      width: 190%;
+      max-width: 1090px;
+      margin-right: 20px;
+      margin-top: -75px;
+    }
+    .home {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .search {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 80px 60px;
+
+    form {
+      grid-row: 2;
+      grid-column: 1/2;
+      width: 185%;
+      max-width: 1090px;
+
+    }
+    .home {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+}
+
 
 input:focus {
   outline-width: 0;
 }
 
-.searchTerm {
-  width: 100%;
-  display: inline-block;
-  font-size: 25px;
-  border-radius: 9999px;
-  border: 0;
-  box-sizing: border-box;
-  background-color: #FFF;
-  background-image: url("/static/assets/user-page/search-icon.png");
-  background-repeat: no-repeat;
-  background-position: left center;
-  padding: 20px;
-  padding-left: 20%;
-  background-position-x: 10%;
-  margin-top: 2rem;
-}
-@media screen and (max-width: 612px) {
-  .searchTerm
-  {
-    font-size:20px;
-  }
-}
 
+
+.search-bar-container {
+  position: relative;
+
+  span {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+    border: 0;
+    padding: 40px;
+    background-image: url("/static/assets/user-page/search-icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    transition: opacity 300ms;
+    &:hover {
+      opacity: .5;
+    }
+  }
+
+  .searchTerm {
+    width: 100%;
+    display: inline-block;
+    font-size: 25px;
+    border-radius: 9999px;
+    border: 0;
+    box-sizing: border-box;
+    background-color: #FFF;
+
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding: 20px;
+    padding-left: 20%;
+    background-position-x: 10%;
+    margin-top: 2rem;
+  }
+  @media screen and (max-width: 612px) {
+    .searchTerm
+    {
+      font-size:20px;
+    }
+}
+}
 
 .search-bar {
   width: auto;

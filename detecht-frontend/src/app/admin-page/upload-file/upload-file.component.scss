@@ -39,6 +39,10 @@
     margin: 100px auto;
     cursor: pointer;
     display: table;
+
+    h5 {
+      font-weight: normal;
+    }
   }
 
   input[type="file"] {
@@ -59,7 +63,6 @@
   height: 20px;
   text-align: left;
   border-bottom: #383838;
-  // font: bold;
   font-family: Verdana;
   font-size: 16px;
 
@@ -77,11 +80,11 @@
       background-color: #B0D5D8;
       color: #ffffff;
       border: none;
-      padding: 4px 11px;
       cursor: pointer;
 
       h5 {
         font-size: small;
+        font-weight: normal;
       }
     }
 
@@ -97,13 +100,13 @@
   margin-top: -200px;
   text-align: center;
 
-  background-color: white;
-  border: 2px solid black;
+  //background-color: white;
+  //border: 2px solid black;
 
   .loader {
     position: absolute;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #B0D5D8; /* Blue */
+    border: 16px solid #00000029;
+    border-top: 16px solid #B0D5D8;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -119,7 +122,25 @@
   }
 
   .response-message {
-    padding-top: 170px;
+    padding-top: 10px;
+    margin-top: 30%;
+    background-color: white;
+    border: 1px solid #00000029;
+
+    button {
+      width: 24%;
+      background-color: #B0D5D8;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
+      margin-top: 10px;
+
+      h5 {
+        font-size: small;
+        font-weight: normal;
+      }
+    }
   }
 
 
@@ -149,7 +170,12 @@
       top: 10%;
     }
     .response-message {
-      padding-top: 80px;
+      padding-top: 10px;
+      margin-top: 20%;
+
+      button {
+        width: 50%;
+      }
     }
   }
 }
@@ -181,7 +207,12 @@
       top: 10%;
     }
     .response-message {
-      padding-top: 0;
+      padding-top: 10px;
+      margin-top: 10%;
+
+      button {
+        width: 62%;
+      }
     }
   }
 
