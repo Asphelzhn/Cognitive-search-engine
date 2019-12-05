@@ -26,7 +26,7 @@ def inject_one_file(json_obj):
     doc_count = es.cat.count(index="db", params={"format": "json"})
     doc_id_tmp = doc_count[0]["count"]  # Counts the number of ids in the index
     doc_id = int(doc_id_tmp) + 1
-    es.index(index="db", doc_type="doc", id=doc_id, body=json_obj)
+    es.index(index="db", doc_type="_doc", id=doc_id, body=json_obj)
 
 
 def inject(names):
@@ -39,7 +39,6 @@ def inject_by_name(filename):
 
 
 def delete_from_index(filename):
-    print(filename)
     es.indices.refresh(index="db")
     body = {
         "query": {
