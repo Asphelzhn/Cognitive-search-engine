@@ -15,6 +15,7 @@ export class EditResultComponent implements OnInit {
   @Input() query: string;
   icon: string;
   @Output() pdfNameEvent = new EventEmitter<SearchResponse>();
+  hide = false;
 
   constructor(private deletePdfService: DeletePdfService, private searchService: SearchService, private router: Router) { }
 
@@ -25,9 +26,10 @@ export class EditResultComponent implements OnInit {
 
   delete() {
     this.deletePdfService.deletePdf(this.result.name).subscribe(
-      response => console.log(response)
+      (response) => {
+        this.hide = true;
+      }
     );
-    this.searchService.search(this.query);
   }
 
   editDocument() {
