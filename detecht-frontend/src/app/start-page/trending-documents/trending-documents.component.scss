@@ -16,6 +16,16 @@
   margin-left:13%;
   color: #383838;
 }
+
+@media screen and (max-width: 1090px) {
+  #trending-documents-title {
+    margin-top: -300px;
+    margin-bottom: 5px;
+    margin-left: 1%;
+
+  }
+}
+
 @media screen and (max-width: 612px) {
   #trending-documents-title {
     font-size: 15px;
