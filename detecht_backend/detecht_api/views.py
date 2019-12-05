@@ -141,7 +141,7 @@ class Search(APIView):
 
                 for pdf_name in weighted:
                     response['content'].append(search.get_pdf(
-                        pdf_name)['j_class'].frontend_result(query))
+                        pdf_name, False)['j_class'].frontend_result(query))
             print(response)
             response['success'] = True
             return JsonResponse(response)  # test
