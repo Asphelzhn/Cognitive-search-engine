@@ -4,9 +4,11 @@
   </div>
   <!--<input (input)="search($event.target.value)"/> -->
   <form (ngSubmit)="search()">
-    <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"
-           [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
-
+    <div class="search-bar-container">
+      <span class="button" (click)="search()"></span>
+      <input type="text" name="search" class="searchTerm" placeholder="What do you want to search for?"
+             [(ngModel)]="searchString" *ngIf="!showSpellcheck" (input)="updateAutoComplete()" autocomplete="off"/>
+    </div>
     <!--AUTOCOMPLETE-->
     <div id="autocompleteDropDown" *ngIf="autocomplete.length > 0 && searchString !== ''">
         <span *ngFor="let sentence of autocomplete"
