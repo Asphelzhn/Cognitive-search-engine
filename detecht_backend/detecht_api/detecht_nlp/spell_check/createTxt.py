@@ -9,7 +9,7 @@ nlp = spacy.load("en_core_web_sm")
 def creteTxt(arrayOfTxt):
     if path.exists("temp.txt"):
         shutil.copyfile("temp.txt", "tempcopy.txt")
-    f = open("tempcopy.txt", "a", encoding='utf-8')
+    f = open("tempcopy.txt", "a", errors='ignore')
 
     for i in arrayOfTxt:
         docx = nlp(i)
