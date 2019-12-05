@@ -23,10 +23,7 @@ def get_file(filename):
 # db in our ES stack. but this may work.
 def inject_one_file(json_obj):
     es.indices.refresh(index="db")  # refreshes the index
-    doc_count = es.cat.count(index="db", params={"format": "json"})
-    doc_id_tmp = doc_count[0]["count"]  # Counts the number of ids in the index
-    doc_id = int(doc_id_tmp) + 1
-    es.index(index="db", doc_type="_doc", id=doc_id, body=json_obj)
+    es.index(index="db", doc_type="_doc", body=json_obj)
 
 
 def inject(names):

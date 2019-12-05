@@ -33,26 +33,29 @@ class JsonClass:
         self.word_frequencies = word_frequencies
 
     @classmethod
-    def init_from_json(cls, json_file):
+    def init_from_json(cls, json_file, abstract=True):
         json_doc = json.loads(json_file)
         databaseObjTemp = list()
-        for imp_doc in json_doc["databaseObject"]:
-            imp_obj = ImpSent()
-            # imp_obj.set_sent(imp_doc['sent'])
-            imp_obj.set_sent(nlp(imp_doc['sent']))
-            imp_obj.rank = imp_doc['rank']
-            imp_obj.order = imp_doc['order']
-            imp_obj.start_index = imp_doc['start_index']
-            imp_obj.end_index = imp_doc['end_index']
-            imp_obj.score = imp_doc['score']
-            imp_obj.page = imp_doc['page']
-            databaseObjTemp.append(imp_obj)
+        wordfreq = dict()
+        if abstract:
+            wordfreq = ast.literal_eval(json_doc["word_frequencies"])
+            for imp_doc in json_doc["databaseObject"]:
+                imp_obj = ImpSent()
+                # imp_obj.set_sent(imp_doc['sent'])
+                imp_obj.set_sent(nlp(imp_doc['sent']))
+                imp_obj.rank = imp_doc['rank']
+                imp_obj.order = imp_doc['order']
+                imp_obj.start_index = imp_doc['start_index']
+                imp_obj.end_index = imp_doc['end_index']
+                imp_obj.score = imp_doc['score']
+                imp_obj.page = imp_doc['page']
+                databaseObjTemp.append(imp_obj)
 
         json_obj = cls(json_doc["pdf_name"],
                        json_doc["title"],
                        json_doc["date_created"],
                        databaseObjTemp,
-                       ast.literal_eval(json_doc["word_frequencies"]),
+                       wordfreq,
                        json_doc["pages"])
 
         for keyword in json_doc["keywords"]:
@@ -84,16 +87,12 @@ class JsonClass:
         keywords_list = Yake4Keyword.yake_api(json_obj.get_all_plaintext(),
                                               pdf_name)
         for keyword in keywords_list:
-            # TODO make the following work (the ones that created
-            #  the database functionality)
             db_keyword.addKeyword(keyword[0])
             db_keyword.Add_Pdf_Name_Keyword_Weight(pdf_name,
                                                    keyword[0],
                                                    float(keyword[1]))
             json_obj.add_keyword(keyword[0], keyword[1])
 
-        # TODO make the following work (the ones that created
-        #  the database functionality)
         db_keyword.add_pdf_similarities(pdf_name)
         return json_obj
 
