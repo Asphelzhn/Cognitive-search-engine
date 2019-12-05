@@ -19,7 +19,7 @@ def words(text):
 word_counter = Counter(words(
     open("detecht_api/detecht_nlp/spell_check/big.txt").read()))
 if path.exists("temp.txt"):
-    word_counter.update(words(open("temp.txt").read()))
+    word_counter.update(words(open("temp.txt", errors='ignore').read()))
 
 # def uploadTxt(string):
 #    t0=time.time()
