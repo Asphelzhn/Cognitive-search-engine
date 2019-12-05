@@ -26,9 +26,11 @@ def remove_favorite_pdf(user_id, pdf_name):
     UserFavorites.objects.filter(user_id=user_id, pdf_name=pdf_name).delete()
     return
 
+
 def remove_pdf_from_favorites(pdf_name):
     UserFavorites.objects.filter(pdf_name=pdf_name).delete()
     return
+
 
 def get_filename(title):
     filename = Document.objects.get(title=title)
