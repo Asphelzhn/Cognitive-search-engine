@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GetAnalyticsService} from '../network-services/get-analytics.service';
+import {SearchService} from '../network-services/search.service';
 
 @Component({
   selector: 'app-start-page',
@@ -8,8 +9,10 @@ import {GetAnalyticsService} from '../network-services/get-analytics.service';
 })
 export class StartPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.searchService.search('');
+  }
 
 }

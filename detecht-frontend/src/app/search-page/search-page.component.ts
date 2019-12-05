@@ -27,7 +27,6 @@ export class SearchPageComponent implements OnInit {
     this.staticUrl = environment.staticUrl;
     this.searchHitPreviewService.result.subscribe(result => this.previewResult = result);
     this.searchHitPreviewService.abstracts.subscribe(abstracts => this.abstracts = abstracts);
-    this.searchService.search('');
   }
 
 }
