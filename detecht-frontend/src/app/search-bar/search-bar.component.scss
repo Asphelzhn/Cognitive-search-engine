@@ -70,7 +70,49 @@ input:focus {
   outline-width: 0;
 }
 
+.spellcheck-container {
+  position: relative;
 
+  .button {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+    border: 0;
+    padding: 40px;
+    background-image: url("/static/assets/user-page/search-icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    transition: opacity 300ms;
+    &:hover {
+      opacity: .5;
+    }
+  }
+
+  .searchTerm {
+    width: 100%;
+    display: inline-block;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 0;
+    box-sizing: border-box;
+    background-color: #FFF;
+
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding: 20px;
+    padding-left: 20%;
+    background-position-x: 10%;
+    margin-top: 2rem;
+  }
+  @media screen and (max-width: 612px) {
+    .searchTerm
+    {
+      font-size:20px;
+    }
+  }
+}
 
 .search-bar-container {
   position: relative;
@@ -130,7 +172,7 @@ input:focus {
   display: inline-grid;
   grid-template: auto / auto 1fr;
   overflow: hidden;
-  max-height: 73px;
+  height: 78px;
 }
 
 #spellcheckBoxBackGround {
@@ -148,7 +190,7 @@ input:focus {
   margin-top: -16px;
   z-index: 999999;
   position: relative;
-  border-radius: 0 0 40px 40px;
+  border-radius: 0 0 20px 20px;
   border-top: 1px solid #707070;
   padding: 1rem 0px;
   font-size: 25px;
