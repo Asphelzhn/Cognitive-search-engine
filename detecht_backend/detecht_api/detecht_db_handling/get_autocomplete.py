@@ -39,13 +39,13 @@ def get_autocomplete(query):
     query_len = len(query.split())
     result_list = []
     if query_len == 1:
-        result_list = n2gram[:4] + n3gram[:3]
+        result_list = n2gram[:4] + n3gram[:1]
     if query_len == 2:
-        result_list = n3gram[:4] + n4gram[:2] + n5gram[:1]
+        result_list = n3gram[:3] + n4gram[:1] + n5gram[:1]
     if query_len == 3:
         result_list = n4gram[:3] + n5gram[:2]
     if query_len == 4:
-        result_list = n5gram[:3]
+        result_list = n5gram[:5]
     return result_list
 
 
