@@ -10,7 +10,7 @@ es.indices.create(index='db', ignore=400)
 mapping = {
     "properties": {
         "pdf_name": {
-              "type": "keyword"
+            "type": "keyword"
         }
     }
 }
