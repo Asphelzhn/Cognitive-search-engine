@@ -33,7 +33,7 @@ export class SearchBarComponent implements OnInit {
       if (spellcheck.length > 0) {
         this.showSpellcheck = false;
         for (const spellcheckWord of spellcheck) {
-          if (!spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) && !spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
+          if (!spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) || spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
             this.showSpellcheck = true;
           }
         }
@@ -47,7 +47,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   spellcheckClass(spellcheckWord: Spellcheck): string {
-    if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) && !spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
+    if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) || spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
       return '';
     } else {
       return 'misspelled';
@@ -58,7 +58,7 @@ export class SearchBarComponent implements OnInit {
     if (spellcheckWord === undefined) {
       this.showSpellcheck = false;
     } else {
-      if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) && !spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
+      if (spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) || spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
         this.showSpellcheck = false;
       } else {
         this.showSpellcheckDropDown = true;
@@ -81,8 +81,6 @@ export class SearchBarComponent implements OnInit {
     } else {
       this.searchService.autocomplete(this.searchString).subscribe(
         (data: NetworkAutoCompleteResponse) => {
-          console.log('AutoComplete: ');
-          console.log(data);
           if (data.success) {
             this.autocomplete = data.autocomplete;
           } else {
@@ -113,7 +111,6 @@ export class SearchBarComponent implements OnInit {
 
   searchForSpellcheck(word: string, newWord: string) {
     this.closeSpellcheckDropDown();
-    console.log('Word: ' + word + ' NewWord: ' + newWord);
     let newQuery = '';
     for (const queryWord of this.spellcheck) {
       if (queryWord.word === word) {

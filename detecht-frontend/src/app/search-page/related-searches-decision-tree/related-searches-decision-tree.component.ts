@@ -56,7 +56,7 @@ export class RelatedSearchesDecisionTreeComponent implements OnInit {
         if (yes) {
           newaskQuestions.push(new AskQuestion(askQuestion.keyword, 1));
         } else {
-          newaskQuestions.push(new AskQuestion(askQuestion.keyword, 1));
+          newaskQuestions.push(new AskQuestion(askQuestion.keyword, 0));
         }
       } else {
         newaskQuestions.push(askQuestion);
