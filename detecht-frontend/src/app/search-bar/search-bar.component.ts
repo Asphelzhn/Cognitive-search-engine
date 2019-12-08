@@ -33,7 +33,7 @@ export class SearchBarComponent implements OnInit {
       if (spellcheck.length > 0) {
         this.showSpellcheck = false;
         for (const spellcheckWord of spellcheck) {
-          if (!spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) || spellcheckWord.spellcheck.includes(spellcheckWord.word)) {
+          if (!(spellcheckWord.spellcheck.includes(spellcheckWord.word.toLowerCase()) || spellcheckWord.spellcheck.includes(spellcheckWord.word))) {
             this.showSpellcheck = true;
           }
         }
