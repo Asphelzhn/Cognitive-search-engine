@@ -58,7 +58,7 @@ export class SearchHitPreviewComponent implements OnInit {
     this.staticUrl = environment.staticUrl;
     this.previewData.currentMessage.subscribe(showPreview => this.showPreview = showPreview);
 
-    this.pdfUrl = environment.pdfUrl;
+    this.pdfUrl = location.href.replace('/search', '/static/pdf/');
 
     this.adminLoginService.userId.subscribe((userId) => {
       this.userId = userId;
